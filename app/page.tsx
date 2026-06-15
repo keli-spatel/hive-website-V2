@@ -325,18 +325,6 @@ export default function HomePage() {
           </div>
         </div>
 
-        {/* Bottom gradient */}
-        <div
-          style={{
-            position: "absolute",
-            bottom: 0,
-            left: 0,
-            right: 0,
-            height: 120,
-            background: "linear-gradient(to top, #FFFFFF, transparent)",
-            zIndex: 2,
-          }}
-        />
       </section>
 
       {/* ═══════ INDUSTRIES BAR ═══════ */}
