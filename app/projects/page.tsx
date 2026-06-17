@@ -42,7 +42,7 @@ export default function ProjectsPage() {
           <div style={{ display: "inline-flex", gap: 8, marginBottom: 16, fontSize: 12, fontWeight: 600, color: "#C5C1B9", letterSpacing: 1 }}>
             <Link href="/" style={{ color: "#C5C1B9", textDecoration: "none", fontWeight: 400 }}>Home</Link><span>/</span><span style={{ color: "#FF3434" }}>Projects</span>
           </div>
-          <h1 style={{ color: "#FFFFFF", marginBottom: 16 }}>Our Projects</h1>
+          <h1 style={{ marginBottom: 16 }}>Our Projects</h1>
           <p style={{ color: "#C5C1B9", fontSize: 16, lineHeight: "26px", maxWidth: 560, margin: "0 auto" }}>Proven track record delivering industrial automation excellence across industries.</p>
         </div>
       </section>
@@ -84,7 +84,7 @@ export default function ProjectsPage() {
                 </div>
                 <div style={{ padding: 24, display: "flex", flexDirection: "column", gap: 12, flex: 1 }}>
                   <span style={{ fontSize: 11, fontWeight: 600, letterSpacing: 1, textTransform: "uppercase", color: "#575ECF", background: "rgba(87,94,207,0.08)", padding: "4px 12px", borderRadius: 9999, alignSelf: "flex-start" }}>{proj.tag}</span>
-                  <h3 style={{ fontSize: 18, fontWeight: 600, lineHeight: "24px", color: "#1B1B1B", margin: 0 }}>{proj.title}</h3>
+                  <h3 style={{ margin: 0 }}>{proj.title}</h3>
                   <p style={{ fontSize: 15, color: "#5f5e5dff", lineHeight: "26px", margin: 0 }}>{proj.desc}</p>
                   <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginTop: "auto", marginBottom: 4 }}>
                     {proj.highlights.map((h, hi) => (

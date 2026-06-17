@@ -39,7 +39,7 @@ export default function ContactPage() {
           <div style={{ display: "inline-flex", gap: 8, marginBottom: 16, fontSize: 12, fontWeight: 600, color: "#C5C1B9", letterSpacing: 1 }}>
             <Link href="/" style={{ color: "#C5C1B9", textDecoration: "none", fontWeight: 400 }}>Home</Link><span>/</span><span style={{ color: "#FF3434" }}>Contact</span>
           </div>
-          <h1 style={{ color: "#FFFFFF", marginBottom: 16 }}>Contact Us</h1>
+          <h1 style={{ marginBottom: 16 }}>Contact Us</h1>
           <p style={{ color: "#C5C1B9", fontSize: 16, lineHeight: "26px", maxWidth: 560, margin: "0 auto" }}>Get in touch with our team. We&apos;d love to hear about your project.</p>
         </div>
       </section>
@@ -78,11 +78,11 @@ export default function ContactPage() {
           {/* Contact Form */}
           <div style={{ opacity: formRef.inView ? 1 : 0, transform: formRef.inView ? "translateX(0)" : "translateX(32px)", transition: "all 0.7s ease-out 0.15s" }}>
             <div className="card" style={{ padding: 32 }}>
-              <h3 style={{ fontSize: 20, fontWeight: 600, marginBottom: 24 }}>Request a Quote</h3>
+              <h3 style={{ marginBottom: 24 }}>Request a Quote</h3>
               {submitted ? (
                 <div style={{ textAlign: "center", padding: "40px 0" }}>
                   <div style={{ fontSize: 48, marginBottom: 16 }}>✅</div>
-                  <h4 style={{ fontSize: 18, fontWeight: 600, marginBottom: 8 }}>Message Sent!</h4>
+                  <h4 style={{ marginBottom: 8 }}>Message Sent!</h4>
                   <p style={{ fontSize: 14, color: "#5f5e5dff" }}>We&apos;ll get back to you within 24 hours.</p>
                 </div>
               ) : (

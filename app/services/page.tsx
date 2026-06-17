@@ -66,7 +66,7 @@ function ServiceBlock({ svc, i }: { svc: typeof services[0]; i: number }) {
         </div>
         <div style={{ order:isAlt?1:2, opacity:svcRef.inView?1:0, transform:svcRef.inView?"translateX(0)":`translateX(${isAlt?"-32px":"32px"})`, transition:"all 0.6s ease-out 0.15s" }}>
           <div className="card" style={{ padding:32 }}>
-            <h4 style={{ fontSize:16, fontWeight:600, marginBottom:20 }}>Key Capabilities</h4>
+            <h3 style={{ marginBottom:20 }}>Key Capabilities</h3>
             <ul style={{ listStyle:"none", padding:0, margin:0, display:"flex", flexDirection:"column", gap:14 }}>
               {svc.feats.map((f,fi) => (
                 <li key={fi} style={{ display:"flex", gap:12, fontSize:14, lineHeight:"22px" }}>
@@ -106,7 +106,7 @@ export default function ServicesPage() {
             <div style={{ display:"inline-flex", gap:8, marginBottom:16, fontSize:12, fontWeight:600, color:"#C5C1B9", letterSpacing:1 }}>
               <Link href="/" style={{ color:"#C5C1B9", textDecoration:"none", fontWeight:400 }}>Home</Link><span>/</span><span style={{ color:"#FF3434" }}>Services</span>
             </div>
-            <h1 style={{ color:"#FFFFFF", marginBottom:16, fontSize: "clamp(32px, 4.5vw, 42px)", lineHeight: 1.2 }}>
+            <h1 style={{ marginBottom:16 }}>
               Our Industrial Automation Services
             </h1>
             <p style={{ color:"#C5C1B9", fontSize:16, lineHeight:"26px", maxWidth:560, margin:0 }}>

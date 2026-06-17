@@ -206,7 +206,7 @@ export default async function ProjectDetailPage({ params }: Props) {
             Case Study: {project.tag}
           </span>
           
-          <h1 style={{ color: "#FFFFFF", marginBottom: 12, fontSize: "32px", lineHeight: "40px" }}>{project.title}</h1>
+          <h1 style={{ marginBottom: 12 }}>{project.title}</h1>
           <p style={{ color: "#C5C1B9", fontSize: 16, lineHeight: "24px", margin: 0 }}>
             {project.subtitle}
           </p>
@@ -218,19 +218,19 @@ export default async function ProjectDetailPage({ params }: Props) {
         <div className="container" style={{ maxWidth: 1200, margin: "0 auto", display: "grid", gridTemplateColumns: "1.7fr 1fr", gap: 48, alignItems: "start" }}>
           {/* Details Column */}
           <div>
-            <h3 style={{ marginBottom: 20 }}>Project Information</h3>
+            <h2 style={{ marginBottom: 20 }}>Project Information</h2>
             <p style={{ fontSize: 15, lineHeight: "26px", color: "#5f5e5dff", marginBottom: 32, whiteSpace: "pre-line" }}>
               {project.desc}
             </p>
 
-            <h3 style={{ marginBottom: 20 }}>Technical Architecture</h3>
+            <h2 style={{ marginBottom: 20 }}>Technical Architecture</h2>
             <div style={{ background: "#F9F8F6", padding: 24, borderRadius: 8, border: "1px solid #DCDAD5", marginBottom: 32 }}>
               <p style={{ fontSize: 15, lineHeight: "26px", color: "#5f5e5dff", margin: 0, fontWeight: 500 }}>
                 {project.architecture}
               </p>
             </div>
 
-            <h3 style={{ marginBottom: 20 }}>Scope of Work</h3>
+            <h2 style={{ marginBottom: 20 }}>Scope of Work</h2>
             <p style={{ fontSize: 15, lineHeight: "26px", color: "#5f5e5dff", marginBottom: 32 }}>
               {project.scope}
             </p>
@@ -238,7 +238,7 @@ export default async function ProjectDetailPage({ params }: Props) {
             {/* Project Gallery */}
             {project.gallery && project.gallery.length > 0 && (
               <div style={{ marginTop: 40 }}>
-                <h3 style={{ marginBottom: 20 }}>Project Gallery</h3>
+                <h2 style={{ marginBottom: 20 }}>Project Gallery</h2>
                 <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
                   {project.gallery.map((imgUrl, imgIdx) => (
                     <div key={imgIdx} style={{ position: "relative", width: "100%", height: 240, borderRadius: 8, overflow: "hidden", border: "1px solid #DCDAD5" }}>
@@ -258,7 +258,7 @@ export default async function ProjectDetailPage({ params }: Props) {
           {/* Sidebar Metadata Column */}
           <div>
             <div className="card" style={{ padding: 24, background: "#F9F8F6", borderColor: "#DCDAD5", marginBottom: 24 }}>
-              <h4 style={{ fontSize: 16, fontWeight: 700, marginBottom: 16 }}>Project Details</h4>
+              <h3 style={{ marginBottom: 16 }}>Project Details</h3>
               <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
                 <div>
                   <div style={{ fontSize: 11, fontWeight: 600, color: "#575ECF", textTransform: "uppercase", letterSpacing: 1 }}>End User</div>
@@ -272,7 +272,7 @@ export default async function ProjectDetailPage({ params }: Props) {
             </div>
 
             <div className="card" style={{ padding: 24, borderColor: "#DCDAD5" }}>
-              <h4 style={{ fontSize: 16, fontWeight: 700, marginBottom: 16 }}>I/O Capacity & Configuration</h4>
+              <h3 style={{ marginBottom: 16 }}>I/O Capacity & Configuration</h3>
               <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
                 {Object.entries(project.specs).map(([key, val]) => (
                   <div key={key} style={{ display: "flex", justifyContent: "space-between", borderBottom: "1px solid #F0EFEF", paddingBottom: 8, fontSize: 13 }}>
@@ -284,7 +284,7 @@ export default async function ProjectDetailPage({ params }: Props) {
             </div>
 
             <div className="card" style={{ padding: 24, background: "#1B1B1B", color: "#FFFFFF", borderColor: "#2A2A2A", marginTop: 24 }}>
-              <h4 style={{ color: "#FFFFFF", fontSize: 16, marginBottom: 8 }}>Have a similar project?</h4>
+              <h3 style={{ color: "#FFFFFF", marginBottom: 8 }}>Have a similar project?</h3>
               <p style={{ color: "#C5C1B9", fontSize: 13, lineHeight: "20px", marginBottom: 16 }}>
                 Let&apos;s build a custom automated solution tailored to your operational specifications.
               </p>

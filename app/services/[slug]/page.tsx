@@ -165,7 +165,7 @@ export default async function ServiceDetailPage({ params }: Props) {
               </span>
             </div>
             
-            <h1 style={{ color: "#FFFFFF", marginBottom: 16, fontSize: "clamp(30px, 4.5vw, 40px)", lineHeight: 1.2 }}>
+            <h1 style={{ marginBottom: 16 }}>
               {service.title}
             </h1>
             <p style={{ color: "#C5C1B9", fontSize: 16, lineHeight: "26px", margin: 0, fontWeight: 500 }}>
@@ -199,12 +199,12 @@ export default async function ServiceDetailPage({ params }: Props) {
         <div className="container" style={{ maxWidth: 1200, margin: "0 auto", display: "grid", gridTemplateColumns: "1.7fr 1fr", gap: 48, alignItems: "start" }}>
           {/* Details Column */}
           <div>
-            <h3 style={{ marginBottom: 20 }}>Overview</h3>
+            <h2 style={{ marginBottom: 20 }}>Overview</h2>
             <p style={{ fontSize: 16, lineHeight: "28px", color: "#333333", marginBottom: 32 }}>
               {service.desc}
             </p>
 
-            <h3 style={{ marginBottom: 20 }}>Key Capabilities</h3>
+            <h2 style={{ marginBottom: 20 }}>Key Capabilities</h2>
             <div style={{ display: "grid", gridTemplateColumns: "1fr", gap: 16, marginBottom: 32 }}>
               {service.features.map((feat, idx) => (
                 <div key={idx} style={{ display: "flex", gap: 14, alignItems: "start", background: "#F9F8F6", padding: "16px 20px", borderRadius: 8, border: "1px solid #DCDAD5" }}>
@@ -215,9 +215,9 @@ export default async function ServiceDetailPage({ params }: Props) {
             </div>
 
             <div style={{ background: "rgba(87,94,207,0.04)", borderLeft: "4px solid #575ECF", padding: "20px 24px", borderRadius: "0 8px 8px 0" }}>
-              <h4 style={{ fontSize: 14, fontWeight: 700, textTransform: "uppercase", letterSpacing: "1px", color: "#575ECF", marginBottom: 8 }}>
+              <h3 style={{ textTransform: "uppercase", letterSpacing: "1px", color: "#575ECF", marginBottom: 8 }}>
                 Ideal Deployment
-              </h4>
+              </h3>
               <p style={{ fontSize: 14, color: "#1B1B1B", lineHeight: "22px", margin: 0, fontWeight: 500 }}>
                 {service.idealFor}
               </p>
@@ -227,7 +227,7 @@ export default async function ServiceDetailPage({ params }: Props) {
           {/* Sidebar CTA Column */}
           <div>
             <div className="card" style={{ padding: 32, background: "#1B1B1B", color: "#FFFFFF", borderColor: "#2A2A2A" }}>
-              <h3 style={{ color: "#FFFFFF", fontSize: 20, marginBottom: 16 }}>Request Consultation</h3>
+              <h2 style={{ color: "#FFFFFF", marginBottom: 16 }}>Request Consultation</h2>
               <p style={{ color: "#C5C1B9", fontSize: 14, lineHeight: "22px", marginBottom: 24 }}>
                 Discuss your engineering needs directly with our project leaders. Let us build a robust solution for your plant.
               </p>
@@ -256,7 +256,7 @@ export default async function ServiceDetailPage({ params }: Props) {
             </div>
 
             <div className="card" style={{ padding: 24, marginTop: 24 }}>
-              <h4 style={{ fontSize: 16, fontWeight: 700, marginBottom: 16 }}>Why Choose Hive?</h4>
+              <h2 style={{ marginBottom: 16 }}>Why Choose Hive?</h2>
               <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: 12 }}>
                 <li style={{ fontSize: 13, display: "flex", gap: 8, color: "#1B1B1B" }}>
                   <span style={{ color: "#FF3434" }}>★</span>

@@ -108,7 +108,7 @@ export default function AboutPage() {
             <span>/</span>
             <span style={{ color: "#FF3434" }}>About Us</span>
           </div>
-          <h1 style={{ color: "#FFFFFF", marginBottom: 16 }}>About Hive Automation</h1>
+          <h1 style={{ marginBottom: 16 }}>About Hive Automation</h1>
           <p style={{ color: "#C5C1B9", fontSize: 16, lineHeight: "26px", maxWidth: 560, margin: "0 auto" }}>
             India&apos;s trusted industrial automation partner, delivering precision engineering solutions since 2017.
           </p>
@@ -208,7 +208,7 @@ export default function AboutPage() {
                 }}
               >
                 <div style={{ fontSize: 36, marginBottom: 16 }}>{val.icon}</div>
-                <h4 style={{ fontSize: 18, fontWeight: 600, marginBottom: 8 }}>{val.title}</h4>
+                <h3 style={{ marginBottom: 8 }}>{val.title}</h3>
                 <p style={{ fontSize: 14, lineHeight: "22px", color: "#5f5e5dff" }}>{val.desc}</p>
               </div>
             ))}
@@ -282,7 +282,7 @@ export default function AboutPage() {
                   >
                     {item.year}
                   </span>
-                  <h4 style={{ fontSize: 16, fontWeight: 600, margin: "4px 0" }}>{item.title}</h4>
+                  <h3 style={{ margin: "4px 0" }}>{item.title}</h3>
                   <p style={{ fontSize: 13, lineHeight: "20px", color: "#5f5e5dff" }}>{item.desc}</p>
                 </div>
               </div>

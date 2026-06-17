@@ -41,7 +41,7 @@ export default function CareerPage() {
           <div style={{ display: "inline-flex", gap: 8, marginBottom: 16, fontSize: 12, fontWeight: 600, color: "#C5C1B9", letterSpacing: 1 }}>
             <Link href="/" style={{ color: "#C5C1B9", textDecoration: "none", fontWeight: 400 }}>Home</Link><span>/</span><span style={{ color: "#FF3434" }}>Career</span>
           </div>
-          <h1 style={{ color: "#FFFFFF", marginBottom: 16 }}>Join Our Team</h1>
+          <h1 style={{ marginBottom: 16 }}>Join Our Team</h1>
           <p style={{ color: "#C5C1B9", fontSize: 16, lineHeight: "26px", maxWidth: 560, margin: "0 auto" }}>Build your future in industrial automation. We&apos;re always looking for talented engineers.</p>
         </div>
       </section>
@@ -57,7 +57,7 @@ export default function CareerPage() {
             {perks.map((p, i) => (
               <div key={i} className="card" style={{ textAlign: "center", opacity: perksRef.inView ? 1 : 0, transform: perksRef.inView ? "translateY(0)" : "translateY(24px)", transition: `all 0.5s ease-out ${i * 100}ms` }}>
                 <div style={{ fontSize: 36, marginBottom: 16 }}>{p.icon}</div>
-                <h4 style={{ fontSize: 18, fontWeight: 600, marginBottom: 8 }}>{p.title}</h4>
+                <h3 style={{ marginBottom: 8 }}>{p.title}</h3>
                 <p style={{ fontSize: 14, lineHeight: "22px", color: "#666666" }}>{p.desc}</p>
               </div>
             ))}
@@ -80,7 +80,7 @@ export default function CareerPage() {
                 transition: `all 0.5s ease-out ${i * 80}ms`,
               }}>
                 <div style={{ flex: 1, minWidth: 240 }}>
-                  <h3 style={{ fontSize: 18, fontWeight: 600, marginBottom: 6 }}>{pos.title}</h3>
+                  <h3 style={{ marginBottom: 6 }}>{pos.title}</h3>
                   <p style={{ fontSize: 14, lineHeight: "22px", color: "#666666", marginBottom: 8 }}>{pos.desc}</p>
                   <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
                     <span style={{ fontSize: 12, fontWeight: 500, padding: "4px 10px", borderRadius: 9999, background: "rgba(87,94,207,0.08)", color: "#575ECF" }}>{pos.type}</span>

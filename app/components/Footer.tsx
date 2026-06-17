@@ -72,7 +72,7 @@ export default function Footer() {
         <FooterLinks title="Services" links={serviceLinks} />
 
         <div>
-          <h4>Contact Us</h4>
+          <h2>Contact Us</h2>
           <div className="footer-contact">
             <div>
               <strong>Phone</strong>
@@ -153,7 +153,7 @@ export default function Footer() {
           font-size: 14px;
           line-height: 1.65;
         }
-        .site-footer h4 {
+        .site-footer h2 {
           margin: 0 0 18px;
           color: #ff3434;
           font-size: 16px;
@@ -287,7 +287,7 @@ function FooterLinks({
 }) {
   return (
     <div>
-      <h4>{title}</h4>
+      <h2>{title}</h2>
       <ul>
         {links.map((link) => (
           <li key={link.href} className="footer-link-item">
