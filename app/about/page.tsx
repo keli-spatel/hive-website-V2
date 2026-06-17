@@ -72,7 +72,7 @@ export default function AboutPage() {
   const stats3 = useCounter(15);
 
   return (
-    <div style={{ marginTop: 72 }}>
+    <div style={{ marginTop: 82 }}>
       {/* Page Header */}
       <section
         ref={heroRef.ref}
@@ -152,10 +152,10 @@ export default function AboutPage() {
           >
             <div className="section-label">Our Mission</div>
             <h2 style={{ marginBottom: 20 }}>Empowering Manufacturing with Smart Automation</h2>
-            <p style={{ lineHeight: "26px", marginBottom: 16 }}>
+            <p style={{ fontSize: 15, lineHeight: "26px", color: "#5f5e5dff", marginBottom: 16 }}>
               Hive Automation is a trusted industrial automation company specializing in Siemens PLC programming, SCADA system integration, and process control solutions. Our mission is to empower manufacturing with smart automation systems that optimize operations, enhance efficiency, and minimize industrial downtime across India.
             </p>
-            <p style={{ lineHeight: "24px", fontSize: 14, color: "#5f5e5dff", marginBottom: 24 }}>
+            <p style={{ fontSize: 15, lineHeight: "26px", color: "#5f5e5dff", marginBottom: 24 }}>
               We provide expert services for Siemens PLCs, SCADA, and DCS platforms, having successfully delivered turnkey automation projects for diverse industries. Our commitment to industrial compliance, innovation, and safety ensures high-performance results in a rapidly evolving industrial automation landscape.
             </p>
             <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
@@ -355,7 +355,7 @@ export default function AboutPage() {
       <section className="section" style={{ textAlign: "center" }}>
         <div className="container" style={{ maxWidth: 600, margin: "0 auto" }}>
           <h2 style={{ marginBottom: 16 }}>Ready to Partner with Us?</h2>
-          <p style={{ color: "#5f5e5dff", marginBottom: 32, fontSize: 14, lineHeight: "22px" }}>
+          <p style={{ color: "#5f5e5dff", marginBottom: 32, fontSize: 15, lineHeight: "26px" }}>
             Let&apos;s discuss how we can bring precision automation to your plant.
           </p>
           <div style={{ display: "flex", gap: 16, justifyContent: "center", flexWrap: "wrap" }}>

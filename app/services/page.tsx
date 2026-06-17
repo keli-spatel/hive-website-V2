@@ -85,7 +85,7 @@ function ServiceBlock({ svc, i }: { svc: typeof services[0]; i: number }) {
 export default function ServicesPage() {
   const heroRef = useInView();
   return (
-    <div style={{ marginTop:72 }}>
+    <div style={{ marginTop:82 }}>
       <section ref={heroRef.ref} style={{ background:"linear-gradient(135deg,#1B1B1B,#2a2a2a)", padding:"80px 32px", overflow:"hidden" }}>
         <div
           className="container"
@@ -141,7 +141,7 @@ export default function ServicesPage() {
           <p style={{ color:"#C5C1B9", marginBottom:32, fontSize:14, lineHeight:"22px" }}>Contact our team to discuss your specific automation requirements.</p>
           <div style={{ display:"flex", gap:16, justifyContent:"center", flexWrap:"wrap" }}>
             <Link href="/contact" className="btn btn-primary" style={{ textDecoration:"none" }}>Request a Quote</Link>
-            <Link href="https://appt.link/meet-with-bhavik-bhimani-iz1nBIl5/hive-automation" target="_blank" rel="noopener noreferrer" className="btn" style={{ textDecoration:"none", background:"transparent", color:"#FFFFFF", border:"1px solid rgba(255,255,255,0.3)", borderRadius:8 }}>Schedule a Call</Link>
+            <Link href="https://appt.link/meet-with-bhavik-bhimani-iz1nBIl5/hive-automation" target="_blank" rel="noopener noreferrer" className="btn" style={{ textDecoration:"none", background:"transparent", color:"#FFFFFF", border:"1px solid rgba(255,255,255,0.3)", borderRadius:9999 }}>Schedule a Call</Link>
           </div>
         </div>
       </section>

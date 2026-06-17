@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 
 function useInView() {
   const ref = useRef<HTMLDivElement>(null);
@@ -15,14 +16,14 @@ function useInView() {
 }
 
 const projects = [
-  { tag: "Pharmaceutical", title: "GAMP 5 Compliant Automation for Pharmaceutical Material Handling", desc: "Achieved full FDA compliance with automated batch tracking & reporting for Emynent, Russia.", highlights: ["FDA/GAMP 5 Compliance","Automated Batch Tracking","Material Handling System"], slug: "pharmaceutical" },
-  { tag: "Chemical", title: "Control System Engineering for Steam Turbine Application", desc: "Redundant Siemens S7-400H setup managing three steam turbines for KLJ Petroplast.", highlights: ["Redundant S7-400H","Steam Turbine Control","Siemens Energy"], slug: "chemical" },
-  { tag: "Refinery", title: "Control System SIL-2 Programming for Recip Compressor", desc: "Four compressor units controlled by redundant SIL-2 Rockwell ControlLogix for YPF, USA.", highlights: ["SIL-2 Rockwell","Recip Compressor","YPF USA"], slug: "refinery" },
-  { tag: "Oil & Gas", title: "PCS7 DCS for High Pressure Air Injection Plant", desc: "Robust Siemens PCS 7 DCS implementation with HART management for ONGC, Ahmedabad.", highlights: ["Siemens PCS7","HART Management","ONGC Plant"], slug: "oil-gas" },
-  { tag: "Chemical", title: "Automation & Control System for 100 TPD Hydrogenation Plant", desc: "Turnkey automation and custom control panel fabrication for Ricor Mills, Philippines.", highlights: ["100 TPD Capacity","Hydrogenation Control","Panel Manufacturing"], slug: "hydrogenation-plant" },
-  { tag: "Chemical", title: "Automation & Control System for 10 TPD Ethyl Acetate Plant", desc: "Redundant Siemens S7-1500 system architecture for Egyptian Sugar & Integrated Industries.", highlights: ["Siemens S7-1500","Ethyl Acetate Plant","Process Optimization"], slug: "ethyl-acetate" },
-  { tag: "Infrastructure", title: "Asphalt Batching Plant Automation System – 260 TPH", desc: "Full aggregate dosing, burner control and recipe management for Roads & Buildings Department.", highlights: ["260 TPH Capacity","Truck Loading Automation","Dosing Control"], slug: "asphalt-batching" },
-  { tag: "Retrofit", title: "Retrofit & Upgrade Solutions for Legacy Industrial Systems", desc: "Modernizing legacy PLCs to Industry 4.0 standards with 21 CFR Part 11 compliance.", highlights: ["Legacy Migration","21 CFR Part 11","HMI/SCADA Upgrades"], slug: "retrofit-upgrade" },
+  { tag: "Pharmaceutical", title: "GAMP 5 Compliant Automation for Pharmaceutical Material Handling", desc: "Achieved full FDA compliance with automated batch tracking & reporting for Emynent, Russia.", highlights: ["FDA/GAMP 5 Compliance","Automated Batch Tracking","Material Handling System"], slug: "pharmaceutical", thumbnail: "/projects/thumbnail-pharma.png" },
+  { tag: "Chemical", title: "Control System Engineering for Steam Turbine Application", desc: "Redundant Siemens S7-400H setup managing three steam turbines for KLJ Petroplast.", highlights: ["Redundant S7-400H","Steam Turbine Control","Siemens Energy"], slug: "chemical", thumbnail: "/projects/thumbnail-chemical.png" },
+  { tag: "Refinery", title: "Control System SIL-2 Programming for Recip Compressor", desc: "Four compressor units controlled by redundant SIL-2 Rockwell ControlLogix for YPF, USA.", highlights: ["SIL-2 Rockwell","Recip Compressor","YPF USA"], slug: "refinery", thumbnail: "/projects/thumbnail-rotary.png" },
+  { tag: "Oil & Gas", title: "PCS7 DCS for High Pressure Air Injection Plant", desc: "Robust Siemens PCS 7 DCS implementation with HART management for ONGC, Ahmedabad.", highlights: ["Siemens PCS7","HART Management","ONGC Plant"], slug: "oil-gas", thumbnail: "/projects/thumbnail-oil-gas.png" },
+  { tag: "Chemical", title: "Automation & Control System for 100 TPD Hydrogenation Plant", desc: "Turnkey automation and custom control panel fabrication for Ricor Mills, Philippines.", highlights: ["100 TPD Capacity","Hydrogenation Control","Panel Manufacturing"], slug: "hydrogenation-plant", thumbnail: "/projects/thumbnail-hydrogenation.png" },
+  { tag: "Chemical", title: "Automation & Control System for 10 TPD Ethyl Acetate Plant", desc: "Redundant Siemens S7-1500 system architecture for Egyptian Sugar & Integrated Industries.", highlights: ["Siemens S7-1500","Ethyl Acetate Plant","Process Optimization"], slug: "ethyl-acetate", thumbnail: "/projects/thumbnail-ethyl.png" },
+  { tag: "Infrastructure", title: "Asphalt Batching Plant Automation System – 260 TPH", desc: "Full aggregate dosing, burner control and recipe management for Roads & Buildings Department.", highlights: ["260 TPH Capacity","Truck Loading Automation","Dosing Control"], slug: "asphalt-batching", thumbnail: "/projects/thumbnail-asphalt.png" },
+  { tag: "Retrofit", title: "Retrofit & Upgrade Solutions for Legacy Industrial Systems", desc: "Modernizing legacy PLCs to Industry 4.0 standards with 21 CFR Part 11 compliance.", highlights: ["Legacy Migration","21 CFR Part 11","HMI/SCADA Upgrades"], slug: "retrofit-upgrade", thumbnail: "/projects/thumbnail-retrofit.png" },
 ];
 
 const filters = ["All", "Pharmaceutical", "Oil & Gas", "Chemical", "Refinery", "Infrastructure", "Retrofit"];
@@ -35,7 +36,7 @@ export default function ProjectsPage() {
   const filtered = activeFilter === "All" ? projects : projects.filter(p => p.tag === activeFilter);
 
   return (
-    <div style={{ marginTop: 72 }}>
+    <div style={{ marginTop: 82 }}>
       <section ref={heroRef.ref} style={{ background: "linear-gradient(135deg,#1B1B1B,#2a2a2a)", padding: "80px 32px 64px", textAlign: "center" }}>
         <div style={{ maxWidth: 800, margin: "0 auto", opacity: heroRef.inView ? 1 : 0, transform: heroRef.inView ? "translateY(0)" : "translateY(24px)", transition: "all 0.7s ease-out" }}>
           <div style={{ display: "inline-flex", gap: 8, marginBottom: 16, fontSize: 12, fontWeight: 600, color: "#C5C1B9", letterSpacing: 1 }}>
@@ -65,22 +66,34 @@ export default function ProjectsPage() {
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))", gap: 24 }}>
             {filtered.map((proj, i) => (
               <Link href={`/projects/${proj.slug}`} key={i} className="card card-interactive" style={{
-                display: "flex", flexDirection: "column", gap: 16,
+                display: "flex", flexDirection: "column",
                 opacity: gridRef.inView ? 1 : 0, transform: gridRef.inView ? "translateY(0)" : "translateY(24px)",
                 transition: `all 0.5s ease-out ${i * 80}ms`,
                 textDecoration: "none",
-                color: "inherit"
+                color: "inherit",
+                padding: 0,
+                overflow: "hidden"
               }}>
-                <span style={{ fontSize: 11, fontWeight: 600, letterSpacing: 1, textTransform: "uppercase", color: "#575ECF", background: "rgba(87,94,207,0.08)", padding: "4px 12px", borderRadius: 9999, alignSelf: "flex-start" }}>{proj.tag}</span>
-                <h3 style={{ fontSize: 18, fontWeight: 600, lineHeight: "24px", color: "#1B1B1B" }}>{proj.title}</h3>
-                <p style={{ fontSize: 14, color: "#666666", lineHeight: "22px" }}>{proj.desc}</p>
-                <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginTop: "auto", marginBottom: 4 }}>
-                  {proj.highlights.map((h, hi) => (
-                    <span key={hi} style={{ fontSize: 11, fontWeight: 500, padding: "4px 10px", borderRadius: 4, background: "#F9F8F6", color: "#1B1B1B", border: "1px solid #DCDAD5" }}>{h}</span>
-                  ))}
+                <div style={{ position: "relative", width: "100%", height: 200 }}>
+                  <Image
+                    src={proj.thumbnail}
+                    alt={proj.title}
+                    fill
+                    style={{ objectFit: "cover" }}
+                  />
                 </div>
-                <div style={{ fontSize: 13, fontWeight: 600, color: "#FF3434", display: "flex", alignItems: "center", gap: 4 }}>
-                  View Case Study <span>→</span>
+                <div style={{ padding: 24, display: "flex", flexDirection: "column", gap: 12, flex: 1 }}>
+                  <span style={{ fontSize: 11, fontWeight: 600, letterSpacing: 1, textTransform: "uppercase", color: "#575ECF", background: "rgba(87,94,207,0.08)", padding: "4px 12px", borderRadius: 9999, alignSelf: "flex-start" }}>{proj.tag}</span>
+                  <h3 style={{ fontSize: 18, fontWeight: 600, lineHeight: "24px", color: "#1B1B1B", margin: 0 }}>{proj.title}</h3>
+                  <p style={{ fontSize: 15, color: "#5f5e5dff", lineHeight: "26px", margin: 0 }}>{proj.desc}</p>
+                  <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginTop: "auto", marginBottom: 4 }}>
+                    {proj.highlights.map((h, hi) => (
+                      <span key={hi} style={{ fontSize: 11, fontWeight: 500, padding: "4px 10px", borderRadius: 9999, background: "#F9F8F6", color: "#1B1B1B", border: "1px solid #DCDAD5" }}>{h}</span>
+                    ))}
+                  </div>
+                  <div style={{ fontSize: 13, fontWeight: 600, color: "#FF3434", display: "flex", alignItems: "center", gap: 4 }}>
+                    View Case Study <span>→</span>
+                  </div>
                 </div>
               </Link>
             ))}
@@ -99,7 +112,7 @@ export default function ProjectsPage() {
       <section style={{ background: "linear-gradient(135deg,#1B1B1B,#2a2a2a)", padding: "64px 32px", textAlign: "center" }}>
         <div style={{ maxWidth: 600, margin: "0 auto" }}>
           <h2 style={{ color: "#FFFFFF", marginBottom: 16 }}>Have a Similar Project?</h2>
-          <p style={{ color: "#C5C1B9", marginBottom: 32, fontSize: 14 }}>Let&apos;s discuss how we can deliver the same excellence for your facility.</p>
+          <p style={{ color: "#C5C1B9", marginBottom: 32, fontSize: 15, lineHeight: "26px" }}>Let&apos;s discuss how we can deliver the same excellence for your facility.</p>
           <Link href="/contact" className="btn btn-primary" style={{ textDecoration: "none" }}>Request a Quote</Link>
         </div>
       </section>

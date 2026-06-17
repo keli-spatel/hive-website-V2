@@ -1,158 +1,155 @@
-"use client";
-
-import { useEffect, useRef, useState } from "react";
-import Link from "next/link";
 import Image from "next/image";
+import Link from "next/link";
+import AnimatedStats from "./components/AnimatedStats";
 
-/* ── Animated counter hook ── */
-function useCounter(end: number, duration = 2000) {
-  const [count, setCount] = useState(0);
-  const ref = useRef<HTMLDivElement>(null);
-  const started = useRef(false);
+const scheduleUrl = "https://appt.link/meet-with-bhavik-bhimani-iz1nBIl5/hive-automation";
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting && !started.current) {
-          started.current = true;
-          const start = 0;
-          const startTime = performance.now();
-          const animate = (now: number) => {
-            const elapsed = now - startTime;
-            const progress = Math.min(elapsed / duration, 1);
-            const eased = 1 - Math.pow(1 - progress, 3);
-            setCount(Math.floor(start + (end - start) * eased));
-            if (progress < 1) requestAnimationFrame(animate);
-          };
-          requestAnimationFrame(animate);
-        }
-      },
-      { threshold: 0.3 }
-    );
-    if (ref.current) observer.observe(ref.current);
-    return () => observer.disconnect();
-  }, [end, duration]);
+const industries = ["Pharmaceutical", "Oil & Gas", "Forging", "Food & Beverages"];
 
-  return { count, ref };
-}
-
-/* ── Section observer for animations ── */
-function useInView() {
-  const ref = useRef<HTMLDivElement>(null);
-  const [inView, setInView] = useState(false);
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) setInView(true); },
-      { threshold: 0.15 }
-    );
-    if (ref.current) observer.observe(ref.current);
-    return () => observer.disconnect();
-  }, []);
-  return { ref, inView };
-}
-
-/* ── Service data ── */
 const services = [
   {
-    id: "plc",
-    icon: "⚙️",
+    slug: "plc-programming-integration",
     title: "PLC Programming & Integration",
-    desc: "Custom PLC programs tailored to your specific process and production goals. Our PLC logic design ensures industrial safety, flexibility, and high-performance system integration.",
+    desc: "We develop custom PLC programs tailored to your specific process and production goals. Whether you are upgrading an existing system or building from scratch, our PLC logic design ensures industrial safety, flexibility, and high-performance system integration.",
   },
   {
-    id: "dcs",
-    icon: "🖥️",
+    slug: "distributed-control-systems",
     title: "Distributed Control Systems (DCS)",
-    desc: "Robust Siemens PCS 7 and other DCS solutions that provide scalable, integrated control of complex industrial processes with accuracy and safety.",
+    desc: "We engineer and implement robust Siemens PCS 7 and other DCS solutions that provide scalable, integrated control of complex industrial processes. From batch to continuous processing, our DCS services ensure accuracy, safety, and maximum uptime.",
   },
   {
-    id: "scada",
-    icon: "📊",
+    slug: "scada-hmi-development",
     title: "SCADA & HMI Development",
-    desc: "Intuitive SCADA and HMI interfaces for real-time monitoring and control, designed for usability, data clarity, and enhanced operational safety.",
+    desc: "We create intuitive SCADA and HMI interfaces that allow operators and engineers to monitor and control industrial processes in real time. Our SCADA systems are designed for usability, data clarity, and enhanced operational safety.",
   },
   {
-    id: "turnkey",
-    icon: "🏗️",
+    slug: "turnkey-project-execution",
     title: "Turnkey Project Execution",
-    desc: "Complete automation solutions from early system design to final handover, ensuring consistency, reliability, and full accountability.",
+    desc: "We provide complete automation solutions under one roof. Our engineers collaborate from early system design to final handover, ensuring consistency, reliability, and full accountability for your turnkey industrial projects.",
   },
   {
-    id: "upgrades",
-    icon: "🔄",
+    slug: "system-upgrade-retrofits",
     title: "System Upgrades & Retrofits",
-    desc: "Upgrade aging control systems and legacy hardware to modern platforms like Siemens S7-1500 and TIA Portal with minimal downtime.",
+    desc: "We upgrade aging control systems and legacy hardware to modern, supported platforms like Siemens S7-1500 and TIA Portal. Our PLC retrofit strategies ensure minimal downtime and future-ready industrial performance.",
   },
   {
-    id: "networking",
-    icon: "🔒",
+    slug: "industrial-networking-cybersecurity",
     title: "Industrial Networking & Cybersecurity",
-    desc: "Resilient, segmented, and secure industrial networks built for performance and uptime from control to enterprise level.",
+    desc: "We design industrial networks that are resilient, segmented, and secure. From control to enterprise level, our networks are built for performance and uptime.",
   },
   {
-    id: "analytics",
-    icon: "📈",
+    slug: "analytics-reporting",
     title: "Analytics & Reporting",
-    desc: "Industrial reporting tools and dashboards giving your team real-time access to KPIs, historical trends, and compliance logs.",
+    desc: "We integrate industrial reporting tools and dashboards into your control system, giving your team real-time access to KPIs, historical trends, and compliance logs. Our analytics improve decision-making and operational transparency.",
   },
 ];
 
-/* ── Projects data ── */
 const projects = [
   {
-    title: "GAMP 5 Compliant Pharma Automation",
+    href: "/projects/pharmaceutical",
+    image: "/projects/thumbnail-pharma.png",
+    metric: "100% FDA Compliant",
+    industry: "Pharmaceutical",
+    title: "GAMP 5 Compliant Automation for Pharmaceutical Material Handling",
     desc: "Achieved full FDA compliance with automated batch tracking & reporting.",
-    tag: "Pharmaceutical",
   },
   {
-    title: "Plant-Wide Process Control for Chemical Facilities",
+    href: "/projects/chemical",
+    image: "/projects/thumbnail-chemical.png",
+    metric: "Zero Safety Incidents",
+    industry: "Chemical",
+    title: "Plant-Wide Process Control & Safety Systems for Chemical Facilities",
     desc: "Integrated SIS & DCS for zero safety incidents over 3 years.",
-    tag: "Chemical",
   },
   {
-    title: "Precision Rotary Equipment Control for Refineries",
+    href: "/projects/refinery",
+    image: "/projects/thumbnail-rotary.png",
+    metric: "25% Efficiency Increase",
+    industry: "Refinery",
+    title: "Precision Rotary Equipment Control & Monitoring for Refineries",
     desc: "Achieved 25% efficiency increase with predictive maintenance integration.",
-    tag: "Oil & Gas",
   },
   {
-    title: "Siemens PCS 7 DCS Implementation",
+    href: "/projects/oil-gas",
+    image: "/projects/thumbnail-oil-gas.png",
+    metric: "20% Less Downtime",
+    industry: "Oil & Gas",
+    title: "Siemens PCS 7 DCS Implementation for Oil & Gas Refinery",
     desc: "Reduced downtime by 20% through legacy S5 to S7-1500 migration.",
-    tag: "Oil & Gas",
   },
   {
-    title: "Hydrogenation Plant Control & Safety",
-    desc: "Delivered 99.5% uptime with advanced process safety management.",
-    tag: "Chemical",
+    href: "/projects/hydrogenation-plant",
+    image: "/projects/thumbnail-hydrogenation.png",
+    metric: "99.5% Uptime",
+    industry: "Refinery",
+    title: "Hydrogenation Plant Control & Safety Integration",
+    desc: "Delivered 99.5% uptime with advanced process safety management systems.",
   },
   {
-    title: "Asphalt Batching Plant Automation – 260 TPH",
-    desc: "Full automation with real-time quality control.",
-    tag: "Infrastructure",
+    href: "/projects/ethyl-acetate",
+    image: "/projects/thumbnail-ethyl.png",
+    metric: "30% Cost Reduction",
+    industry: "Plant Control",
+    title: "Ethyl-Acetate Plant Automation & Optimization",
+    desc: "Reduced operational costs by 30% through full process automation.",
+  },
+  {
+    href: "/projects/asphalt-batching",
+    image: "/projects/thumbnail-asphalt.png",
+    metric: "260 TPH Capacity",
+    industry: "R&B",
+    title: "Asphalt Batching Plant Automation System - 260 TPH",
+    desc: "Full automation of 260 TPH batching plant with real-time quality control.",
+  },
+  {
+    href: "/projects/retrofit-upgrade",
+    image: "/projects/thumbnail-retrofit.png",
+    metric: "Future-Proof System",
+    industry: "Industrial",
+    title: "Retrofit & Upgrade Solutions for Legacy Industrial Systems",
+    desc: "Modernised legacy PLCs to Industry 4.0 standards with zero production loss.",
   },
 ];
 
-/* ── Why Hive data ── */
 const whyHive = [
-  { icon: "🎓", title: "Certified Siemens Experts", desc: "Deep, platform-specific expertise ensuring optimal configuration and lifecycle support." },
-  { icon: "📋", title: "Industry-Specific Compliance", desc: "From GMP validation in Pharma to HAZOP compliance in Oil & Gas — built for your environment." },
-  { icon: "🛠️", title: "Custom Engineered Solutions", desc: "No off-the-shelf templates. Every solution is crafted for your process, operations, and goals." },
-  { icon: "🏭", title: "Turnkey Project Ownership", desc: "From functional specs to commissioning — single point of accountability and full transparency." },
-  { icon: "✅", title: "Quality & Safety First", desc: "International engineering standards, clean documentation, and thorough testing." },
-  { icon: "📞", title: "24/7 Technical Support", desc: "Remote support, preventive maintenance, diagnostics, and upgrades — always available." },
+  {
+    icon: "M12 3 5 6v5c0 4.5 3 8.3 7 10 4-1.7 7-5.5 7-10V6l-7-3Z",
+    title: "Certified Siemens Technology Experts",
+    desc: "We specialize in PLCs, SCADA, and DCS systems. Our certified engineers bring deep, platform-specific expertise that ensures optimal configuration, coding standards, and lifecycle support.",
+  },
+  {
+    icon: "M4 7l8-4 8 4-8 4-8-4Zm0 5l8 4 8-4M4 17l8 4 8-4",
+    title: "Industry-Specific Compliance Approach",
+    desc: "From GMP validation in Pharma to HAZOP compliance in Oil & Gas, we design automation systems that are built with your environment in mind.",
+  },
+  {
+    icon: "M14.7 6.3a4 4 0 0 0-5 5L4 17l3 3 5.7-5.7a4 4 0 0 0 5-5l-3 3-3-3 3-3Z",
+    title: "Custom Engineered Solutions",
+    desc: "No off-the-shelf templates. We analyze your process, operations, and future needs, then craft a tailored solution that integrates with your workflows, goals, and infrastructure.",
+  },
+  {
+    icon: "M9 4h6l1 2h3v15H5V6h3l1-2Zm0 7h6M9 15h6",
+    title: "End-to-End Turnkey Project Ownership",
+    desc: "We manage functional specs, programming, simulation, FAT/SAT testing, commissioning, handover, training, and documentation under one accountable team.",
+  },
+  {
+    icon: "M20 6 9 17l-5-5",
+    title: "Quality & Industrial Safety First",
+    desc: "We follow international engineering standards, maintain clean documentation, and conduct thorough testing so your system is robust, traceable, and audit-ready.",
+  },
+  {
+    icon: "M4 13a8 8 0 0 1 16 0v4a3 3 0 0 1-3 3h-2v-7h5M4 17v-4h5v7H7a3 3 0 0 1-3-3Z",
+    title: "Proactive 24/7 Technical Support",
+    desc: "Remote support, preventive maintenance, diagnostics, and upgrades keep your systems efficient, secure, and future-proof after commissioning.",
+  },
+  {
+    icon: "M12 3l2.6 5.3 5.9.9-4.2 4.1 1 5.8L12 16.4 6.7 19l1-5.8-4.2-4.1 5.9-.9L12 3Z",
+    title: "Proven Track Record with Industry Leaders",
+    desc: "From oil terminals to pharmaceutical cleanrooms, we have delivered automation systems for clients who demand nothing less than excellence.",
+  },
 ];
 
-/* ── Industries ── */
-const industries = [
-  { label: "Pharmaceutical", icon: "💊" },
-  { label: "Oil & Gas", icon: "🛢️" },
-  { label: "Chemicals", icon: "⚗️" },
-  { label: "Food & Beverages", icon: "🍔" },
-  { label: "Forging", icon: "🔨" },
-  { label: "Infrastructure", icon: "🏗️" },
-];
-
-/* ── Client Logos ── */
-const clientLogosRow1 = [
+const clientLogos = [
   "/clients/client-1.png",
   "/clients/client-2.png",
   "/clients/client-3.png",
@@ -167,9 +164,6 @@ const clientLogosRow1 = [
   "/clients/client-13.png",
   "/clients/client-14.png",
   "/clients/client-15.png",
-];
-
-const clientLogosRow2 = [
   "/clients/client-16.png",
   "/clients/client-17.png",
   "/clients/client-18.png",
@@ -187,767 +181,292 @@ const clientLogosRow2 = [
 ];
 
 export default function HomePage() {
-  const stats1 = useCounter(500);
-  const stats2 = useCounter(50);
-  const stats3 = useCounter(15);
-
-  const heroRef = useInView();
-  const aboutRef = useInView();
-  const servicesRef = useInView();
-  const projectsRef = useInView();
-  const whyRef = useInView();
-  const statsRef = useInView();
-
   return (
-    <div style={{ marginTop: 72 }}>
-      {/* ═══════ HERO SECTION ═══════ */}
-      <section
-        ref={heroRef.ref}
-        id="hero"
-        style={{
-          position: "relative",
-          minHeight: "85vh",
-          display: "flex",
-          alignItems: "center",
-          overflow: "hidden",
-          background: "linear-gradient(135deg, #1B1B1B 0%, #2a2a2a 100%)",
-        }}
-      >
-        {/* Background image */}
-        <div style={{ position: "absolute", inset: 0, zIndex: 0 }}>
-          <Image src="/hero-bg.png" alt="Industrial automation" fill style={{ objectFit: "cover", opacity: 0.25 }} priority />
-        </div>
-        {/* Gradient overlay */}
-        <div
-          style={{
-            position: "absolute",
-            inset: 0,
-            zIndex: 1,
-            background: "linear-gradient(90deg, rgba(27,27,27,0.92) 0%, rgba(27,27,27,0.6) 60%, transparent 100%)",
-          }}
+    <main className="home">
+      <section className="hero-section" id="hero">
+        <Image
+          src="/hero-bg-cinematic.png"
+          alt="Industrial automation control room"
+          fill
+          priority
+          className="hero-bg"
+          sizes="100vw"
         />
-        {/* Decorative accent line */}
-        <div
-          style={{
-            position: "absolute",
-            left: 0,
-            top: "20%",
-            width: 4,
-            height: "60%",
-            background: "#FF3434",
-            borderRadius: "0 4px 4px 0",
-            zIndex: 2,
-          }}
-        />
-
-        <div
-          className="container"
-          style={{
-            position: "relative",
-            zIndex: 3,
-            padding: "0 32px",
-            maxWidth: 1200,
-            margin: "0 auto",
-          }}
-        >
-          <div
-            style={{
-              maxWidth: 640,
-              opacity: heroRef.inView ? 1 : 0,
-              transform: heroRef.inView ? "translateY(0)" : "translateY(32px)",
-              transition: "all 0.8s cubic-bezier(0.16, 1, 0.3, 1)",
-            }}
-          >
-            <div
-              style={{
-                display: "inline-flex",
-                alignItems: "center",
-                gap: 8,
-                background: "rgba(255, 52, 52, 0.15)",
-                border: "1px solid rgba(255, 52, 52, 0.3)",
-                borderRadius: 9999,
-                padding: "6px 16px",
-                marginBottom: 24,
-              }}
-            >
-              <span style={{ width: 8, height: 8, borderRadius: "50%", background: "#FF3434" }} />
-              <span style={{ fontSize: 12, fontWeight: 600, color: "#FF3434", letterSpacing: 1, textTransform: "uppercase" }}>
-                We Help Industries
-              </span>
-            </div>
-
-            <h1
-              style={{
-                fontSize: "clamp(32px, 5vw, 48px)",
-                fontWeight: 700,
-                lineHeight: 1.1,
-                color: "#FFFFFF",
-                marginBottom: 24,
-              }}
-            >
-              Siemens PLC &{" "}
-              <span style={{ color: "#FF3434" }}>Industrial Automation</span> Solutions Expert
-            </h1>
-
-            <p
-              style={{
-                fontSize: 18,
-                lineHeight: "28px",
-                color: "#C5C1B9",
-                marginBottom: 40,
-                maxWidth: 520,
-              }}
-            >
-              India&apos;s trusted Siemens PLC, SCADA & DCS automation experts delivering turnkey
-              industrial solutions for Pharma, Oil & Gas, and more.
-            </p>
-
-            <div className="hero-buttons" style={{ display: "flex", gap: 16, flexWrap: "wrap" }}>
-              <Link href="/projects" className="btn btn-primary" style={{ textDecoration: "none" }}>
-                View Our Projects
-              </Link>
-              <Link
-                href="https://appt.link/meet-with-bhavik-bhimani-iz1nBIl5/hive-automation"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn"
-                style={{
-                  textDecoration: "none",
-                  background: "transparent",
-                  color: "#FFFFFF",
-                  border: "1px solid rgba(255,255,255,0.3)",
-                  borderRadius: 8,
-                }}
-              >
-                Schedule a Consultation
-              </Link>
-            </div>
+        <div className="hero-shade" />
+        <div className="hero-content">
+          <h1>Siemens PLC & Industrial Automation Solutions Expert</h1>
+          <p>
+            India&apos;s trusted Siemens PLC, SCADA & DCS automation experts delivering
+            turnkey industrial solutions for Pharma, Oil & Gas, and more.
+          </p>
+          <div className="action-row">
+            <Link className="btn hero-glass-btn" href="/projects">
+              View Our Projects
+            </Link>
+            <Link className="btn hero-glass-btn" href={scheduleUrl} target="_blank" rel="noopener noreferrer">
+              Schedule a Consultation
+            </Link>
           </div>
         </div>
-
       </section>
 
-      {/* ═══════ INDUSTRIES BAR ═══════ */}
-      <section id="industries-bar" style={{ background: "#FFFFFF", padding: "32px 32px", borderBottom: "1px solid #DCDAD5" }}>
-        <div
-          className="container industries-container"
-          style={{
-            maxWidth: 1200,
-            margin: "0 auto",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            gap: 32,
-            flexWrap: "wrap",
-          }}
-        >
-          <span className="industries-label" style={{ fontSize: 12, fontWeight: 600, letterSpacing: 2, textTransform: "uppercase", color: "#C5C1B9" }}>
-            Industries We Serve
-          </span>
-          <div className="industries-divider" style={{ width: 1, height: 24, background: "#DCDAD5" }} />
-          {industries.map((ind) => (
-            <div
-              key={ind.label}
-              style={{
-                display: "flex",
-                alignItems: "center",
-                gap: 8,
-                fontSize: 14,
-                fontWeight: 500,
-                color: "#1B1B1B",
-              }}
-            >
-              <span style={{ fontSize: 18 }}>{ind.icon}</span>
-              {ind.label}
-            </div>
-          ))}
+      <section className="industry-strip" aria-label="Industries we serve">
+        <div className="strip-inner">
+          <span className="strip-label">Industries We Serve</span>
+          <div className="strip-list">
+            {industries.map((industry) => (
+              <span key={industry}>{industry}</span>
+            ))}
+          </div>
         </div>
       </section>
 
-      {/* ═══════ ABOUT SECTION ═══════ */}
-      <section
-        ref={aboutRef.ref}
-        className="section"
-        id="about-preview"
-        style={{ background: "#FFFFFF" }}
-      >
-        <div
-          className="container"
-          style={{
-            maxWidth: 1200,
-            margin: "0 auto",
-            display: "grid",
-            gridTemplateColumns: "1fr 1fr",
-            gap: 64,
-            alignItems: "center",
-          }}
-        >
-          {/* Image side */}
-          <div
-            style={{
-              position: "relative",
-              borderRadius: 12,
-              overflow: "hidden",
-              opacity: aboutRef.inView ? 1 : 0,
-              transform: aboutRef.inView ? "translateX(0)" : "translateX(-32px)",
-              transition: "all 0.7s cubic-bezier(0.16, 1, 0.3, 1)",
-            }}
-          >
+      <section className="section about-section" id="about-preview">
+        <div className="container split-grid">
+          <div className="media-frame">
             <Image
               src="/about-bg.png"
               alt="Engineer programming Siemens PLC"
-              width={560}
-              height={400}
-              style={{ width: "100%", height: "auto", borderRadius: 12 }}
+              width={720}
+              height={520}
+              className="section-image"
             />
-            <div
-              style={{
-                position: "absolute",
-                bottom: 24,
-                left: 24,
-                background: "#FF3434",
-                borderRadius: 8,
-                padding: "12px 20px",
-                display: "flex",
-                alignItems: "center",
-                gap: 8,
-              }}
-            >
-              <span style={{ fontSize: 20, fontWeight: 700, color: "#FFFFFF" }}>8+</span>
-              <span style={{ fontSize: 13, fontWeight: 600, color: "#FFFFFF" }}>Years of Excellence</span>
+            <div className="experience-chip">
+              <strong>2017</strong>
+              <span>Established after deep automation experience</span>
             </div>
           </div>
-
-          {/* Text side */}
-          <div
-            style={{
-              opacity: aboutRef.inView ? 1 : 0,
-              transform: aboutRef.inView ? "translateX(0)" : "translateX(32px)",
-              transition: "all 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.15s",
-            }}
-          >
-            <div className="section-label">About Us</div>
-            <h2 style={{ marginBottom: 20 }}>
-              India&apos;s Trusted Siemens Industrial Automation Experts
-            </h2>
-            <p style={{ color: "#1B1B1B", marginBottom: 16, lineHeight: "26px" }}>
+          <div>
+            <p className="section-label">About Us</p>
+            <h2>India&apos;s Trusted Siemens Industrial Automation Experts</h2>
+            <p>
               Hive Automation is a trusted industrial automation company specializing in Siemens PLC
               programming, SCADA system integration, and process control solutions. Our mission is
               to empower manufacturing with smart automation systems that optimize operations,
               enhance efficiency, and minimize industrial downtime across India.
             </p>
-            <p style={{ color: "#5f5e5dff", marginBottom: 32, lineHeight: "24px", fontSize: 14 }}>
+            <p>
               We provide expert services for Siemens PLCs, SCADA, and DCS platforms, having
-              successfully delivered turnkey automation projects for diverse industries.
+              successfully delivered turnkey automation projects for diverse industries. Our
+              commitment to industrial compliance, innovation, and safety ensures high-performance
+              results in a rapidly evolving industrial automation landscape.
             </p>
-
-            {/* Feature pills */}
-            <div style={{ display: "flex", gap: 12, flexWrap: "wrap", marginBottom: 32 }}>
-              {["Siemens Experts", "GAMP 5 Quality", "24/7 Support", "Precision Automation"].map(
-                (tag) => (
-                  <span
-                    key={tag}
-                    style={{
-                      fontSize: 12,
-                      fontWeight: 600,
-                      padding: "8px 16px",
-                      borderRadius: 9999,
-                      background: "rgba(87, 94, 207, 0.08)",
-                      color: "#575ECF",
-                    }}
-                  >
-                    {tag}
-                  </span>
-                )
-              )}
+            <div className="tag-row">
+              <span>Siemens Experts</span>
+              <span>Precision Industrial Automation</span>
+              <span>GAMP 5 Quality</span>
+              <span>24/7 Support</span>
             </div>
-
-            <div style={{ display: "flex", gap: 16, flexWrap: "wrap" }}>
-              <Link href="/about" className="btn btn-primary" style={{ textDecoration: "none" }}>
+            <div className="action-row">
+              <Link className="btn btn-primary" href="/about">
                 Read More
               </Link>
-              <Link
-                href="https://appt.link/meet-with-bhavik-bhimani-iz1nBIl5/hive-automation"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn btn-secondary"
-                style={{ textDecoration: "none" }}
-              >
+              <Link className="btn btn-secondary" href={scheduleUrl} target="_blank" rel="noopener noreferrer">
                 Schedule a Call
               </Link>
             </div>
           </div>
         </div>
-
-        <style>{`
-          @media (max-width: 799px) {
-            #about-preview .container {
-              grid-template-columns: 1fr !important;
-              gap: 32px !important;
-            }
-          }
-          @media (max-width: 599px) {
-            .hero-buttons {
-              flex-direction: column !important;
-            }
-            .hero-buttons .btn {
-              width: 100% !important;
-              text-align: center !important;
-              justify-content: center !important;
-            }
-            .industries-container {
-              justify-content: flex-start !important;
-              gap: 16px !important;
-            }
-            .industries-label {
-              width: 100% !important;
-              text-align: center !important;
-            }
-            .industries-divider {
-              display: none !important;
-            }
-          }
-        `}</style>
       </section>
 
-      {/* ═══════ SERVICES SECTION ═══════ */}
-      <section
-        ref={servicesRef.ref}
-        className="section section-alt"
-        id="services-preview"
-      >
-        <div className="container" style={{ maxWidth: 1200, margin: "0 auto" }}>
-          <div style={{ textAlign: "center", marginBottom: 48 }}>
-            <div className="section-label">Our Industrial Automation Services</div>
-            <h2 style={{ marginBottom: 16 }}>
-              Scalable Custom Engineering Solutions
-            </h2>
-            <p
-              style={{
-                maxWidth: 640,
-                margin: "0 auto",
-                color: "#5f5e5dff",
-                fontSize: 14,
-                lineHeight: "22px",
-              }}
-            >
-              From initial system design to full-scale implementation and lifecycle support. Deep
-              expertise in Siemens PLC programming, SCADA integration, and DCS platforms.
+      <section className="section section-steel" id="services-preview">
+        <div className="container">
+          <div className="section-heading">
+            <p className="section-label">Our Industrial Automation Services</p>
+            <h2>Scalable Custom Engineering Solutions for Siemens PLC, SCADA & DCS</h2>
+            <p>
+              At Hive Automation, we specialize in comprehensive industrial automation services -
+              from initial system design to full-scale implementation and lifecycle support.
             </p>
           </div>
-
-          <div
-            className="stagger"
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))",
-              gap: 24,
-            }}
-          >
-            {services.map((svc, i) => (
-              <div
-                key={svc.id}
-                className="card card-interactive"
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  gap: 16,
-                  opacity: servicesRef.inView ? 1 : 0,
-                  transform: servicesRef.inView ? "translateY(0)" : "translateY(24px)",
-                  transition: `all 0.5s cubic-bezier(0.16, 1, 0.3, 1) ${i * 80}ms`,
-                  cursor: "default",
-                }}
-              >
-                <div
-                  style={{
-                    width: 48,
-                    height: 48,
-                    borderRadius: 12,
-                    background: "rgba(255, 52, 52, 0.12)",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    fontSize: 22,
-                  }}
-                >
-                  {svc.icon}
-                </div>
-                <h3 style={{ fontSize: 18, fontWeight: 600, lineHeight: "24px" }}>{svc.title}</h3>
-                <p style={{ fontSize: 14, lineHeight: "22px", color: "#5f5e5dff", flex: 1 }}>
-                  {svc.desc}
-                </p>
-                <Link
-                  href={`/services#${svc.id}`}
-                  style={{ fontSize: 13, fontWeight: 600, color: "#FF3434", textDecoration: "none" }}
-                >
-                  Learn More →
-                </Link>
-              </div>
+          <div className="service-grid">
+            {services.map((service, index) => (
+              <article className="service-card" key={service.slug}>
+                <span className="service-number">{String(index + 1).padStart(2, "0")}</span>
+                <h3>{service.title}</h3>
+                <p>{service.desc}</p>
+                <Link href={`/services/${service.slug}`}>Read More</Link>
+              </article>
             ))}
           </div>
-
-          <div style={{ textAlign: "center", marginTop: 40 }}>
-            <Link href="/services" className="btn btn-ghost" style={{ textDecoration: "none" }}>
+          <div className="center-action">
+            <Link className="btn btn-secondary" href="/services">
               View All Services
             </Link>
           </div>
         </div>
       </section>
 
-      {/* ═══════ PROJECTS SECTION ═══════ */}
-      <section ref={projectsRef.ref} className="section" id="projects-preview">
-        <div className="container" style={{ maxWidth: 1200, margin: "0 auto" }}>
-          <div style={{ textAlign: "center", marginBottom: 48 }}>
-            <div className="section-label">Our Proven Track Record</div>
-            <h2 style={{ marginBottom: 16 }}>Delivering Excellence Across Industries</h2>
+      <section className="section" id="projects-preview">
+        <div className="container">
+          <div className="section-heading">
+            <p className="section-label">Our Proven Track Record</p>
+            <h2>Industrial Automation Case Studies: Solving Complex Challenges</h2>
           </div>
-
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))",
-              gap: 24,
-            }}
-          >
-            {projects.map((proj, i) => (
-              <div
-                key={i}
-                className="card card-interactive"
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  gap: 12,
-                  opacity: projectsRef.inView ? 1 : 0,
-                  transform: projectsRef.inView ? "translateY(0)" : "translateY(24px)",
-                  transition: `all 0.5s cubic-bezier(0.16, 1, 0.3, 1) ${i * 80}ms`,
-                }}
-              >
-                <span
-                  style={{
-                    fontSize: 11,
-                    fontWeight: 600,
-                    letterSpacing: 1,
-                    textTransform: "uppercase",
-                    color: "#575ECF",
-                    background: "rgba(87, 94, 207, 0.08)",
-                    padding: "4px 12px",
-                    borderRadius: 9999,
-                    alignSelf: "flex-start",
-                  }}
-                >
-                  {proj.tag}
-                </span>
-                <h4 style={{ fontSize: 18, fontWeight: 600, lineHeight: "24px" }}>{proj.title}</h4>
-                <p style={{ fontSize: 14, color: "#5f5e5dff", lineHeight: "22px" }}>{proj.desc}</p>
-                <Link
-                  href="/projects"
-                  style={{ fontSize: 13, fontWeight: 600, color: "#FF3434", textDecoration: "none", marginTop: "auto" }}
-                >
-                  View Case Study →
+          <div className="project-grid">
+            {projects.map((project) => (
+              <article className="project-card" key={project.title}>
+                <Link href={project.href} className="project-image-link" aria-label={project.title}>
+                  <Image
+                    src={project.image}
+                    alt={project.title}
+                    width={520}
+                    height={340}
+                    className="project-image"
+                  />
                 </Link>
-              </div>
+                <div className="project-body">
+                  <div className="project-meta">
+                    <span>{project.metric}</span>
+                    <span>{project.industry}</span>
+                  </div>
+                  <h3>{project.title}</h3>
+                  <p>{project.desc}</p>
+                  <Link href={project.href}>View Case Study</Link>
+                </div>
+              </article>
             ))}
-          </div>
-
-          <div style={{ textAlign: "center", marginTop: 40 }}>
-            <Link href="/projects" className="btn btn-primary" style={{ textDecoration: "none" }}>
-              View All Projects
-            </Link>
           </div>
         </div>
       </section>
 
-      {/* ═══════ WHY HIVE SECTION ═══════ */}
-      <section ref={whyRef.ref} className="section section-alt" id="why-hive">
-        <div className="container" style={{ maxWidth: 1200, margin: "0 auto" }}>
-          <div style={{ textAlign: "center", marginBottom: 48 }}>
-            <div className="section-label">Why Partner with Hive Automation?</div>
-            <h2 style={{ marginBottom: 16 }}>
-              Your Long-Term Engineering Partner
-            </h2>
-            <p
-              style={{
-                maxWidth: 640,
-                margin: "0 auto",
-                color: "#5f5e5dff",
-                fontSize: 14,
-                lineHeight: "22px",
-              }}
-            >
-              We&apos;re not just system integrators — we&apos;re committed to your plant&apos;s
-              performance, reliability, and growth.
+      <section className="section why-section" id="why-hive">
+        <div className="container why-layout">
+          <div className="why-copy">
+            <p className="section-label">Why Partner with Hive Automation?</p>
+            <h2>Expert Siemens Automation Engineering with Real-World Results</h2>
+            <p>
+              We&apos;re not just system integrators - we&apos;re long-term engineering partners
+              committed to your plant&apos;s performance, reliability, and growth. Here&apos;s why top
+              players in Oil & Gas, Pharma, and Food Processing trust us with critical automation systems.
             </p>
+            <div className="reason-list">
+              {whyHive.map((item) => (
+                <article className="reason-item" key={item.title} tabIndex={0}>
+                  <span className="reason-corner reason-corner-top" aria-hidden="true" />
+                  <span className="reason-corner reason-corner-bottom" aria-hidden="true" />
+                  <div className="reason-title-row">
+                    <h3>{item.title}</h3>
+                  </div>
+                  <p>{item.desc}</p>
+                </article>
+              ))}
+            </div>
+            <div className="action-row">
+              <Link className="btn btn-dark" href="/about">
+                Read More
+              </Link>
+              <Link className="btn btn-primary" href={scheduleUrl} target="_blank" rel="noopener noreferrer">
+                Let&apos;s Talk
+              </Link>
+            </div>
           </div>
+          <div className="why-visual" aria-hidden="true">
+            <Image
+              src="/why-hive-illustration.svg"
+              alt=""
+              width={560}
+              height={640}
+              className="why-illustration"
+              unoptimized
+            />
+          </div>
+        </div>
+      </section>
 
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))",
-              gap: 24,
-            }}
-          >
-            {whyHive.map((item, i) => (
-              <div
-                key={i}
-                style={{
-                  display: "flex",
-                  gap: 16,
-                  padding: "24px",
-                  borderRadius: 8,
-                  border: "1px solid #DCDAD5",
-                  background: "#FFFFFF",
-                  opacity: whyRef.inView ? 1 : 0,
-                  transform: whyRef.inView ? "translateY(0)" : "translateY(24px)",
-                  transition: `all 0.5s cubic-bezier(0.16, 1, 0.3, 1) ${i * 80}ms`,
-                }}
-              >
-                <div
-                  style={{
-                    width: 48,
-                    height: 48,
-                    minWidth: 48,
-                    borderRadius: 12,
-                    background: "rgba(255, 52, 52, 0.12)",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    fontSize: 22,
-                  }}
-                >
-                  {item.icon}
-                </div>
+      <AnimatedStats />
+
+      <section className="section form-section" id="quote">
+        <div className="container form-grid">
+          <div className="form-copy">
+            <p className="section-label">Get a Quote</p>
+            <h2>Start Your Automation Journey</h2>
+            <p>
+              Our technical experts are ready to review your requirements. Precision
+              guaranteed.
+            </p>
+
+            <div className="quote-contact-list" aria-label="Quote contact details">
+              <div className="quote-contact-item">
+                <span aria-hidden="true">
+                  <svg viewBox="0 0 24 24" role="img">
+                    <path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.8a2 2 0 0 1-.4 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7A2 2 0 0 1 22 16.9Z" />
+                  </svg>
+                </span>
                 <div>
-                  <h4 style={{ fontSize: 16, fontWeight: 600, marginBottom: 6 }}>{item.title}</h4>
-                  <p style={{ fontSize: 14, lineHeight: "22px", color: "#5f5e5dff" }}>{item.desc}</p>
+                  <strong>Immediate Assistance</strong>
+                  <a href="tel:+180044832886">+1 (800) HIVE-AUTO</a>
                 </div>
               </div>
-            ))}
-          </div>
 
-          <div style={{ textAlign: "center", marginTop: 40, display: "flex", gap: 16, justifyContent: "center", flexWrap: "wrap" }}>
-            <Link href="/about" className="btn btn-primary" style={{ textDecoration: "none" }}>
-              Read More
-            </Link>
-            <Link
-              href="https://appt.link/meet-with-bhavik-bhimani-iz1nBIl5/hive-automation"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn btn-secondary"
-              style={{ textDecoration: "none" }}
-            >
-              Let&apos;s Talk
-            </Link>
-          </div>
-
-          {/* Logo Marquee */}
-          <div style={{ marginTop: 56, borderTop: "1px solid #DCDAD5", paddingTop: 40 }}>
-            <div style={{ textAlign: "center", marginBottom: 24 }}>
-              <span style={{ fontSize: 12, fontWeight: 600, letterSpacing: 2, textTransform: "uppercase", color: "#7F7D7A" }}>
-                Trusted by 50+ Leading Companies &amp; Brands
-              </span>
-            </div>
-            <div className="marquee-container">
-              <div className="marquee-row marquee-row-left">
-                {[...clientLogosRow1, ...clientLogosRow1].map((src, idx) => (
-                  <div key={`logo-r1-${idx}`} className="marquee-logo-wrapper">
-                    <img src={src} alt="Partner Logo" loading="lazy" />
-                  </div>
-                ))}
-              </div>
-              <div className="marquee-row marquee-row-right">
-                {[...clientLogosRow2, ...clientLogosRow2].map((src, idx) => (
-                  <div key={`logo-r2-${idx}`} className="marquee-logo-wrapper">
-                    <img src={src} alt="Partner Logo" loading="lazy" />
-                  </div>
-                ))}
+              <div className="quote-contact-item">
+                <span aria-hidden="true">
+                  <svg viewBox="0 0 24 24" role="img">
+                    <path d="M4 5h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2Z" />
+                    <path d="m22 7-10 6L2 7" />
+                  </svg>
+                </span>
+                <div>
+                  <strong>Engineering Team</strong>
+                  <a href="mailto:projects@hiveautomation.com">projects@hiveautomation.com</a>
+                </div>
               </div>
             </div>
-
-            <style>{`
-              .marquee-container {
-                overflow: hidden;
-                user-select: none;
-                display: flex;
-                flex-direction: column;
-                gap: 20px;
-                width: 100%;
-                padding: 20px 0;
-                position: relative;
-              }
-              .marquee-container::before,
-              .marquee-container::after {
-                content: "";
-                position: absolute;
-                top: 0;
-                width: 150px;
-                height: 100%;
-                z-index: 2;
-                pointer-events: none;
-              }
-              .marquee-container::before {
-                left: 0;
-                background: linear-gradient(to right, #F9F8F6 0%, transparent 100%);
-              }
-              .marquee-container::after {
-                right: 0;
-                background: linear-gradient(to left, #F9F8F6 0%, transparent 100%);
-              }
-              .marquee-row {
-                display: flex;
-                width: max-content;
-                gap: 32px;
-                align-items: center;
-                will-change: transform;
-              }
-              .marquee-row-left {
-                animation: marqueeLeft 30s linear infinite;
-              }
-              .marquee-row-right {
-                animation: marqueeRight 30s linear infinite;
-              }
-              .marquee-row:hover {
-                animation-play-state: paused;
-              }
-              .marquee-logo-wrapper {
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                width: 180px;
-                height: 90px;
-                padding: 16px;
-                background: #FFFFFF;
-                border: 1px solid #DCDAD5;
-                border-radius: 8px;
-                box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.03);
-                transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-              }
-              .marquee-logo-wrapper img {
-                max-width: 100%;
-                max-height: 100%;
-                object-fit: contain;
-                transition: all 0.3s ease;
-              }
-              .marquee-logo-wrapper:hover {
-                border-color: #FF3434;
-                box-shadow: 0px 4px 12px rgba(255, 52, 52, 0.1);
-                transform: translateY(-2px);
-              }
-              @keyframes marqueeLeft {
-                0% { transform: translateX(0); }
-                100% { transform: translateX(-50%); }
-              }
-              @keyframes marqueeRight {
-                0% { transform: translateX(-50%); }
-                100% { transform: translateX(0); }
-              }
-              @media (max-width: 799px) {
-                .marquee-container::before,
-                .marquee-container::after {
-                  width: 80px;
-                }
-                .marquee-logo-wrapper {
-                  width: 140px;
-                  height: 70px;
-                  padding: 12px;
-                }
-              }
-            `}</style>
           </div>
+          <form className="lead-form quote-form">
+            <label>
+              Full Name
+              <input name="name" autoComplete="name" />
+            </label>
+            <label>
+              Email
+              <input name="email" type="email" autoComplete="email" />
+            </label>
+            <label>
+              Phone
+              <input name="phone" type="tel" autoComplete="tel" />
+            </label>
+            <label>
+              Company
+              <input name="company" autoComplete="organization" />
+            </label>
+            <label className="full-field">
+              Project Description
+              <textarea name="message" rows={5} />
+            </label>
+            <div className="form-actions">
+              <button className="btn btn-primary" type="submit">
+                Request Technical Consultation
+              </button>
+            </div>
+          </form>
         </div>
       </section>
 
-      {/* ═══════ STATS SECTION ═══════ */}
-      <section
-        ref={statsRef.ref}
-        id="stats-section"
-        style={{
-          background: "linear-gradient(135deg, #1B1B1B 0%, #2a2a2a 100%)",
-          padding: "64px 32px",
-        }}
-      >
-        <div
-          className="container"
-          style={{
-            maxWidth: 1200,
-            margin: "0 auto",
-            display: "grid",
-            gridTemplateColumns: "repeat(3, 1fr)",
-            gap: 32,
-            textAlign: "center",
-          }}
-        >
-          <div ref={stats1.ref}>
-            <div className="stat-number">{stats1.count}+</div>
-            <div className="stat-label">Projects Completed</div>
+      <section className="section clients-section" id="clients">
+        <div className="container">
+          <div className="section-heading">
+            <p className="section-label">Our Client</p>
+            <h2>Trusted by Leading Companies & Brands</h2>
           </div>
-          <div ref={stats2.ref}>
-            <div className="stat-number">{stats2.count}+</div>
-            <div className="stat-label">Satisfied Clients</div>
-          </div>
-          <div ref={stats3.ref}>
-            <div className="stat-number">{stats3.count}+</div>
-            <div className="stat-label">Team Members</div>
-          </div>
-        </div>
-
-        <style>{`
-          @media (max-width: 599px) {
-            #stats-section .container {
-              grid-template-columns: 1fr !important;
-              gap: 40px !important;
-            }
-          }
-        `}</style>
-      </section>
-
-      {/* ═══════ CTA SECTION ═══════ */}
-      <section className="section" style={{ background: "#FFFFFF" }}>
-        <div
-          className="container"
-          style={{
-            maxWidth: 800,
-            margin: "0 auto",
-            textAlign: "center",
-          }}
-        >
-          <div className="section-label">Get Started</div>
-          <h2 style={{ marginBottom: 16 }}>Ready to Automate Your Plant?</h2>
-          <p
-            style={{
-              color: "#5f5e5dff",
-              fontSize: 16,
-              lineHeight: "26px",
-              marginBottom: 32,
-              maxWidth: 560,
-              margin: "0 auto 32px",
-            }}
-          >
-            Request a consultation to discuss your automation needs. Our team will create a custom
-            solution tailored to your industry requirements.
-          </p>
-          <div
-            style={{
-              display: "flex",
-              gap: 16,
-              justifyContent: "center",
-              flexWrap: "wrap",
-            }}
-          >
-            <Link href="/contact" className="btn btn-primary" style={{ textDecoration: "none" }}>
-              Request a Quote
-            </Link>
-            <Link
-              href="https://appt.link/meet-with-bhavik-bhimani-iz1nBIl5/hive-automation"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn btn-secondary"
-              style={{ textDecoration: "none" }}
-            >
-              Schedule a Call
-            </Link>
+          <div className="client-marquee" aria-label="Client logos">
+            <div className="client-marquee-row marquee-left">
+              {[...clientLogos.slice(0, 14), ...clientLogos.slice(0, 14)].map((logo, index) => (
+                <div className="client-logo" key={`client-top-${logo}-${index}`}>
+                  <Image src={logo} alt="Hive Automation client logo" width={240} height={135} />
+                </div>
+              ))}
+            </div>
+            <div className="client-marquee-row marquee-right">
+              {[...clientLogos.slice(14), ...clientLogos.slice(14)].map((logo, index) => (
+                <div className="client-logo" key={`client-bottom-${logo}-${index}`}>
+                  <Image src={logo} alt="Hive Automation client logo" width={240} height={135} />
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
-    </div>
+    </main>
   );
 }

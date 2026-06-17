@@ -1,7 +1,21 @@
 import Link from "next/link";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 
-const projectsData = {
+interface Project {
+  title: string;
+  subtitle: string;
+  desc: string;
+  completion: string;
+  endUser: string;
+  scope: string;
+  architecture: string;
+  tag: string;
+  specs: Record<string, string>;
+  gallery?: string[];
+}
+
+const projectsData: Record<string, Project> = {
   "pharmaceutical": {
     title: "GAMP 5 Compliant Automation for Pharmaceutical Material Handling",
     subtitle: "WinCC Explorer & Wireless Tablet operation for Emynent, Russia",
@@ -17,7 +31,11 @@ const projectsData = {
       "Digital Outputs": "496",
       "Analog Outputs": "56",
       "Total I/O Points": "910"
-    }
+    },
+    gallery: [
+      "/projects/pharmaceutical-1.jpeg",
+      "/projects/pharmaceutical-2.jpeg"
+    ]
   },
   "chemical": {
     title: "Control System Engineering for Steam Turbine Application",
@@ -34,7 +52,14 @@ const projectsData = {
       "Digital Outputs": "144",
       "Analog Outputs": "52",
       "Total I/O Points": "788"
-    }
+    },
+    gallery: [
+      "/projects/chemical-1.png",
+      "/projects/chemical-6.png",
+      "/projects/chemical-3.png",
+      "/projects/chemical-4.png",
+      "/projects/chemical-5.png"
+    ]
   },
   "refinery": {
     title: "Control System SIL-2 Programming for Recip Compressor Application",
@@ -68,7 +93,14 @@ const projectsData = {
       "Digital Outputs": "218",
       "Analog Outputs": "16",
       "Total I/O Points": "786"
-    }
+    },
+    gallery: [
+      "/projects/oil-1.png",
+      "/projects/oil-2.png",
+      "/projects/oil-3.png",
+      "/projects/oil-4.png",
+      "/projects/oil-5.png"
+    ]
   },
   "hydrogenation-plant": {
     title: "Automation & Control System for 100 TPD Hydrogenation Plant",
@@ -157,7 +189,7 @@ export default async function ProjectDetailPage({ params }: Props) {
   }
 
   return (
-    <div style={{ marginTop: 72 }}>
+    <div style={{ marginTop: 82 }}>
       {/* Hero Header */}
       <section style={{ background: "linear-gradient(135deg,#1B1B1B,#2a2a2a)", padding: "80px 32px 64px", textAlign: "center" }}>
         <div style={{ maxWidth: 800, margin: "0 auto" }}>
@@ -187,21 +219,40 @@ export default async function ProjectDetailPage({ params }: Props) {
           {/* Details Column */}
           <div>
             <h3 style={{ marginBottom: 20 }}>Project Information</h3>
-            <p style={{ fontSize: 16, lineHeight: "28px", color: "#333333", marginBottom: 32, whiteSpace: "pre-line" }}>
+            <p style={{ fontSize: 15, lineHeight: "26px", color: "#5f5e5dff", marginBottom: 32, whiteSpace: "pre-line" }}>
               {project.desc}
             </p>
 
             <h3 style={{ marginBottom: 20 }}>Technical Architecture</h3>
             <div style={{ background: "#F9F8F6", padding: 24, borderRadius: 8, border: "1px solid #DCDAD5", marginBottom: 32 }}>
-              <p style={{ fontSize: 15, lineHeight: "24px", color: "#1B1B1B", margin: 0, fontWeight: 500 }}>
+              <p style={{ fontSize: 15, lineHeight: "26px", color: "#5f5e5dff", margin: 0, fontWeight: 500 }}>
                 {project.architecture}
               </p>
             </div>
 
             <h3 style={{ marginBottom: 20 }}>Scope of Work</h3>
-            <p style={{ fontSize: 15, lineHeight: "24px", color: "#333333", marginBottom: 0 }}>
+            <p style={{ fontSize: 15, lineHeight: "26px", color: "#5f5e5dff", marginBottom: 32 }}>
               {project.scope}
             </p>
+
+            {/* Project Gallery */}
+            {project.gallery && project.gallery.length > 0 && (
+              <div style={{ marginTop: 40 }}>
+                <h3 style={{ marginBottom: 20 }}>Project Gallery</h3>
+                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
+                  {project.gallery.map((imgUrl, imgIdx) => (
+                    <div key={imgIdx} style={{ position: "relative", width: "100%", height: 240, borderRadius: 8, overflow: "hidden", border: "1px solid #DCDAD5" }}>
+                      <Image
+                        src={imgUrl}
+                        alt={`${project.title} - Image ${imgIdx + 1}`}
+                        fill
+                        style={{ objectFit: "cover" }}
+                      />
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
 
           {/* Sidebar Metadata Column */}

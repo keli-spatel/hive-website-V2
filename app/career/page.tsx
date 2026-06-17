@@ -35,7 +35,7 @@ export default function CareerPage() {
   const perksRef = useInView();
 
   return (
-    <div style={{ marginTop: 72 }}>
+    <div style={{ marginTop: 82 }}>
       <section ref={heroRef.ref} style={{ background: "linear-gradient(135deg,#1B1B1B,#2a2a2a)", padding: "80px 32px 64px", textAlign: "center" }}>
         <div style={{ maxWidth: 800, margin: "0 auto", opacity: heroRef.inView ? 1 : 0, transform: heroRef.inView ? "translateY(0)" : "translateY(24px)", transition: "all 0.7s ease-out" }}>
           <div style={{ display: "inline-flex", gap: 8, marginBottom: 16, fontSize: 12, fontWeight: 600, color: "#C5C1B9", letterSpacing: 1 }}>
@@ -83,8 +83,8 @@ export default function CareerPage() {
                   <h3 style={{ fontSize: 18, fontWeight: 600, marginBottom: 6 }}>{pos.title}</h3>
                   <p style={{ fontSize: 14, lineHeight: "22px", color: "#666666", marginBottom: 8 }}>{pos.desc}</p>
                   <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
-                    <span style={{ fontSize: 12, fontWeight: 500, padding: "4px 10px", borderRadius: 4, background: "rgba(87,94,207,0.08)", color: "#575ECF" }}>{pos.type}</span>
-                    <span style={{ fontSize: 12, fontWeight: 500, padding: "4px 10px", borderRadius: 4, background: "#F9F8F6", color: "#1B1B1B", border: "1px solid #DCDAD5" }}>📍 {pos.location}</span>
+                    <span style={{ fontSize: 12, fontWeight: 500, padding: "4px 10px", borderRadius: 9999, background: "rgba(87,94,207,0.08)", color: "#575ECF" }}>{pos.type}</span>
+                    <span style={{ fontSize: 12, fontWeight: 500, padding: "4px 10px", borderRadius: 9999, background: "#F9F8F6", color: "#1B1B1B", border: "1px solid #DCDAD5" }}>📍 {pos.location}</span>
                   </div>
                 </div>
                 <Link href="/contact" className="btn btn-primary" style={{ textDecoration: "none", minWidth: 120 }}>Apply Now</Link>

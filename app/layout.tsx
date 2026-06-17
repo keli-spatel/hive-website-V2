@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://hiveautomation.in"),
   title: "Industrial Automation & Siemens PLC Experts | Hive Automation",
   description:
-    "Hive Automation — India's trusted Siemens PLC programming, SCADA system integration, and industrial process control solutions company. Expert automation services for Pharma, Oil & Gas, Chemicals, and more.",
+    "Hive Automation - India's trusted Siemens PLC programming, SCADA system integration, and industrial process control solutions company. Expert automation services for Pharma, Oil & Gas, Chemicals, and more.",
   keywords:
     "PLC programming, SCADA, DCS, Siemens PLC, industrial automation, process control, Hive Automation, Ahmedabad, industrial networking",
   robots: {
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     canonical: "/",
   },
   openGraph: {
-    title: "Hive Automation — Industrial Automation & Siemens PLC Experts",
+    title: "Hive Automation - Industrial Automation & Siemens PLC Experts",
     description:
       "Siemens PLC, SCADA and DCS automation experts delivering turnkey industrial solutions across India.",
     type: "website",
@@ -56,43 +56,45 @@ const jsonLdSchema = {
     {
       "@type": "Organization",
       "@id": "https://hiveautomation.in/#organization",
-      "name": "Hive Automation",
-      "url": "https://hiveautomation.in",
-      "logo": "https://hiveautomation.in/logo.png",
-      "contactPoint": {
+      name: "Hive Automation",
+      url: "https://hiveautomation.in",
+      logo: "https://hiveautomation.in/logo.png",
+      contactPoint: {
         "@type": "ContactPoint",
-        "telephone": "+91-99786-03840",
-        "contactType": "customer service",
-        "email": "info@hiveautomation.in",
-        "areaServed": "IN",
-        "availableLanguage": ["English", "Hindi", "Gujarati"]
-      }
+        telephone: "+91-99786-03840",
+        contactType: "customer service",
+        email: "info@hiveautomation.in",
+        areaServed: "IN",
+        availableLanguage: ["English", "Hindi", "Gujarati"],
+      },
     },
     {
       "@type": "LocalBusiness",
       "@id": "https://hiveautomation.in/#localbusiness",
-      "name": "Hive Automation",
-      "url": "https://hiveautomation.in",
-      "image": "https://hiveautomation.in/hero-bg.png",
-      "telephone": "+91-99786-03840",
-      "email": "info@hiveautomation.in",
-      "address": {
+      name: "Hive Automation",
+      url: "https://hiveautomation.in",
+      image: "https://hiveautomation.in/hero-bg.png",
+      telephone: "+91-99786-03840",
+      email: "info@hiveautomation.in",
+      address: {
         "@type": "PostalAddress",
-        "streetAddress": "33, B N Industrial Estate, Near Kathwada GIDC Gate No 5, S P Ring Road, Near Nikol, Odhav",
-        "addressLocality": "Ahmedabad",
-        "addressRegion": "Gujarat",
-        "postalCode": "382415",
-        "addressCountry": "IN"
+        streetAddress:
+          "33, B N Industrial Estate, Near Kathwada GIDC Gate No 5, S P Ring Road, Near Nikol, Odhav",
+        addressLocality: "Ahmedabad",
+        addressRegion: "Gujarat",
+        postalCode: "382415",
+        addressCountry: "IN",
       },
-      "geo": {
+      geo: {
         "@type": "GeoCoordinates",
-        "latitude": 23.0245, 
-        "longitude": 72.6582
+        latitude: 23.0245,
+        longitude: 72.6582,
       },
-      "priceRange": "$$",
-      "description": "India's trusted Siemens PLC, SCADA & DCS automation experts delivering turnkey industrial solutions."
-    }
-  ]
+      priceRange: "$$",
+      description:
+        "India's trusted Siemens PLC, SCADA & DCS automation experts delivering turnkey industrial solutions.",
+    },
+  ],
 };
 
 export default function RootLayout({
@@ -109,13 +111,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdSchema) }}
         />
       </head>
-      <body
-        suppressHydrationWarning
-        style={{
-          fontFamily:
-            'ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
-        }}
-      >
+      <body suppressHydrationWarning>
         <Navbar />
         <main style={{ flex: 1 }}>{children}</main>
         <Footer />

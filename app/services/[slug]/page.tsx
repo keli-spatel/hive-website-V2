@@ -131,7 +131,7 @@ export default async function ServiceDetailPage({ params }: Props) {
   }
 
   return (
-    <div style={{ marginTop: 72 }}>
+    <div style={{ marginTop: 82 }}>
       {/* Hero Header */}
       <section style={{ background: "linear-gradient(135deg,#1B1B1B,#2a2a2a)", padding: "80px 32px", overflow: "hidden" }}>
         <div
@@ -247,7 +247,7 @@ export default async function ServiceDetailPage({ params }: Props) {
                     background: "transparent",
                     color: "#FFFFFF",
                     border: "1px solid rgba(255,255,255,0.3)",
-                    borderRadius: 8
+                    borderRadius: 9999
                   }}
                 >
                   Schedule Technical Call
