@@ -154,7 +154,7 @@ export default function Navbar() {
         </Link>
       </div>
 
-      <style jsx>{`
+      <style jsx global>{`
         .navbar {
           position: fixed;
           top: 0;
@@ -162,8 +162,8 @@ export default function Navbar() {
           left: 0;
           z-index: 1000;
           height: 80px;
-          border-bottom: 1px solid rgba(223, 227, 234, 0.92);
-          background: rgba(255, 255, 255, 0.96);
+          border-bottom: 1px solid rgba(223, 227, 234, 0.94);
+          background: rgba(255, 255, 255, 0.97);
           box-shadow: 0 10px 28px rgba(17, 18, 20, 0.06);
           backdrop-filter: saturate(140%) blur(14px);
         }
@@ -185,7 +185,7 @@ export default function Navbar() {
           justify-content: flex-start;
         }
 
-        .navbar-logo :global(img) {
+        .navbar-logo img {
           width: auto;
           height: 44px;
           object-fit: contain;
@@ -219,7 +219,7 @@ export default function Navbar() {
           gap: 7px;
           border-radius: 8px;
           padding: 0 12px;
-          color: #15171c;
+          color: var(--black);
           font-size: 14.5px;
           font-weight: 680;
           line-height: 1;
@@ -232,7 +232,7 @@ export default function Navbar() {
         .navbar-link:hover,
         .navbar-link:focus-visible,
         .navbar-link.active {
-          color: #ff3434;
+          color: var(--red);
         }
 
         .navbar-link:focus-visible {
@@ -287,8 +287,8 @@ export default function Navbar() {
         .dropdown-card {
           position: relative;
           border: 1px solid rgba(226, 230, 237, 0.95);
-          border-radius: 8px;
-          background: #ffffff;
+          border-radius: var(--radius);
+          background: var(--white);
           padding: 8px;
           box-shadow: 0 24px 56px rgba(17, 18, 20, 0.14);
         }
@@ -313,7 +313,7 @@ export default function Navbar() {
           border-radius: 6px;
           border-bottom: 1px solid #eef1f5;
           padding: 11px 12px;
-          color: #ff3434;
+          color: var(--red);
           font-size: 13px;
           font-weight: 820;
           line-height: 1;
@@ -359,8 +359,9 @@ export default function Navbar() {
           align-items: center;
           justify-content: center;
           border-radius: 999px;
-          background: #ff3434;
-          color: #ffffff;
+          border: 1px solid var(--red);
+          background: var(--red);
+          color: var(--white);
           font-size: 14.5px;
           font-weight: 760;
           line-height: 1;
@@ -372,8 +373,9 @@ export default function Navbar() {
 
         .navbar-cta:hover,
         .navbar-cta:focus-visible {
-          background: #df2424;
-          color: #ffffff;
+          border-color: var(--red-dark);
+          background: var(--red-dark);
+          color: var(--white);
           box-shadow: 0 16px 30px rgba(255, 52, 52, 0.3);
           transform: translateY(-1px);
           outline: none;
@@ -406,31 +408,6 @@ export default function Navbar() {
 
         .mobile-panel {
           display: none;
-        }
-
-        :global(.navbar-link) {
-          display: inline-flex;
-          align-items: center;
-          gap: 6px;
-        }
-
-        :global(.navbar-caret) {
-          display: inline-flex;
-          width: 7px;
-          height: 7px;
-          flex: 0 0 7px;
-          align-self: center;
-          border-right: 1.5px solid currentColor;
-          border-bottom: 1.5px solid currentColor;
-          margin-left: 1px;
-          transform: translateY(-5px) rotate(45deg);
-          transform-origin: 50% 50%;
-          transition: transform 240ms cubic-bezier(0.22, 1, 0.36, 1);
-        }
-
-        :global(.navbar-item:hover .navbar-caret),
-        :global(.navbar-item:focus-within .navbar-caret) {
-          transform: translateY(-4px) rotate(225deg);
         }
 
         @media (max-width: 1120px) {
@@ -505,7 +482,7 @@ export default function Navbar() {
             width: 170px;
           }
 
-          .navbar-logo :global(img) {
+          .navbar-logo img {
             height: 38px;
           }
         }
