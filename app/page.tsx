@@ -1,7 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
+import { Phone, Mail } from "lucide-react";
 import AnimatedStats from "./components/AnimatedStats";
-
+import { ContactCard } from "./components/ContactCard";
 const scheduleUrl = "https://appt.link/meet-with-bhavik-bhimani-iz1nBIl5/hive-automation";
 
 const industries = ["Pharmaceutical", "Oil & Gas", "Forging", "Food & Beverages"];
@@ -376,70 +377,70 @@ export default function HomePage() {
 
       <AnimatedStats />
 
-      <section className="section form-section" id="quote">
-        <div className="container form-grid">
-          <div className="form-copy">
-            <p className="section-label">Get a Quote</p>
-            <h2>Start Your Automation Journey</h2>
-            <p>
-              Our technical experts are ready to review your requirements. Precision
-              guaranteed.
-            </p>
+      <section className="section py-16 md:py-24" id="quote">
+        <div className="container">
+          <ContactCard
+            imageSrc="/contact-agent.jpg"
+          >
+            <div className="max-w-xl mx-auto w-full">
+              <div className="text-[#ff3b3b] font-bold uppercase tracking-wider text-sm mb-2">Get A Quote</div>
+              <h2 className="text-3xl font-bold md:text-4xl mb-8 text-black">Request a Quote</h2>
 
-            <div className="quote-contact-list" aria-label="Quote contact details">
-              <div className="quote-contact-item">
-                <span aria-hidden="true">
-                  <svg viewBox="0 0 24 24" role="img">
-                    <path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.8a2 2 0 0 1-.4 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7A2 2 0 0 1 22 16.9Z" />
-                  </svg>
-                </span>
-                <div>
-                  <strong>Immediate Assistance</strong>
-                  <a href="tel:+180044832886">+1 (800) HIVE-AUTO</a>
-                </div>
-              </div>
+              <form className="space-y-6">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                      <div className="space-y-2">
+                          <label className="text-sm font-medium text-black">Your Name</label>
+                          <input 
+                              type="text" 
+                              placeholder="Enter name" 
+                              className="w-full bg-[#f8f9fa] border-0 rounded-md px-4 py-3 text-sm focus:ring-1 focus:ring-[#ff3b3b] outline-none text-black"
+                          />
+                      </div>
+                      <div className="space-y-2">
+                          <label className="text-sm font-medium text-black">Your Phone <span className="text-[#ff3b3b]">*</span></label>
+                          <input 
+                              type="tel" 
+                              placeholder="Enter number" 
+                              className="w-full bg-[#f8f9fa] border-0 rounded-md px-4 py-3 text-sm focus:ring-1 focus:ring-[#ff3b3b] outline-none text-black"
+                          />
+                      </div>
+                      <div className="space-y-2">
+                          <label className="text-sm font-medium text-black">Your Email <span className="text-[#ff3b3b]">*</span></label>
+                          <input 
+                              type="email" 
+                              placeholder="name@gmail.com" 
+                              className="w-full bg-[#f8f9fa] border-0 rounded-md px-4 py-3 text-sm focus:ring-1 focus:ring-[#ff3b3b] outline-none text-black"
+                          />
+                      </div>
+                      <div className="space-y-2">
+                          <label className="text-sm font-medium text-black">Subject <span className="text-[#ff3b3b]">*</span></label>
+                          <input 
+                              type="text" 
+                              placeholder="Fill Subject" 
+                              className="w-full bg-[#f8f9fa] border-0 rounded-md px-4 py-3 text-sm focus:ring-1 focus:ring-[#ff3b3b] outline-none text-black"
+                          />
+                      </div>
+                  </div>
+                  <div className="space-y-2">
+                      <label className="text-sm font-medium text-black">Enter Message</label>
+                      <textarea 
+                          placeholder="Enter your message here..." 
+                          rows={5}
+                          className="w-full bg-[#f8f9fa] border-0 rounded-md px-4 py-3 text-sm focus:ring-1 focus:ring-[#ff3b3b] outline-none resize-none text-black"
+                      ></textarea>
+                  </div>
 
-              <div className="quote-contact-item">
-                <span aria-hidden="true">
-                  <svg viewBox="0 0 24 24" role="img">
-                    <path d="M4 5h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2Z" />
-                    <path d="m22 7-10 6L2 7" />
-                  </svg>
-                </span>
-                <div>
-                  <strong>Engineering Team</strong>
-                  <a href="mailto:projects@hiveautomation.com">projects@hiveautomation.com</a>
-                </div>
-              </div>
+                  <div className="flex flex-wrap items-center gap-4 pt-2">
+                      <button type="submit" className="border border-[#ff3b3b] text-[#ff3b3b] px-8 py-3 rounded-full font-medium text-sm flex items-center gap-2 hover:bg-[#ff3b3b]/5 transition-colors">
+                          Submit <span className="text-lg leading-none">&rarr;</span>
+                      </button>
+                      <button type="button" className="bg-[#ff3b3b] text-white px-8 py-3 rounded-full font-medium text-sm flex items-center gap-2 hover:bg-[#ff3b3b]/90 transition-colors">
+                          Request a Call <span className="text-lg leading-none">&rarr;</span>
+                      </button>
+                  </div>
+              </form>
             </div>
-          </div>
-          <form className="lead-form quote-form">
-            <label>
-              Full Name
-              <input name="name" autoComplete="name" />
-            </label>
-            <label>
-              Email
-              <input name="email" type="email" autoComplete="email" />
-            </label>
-            <label>
-              Phone
-              <input name="phone" type="tel" autoComplete="tel" />
-            </label>
-            <label>
-              Company
-              <input name="company" autoComplete="organization" />
-            </label>
-            <label className="full-field">
-              Project Description
-              <textarea name="message" rows={5} />
-            </label>
-            <div className="form-actions">
-              <button className="btn btn-primary" type="submit">
-                Request Technical Consultation
-              </button>
-            </div>
-          </form>
+          </ContactCard>
         </div>
       </section>
 
