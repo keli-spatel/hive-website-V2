@@ -4,6 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { Menu, X } from "lucide-react";
 
 type NavLink = {
   label: string;
@@ -121,13 +122,11 @@ export default function Navbar() {
         <button
           className="navbar-toggle"
           type="button"
-          aria-label="Toggle navigation"
+          aria-label={mobileOpen ? "Close navigation" : "Open navigation"}
           aria-expanded={mobileOpen}
           onClick={() => setMobileOpen((value) => !value)}
         >
-          <span />
-          <span />
-          <span />
+          {mobileOpen ? <X size={22} strokeWidth={2.2} /> : <Menu size={23} strokeWidth={2.2} />}
         </button>
       </nav>
 
@@ -389,21 +388,33 @@ export default function Navbar() {
           display: none;
           width: 44px;
           height: 44px;
-          border: 1px solid #dfe3ea;
+          border: 1px solid rgba(21, 23, 28, 0.14);
           border-radius: 999px;
-          background: #ffffff;
+          background: linear-gradient(180deg, #ffffff 0%, #f7f8fb 100%);
+          color: #15171c;
           padding: 0;
           place-items: center;
           cursor: pointer;
+          box-shadow: 0 10px 22px rgba(17, 18, 20, 0.08);
+          transition:
+            border-color 160ms ease,
+            background 160ms ease,
+            color 160ms ease,
+            transform 160ms ease,
+            box-shadow 160ms ease;
         }
 
-        .navbar-toggle span {
-          display: block;
-          width: 18px;
-          height: 2px;
-          margin: 2px auto;
-          border-radius: 999px;
-          background: #15171c;
+        .navbar-toggle:hover,
+        .navbar-toggle:focus-visible {
+          border-color: rgba(255, 52, 52, 0.42);
+          background: #ffffff;
+          color: #ff3434;
+          box-shadow: 0 14px 28px rgba(255, 52, 52, 0.14);
+          outline: none;
+        }
+
+        .navbar-toggle:active {
+          transform: scale(0.96);
         }
 
         .mobile-panel {
