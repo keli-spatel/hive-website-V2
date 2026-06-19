@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Phone, Mail } from "lucide-react";
 import AnimatedStats from "./components/AnimatedStats";
 import { ContactCard } from "./components/ContactCard";
+import CaseStudyStack from "./components/CaseStudyStack";
 const scheduleUrl = "https://appt.link/meet-with-bhavik-bhimani-iz1nBIl5/hive-automation";
 
 const industries = ["Pharmaceutical", "Oil & Gas", "Forging", "Food & Beverages"];
@@ -327,6 +328,32 @@ export default function HomePage() {
                 </div>
               </article>
             ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section section-steel" id="case-studies-stack">
+        <div className="container">
+          <div>
+            <div 
+              className="sticky z-20 w-full bg-gradient-to-b from-[#f7f8fb] to-[#f4f6fa] pt-4 pb-2" 
+              style={{ top: "80px", marginBottom: "16px", boxShadow: "0 10px 30px -10px rgba(17,18,20,0.05)" }}
+            >
+              <div className="section-heading" style={{ marginBottom: 0, maxWidth: "900px" }}>
+                <p className="section-label" style={{ marginBottom: "8px", fontSize: "11px" }}>Deep Dive into Our Work</p>
+                <h2 style={{ fontSize: "28px", marginBottom: "8px", lineHeight: "1.2" }}>Real-World Industrial Automation Success Stories</h2>
+                <p style={{ fontSize: "14px", margin: 0, lineHeight: "1.4" }}>
+                  Explore detailed case studies from our portfolio — each project reflects
+                  precision engineering, compliance-first design, and measurable outcomes.
+                </p>
+              </div>
+            </div>
+            <CaseStudyStack projects={projects} />
+          </div>
+          <div className="center-action">
+            <Link className="btn btn-primary" href="/projects">
+              View All Projects
+            </Link>
           </div>
         </div>
       </section>
