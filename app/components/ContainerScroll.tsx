@@ -8,7 +8,7 @@ import { cn } from "@/lib/utils"
 interface CardStickyProps extends HTMLMotionProps<"div"> {
   index: number
   incrementY?: number
-  incrementZ?: number
+  incrementZ?: number // kept for prop compatibility but unused
   offsetY?: number
 }
 
@@ -20,7 +20,6 @@ const ContainerScroll = React.forwardRef<
     <div
       ref={ref}
       className={cn("relative w-full", className)}
-      style={{ perspective: "1000px", ...props.style }}
       {...props}
     >
       {children}
@@ -34,7 +33,7 @@ const CardSticky = React.forwardRef<HTMLDivElement, CardStickyProps>(
     {
       index,
       incrementY = 10,
-      incrementZ = 10,
+      incrementZ = 10, // Unused now
       offsetY = 100,
       children,
       className,
@@ -44,15 +43,17 @@ const CardSticky = React.forwardRef<HTMLDivElement, CardStickyProps>(
     ref
   ) => {
     const y = offsetY + index * incrementY
-    const z = index * incrementZ
+    // Use scale instead of translateZ to avoid clickability issues in 3D space
+    const scale = 1 - index * 0.04
 
     return (
       <motion.div
         ref={ref}
         style={{
           top: y,
-          z,
-          backfaceVisibility: "hidden",
+          scale,
+          transformOrigin: "top center",
+          zIndex: index, // Ensure stacking order is clean
           ...style,
         }}
         className={cn("sticky", className)}

@@ -1,12 +1,17 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Phone, Mail } from "lucide-react";
+import { Phone, Mail, FlaskConical, Fuel, Anvil, Coffee, UserCog, Settings, ShieldCheck, Headset } from "lucide-react";
 import AnimatedStats from "./components/AnimatedStats";
 import { ContactCard } from "./components/ContactCard";
 import CaseStudyStack from "./components/CaseStudyStack";
 const scheduleUrl = "https://appt.link/meet-with-bhavik-bhimani-iz1nBIl5/hive-automation";
 
-const industries = ["Pharmaceutical", "Oil & Gas", "Forging", "Food & Beverages"];
+const industries = [
+  { name: "Pharmaceutical", icon: FlaskConical },
+  { name: "Oil & Gas", icon: Fuel },
+  { name: "Forging", icon: Anvil },
+  { name: "Food & Beverages", icon: Coffee },
+];
 
 const services = [
   {
@@ -187,8 +192,8 @@ export default function HomePage() {
     <main className="home">
       <section className="hero-section" id="hero">
         <Image
-          src="/hero-bg-cinematic.png"
-          alt="Industrial automation control room"
+          src="/hero-new.jpg"
+          alt="Engineer operating Siemens PLC on factory floor"
           fill
           priority
           className="hero-bg"
@@ -202,23 +207,40 @@ export default function HomePage() {
             turnkey industrial solutions for Pharma, Oil & Gas, and more.
           </p>
           <div className="action-row">
-            <Link className="btn hero-glass-btn" href="/projects">
-              View Our Projects
-            </Link>
-            <Link className="btn hero-glass-btn" href={scheduleUrl} target="_blank" rel="noopener noreferrer">
-              Schedule a Consultation
+            <Link className="btn btn-primary" href="/projects">
+              Learn more
             </Link>
           </div>
         </div>
       </section>
 
-      <section className="industry-strip" aria-label="Industries we serve">
-        <div className="strip-inner">
-          <span className="strip-label">Industries We Serve</span>
-          <div className="strip-list">
-            {industries.map((industry) => (
-              <span key={industry}>{industry}</span>
-            ))}
+      <section className="industry-strip" aria-label="Our Expertise">
+        <div className="strip-inner" style={{ justifyContent: "center" }}>
+          <div className="expertise-row">
+            <div className="expertise-item">
+              <div className="expertise-icon">
+                <UserCog size={24} />
+              </div>
+              <span className="expertise-text">Siemens<br />Experts</span>
+            </div>
+            <div className="expertise-item">
+              <div className="expertise-icon">
+                <Settings size={24} />
+              </div>
+              <span className="expertise-text">Precision Industrial<br />Automation</span>
+            </div>
+            <div className="expertise-item">
+              <div className="expertise-icon">
+                <ShieldCheck size={24} />
+              </div>
+              <span className="expertise-text">GAMP 5<br />Quality</span>
+            </div>
+            <div className="expertise-item">
+              <div className="expertise-icon">
+                <Headset size={24} />
+              </div>
+              <span className="expertise-text">24/7<br />Support</span>
+            </div>
           </div>
         </div>
       </section>
@@ -227,7 +249,7 @@ export default function HomePage() {
         <div className="container split-grid">
           <div className="media-frame">
             <Image
-              src="/about-bg.png"
+              src="/about-new.jpg"
               alt="Engineer programming Siemens PLC"
               width={720}
               height={520}
@@ -253,11 +275,30 @@ export default function HomePage() {
               commitment to industrial compliance, innovation, and safety ensures high-performance
               results in a rapidly evolving industrial automation landscape.
             </p>
-            <div className="tag-row">
-              <span>Siemens Experts</span>
-              <span>Precision Industrial Automation</span>
-              <span>GAMP 5 Quality</span>
-              <span>24/7 Support</span>
+            <div style={{ marginTop: "36px" }}>
+              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "24px 16px" }}>
+                {industries.map((industry) => (
+                  <div key={industry.name} style={{ display: "flex", alignItems: "center", gap: "16px" }}>
+                    <div style={{
+                      width: "56px",
+                      height: "56px",
+                      borderRadius: "50%",
+                      border: "1px dashed var(--red)",
+                      backgroundColor: "rgba(255, 52, 52, 0.04)",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      color: "var(--red)",
+                      flexShrink: 0
+                    }}>
+                      <industry.icon size={26} strokeWidth={1.5} />
+                    </div>
+                    <span style={{ fontSize: "15px", fontWeight: "700", color: "var(--black)" }}>
+                      {industry.name}
+                    </span>
+                  </div>
+                ))}
+              </div>
             </div>
             <div className="action-row">
               <Link className="btn btn-primary" href="/about">
