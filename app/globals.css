@@ -243,7 +243,7 @@ p {
 
 .hero-section {
   position: relative;
-  min-height: 96vh;
+  min-height: 100dvh;
   display: grid;
   align-items: center;
   overflow: hidden;
@@ -435,19 +435,21 @@ p {
 }
 
 .expertise-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 64px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 40px;
   justify-content: center;
-  align-items: center;
+  align-items: start;
   width: 100%;
   padding: 16px 0;
 }
 
 .expertise-item {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 16px;
+  text-align: center;
+  gap: 12px;
   transition: transform 0.3s ease;
   cursor: default;
 }
@@ -624,7 +626,7 @@ p {
   display: flex;
   flex-direction: column;
   gap: 24px;
-  padding-bottom: 200px;
+  padding-bottom: 0px;
 }
 
 .case-stack-card {
@@ -751,13 +753,17 @@ p {
 }
 
 @media (max-width: 860px) {
-  .case-stack-inner {
-    grid-template-columns: 1fr;
+  .case-stack-card {
+    position: sticky !important;
+    top: calc(90px + var(--index) * 16px) !important;
+    transform: scale(calc(1 - var(--index) * 0.015)) !important;
+    transform-origin: top center !important;
+    z-index: var(--index) !important;
+    margin-bottom: 24px !important;
   }
 
-  .case-study-half+.case-study-half {
-    border-left: 0;
-    border-top: 1px solid var(--line);
+  .case-stack-inner {
+    grid-template-columns: 1fr;
   }
 
   .case-stack-container {
@@ -1434,5 +1440,75 @@ p {
   .experience-chip {
     position: static;
     margin-top: 12px;
+  }
+}
+
+/* ── Services Section Mobile / Tablet Overrides ── */
+@media (max-width: 1023px) {
+  .services-section {
+    height: auto !important;
+  }
+  .services-sticky-container {
+    position: relative !important;
+    height: auto !important;
+    overflow: visible !important;
+    padding-top: 48px !important;
+    padding-bottom: 48px !important;
+  }
+  .services-viewport {
+    overflow-x: auto !important;
+    scroll-behavior: smooth !important;
+    -webkit-overflow-scrolling: touch !important;
+    scroll-snap-type: x mandatory !important;
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+    scrollbar-width: none !important; /* Firefox */
+  }
+  .services-viewport::-webkit-scrollbar {
+    display: none !important; /* Safari and Chrome */
+  }
+  .services-track {
+    transform: none !important;
+    padding-right: 20px !important;
+    gap: 16px !important;
+  }
+  .services-card {
+    scroll-snap-align: start !important;
+    scroll-snap-stop: always !important;
+  }
+}
+
+/* ── Global Section Padding & Grid Adjustments on Mobile ── */
+@media (max-width: 767px) {
+  .section {
+    padding: 64px 0 !important;
+  }
+
+  .expertise-row {
+    grid-template-columns: repeat(4, 1fr) !important;
+    gap: 8px !important;
+  }
+
+  .expertise-icon {
+    width: 52px !important;
+    height: 52px !important;
+  }
+
+  .expertise-icon svg {
+    padding: 8px !important;
+  }
+
+  .expertise-text {
+    font-size: 11px !important;
+    line-height: 1.2 !important;
+  }
+
+  .stats-swiss-grid {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+
+  .stat-swiss-card {
+    padding: 32px 24px !important;
   }
 }

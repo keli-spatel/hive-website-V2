@@ -207,7 +207,15 @@ export default function HomePage() {
           alt="Engineer operating Siemens PLC on factory floor"
           fill
           priority
-          className="hero-bg"
+          className="hero-bg max-md:hidden"
+          sizes="100vw"
+        />
+        <Image
+          src="/hero-mobile.jpg"
+          alt="Engineer operating Siemens PLC on factory floor"
+          fill
+          priority
+          className="hero-bg md:hidden"
           sizes="100vw"
         />
         <div className="hero-shade" />
@@ -279,7 +287,7 @@ export default function HomePage() {
               results in a rapidly evolving industrial automation landscape.
             </p>
             <div className="mt-9">
-              <div className="grid grid-cols-2 gap-y-6 gap-x-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-5 gap-x-4">
                 {industries.map((industry) => (
                   <div key={industry.name} className="flex items-center gap-4">
                     <div className="w-14 h-14 rounded-full border border-dashed border-[#ff3b3b] bg-[#ff3b3b]/[0.04] flex items-center justify-center text-[#ff3b3b] shrink-0">
@@ -309,18 +317,6 @@ export default function HomePage() {
       <section className="section-steel pt-4 pb-[104px] relative z-10 -mt-12 md:-mt-24" id="case-studies-stack">
         <div className="container">
           <div>
-            <div
-              className="sticky z-20 w-full bg-gradient-to-b from-[#f7f8fb] to-[#f4f6fa] pt-4 pb-2 top-[80px] mb-4 shadow-[0_10px_30px_-10px_rgba(17,18,20,0.05)]"
-            >
-              <div className="section-heading max-w-[900px]" style={{ marginBottom: 0 }}>
-                <p className="section-label text-[11px]" style={{ marginBottom: "8px" }}>Deep Dive into Our Work</p>
-                <h2 className="text-[28px] leading-[1.2]" style={{ marginBottom: "8px" }}>Real-World Industrial Automation Success Stories</h2>
-                <p className="text-[14px] m-0 leading-[1.4]">
-                  Explore detailed case studies from our portfolio each project reflects
-                  precision engineering, compliance-first design, and measurable outcomes.
-                </p>
-              </div>
-            </div>
             <CaseStudyStack projects={projects} />
           </div>
           <div className="center-action">

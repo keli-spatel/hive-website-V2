@@ -43,7 +43,6 @@ const CardSticky = React.forwardRef<HTMLDivElement, CardStickyProps>(
     ref
   ) => {
     const y = offsetY + index * incrementY
-    // Use scale instead of translateZ to avoid clickability issues in 3D space
     const scale = 1 - index * 0.04
 
     return (
@@ -53,9 +52,10 @@ const CardSticky = React.forwardRef<HTMLDivElement, CardStickyProps>(
           top: y,
           scale,
           transformOrigin: "top center",
-          zIndex: index, // Ensure stacking order is clean
+          zIndex: index,
+          "--index": index,
           ...style,
-        }}
+        } as React.CSSProperties}
         className={cn("sticky", className)}
         {...props}
       >
