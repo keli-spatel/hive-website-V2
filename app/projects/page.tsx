@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { AnimatedButton } from "../components/ui/AnimatedButton";
 
 function useInView() {
   const ref = useRef<HTMLDivElement>(null);
@@ -113,7 +114,7 @@ export default function ProjectsPage() {
         <div style={{ maxWidth: 600, margin: "0 auto" }}>
           <h2 style={{ color: "#FFFFFF", marginBottom: 16 }}>Have a Similar Project?</h2>
           <p style={{ color: "#C5C1B9", marginBottom: 32, fontSize: 15, lineHeight: "26px" }}>Let&apos;s discuss how we can deliver the same excellence for your facility.</p>
-          <Link href="/contact" className="btn btn-primary" style={{ textDecoration: "none" }}>Request a Quote</Link>
+          <AnimatedButton href="/contact">Request a Quote</AnimatedButton>
         </div>
       </section>
     </div>

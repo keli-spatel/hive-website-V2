@@ -1,7 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Phone, Mail, FlaskConical, Fuel, Anvil, Coffee, UserCog, Settings, ShieldCheck, Headset } from "lucide-react";
+import { FlaskConical, Fuel, Anvil, Coffee, UserCog, Settings, ShieldCheck, Headset, ArrowRight, Phone } from "lucide-react";
+import { AnimatedButton } from "./components/ui/AnimatedButton";
+import { AnimatedExpertiseItem } from "./components/ui/AnimatedExpertiseItem";
 import AnimatedStats from "./components/AnimatedStats";
+import AnimatedLogoCloud from "./components/AnimatedLogoCloud";
+import ServiceSlider from "./components/ServiceSlider";
 import { ContactCard } from "./components/ContactCard";
 import CaseStudyStack from "./components/CaseStudyStack";
 const scheduleUrl = "https://appt.link/meet-with-bhavik-bhimani-iz1nBIl5/hive-automation";
@@ -18,36 +22,43 @@ const services = [
     slug: "plc-programming-integration",
     title: "PLC Programming & Integration",
     desc: "We develop custom PLC programs tailored to your specific process and production goals. Whether you are upgrading an existing system or building from scratch, our PLC logic design ensures industrial safety, flexibility, and high-performance system integration.",
+    icon: "cpu",
   },
   {
     slug: "distributed-control-systems",
     title: "Distributed Control Systems (DCS)",
     desc: "We engineer and implement robust Siemens PCS 7 and other DCS solutions that provide scalable, integrated control of complex industrial processes. From batch to continuous processing, our DCS services ensure accuracy, safety, and maximum uptime.",
+    icon: "server",
   },
   {
     slug: "scada-hmi-development",
     title: "SCADA & HMI Development",
     desc: "We create intuitive SCADA and HMI interfaces that allow operators and engineers to monitor and control industrial processes in real time. Our SCADA systems are designed for usability, data clarity, and enhanced operational safety.",
+    icon: "monitor",
   },
   {
     slug: "turnkey-project-execution",
     title: "Turnkey Project Execution",
     desc: "We provide complete automation solutions under one roof. Our engineers collaborate from early system design to final handover, ensuring consistency, reliability, and full accountability for your turnkey industrial projects.",
+    icon: "workflow",
   },
   {
     slug: "system-upgrade-retrofits",
     title: "System Upgrades & Retrofits",
     desc: "We upgrade aging control systems and legacy hardware to modern, supported platforms like Siemens S7-1500 and TIA Portal. Our PLC retrofit strategies ensure minimal downtime and future-ready industrial performance.",
+    icon: "wrench",
   },
   {
     slug: "industrial-networking-cybersecurity",
     title: "Industrial Networking & Cybersecurity",
     desc: "We design industrial networks that are resilient, segmented, and secure. From control to enterprise level, our networks are built for performance and uptime.",
+    icon: "network",
   },
   {
     slug: "analytics-reporting",
     title: "Analytics & Reporting",
     desc: "We integrate industrial reporting tools and dashboards into your control system, giving your team real-time access to KPIs, historical trends, and compliance logs. Our analytics improve decision-making and operational transparency.",
+    icon: "analytics",
   },
 ];
 
@@ -207,40 +218,32 @@ export default function HomePage() {
             turnkey industrial solutions for Pharma, Oil & Gas, and more.
           </p>
           <div className="action-row">
-            <Link className="btn btn-primary" href="/projects">
+            <AnimatedButton href="/projects">
               Learn more
-            </Link>
+            </AnimatedButton>
           </div>
         </div>
       </section>
 
       <section className="industry-strip" aria-label="Our Expertise">
-        <div className="strip-inner" style={{ justifyContent: "center" }}>
+        <div className="strip-inner justify-center">
           <div className="expertise-row">
-            <div className="expertise-item">
-              <div className="expertise-icon">
-                <UserCog size={24} />
-              </div>
-              <span className="expertise-text">Siemens<br />Experts</span>
-            </div>
-            <div className="expertise-item">
-              <div className="expertise-icon">
-                <Settings size={24} />
-              </div>
-              <span className="expertise-text">Precision Industrial<br />Automation</span>
-            </div>
-            <div className="expertise-item">
-              <div className="expertise-icon">
-                <ShieldCheck size={24} />
-              </div>
-              <span className="expertise-text">GAMP 5<br />Quality</span>
-            </div>
-            <div className="expertise-item">
-              <div className="expertise-icon">
-                <Headset size={24} />
-              </div>
-              <span className="expertise-text">24/7<br />Support</span>
-            </div>
+            <AnimatedExpertiseItem
+              icon={<UserCog size={24} />}
+              text={<>Siemens<br />Experts</>}
+            />
+            <AnimatedExpertiseItem
+              icon={<Settings size={24} />}
+              text={<>Precision Industrial<br />Automation</>}
+            />
+            <AnimatedExpertiseItem
+              icon={<ShieldCheck size={24} />}
+              text={<>GAMP 5<br />Quality</>}
+            />
+            <AnimatedExpertiseItem
+              icon={<Headset size={24} />}
+              text={<>24/7<br />Support</>}
+            />
           </div>
         </div>
       </section>
@@ -275,116 +278,45 @@ export default function HomePage() {
               commitment to industrial compliance, innovation, and safety ensures high-performance
               results in a rapidly evolving industrial automation landscape.
             </p>
-            <div style={{ marginTop: "36px" }}>
-              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "24px 16px" }}>
+            <div className="mt-9">
+              <div className="grid grid-cols-2 gap-y-6 gap-x-4">
                 {industries.map((industry) => (
-                  <div key={industry.name} style={{ display: "flex", alignItems: "center", gap: "16px" }}>
-                    <div style={{
-                      width: "56px",
-                      height: "56px",
-                      borderRadius: "50%",
-                      border: "1px dashed var(--red)",
-                      backgroundColor: "rgba(255, 52, 52, 0.04)",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      color: "var(--red)",
-                      flexShrink: 0
-                    }}>
+                  <div key={industry.name} className="flex items-center gap-4">
+                    <div className="w-14 h-14 rounded-full border border-dashed border-[#ff3b3b] bg-[#ff3b3b]/[0.04] flex items-center justify-center text-[#ff3b3b] shrink-0">
                       <industry.icon size={26} strokeWidth={1.5} />
                     </div>
-                    <span style={{ fontSize: "15px", fontWeight: "700", color: "var(--black)" }}>
+                    <span className="text-[15px] font-bold text-black">
                       {industry.name}
                     </span>
                   </div>
                 ))}
               </div>
             </div>
-            <div className="action-row">
-              <Link className="btn btn-primary" href="/about">
+            <div className="action-row mt-9">
+              <AnimatedButton href="/about">
                 Read More
-              </Link>
-              <Link className="btn btn-secondary" href={scheduleUrl} target="_blank" rel="noopener noreferrer">
+              </AnimatedButton>
+              <AnimatedButton href={scheduleUrl} target="_blank" rel="noopener noreferrer" variant="secondary" icon={<Phone />}>
                 Schedule a Call
-              </Link>
+              </AnimatedButton>
             </div>
           </div>
         </div>
       </section>
 
-      <section className="section section-steel" id="services-preview">
-        <div className="container">
-          <div className="section-heading">
-            <p className="section-label">Our Industrial Automation Services</p>
-            <h2>Scalable Custom Engineering Solutions for Siemens PLC, SCADA & DCS</h2>
-            <p>
-              At Hive Automation, we specialize in comprehensive industrial automation services -
-              from initial system design to full-scale implementation and lifecycle support.
-            </p>
-          </div>
-          <div className="service-grid">
-            {services.map((service, index) => (
-              <article className="service-card" key={service.slug}>
-                <span className="service-number">{String(index + 1).padStart(2, "0")}</span>
-                <h3>{service.title}</h3>
-                <p>{service.desc}</p>
-                <Link href={`/services/${service.slug}`}>Read More</Link>
-              </article>
-            ))}
-          </div>
-          <div className="center-action">
-            <Link className="btn btn-secondary" href="/services">
-              View All Services
-            </Link>
-          </div>
-        </div>
-      </section>
+      <ServiceSlider services={services} />
 
-      <section className="section" id="projects-preview">
-        <div className="container">
-          <div className="section-heading">
-            <p className="section-label">Our Proven Track Record</p>
-            <h2>Industrial Automation Case Studies: Solving Complex Challenges</h2>
-          </div>
-          <div className="project-grid">
-            {projects.map((project) => (
-              <article className="project-card" key={project.title}>
-                <Link href={project.href} className="project-image-link" aria-label={project.title}>
-                  <Image
-                    src={project.image}
-                    alt={project.title}
-                    width={520}
-                    height={340}
-                    className="project-image"
-                  />
-                </Link>
-                <div className="project-body">
-                  <div className="project-meta">
-                    <span>{project.metric}</span>
-                    <span>{project.industry}</span>
-                  </div>
-                  <h3>{project.title}</h3>
-                  <p>{project.desc}</p>
-                  <Link href={project.href}>View Case Study</Link>
-                </div>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="section section-steel" id="case-studies-stack">
+      <section className="section-steel pt-4 pb-[104px] relative z-10 -mt-12 md:-mt-24" id="case-studies-stack">
         <div className="container">
           <div>
-            <div 
-              className="sticky z-20 w-full bg-gradient-to-b from-[#f7f8fb] to-[#f4f6fa] pt-4 pb-2" 
-              style={{ top: "80px", marginBottom: "16px", boxShadow: "0 10px 30px -10px rgba(17,18,20,0.05)" }}
+            <div
+              className="sticky z-20 w-full bg-gradient-to-b from-[#f7f8fb] to-[#f4f6fa] pt-4 pb-2 top-[80px] mb-4 shadow-[0_10px_30px_-10px_rgba(17,18,20,0.05)]"
             >
-              <div className="section-heading" style={{ marginBottom: 0, maxWidth: "900px" }}>
-                <p className="section-label" style={{ marginBottom: "8px", fontSize: "11px" }}>Deep Dive into Our Work</p>
-                <h2 style={{ fontSize: "28px", marginBottom: "8px", lineHeight: "1.2" }}>Real-World Industrial Automation Success Stories</h2>
-                <p style={{ fontSize: "14px", margin: 0, lineHeight: "1.4" }}>
-                  Explore detailed case studies from our portfolio — each project reflects
+              <div className="section-heading max-w-[900px]" style={{ marginBottom: 0 }}>
+                <p className="section-label text-[11px]" style={{ marginBottom: "8px" }}>Deep Dive into Our Work</p>
+                <h2 className="text-[28px] leading-[1.2]" style={{ marginBottom: "8px" }}>Real-World Industrial Automation Success Stories</h2>
+                <p className="text-[14px] m-0 leading-[1.4]">
+                  Explore detailed case studies from our portfolio each project reflects
                   precision engineering, compliance-first design, and measurable outcomes.
                 </p>
               </div>
@@ -392,9 +324,9 @@ export default function HomePage() {
             <CaseStudyStack projects={projects} />
           </div>
           <div className="center-action">
-            <Link className="btn btn-primary" href="/projects">
+            <AnimatedButton href="/projects">
               View All Projects
-            </Link>
+            </AnimatedButton>
           </div>
         </div>
       </section>
@@ -421,13 +353,13 @@ export default function HomePage() {
                 </article>
               ))}
             </div>
-            <div className="action-row">
-              <Link className="btn btn-dark" href="/about">
+            <div className="action-row mt-7">
+              <AnimatedButton href="/about" variant="dark">
                 Read More
-              </Link>
-              <Link className="btn btn-primary" href={scheduleUrl} target="_blank" rel="noopener noreferrer">
+              </AnimatedButton>
+              <AnimatedButton href={scheduleUrl} target="_blank" rel="noopener noreferrer" icon={<Phone />}>
                 Let&apos;s Talk
-              </Link>
+              </AnimatedButton>
             </div>
           </div>
           <div className="why-visual" aria-hidden="true">
@@ -452,60 +384,60 @@ export default function HomePage() {
           >
             <div className="max-w-xl mx-auto w-full">
               <div className="text-[#ff3b3b] font-bold uppercase tracking-wider text-sm mb-2">Get A Quote</div>
-              <h2 className="text-3xl font-bold md:text-4xl mb-8 text-black">Request a Quote</h2>
+              <h2 className="text-3xl font-bold md:text-4xl text-black">Request a Quote</h2>
 
-              <form className="space-y-6">
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                      <div className="space-y-2">
-                          <label className="text-sm font-medium text-black">Your Name</label>
-                          <input 
-                              type="text" 
-                              placeholder="Enter name" 
-                              className="w-full bg-[#f8f9fa] border-0 rounded-md px-4 py-3 text-sm focus:ring-1 focus:ring-[#ff3b3b] outline-none text-black"
-                          />
-                      </div>
-                      <div className="space-y-2">
-                          <label className="text-sm font-medium text-black">Your Phone <span className="text-[#ff3b3b]">*</span></label>
-                          <input 
-                              type="tel" 
-                              placeholder="Enter number" 
-                              className="w-full bg-[#f8f9fa] border-0 rounded-md px-4 py-3 text-sm focus:ring-1 focus:ring-[#ff3b3b] outline-none text-black"
-                          />
-                      </div>
-                      <div className="space-y-2">
-                          <label className="text-sm font-medium text-black">Your Email <span className="text-[#ff3b3b]">*</span></label>
-                          <input 
-                              type="email" 
-                              placeholder="name@gmail.com" 
-                              className="w-full bg-[#f8f9fa] border-0 rounded-md px-4 py-3 text-sm focus:ring-1 focus:ring-[#ff3b3b] outline-none text-black"
-                          />
-                      </div>
-                      <div className="space-y-2">
-                          <label className="text-sm font-medium text-black">Subject <span className="text-[#ff3b3b]">*</span></label>
-                          <input 
-                              type="text" 
-                              placeholder="Fill Subject" 
-                              className="w-full bg-[#f8f9fa] border-0 rounded-md px-4 py-3 text-sm focus:ring-1 focus:ring-[#ff3b3b] outline-none text-black"
-                          />
-                      </div>
+              <form className="space-y-6 mt-8">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                  <div className="space-y-2">
+                    <label className="text-sm font-medium text-black">Your Name <span className="text-[#ff3b3b]">*</span></label>
+                    <input
+                      type="text"
+                      placeholder="Enter name"
+                      className="w-full bg-[#f8f9fa] border-0 rounded-md px-4 py-3 text-sm focus:ring-1 focus:ring-[#ff3b3b] outline-none text-black"
+                    />
                   </div>
                   <div className="space-y-2">
-                      <label className="text-sm font-medium text-black">Enter Message</label>
-                      <textarea 
-                          placeholder="Enter your message here..." 
-                          rows={5}
-                          className="w-full bg-[#f8f9fa] border-0 rounded-md px-4 py-3 text-sm focus:ring-1 focus:ring-[#ff3b3b] outline-none resize-none text-black"
-                      ></textarea>
+                    <label className="text-sm font-medium text-black">Your Phone <span className="text-[#ff3b3b]">*</span></label>
+                    <input
+                      type="tel"
+                      placeholder="Enter number"
+                      className="w-full bg-[#f8f9fa] border-0 rounded-md px-4 py-3 text-sm focus:ring-1 focus:ring-[#ff3b3b] outline-none text-black"
+                    />
                   </div>
+                  <div className="space-y-2">
+                    <label className="text-sm font-medium text-black">Your Email <span className="text-[#ff3b3b]">*</span></label>
+                    <input
+                      type="email"
+                      placeholder="name@gmail.com"
+                      className="w-full bg-[#f8f9fa] border-0 rounded-md px-4 py-3 text-sm focus:ring-1 focus:ring-[#ff3b3b] outline-none text-black"
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <label className="text-sm font-medium text-black">Subject <span className="text-[#ff3b3b]">*</span></label>
+                    <input
+                      type="text"
+                      placeholder="Fill Subject"
+                      className="w-full bg-[#f8f9fa] border-0 rounded-md px-4 py-3 text-sm focus:ring-1 focus:ring-[#ff3b3b] outline-none text-black"
+                    />
+                  </div>
+                </div>
+                <div className="space-y-2">
+                  <label className="text-sm font-medium text-black">Enter Message</label>
+                  <textarea
+                    placeholder="Enter your message here..."
+                    rows={5}
+                    className="w-full bg-[#f8f9fa] border-0 rounded-md px-4 py-3 text-sm focus:ring-1 focus:ring-[#ff3b3b] outline-none resize-none text-black"
+                  ></textarea>
+                </div>
 
-                  <div className="flex flex-wrap items-center gap-4 pt-2">
-                      <button type="submit" className="border border-[#ff3b3b] text-[#ff3b3b] px-8 py-3 rounded-full font-medium text-sm flex items-center gap-2 hover:bg-[#ff3b3b]/5 transition-colors">
-                          Submit <span className="text-lg leading-none">&rarr;</span>
-                      </button>
-                      <button type="button" className="bg-[#ff3b3b] text-white px-8 py-3 rounded-full font-medium text-sm flex items-center gap-2 hover:bg-[#ff3b3b]/90 transition-colors">
-                          Request a Call <span className="text-lg leading-none">&rarr;</span>
-                      </button>
-                  </div>
+                <div className="flex flex-wrap items-center gap-4 pt-2">
+                  <button type="submit" className="border border-[#ff3b3b] text-[#ff3b3b] px-8 py-3 rounded-full font-medium text-sm flex items-center gap-2 hover:bg-[#ff3b3b]/5 transition-colors">
+                    Submit <span className="text-lg leading-none">&rarr;</span>
+                  </button>
+                  <button type="button" className="bg-[#ff3b3b] text-white px-8 py-3 rounded-full font-medium text-sm flex items-center gap-2 hover:bg-[#ff3b3b]/90 transition-colors">
+                    Request a Call <span className="text-lg leading-none">&rarr;</span>
+                  </button>
+                </div>
               </form>
             </div>
           </ContactCard>
@@ -518,22 +450,11 @@ export default function HomePage() {
             <p className="section-label">Our Client</p>
             <h2>Trusted by Leading Companies & Brands</h2>
           </div>
-          <div className="client-marquee" aria-label="Client logos">
-            <div className="client-marquee-row marquee-left">
-              {[...clientLogos.slice(0, 14), ...clientLogos.slice(0, 14)].map((logo, index) => (
-                <div className="client-logo" key={`client-top-${logo}-${index}`}>
-                  <Image src={logo} alt="Hive Automation client logo" width={240} height={135} />
-                </div>
-              ))}
-            </div>
-            <div className="client-marquee-row marquee-right">
-              {[...clientLogos.slice(14), ...clientLogos.slice(14)].map((logo, index) => (
-                <div className="client-logo" key={`client-bottom-${logo}-${index}`}>
-                  <Image src={logo} alt="Hive Automation client logo" width={240} height={135} />
-                </div>
-              ))}
-            </div>
-          </div>
+
+          <AnimatedLogoCloud
+            logos={clientLogos}
+            className="mt-12 rounded-xl overflow-hidden shadow-sm"
+          />
         </div>
       </section>
     </main>

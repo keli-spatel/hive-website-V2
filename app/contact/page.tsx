@@ -2,6 +2,8 @@
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import { AnimatedButton } from "../components/ui/AnimatedButton";
+import { Phone, ArrowRight } from "lucide-react";
 
 function useInView() {
   const ref = useRef<HTMLDivElement>(null);
@@ -69,9 +71,9 @@ export default function ContactPage() {
             </div>
 
             <div style={{ marginTop: 32 }}>
-              <Link href="https://appt.link/meet-with-bhavik-bhimani-iz1nBIl5/hive-automation" target="_blank" rel="noopener noreferrer" className="btn btn-primary" style={{ textDecoration: "none" }}>
+              <AnimatedButton href="https://appt.link/meet-with-bhavik-bhimani-iz1nBIl5/hive-automation" target="_blank" rel="noopener noreferrer" icon={<Phone />}>
                 Schedule a Call
-              </Link>
+              </AnimatedButton>
             </div>
           </div>
 
@@ -125,7 +127,7 @@ export default function ContactPage() {
                     <label className="input-label">Message</label>
                     <textarea className="input" placeholder="Tell us about your project..." rows={5} required />
                   </div>
-                  <button type="submit" className="btn btn-primary" style={{ width: "100%" }}>Send Message</button>
+                  <AnimatedButton type="submit" className="w-full">Send Message</AnimatedButton>
                 </form>
               )}
             </div>

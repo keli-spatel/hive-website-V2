@@ -1,6 +1,8 @@
 import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
+import { AnimatedButton } from "../../components/ui/AnimatedButton";
+import { Phone } from "lucide-react";
 
 // Define static services data
 const servicesData = {
@@ -232,26 +234,19 @@ export default async function ServiceDetailPage({ params }: Props) {
                 Discuss your engineering needs directly with our project leaders. Let us build a robust solution for your plant.
               </p>
               <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
-                <Link href="/contact" className="btn btn-primary" style={{ textDecoration: "none", textAlign: "center", width: "100%" }}>
+                <AnimatedButton href="/contact" className="w-full">
                   Request a Quote
-                </Link>
-                <Link
+                </AnimatedButton>
+                <AnimatedButton
                   href="https://appt.link/meet-with-bhavik-bhimani-iz1nBIl5/hive-automation"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="btn"
-                  style={{
-                    textDecoration: "none",
-                    textAlign: "center",
-                    width: "100%",
-                    background: "transparent",
-                    color: "#FFFFFF",
-                    border: "1px solid rgba(255,255,255,0.3)",
-                    borderRadius: 9999
-                  }}
+                  variant="dark"
+                  icon={<Phone />}
+                  className="w-full border-white/30"
                 >
                   Schedule Technical Call
-                </Link>
+                </AnimatedButton>
               </div>
             </div>
 

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
+import { AnimatedButton } from "../../components/ui/AnimatedButton";
 
 interface Project {
   title: string;
@@ -288,9 +289,9 @@ export default async function ProjectDetailPage({ params }: Props) {
               <p style={{ color: "#C5C1B9", fontSize: 13, lineHeight: "20px", marginBottom: 16 }}>
                 Let&apos;s build a custom automated solution tailored to your operational specifications.
               </p>
-              <Link href="/contact" className="btn btn-primary" style={{ textDecoration: "none", textAlign: "center", width: "100%", height: 38, padding: "8px 16px", fontSize: 13 }}>
+              <AnimatedButton href="/contact" className="w-full">
                 Get a Quote
-              </Link>
+              </AnimatedButton>
             </div>
           </div>
         </div>

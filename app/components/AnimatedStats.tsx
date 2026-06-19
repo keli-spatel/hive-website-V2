@@ -53,19 +53,21 @@ function Counter({ end, suffix = "", duration = 2000 }: { end: number; suffix?: 
 
 export default function AnimatedStats() {
   return (
-    <section className="stats-band" aria-label="Company counters">
-      <div className="container stats-grid">
-        <div>
-          <Counter end={500} suffix="+" />
-          <span>Project Complete</span>
-        </div>
-        <div>
-          <Counter end={50} suffix="+" />
-          <span>Satisfied Clients</span>
-        </div>
-        <div>
-          <Counter end={15} suffix="+" />
-          <span>Team Members</span>
+    <section className="stats-swiss-section" aria-label="Company counters">
+      <div className="container">
+        <div className="stats-swiss-grid">
+          <div className="stat-swiss-card">
+            <Counter end={500} suffix="+" />
+            <span>Projects Completed</span>
+          </div>
+          <div className="stat-swiss-card">
+            <Counter end={50} suffix="+" />
+            <span>Satisfied Clients</span>
+          </div>
+          <div className="stat-swiss-card">
+            <Counter end={15} suffix="+" />
+            <span>Expert Engineers</span>
+          </div>
         </div>
       </div>
     </section>

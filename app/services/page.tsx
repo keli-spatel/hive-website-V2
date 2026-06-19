@@ -3,6 +3,8 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { AnimatedButton } from "../components/ui/AnimatedButton";
+import { Phone } from "lucide-react";
 
 function useInView() {
   const ref = useRef<HTMLDivElement>(null);
@@ -56,12 +58,12 @@ function ServiceBlock({ svc, i }: { svc: typeof services[0]; i: number }) {
           <h2 style={{ marginBottom:16 }}>{svc.title}</h2>
           <p style={{ lineHeight:"26px", marginBottom:24 }}>{svc.desc}</p>
           <div style={{ display: "flex", gap: 16, flexWrap: "wrap" }}>
-            <Link href={`/services/${svc.slug}`} className="btn btn-primary" style={{ textDecoration: "none" }}>
+            <AnimatedButton href={`/services/${svc.slug}`}>
               View Details & Specs
-            </Link>
-            <Link href="/contact" className="btn" style={{ textDecoration: "none", border: "1px solid #DCDAD5", background: "transparent", color: "#1B1B1B" }}>
+            </AnimatedButton>
+            <AnimatedButton href="/contact" variant="secondary">
               Get a Quote
-            </Link>
+            </AnimatedButton>
           </div>
         </div>
         <div style={{ order:isAlt?1:2, opacity:svcRef.inView?1:0, transform:svcRef.inView?"translateX(0)":`translateX(${isAlt?"-32px":"32px"})`, transition:"all 0.6s ease-out 0.15s" }}>
@@ -140,8 +142,8 @@ export default function ServicesPage() {
           <h2 style={{ color:"#FFFFFF", marginBottom:16 }}>Need a Custom Solution?</h2>
           <p style={{ color:"#C5C1B9", marginBottom:32, fontSize:14, lineHeight:"22px" }}>Contact our team to discuss your specific automation requirements.</p>
           <div style={{ display:"flex", gap:16, justifyContent:"center", flexWrap:"wrap" }}>
-            <Link href="/contact" className="btn btn-primary" style={{ textDecoration:"none" }}>Request a Quote</Link>
-            <Link href="https://appt.link/meet-with-bhavik-bhimani-iz1nBIl5/hive-automation" target="_blank" rel="noopener noreferrer" className="btn" style={{ textDecoration:"none", background:"transparent", color:"#FFFFFF", border:"1px solid rgba(255,255,255,0.3)", borderRadius:9999 }}>Schedule a Call</Link>
+            <AnimatedButton href="/contact">Request a Quote</AnimatedButton>
+            <AnimatedButton href="https://appt.link/meet-with-bhavik-bhimani-iz1nBIl5/hive-automation" target="_blank" rel="noopener noreferrer" variant="dark" icon={<Phone />}>Schedule a Call</AnimatedButton>
           </div>
         </div>
       </section>

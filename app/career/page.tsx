@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import { AnimatedButton } from "../components/ui/AnimatedButton";
 
 function useInView() {
   const ref = useRef<HTMLDivElement>(null);
@@ -87,7 +88,7 @@ export default function CareerPage() {
                     <span style={{ fontSize: 12, fontWeight: 500, padding: "4px 10px", borderRadius: 9999, background: "#F9F8F6", color: "#1B1B1B", border: "1px solid #DCDAD5" }}>📍 {pos.location}</span>
                   </div>
                 </div>
-                <Link href="/contact" className="btn btn-primary" style={{ textDecoration: "none", minWidth: 120 }}>Apply Now</Link>
+                <AnimatedButton href="/contact" className="min-w-[120px]">Apply Now</AnimatedButton>
               </div>
             ))}
           </div>
@@ -99,7 +100,7 @@ export default function CareerPage() {
         <div style={{ maxWidth: 600, margin: "0 auto" }}>
           <h2 style={{ marginBottom: 16 }}>Don&apos;t See Your Role?</h2>
           <p style={{ color: "#666666", marginBottom: 32, fontSize: 14 }}>Send us your resume and we&apos;ll reach out when the right opportunity comes.</p>
-          <Link href="/contact" className="btn btn-primary" style={{ textDecoration: "none" }}>Send Your Resume</Link>
+          <AnimatedButton href="/contact">Send Your Resume</AnimatedButton>
         </div>
       </section>
     </div>

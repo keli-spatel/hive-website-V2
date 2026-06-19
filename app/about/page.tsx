@@ -3,6 +3,8 @@
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { AnimatedButton } from "../components/ui/AnimatedButton";
+import { Phone } from "lucide-react";
 
 function useInView() {
   const ref = useRef<HTMLDivElement>(null);
@@ -359,18 +361,18 @@ export default function AboutPage() {
             Let&apos;s discuss how we can bring precision automation to your plant.
           </p>
           <div style={{ display: "flex", gap: 16, justifyContent: "center", flexWrap: "wrap" }}>
-            <Link href="/contact" className="btn btn-primary" style={{ textDecoration: "none" }}>
+            <AnimatedButton href="/contact">
               Contact Us
-            </Link>
-            <Link
+            </AnimatedButton>
+            <AnimatedButton
               href="https://appt.link/meet-with-bhavik-bhimani-iz1nBIl5/hive-automation"
               target="_blank"
               rel="noopener noreferrer"
-              className="btn btn-secondary"
-              style={{ textDecoration: "none" }}
+              variant="secondary"
+              icon={<Phone />}
             >
               Schedule a Call
-            </Link>
+            </AnimatedButton>
           </div>
         </div>
       </section>

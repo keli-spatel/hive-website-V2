@@ -45,9 +45,10 @@ export function ContactCard({
 			
 			<div className="flex flex-col justify-between lg:col-span-2 relative overflow-hidden bg-zinc-100 min-h-[400px]">
 				{imageSrc && (
-					<img 
+					<Image 
 						src={imageSrc}
 						alt="Contact support"
+						fill
 						className={cn("absolute inset-0 w-full h-full object-cover", (title || description || contactInfo?.length) ? "opacity-40 mix-blend-overlay" : "")}
 					/>
 				)}

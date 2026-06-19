@@ -8,8 +8,8 @@ import { cn } from "@/lib/utils"
 interface CardStickyProps extends HTMLMotionProps<"div"> {
   index: number
   incrementY?: number
-  incrementZ?: number // kept for prop compatibility but unused
   offsetY?: number
+  incrementZ?: number
 }
 
 const ContainerScroll = React.forwardRef<
@@ -33,8 +33,8 @@ const CardSticky = React.forwardRef<HTMLDivElement, CardStickyProps>(
     {
       index,
       incrementY = 10,
-      incrementZ = 10, // Unused now
       offsetY = 100,
+      incrementZ,
       children,
       className,
       style,
