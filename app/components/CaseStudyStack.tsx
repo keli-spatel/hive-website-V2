@@ -4,6 +4,7 @@ import React from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { ContainerScroll, CardSticky } from "./ContainerScroll"
+import { AnimatedButton } from "./ui/AnimatedButton"
 
 interface Project {
   href: string
@@ -28,9 +29,9 @@ export default function CaseStudyStack({ projects }: CaseStudyStackProps) {
   const header = (
     <div className="w-full pt-4 pb-2 mb-4">
       <div className="section-heading max-w-[900px]" style={{ marginBottom: 0 }}>
-        <p className="section-label text-[11px]" style={{ marginBottom: "8px" }}>Deep Dive into Our Work</p>
-        <h2 className="text-[28px] leading-[1.2]" style={{ marginBottom: "8px" }}>Real-World Industrial Automation Success Stories</h2>
-        <p className="text-[14px] m-0 leading-[1.4]">
+        <p className="section-label" style={{ marginBottom: "8px" }}>Deep Dive into Our Work</p>
+        <h2 style={{ marginBottom: "8px" }}>Real-World Industrial Automation Success Stories</h2>
+        <p className="m-0">
           Explore detailed case studies from our portfolio each project reflects
           precision engineering, compliance-first design, and measurable outcomes.
         </p>
@@ -73,9 +74,9 @@ export default function CaseStudyStack({ projects }: CaseStudyStackProps) {
                       </div>
                       <h3>{project.title}</h3>
                       <p>{project.desc}</p>
-                      <Link href={project.href} className="case-study-link">
-                        View Case Study <span aria-hidden="true">&rarr;</span>
-                      </Link>
+                      <AnimatedButton href={project.href} variant="secondary" className="mt-auto self-start">
+                        View Case Study
+                      </AnimatedButton>
                     </div>
                   </article>
                 ))}
@@ -113,9 +114,9 @@ export default function CaseStudyStack({ projects }: CaseStudyStackProps) {
                   </div>
                   <h3>{project.title}</h3>
                   <p>{project.desc}</p>
-                  <Link href={project.href} className="case-study-link">
-                    View Case Study <span aria-hidden="true">&rarr;</span>
-                  </Link>
+                  <AnimatedButton href={project.href} variant="secondary" className="mt-auto self-start">
+                    View Case Study
+                  </AnimatedButton>
                 </div>
               </div>
             </CardSticky>

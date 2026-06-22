@@ -1,6 +1,5 @@
 import Image from "next/image";
-import Link from "next/link";
-import { FlaskConical, Fuel, Anvil, Coffee, UserCog, Settings, ShieldCheck, Headset, ArrowRight, Phone } from "lucide-react";
+import { FlaskConical, Fuel, Anvil, Coffee, UserCog, Settings, ShieldCheck, Headset, Phone } from "lucide-react";
 import { AnimatedButton } from "./components/ui/AnimatedButton";
 import { AnimatedExpertiseItem } from "./components/ui/AnimatedExpertiseItem";
 import AnimatedStats from "./components/AnimatedStats";
@@ -8,6 +7,8 @@ import AnimatedLogoCloud from "./components/AnimatedLogoCloud";
 import ServiceSlider from "./components/ServiceSlider";
 import { ContactCard } from "./components/ContactCard";
 import CaseStudyStack from "./components/CaseStudyStack";
+import CaseStudyShowcase from "./components/CaseStudyShowcase";
+import { ClientCarousel } from "./components/ui/cases-with-infinite-scroll";
 const scheduleUrl = "https://appt.link/meet-with-bhavik-bhimani-iz1nBIl5/hive-automation";
 
 const industries = [
@@ -203,16 +204,16 @@ export default function HomePage() {
     <main className="home">
       <section className="hero-section" id="hero">
         <Image
-          src="/hero-new.jpg"
-          alt="Engineer operating Siemens PLC on factory floor"
+          src="/hero-banner-bg-1.webp"
+          alt="Automated production line with digital industrial control overlay"
           fill
           priority
           className="hero-bg max-md:hidden"
           sizes="100vw"
         />
         <Image
-          src="/hero-mobile.jpg"
-          alt="Engineer operating Siemens PLC on factory floor"
+          src="/hero-banner-bg-1.webp"
+          alt="Automated production line with digital industrial control overlay"
           fill
           priority
           className="hero-bg md:hidden"
@@ -225,9 +226,19 @@ export default function HomePage() {
             India&apos;s trusted Siemens PLC, SCADA & DCS automation experts delivering
             turnkey industrial solutions for Pharma, Oil & Gas, and more.
           </p>
-          <div className="action-row">
+          <div className="action-row hero-actions">
             <AnimatedButton href="/projects">
-              Learn more
+              View Our Projects
+            </AnimatedButton>
+            <AnimatedButton
+              href={scheduleUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              variant="dark"
+              icon={<Phone />}
+              className="hero-consultation-button"
+            >
+              Schedule a Consultation
             </AnimatedButton>
           </div>
         </div>
@@ -314,7 +325,7 @@ export default function HomePage() {
 
       <ServiceSlider services={services} />
 
-      <section className="section-steel pt-4 pb-[104px] relative z-10 -mt-12 md:-mt-24" id="case-studies-stack">
+      <section className="section-steel case-studies-section relative z-10" id="case-studies-stack">
         <div className="container">
           <div>
             <CaseStudyStack projects={projects} />
@@ -326,6 +337,8 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      <CaseStudyShowcase projects={projects} />
 
       <section className="section why-section" id="why-hive">
         <div className="container why-layout">
@@ -358,14 +371,13 @@ export default function HomePage() {
               </AnimatedButton>
             </div>
           </div>
-          <div className="why-visual" aria-hidden="true">
+          <div className="why-visual">
             <Image
-              src="/why-hive-illustration.svg"
-              alt=""
+              src="/contact-agent.jpg"
+              alt="Hive Automation engineer consultation specialist"
               width={560}
               height={640}
               className="why-illustration"
-              unoptimized
             />
           </div>
         </div>
@@ -373,19 +385,44 @@ export default function HomePage() {
 
       <AnimatedStats />
 
-      <section className="section py-16 md:py-24" id="quote">
+      {/* Infinite Scroll Client Carousel */}
+      <section className="section clients-carousel-section" id="clients-carousel">
+        <div className="container">
+          <div className="section-heading">
+            <p className="section-label">Our Clients</p>
+            <h2>Trusted by Leading Companies &amp; Brands</h2>
+          </div>
+          <ClientCarousel />
+        </div>
+      </section>
+
+      <section className="section clients-section" id="clients">
+        <div className="container">
+          <div className="section-heading">
+            <p className="section-label">Our Client</p>
+            <h2>Trusted by Leading Companies &amp; Brands</h2>
+          </div>
+
+          <AnimatedLogoCloud
+            logos={clientLogos}
+            className="mt-12 rounded-xl overflow-hidden shadow-sm"
+          />
+        </div>
+      </section>
+
+      <section className="section quote-section" id="quote">
         <div className="container">
           <ContactCard
-            imageSrc="/contact-agent.jpg"
+            imageSrc="/quote-agent.webp"
           >
             <div className="max-w-xl mx-auto w-full">
-              <div className="text-[#ff3b3b] font-bold uppercase tracking-wider text-sm mb-2">Get A Quote</div>
-              <h2 className="text-3xl font-bold md:text-4xl text-black">Request a Quote</h2>
+              <div className="quote-eyebrow">Get A Quote</div>
+              <h2 className="quote-title">Request a Quote</h2>
 
               <form className="space-y-6 mt-8">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                   <div className="space-y-2">
-                    <label className="text-sm font-medium text-black">Your Name <span className="text-[#ff3b3b]">*</span></label>
+                    <label className="form-field-label">Your Name <span className="text-[#ff3b3b]">*</span></label>
                     <input
                       type="text"
                       placeholder="Enter name"
@@ -393,7 +430,7 @@ export default function HomePage() {
                     />
                   </div>
                   <div className="space-y-2">
-                    <label className="text-sm font-medium text-black">Your Phone <span className="text-[#ff3b3b]">*</span></label>
+                    <label className="form-field-label">Your Phone <span className="text-[#ff3b3b]">*</span></label>
                     <input
                       type="tel"
                       placeholder="Enter number"
@@ -401,7 +438,7 @@ export default function HomePage() {
                     />
                   </div>
                   <div className="space-y-2">
-                    <label className="text-sm font-medium text-black">Your Email <span className="text-[#ff3b3b]">*</span></label>
+                    <label className="form-field-label">Your Email <span className="text-[#ff3b3b]">*</span></label>
                     <input
                       type="email"
                       placeholder="name@gmail.com"
@@ -409,7 +446,7 @@ export default function HomePage() {
                     />
                   </div>
                   <div className="space-y-2">
-                    <label className="text-sm font-medium text-black">Subject <span className="text-[#ff3b3b]">*</span></label>
+                    <label className="form-field-label">Subject <span className="text-[#ff3b3b]">*</span></label>
                     <input
                       type="text"
                       placeholder="Fill Subject"
@@ -418,7 +455,7 @@ export default function HomePage() {
                   </div>
                 </div>
                 <div className="space-y-2">
-                  <label className="text-sm font-medium text-black">Enter Message</label>
+                  <label className="form-field-label">Enter Message</label>
                   <textarea
                     placeholder="Enter your message here..."
                     rows={5}
@@ -427,30 +464,16 @@ export default function HomePage() {
                 </div>
 
                 <div className="flex flex-wrap items-center gap-4 pt-2">
-                  <button type="submit" className="border border-[#ff3b3b] text-[#ff3b3b] px-8 py-3 rounded-full font-medium text-sm flex items-center gap-2 hover:bg-[#ff3b3b]/5 transition-colors">
-                    Submit <span className="text-lg leading-none">&rarr;</span>
-                  </button>
-                  <button type="button" className="bg-[#ff3b3b] text-white px-8 py-3 rounded-full font-medium text-sm flex items-center gap-2 hover:bg-[#ff3b3b]/90 transition-colors">
-                    Request a Call <span className="text-lg leading-none">&rarr;</span>
-                  </button>
+                  <AnimatedButton type="submit" variant="secondary">
+                    Submit
+                  </AnimatedButton>
+                  <AnimatedButton type="button" href={scheduleUrl} target="_blank" rel="noopener noreferrer">
+                    Request a Call
+                  </AnimatedButton>
                 </div>
               </form>
             </div>
           </ContactCard>
-        </div>
-      </section>
-
-      <section className="section clients-section" id="clients">
-        <div className="container">
-          <div className="section-heading">
-            <p className="section-label">Our Client</p>
-            <h2>Trusted by Leading Companies & Brands</h2>
-          </div>
-
-          <AnimatedLogoCloud
-            logos={clientLogos}
-            className="mt-12 rounded-xl overflow-hidden shadow-sm"
-          />
         </div>
       </section>
     </main>

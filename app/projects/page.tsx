@@ -92,8 +92,8 @@ export default function ProjectsPage() {
                       <span key={hi} style={{ fontSize: 11, fontWeight: 500, padding: "4px 10px", borderRadius: 9999, background: "#F9F8F6", color: "#1B1B1B", border: "1px solid #DCDAD5" }}>{h}</span>
                     ))}
                   </div>
-                  <div style={{ fontSize: 13, fontWeight: 600, color: "#FF3434", display: "flex", alignItems: "center", gap: 4 }}>
-                    View Case Study <span>→</span>
+                  <div className="border border-[#ff3b3b] text-[#ff3b3b] bg-white px-6 py-2.5 rounded-full font-semibold text-[13px] inline-flex items-center gap-2 hover:bg-[#ff3b3b]/5 transition-colors self-start mt-2">
+                    View Case Study <span className="text-base leading-none">&rarr;</span>
                   </div>
                 </div>
               </Link>

@@ -1,6 +1,6 @@
 "use client"
 
-import { LucideIcon, ArrowRight } from "lucide-react"
+import { ArrowRight } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { motion } from "motion/react"
 import { useState } from "react"
@@ -35,19 +35,24 @@ export function AnimatedButton({
   let textColor = "#ffffff"
   
   if (variant === "primary") {
-    variantClasses = "bg-gradient-to-r from-[#ff3434] to-[#df2424] hover:from-[#df2424] hover:to-[#c21f1f] shadow-lg hover:shadow-xl border border-[#ff3434]/20 focus:ring-[#ff3434]/30"
+    variantClasses = "bg-[#ff3b3b] hover:bg-[#df2d2d] shadow-md hover:shadow-lg border border-[#ff3b3b]/10 focus:ring-[#ff3b3b]/30"
     textColor = "#ffffff"
   } else if (variant === "secondary") {
-    variantClasses = "bg-white hover:bg-gray-50 shadow-sm hover:shadow-md border border-gray-200 focus:ring-gray-200"
-    textColor = "#111214"
+    variantClasses = "bg-white hover:bg-[#ff3b3b] shadow-sm hover:shadow-md border border-[#ff3b3b] focus:ring-[#ff3b3b]/20"
+    textColor = isHovered ? "#ffffff" : "#ff3b3b"
   } else if (variant === "dark") {
-    variantClasses = "bg-black hover:bg-gray-900 shadow-lg hover:shadow-xl border border-black/20 focus:ring-black/30"
+    variantClasses = "bg-black hover:bg-gray-900 shadow-md hover:shadow-lg border border-black/20 focus:ring-black/30"
     textColor = "#ffffff"
   }
 
   const innerContent = (
     <>
       <div className="relative flex items-center justify-center gap-3">
+        {/* Text with subtle shift */}
+        <span className="transition-transform duration-300 ease-out group-hover:-translate-x-1 whitespace-nowrap">
+          {children}
+        </span>
+
         <span className="relative flex items-center justify-center" style={{ width: 20, height: 20 }}>
           <motion.span
             initial={false}
@@ -68,15 +73,10 @@ export function AnimatedButton({
             {icon}
           </motion.span>
         </span>
-
-        {/* Text with subtle shift */}
-        <span className="transition-transform duration-300 ease-out group-hover:translate-x-1 whitespace-nowrap">
-          {children}
-        </span>
       </div>
 
       {/* Subtle shine effect on hover */}
-      <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl overflow-hidden pointer-events-none">
+      <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-full overflow-hidden pointer-events-none">
         <div
           className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent 
                         transform -skew-x-12 -translate-x-full group-hover:translate-x-full 
@@ -88,7 +88,7 @@ export function AnimatedButton({
 
   const commonClasses = cn(
     "group relative overflow-hidden inline-flex items-center justify-center",
-    "px-6 py-3 rounded-xl",
+    "px-8 py-3 rounded-full",
     "font-semibold text-[15px]",
     "transition-all duration-300 ease-out",
     "transform active:scale-95",
