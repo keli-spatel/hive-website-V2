@@ -3,379 +3,528 @@
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import {
+  Coffee,
+  Cpu,
+  Factory,
+  FlaskConical,
+  Fuel,
+  LifeBuoy,
+  MonitorSmartphone,
+  Network,
+  PanelTop,
+  Phone,
+  Server,
+  Settings,
+  ShieldCheck,
+  Target,
+  TrendingUp,
+  Users,
+  Workflow,
+} from "lucide-react";
+import AnimatedStats from "../components/AnimatedStats";
+import { ClientCarousel } from "../components/ui/cases-with-infinite-scroll";
 import { AnimatedButton } from "../components/ui/AnimatedButton";
-import { Phone } from "lucide-react";
+
+const scheduleUrl = "https://appt.link/meet-with-bhavik-bhimani-iz1nBIl5/hive-automation";
 
 function useInView() {
-  const ref = useRef<HTMLDivElement>(null);
+  const ref = useRef<HTMLElement>(null);
   const [inView, setInView] = useState(false);
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) setInView(true); },
-      { threshold: 0.02 }
-    );
-    if (ref.current) observer.observe(ref.current);
-    return () => observer.disconnect();
-  }, []);
-  return { ref, inView };
-}
 
-function useCounter(end: number, duration = 2000) {
-  const [count, setCount] = useState(0);
-  const ref = useRef<HTMLDivElement>(null);
-  const started = useRef(false);
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting && !started.current) {
-          started.current = true;
-          const startTime = performance.now();
-          const animate = (now: number) => {
-            const elapsed = now - startTime;
-            const progress = Math.min(elapsed / duration, 1);
-            const eased = 1 - Math.pow(1 - progress, 3);
-            setCount(Math.floor(end * eased));
-            if (progress < 1) requestAnimationFrame(animate);
-          };
-          requestAnimationFrame(animate);
-        }
+        if (entry.isIntersecting) setInView(true);
       },
-      { threshold: 0.3 }
+      { threshold: 0.08 }
     );
+
     if (ref.current) observer.observe(ref.current);
     return () => observer.disconnect();
-  }, [end, duration]);
-  return { count, ref };
+  }, []);
+
+  return { ref, inView };
 }
 
-const values = [
-  { icon: "🎯", title: "Precision", desc: "Every line of PLC code is thoroughly tested and validated for your specific process requirements." },
-  { icon: "🤝", title: "Partnership", desc: "We're long-term engineering partners committed to your plant's performance and growth." },
-  { icon: "💡", title: "Innovation", desc: "Leveraging the latest Siemens technologies and Industry 4.0 practices for future-ready solutions." },
-  { icon: "🛡️", title: "Safety", desc: "International engineering standards and rigorous testing ensure robust, audit-ready systems." },
+function AboutCounter({ end, suffix = "+", duration = 2000 }: { end: number; suffix?: string; duration?: number }) {
+  const [count, setCount] = useState(0);
+  const { ref, inView } = useInView();
+
+  useEffect(() => {
+    if (!inView) return;
+
+    let start = 0;
+    const incrementTime = 30;
+    const totalSteps = duration / incrementTime;
+    const increment = end / totalSteps;
+
+    const timer = window.setInterval(() => {
+      start += increment;
+      if (start >= end) {
+        setCount(end);
+        window.clearInterval(timer);
+      } else {
+        setCount(Math.ceil(start));
+      }
+    }, incrementTime);
+
+    return () => window.clearInterval(timer);
+  }, [duration, end, inView]);
+
+  return (
+    <strong ref={ref}>
+      {count}
+      {suffix}
+    </strong>
+  );
+}
+
+const highlights = [
+  { value: 8, label: "Years Industry Experience" },
+  { value: 500, label: "Automation Projects Delivered" },
+  { value: 50, label: "Industrial Clients" },
+  { value: 10, label: "Major Industries Served" },
 ];
 
-const timeline = [
-  { year: "2017", title: "Founded", desc: "Hive Automation established with a focus on Siemens PLC programming." },
-  { year: "2018", title: "First Major Project", desc: "Delivered our first pharmaceutical automation system with GAMP 5 compliance." },
-  { year: "2019", title: "Oil & Gas Expansion", desc: "Expanded into Oil & Gas with PCS 7 DCS implementations." },
-  { year: "2020", title: "Remote Support Launch", desc: "Introduced 24/7 remote diagnostics and support services." },
-  { year: "2022", title: "50+ Projects", desc: "Crossed 50 successfully delivered automation projects milestone." },
-  { year: "2024", title: "Industry 4.0 Ready", desc: "Adopted Industry 4.0 standards with IIoT and advanced analytics offerings." },
+const expertise = [
+  {
+    icon: Cpu,
+    title: "PLC Programming & Integration",
+    desc: "Custom Siemens PLC programming and integration services for machine automation and process control applications.",
+  },
+  {
+    icon: MonitorSmartphone,
+    title: "SCADA & HMI Development",
+    desc: "Advanced monitoring and visualization systems that provide real-time operational insights and control.",
+  },
+  {
+    icon: Server,
+    title: "DCS Engineering",
+    desc: "Distributed Control System solutions designed for complex process industries requiring high reliability and scalability.",
+  },
+  {
+    icon: Network,
+    title: "Industrial Networking",
+    desc: "Industrial communication infrastructure that ensures seamless connectivity across automation systems.",
+  },
+  {
+    icon: PanelTop,
+    title: "Control Panel Engineering & Manufacturing",
+    desc: "Design, development, testing, and commissioning of industrial control panels.",
+  },
+  {
+    icon: Workflow,
+    title: "Turnkey Automation Projects",
+    desc: "Complete project execution from concept design to commissioning and ongoing support.",
+  },
+];
+
+const industries = [
+  {
+    icon: FlaskConical,
+    title: "Pharmaceutical Industry Automation",
+    desc: "GMP-compliant automation solutions that ensure product quality, process consistency, and regulatory compliance.",
+  },
+  {
+    icon: Fuel,
+    title: "Oil & Gas Automation Solutions",
+    desc: "Automation systems that enhance safety, monitoring, production efficiency, and operational reliability.",
+  },
+  {
+    icon: ShieldCheck,
+    title: "Chemical Plant Automation",
+    desc: "Advanced process control solutions that optimize production while maintaining operational safety standards.",
+  },
+  {
+    icon: Factory,
+    title: "Manufacturing Industry Automation",
+    desc: "Smart automation technologies that increase productivity, reduce manual intervention, and improve equipment effectiveness.",
+  },
+  {
+    icon: Coffee,
+    title: "Food & Beverage Automation",
+    desc: "Reliable automation systems that enhance product quality and improve production efficiency.",
+  },
+];
+
+const reasons = [
+  {
+    icon: Settings,
+    title: "Siemens Technology Expertise",
+    desc: "Extensive experience with Siemens PLCs, SCADA systems, HMI development, and industrial communication networks.",
+  },
+  {
+    icon: Users,
+    title: "Experienced Automation Engineers",
+    desc: "A highly skilled engineering team with deep expertise in industrial automation project execution.",
+  },
+  {
+    icon: Target,
+    title: "Customized Automation Solutions",
+    desc: "Every project is designed around the client's specific operational goals and business requirements.",
+  },
+  {
+    icon: Workflow,
+    title: "End-to-End Project Delivery",
+    desc: "Comprehensive support from system design and development to commissioning and post-project maintenance.",
+  },
+  {
+    icon: LifeBuoy,
+    title: "Long-Term Technical Support",
+    desc: "Ongoing troubleshooting, upgrades, maintenance, and optimization services after project completion.",
+  },
+];
+
+const technologyGroups = [
+  {
+    icon: Cpu,
+    title: "Siemens PLC Systems",
+    items: ["Siemens S7-200 Smart", "Siemens S7-1200 G1/G2", "Siemens S7-1500 R/H/FH", "Siemens ET200SP Series", "Siemens S7-400", "Siemens S7-300"],
+  },
+  {
+    icon: MonitorSmartphone,
+    title: "HMI / SCADA Platforms",
+    items: ["Siemens WinCC Explorer", "WinCC Advance", "WinCC Unified", "KTP / TP / MTP HMI"],
+  },
+  {
+    icon: Server,
+    title: "DCS Solutions",
+    items: ["Siemens PCS 7", "Siemens PCS 7 neo", "ET200SP HA / PA"],
+  },
+  {
+    icon: Settings,
+    title: "Engineering Software",
+    items: ["TIA Portal", "SIMATIC Manager", "WinCC Professional", "TIA WinCC Advance"],
+  },
+];
+
+const results = [
+  "Reduce operational downtime",
+  "Improve process consistency",
+  "Increase production efficiency",
+  "Enhance plant safety",
+  "Optimize resource utilization",
+  "Accelerate digital transformation initiatives",
+];
+
+const faqs = [
+  {
+    q: "What industrial automation services does Hive Automation provide?",
+    a: "We provide PLC programming, SCADA development, DCS integration, industrial networking, control panel engineering, and turnkey automation projects.",
+  },
+  {
+    q: "Do you specialize in Siemens automation systems?",
+    a: "Yes. We specialize in Siemens PLC programming, TIA Portal development, WinCC SCADA systems, and Siemens process automation technologies.",
+  },
+  {
+    q: "Which industries do you serve?",
+    a: "We serve pharmaceutical, chemical, manufacturing, oil & gas, food processing, and other process industries.",
+  },
+  {
+    q: "Do you provide support after project completion?",
+    a: "Yes. We offer ongoing maintenance, troubleshooting, upgrades, and technical support services.",
+  },
 ];
 
 export default function AboutPage() {
-  const heroRef = useInView();
-  const missionRef = useInView();
-  const valuesRef = useInView();
-  const timelineRef = useInView();
-  const stats1 = useCounter(500);
-  const stats2 = useCounter(50);
-  const stats3 = useCounter(15);
-
   return (
-    <div style={{ marginTop: 82 }}>
-      {/* Page Header */}
-      <section
-        ref={heroRef.ref}
-        style={{
-          background: "linear-gradient(135deg, #1B1B1B 0%, #2a2a2a 100%)",
-          padding: "80px 32px 64px",
-          textAlign: "center",
-        }}
-      >
-        <div
-          className="container"
-          style={{
-            maxWidth: 800,
-            margin: "0 auto",
-            opacity: heroRef.inView ? 1 : 0,
-            transform: heroRef.inView ? "translateY(0)" : "translateY(24px)",
-            transition: "all 0.7s ease-out",
-          }}
-        >
-          <div
-            style={{
-              display: "inline-flex",
-              alignItems: "center",
-              gap: 8,
-              marginBottom: 16,
-              fontSize: 12,
-              fontWeight: 600,
-              color: "#C5C1B9",
-              letterSpacing: 1,
-            }}
-          >
-            <Link href="/" style={{ color: "#C5C1B9", textDecoration: "none", fontWeight: 400 }}>Home</Link>
+    <main className="about-page" style={{ marginTop: 82 }}>
+      <section className="about-hero">
+        <div className="container about-hero-inner">
+          <div className="about-breadcrumb">
+            <Link href="/">Home</Link>
             <span>/</span>
-            <span style={{ color: "#FF3434" }}>About Us</span>
+            <span>About Us</span>
           </div>
-          <h1 style={{ marginBottom: 16 }}>About Hive Automation</h1>
-          <p style={{ color: "#C5C1B9", fontSize: 16, lineHeight: "26px", maxWidth: 560, margin: "0 auto" }}>
-            India&apos;s trusted industrial automation partner, delivering precision engineering solutions since 2017.
+          <h1>About Hive Automation</h1>
+          <p>
+            India&apos;s trusted industrial automation partner, delivering precision engineering
+            solutions since 2017.
           </p>
         </div>
       </section>
 
-      {/* Mission Section */}
-      <section ref={missionRef.ref} className="section" id="mission">
-        <div
-          className="container"
-          style={{
-            maxWidth: 1200,
-            margin: "0 auto",
-            display: "grid",
-            gridTemplateColumns: "1fr 1fr",
-            gap: 64,
-            alignItems: "center",
-          }}
-        >
-          <div
-            style={{
-              opacity: missionRef.inView ? 1 : 0,
-              transform: missionRef.inView ? "translateX(0)" : "translateX(-32px)",
-              transition: "all 0.7s ease-out",
-            }}
-          >
+      <section className="section about-mission-section" id="mission">
+        <div className="container about-mission-layout">
+          <div className="about-mission-media">
             <Image
               src="/about-bg.png"
-              alt="Industrial control room"
-              width={560}
-              height={400}
-              style={{ width: "100%", height: "auto", borderRadius: 12 }}
+              alt="Industrial automation engineer working with Siemens control systems"
+              width={720}
+              height={720}
+              className="about-mission-image"
             />
           </div>
-          <div
-            style={{
-              opacity: missionRef.inView ? 1 : 0,
-              transform: missionRef.inView ? "translateX(0)" : "translateX(32px)",
-              transition: "all 0.7s ease-out 0.15s",
-            }}
-          >
-            <div className="section-label">Our Mission</div>
-            <h2 style={{ marginBottom: 20 }}>Empowering Manufacturing with Smart Automation</h2>
-            <p style={{ fontSize: 15, lineHeight: "26px", color: "#5f5e5dff", marginBottom: 16 }}>
-              Hive Automation is a trusted industrial automation company specializing in Siemens PLC programming, SCADA system integration, and process control solutions. Our mission is to empower manufacturing with smart automation systems that optimize operations, enhance efficiency, and minimize industrial downtime across India.
+          <div className="about-mission-copy">
+            <p className="section-label">Our Mission</p>
+            <h2>Empowering Manufacturing with Smart Automation</h2>
+            <p>
+              Hive Automation is a trusted industrial automation company specializing in Siemens
+              PLC programming, SCADA system integration, and process control solutions. Our mission
+              is to empower manufacturing with smart automation systems that optimize operations,
+              enhance efficiency, and minimize industrial downtime across India.
             </p>
-            <p style={{ fontSize: 15, lineHeight: "26px", color: "#5f5e5dff", marginBottom: 24 }}>
-              We provide expert services for Siemens PLCs, SCADA, and DCS platforms, having successfully delivered turnkey automation projects for diverse industries. Our commitment to industrial compliance, innovation, and safety ensures high-performance results in a rapidly evolving industrial automation landscape.
+            <p>
+              We provide expert services for Siemens PLCs, SCADA, and DCS platforms, having
+              successfully delivered turnkey automation projects for diverse industries. Our
+              commitment to industrial compliance, innovation, and safety ensures high-performance
+              results in a rapidly evolving industrial automation landscape.
             </p>
-            <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
-              {["Pharmaceutical", "Oil & Gas", "Forging", "Food & Beverages"].map((tag) => (
-                <span
-                  key={tag}
-                  style={{
-                    fontSize: 12,
-                    fontWeight: 600,
-                    padding: "8px 16px",
-                    borderRadius: 9999,
-                    background: "rgba(87, 94, 207, 0.08)",
-                    color: "#575ECF",
-                  }}
-                >
-                  {tag}
-                </span>
+          </div>
+        </div>
+      </section>
+
+      <section className="section section-steel about-highlights-section">
+        <div className="container about-highlight-grid">
+          {highlights.map((item) => (
+            <article className="about-highlight-card" key={item.label}>
+              <AboutCounter end={item.value} />
+              <span>{item.label}</span>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="section about-who-section" id="who-we-are">
+        <div className="container about-who-statement">
+          <div className="about-who-heading">
+            <p className="section-label">Our Story</p>
+            <h2>Who We Are</h2>
+          </div>
+          <div className="about-who-body">
+            <p>
+              Hive Automation LLP was founded with a vision to transform industrial operations
+              through advanced automation technologies.
+            </p>
+            <p>
+              We help industries streamline processes, improve operational visibility, reduce
+              downtime, and maximize production efficiency through reliable automation systems.
+            </p>
+            <p>
+              From small-scale control systems to large industrial automation projects, we provide
+              complete engineering support including design, development, programming,
+              commissioning, and maintenance.
+            </p>
+            <p>
+              Our focus remains on delivering practical, scalable, and future-ready automation
+              solutions that create measurable business value.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section className="section section-alt about-journey-section" id="journey">
+        <div className="container about-journey-layout">
+          <div className="about-journey-steps">
+            <article className="about-journey-step">
+              <span>01</span>
+              <div>
+                <h3>Built on Siemens Automation</h3>
+                <p>Started with practical PLC programming and process control engineering.</p>
+              </div>
+            </article>
+            <article className="about-journey-step">
+              <span>02</span>
+              <div>
+                <h3>Expanded Across Industries</h3>
+                <p>Delivered automation projects across pharma, oil & gas, chemical, and manufacturing plants.</p>
+              </div>
+            </article>
+            <article className="about-journey-step">
+              <span>03</span>
+              <div>
+                <h3>Driving Digital Transformation</h3>
+                <p>Now helping clients build reliable, visible, and connected industrial systems.</p>
+              </div>
+            </article>
+          </div>
+          <div className="about-journey-copy">
+            <p className="section-label">Our Journey</p>
+            <h2>Helping Industries Embrace Digital Transformation</h2>
+            <p>
+              Since our inception, Hive Automation has been committed to helping industries embrace
+              digital transformation through automation. Over the years, we have successfully executed
+              automation projects across various sectors, supporting businesses in achieving improved
+              process control, operational efficiency, and production consistency.
+            </p>
+            <p>
+              Today, we continue to leverage the latest automation technologies to help clients stay
+              competitive in an evolving industrial landscape.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section className="section about-expertise-section" id="expertise">
+        <div className="container">
+          <div className="section-heading">
+            <p className="section-label">Our Industrial Automation Expertise</p>
+            <h2>End-to-End Solutions for Plant Performance</h2>
+            <p>
+              We provide end-to-end industrial automation solutions designed to optimize plant
+              performance and operational reliability.
+            </p>
+          </div>
+          <div className="about-card-grid">
+            {expertise.map((item) => (
+              <article className="about-feature-card" key={item.title}>
+                <div className="about-card-icon">
+                  <item.icon size={26} strokeWidth={1.7} />
+                </div>
+                <h3>{item.title}</h3>
+                <p>{item.desc}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section section-steel about-industries-section" id="industries">
+        <div className="container">
+          <div className="about-sector-layout">
+            <div className="about-sector-lead">
+              <p className="section-label">Industries We Serve</p>
+              <h2>Tailored Automation for Specific Industry Requirements</h2>
+              <p>
+                Every industry has unique operational challenges. Our solutions are tailored to meet
+                specific industry requirements while ensuring performance, compliance, and reliability.
+              </p>
+            </div>
+            <div className="about-industry-map">
+              {industries.map((item, index) => (
+                <article className="about-industry-card" key={item.title} style={{ animationDelay: `${index * 70}ms` }}>
+                  <span className="about-industry-index">0{index + 1}</span>
+                  <div className="about-industry-icon">
+                    <item.icon size={26} strokeWidth={1.7} />
+                  </div>
+                  <div>
+                    <h3>{item.title}</h3>
+                    <p>{item.desc}</p>
+                  </div>
+                </article>
               ))}
             </div>
           </div>
         </div>
-
-        <style>{`
-          @media (max-width: 799px) {
-            #mission .container {
-              grid-template-columns: 1fr !important;
-              gap: 32px !important;
-            }
-          }
-        `}</style>
       </section>
 
-      {/* Values */}
-      <section ref={valuesRef.ref} className="section section-alt" id="values">
-        <div className="container" style={{ maxWidth: 1200, margin: "0 auto" }}>
-          <div style={{ textAlign: "center", marginBottom: 48 }}>
-            <div className="section-label">Our Values</div>
-            <h2>What Drives Us</h2>
+      <section className="section why-section" id="why-choose-hive">
+        <div className="container why-layout">
+          <div className="why-copy">
+            <p className="section-label">Why Choose Hive Automation</p>
+            <h2>Engineering Expertise Built Around Your Plant Goals</h2>
+            <div className="reason-list">
+              {reasons.map((item) => (
+                <article className="reason-item" key={item.title}>
+                  <div className="reason-title-row">
+                    <item.icon size={22} strokeWidth={1.8} />
+                    <h3>{item.title}</h3>
+                  </div>
+                  <p>{item.desc}</p>
+                </article>
+              ))}
+            </div>
           </div>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(240px, 1fr))", gap: 24 }}>
-            {values.map((val, i) => (
-              <div
-                key={i}
-                className="card"
-                style={{
-                  textAlign: "center",
-                  opacity: valuesRef.inView ? 1 : 0,
-                  transform: valuesRef.inView ? "translateY(0)" : "translateY(24px)",
-                  transition: `all 0.5s ease-out ${i * 100}ms`,
-                }}
-              >
-                <div style={{ fontSize: 36, marginBottom: 16 }}>{val.icon}</div>
-                <h3 style={{ marginBottom: 8 }}>{val.title}</h3>
-                <p style={{ fontSize: 14, lineHeight: "22px", color: "#5f5e5dff" }}>{val.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Timeline */}
-      <section ref={timelineRef.ref} className="section" id="journey">
-        <div className="container" style={{ maxWidth: 800, margin: "0 auto" }}>
-          <div style={{ textAlign: "center", marginBottom: 48 }}>
-            <div className="section-label">Our Journey</div>
-            <h2>Growing with Industry</h2>
-          </div>
-          <div style={{ position: "relative" }}>
-            {/* Center line */}
-            <div
-              style={{
-                position: "absolute",
-                left: "50%",
-                top: 0,
-                bottom: 0,
-                width: 2,
-                background: "#DCDAD5",
-                transform: "translateX(-50%)",
-              }}
+          <div className="why-visual">
+            <Image
+              src="/contact-agent.jpg"
+              alt="Hive Automation technical consultation"
+              width={560}
+              height={640}
+              className="why-illustration"
             />
-            {timeline.map((item, i) => (
-              <div
-                key={i}
-                style={{
-                  display: "flex",
-                  justifyContent: i % 2 === 0 ? "flex-start" : "flex-end",
-                  padding: "16px 0",
-                  position: "relative",
-                  opacity: timelineRef.inView ? 1 : 0,
-                  transform: timelineRef.inView ? "translateY(0)" : "translateY(16px)",
-                  transition: `all 0.5s ease-out ${i * 100}ms`,
-                }}
-              >
-                {/* Dot */}
-                <div
-                  style={{
-                    position: "absolute",
-                    left: "50%",
-                    top: "50%",
-                    transform: "translate(-50%, -50%)",
-                    width: 14,
-                    height: 14,
-                    borderRadius: "50%",
-                    background: "#FF3434",
-                    border: "3px solid #FFFFFF",
-                    boxShadow: "0 0 0 2px #FF3434",
-                    zIndex: 2,
-                  }}
-                />
-                <div
-                  className="card"
-                  style={{
-                    width: "42%",
-                    padding: "20px 24px",
-                  }}
-                >
-                  <span
-                    style={{
-                      fontSize: 12,
-                      fontWeight: 700,
-                      color: "#FF3434",
-                      letterSpacing: 1,
-                    }}
-                  >
-                    {item.year}
-                  </span>
-                  <h3 style={{ margin: "4px 0" }}>{item.title}</h3>
-                  <p style={{ fontSize: 13, lineHeight: "20px", color: "#5f5e5dff" }}>{item.desc}</p>
-                </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="section about-tech-section" id="technologies">
+        <div className="container">
+          <div className="section-heading about-tech-heading">
+            <p className="section-label">Tech Stack</p>
+            <h2>Automation Technologies We Work With</h2>
+          </div>
+          <div className="about-tech-card-grid">
+            {technologyGroups.map((group) => (
+              <article className="about-tech-simple-card" key={group.title}>
+                <h3>{group.title}</h3>
+                <ul>
+                  {group.items.map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
+                </ul>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section section-steel" id="results">
+        <div className="container split-grid">
+          <div>
+            <p className="section-label">Delivering Measurable Results</p>
+            <h2>Automation Outcomes That Improve Plant Performance</h2>
+            <p>
+              Our automation solutions help clients improve operational reliability, production
+              consistency, and digital readiness across critical industrial environments.
+            </p>
+          </div>
+          <div className="about-results-list">
+            {results.map((item) => (
+              <div key={item}>
+                <TrendingUp size={20} strokeWidth={1.8} />
+                <span>{item}</span>
               </div>
             ))}
           </div>
         </div>
-
-        <style>{`
-          @media (max-width: 599px) {
-            #journey .container > div > div {
-              justify-content: flex-end !important;
-            }
-            #journey .container > div > div > .card {
-              width: 75% !important;
-            }
-            #journey .container > div > div > div[style*="left: 50%"] {
-              left: 10% !important;
-            }
-            #journey .container > div > div:first-child {
-              left: 10% !important;
-            }
-          }
-        `}</style>
       </section>
 
-      {/* Stats */}
-      <section
-        style={{
-          background: "linear-gradient(135deg, #1B1B1B 0%, #2a2a2a 100%)",
-          padding: "64px 32px",
-        }}
-        id="about-stats"
-      >
-        <div
-          className="container"
-          style={{
-            maxWidth: 1200,
-            margin: "0 auto",
-            display: "grid",
-            gridTemplateColumns: "repeat(3, 1fr)",
-            gap: 32,
-            textAlign: "center",
-          }}
-        >
-          <div ref={stats1.ref}>
-            <div className="stat-number">{stats1.count}+</div>
-            <div className="stat-label">Projects Completed</div>
+      <section className="section clients-carousel-section" id="about-clients">
+        <div className="container">
+          <div className="section-heading">
+            <p className="section-label">Our Clients</p>
+            <h2>Trusted by Leading Companies &amp; Brands</h2>
           </div>
-          <div ref={stats2.ref}>
-            <div className="stat-number">{stats2.count}+</div>
-            <div className="stat-label">Satisfied Clients</div>
+          <ClientCarousel />
+        </div>
+      </section>
+
+      <AnimatedStats />
+
+      <section className="section" id="about-faq">
+        <div className="container">
+          <div className="section-heading">
+            <p className="section-label">Frequently Asked Questions</p>
+            <h2>Industrial Automation Questions, Answered</h2>
           </div>
-          <div ref={stats3.ref}>
-            <div className="stat-number">{stats3.count}+</div>
-            <div className="stat-label">Team Members</div>
+          <div className="about-faq-grid">
+            {faqs.map((item) => (
+              <details className="about-faq-card" key={item.q}>
+                <summary>{item.q}</summary>
+                <p>{item.a}</p>
+              </details>
+            ))}
           </div>
         </div>
-
-        <style>{`
-          @media (max-width: 599px) {
-            #about-stats .container {
-              grid-template-columns: 1fr !important;
-              gap: 32px !important;
-            }
-          }
-        `}</style>
       </section>
 
-      {/* CTA */}
-      <section className="section" style={{ textAlign: "center" }}>
-        <div className="container" style={{ maxWidth: 600, margin: "0 auto" }}>
-          <h2 style={{ marginBottom: 16 }}>Ready to Partner with Us?</h2>
-          <p style={{ color: "#5f5e5dff", marginBottom: 32, fontSize: 15, lineHeight: "26px" }}>
-            Let&apos;s discuss how we can bring precision automation to your plant.
+      <section className="section about-cta-section" id="about-cta">
+        <div className="container">
+          <p className="section-label">Ready to Transform Your Industrial Operations?</p>
+          <h2>Partner with Hive Automation for Reliable Automation Support</h2>
+          <p>
+            Get Siemens PLC expertise, complete industrial automation support, and solutions tailored
+            to your business needs.
           </p>
-          <div style={{ display: "flex", gap: 16, justifyContent: "center", flexWrap: "wrap" }}>
-            <AnimatedButton href="/contact">
-              Contact Us
-            </AnimatedButton>
-            <AnimatedButton
-              href="https://appt.link/meet-with-bhavik-bhimani-iz1nBIl5/hive-automation"
-              target="_blank"
-              rel="noopener noreferrer"
-              variant="secondary"
-              icon={<Phone />}
-            >
-              Schedule a Call
+          <div className="action-row about-cta-actions">
+            <AnimatedButton href="/contact">Contact Our Automation Experts</AnimatedButton>
+            <AnimatedButton href={scheduleUrl} target="_blank" rel="noopener noreferrer" variant="secondary" icon={<Phone />}>
+              Discuss Your Project
             </AnimatedButton>
           </div>
         </div>
       </section>
-    </div>
+    </main>
   );
 }
