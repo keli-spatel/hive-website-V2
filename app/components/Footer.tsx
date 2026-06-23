@@ -72,10 +72,10 @@ export default function Footer() {
         </div>
         <style jsx global>{`
           .newsletter-strip {
-            background: #18191c;
-            border-top: 1px solid rgba(255,255,255,0.07);
-            border-bottom: 1px solid rgba(255,255,255,0.07);
-            padding: 22px 64px;
+            background: #ff3434;
+            border-top: 1px solid rgba(255,255,255,0.18);
+            border-bottom: 1px solid rgba(17,18,20,0.12);
+            padding: 16px 64px;
           }
           .newsletter-inner {
             max-width: 1200px;
@@ -104,7 +104,7 @@ export default function Footer() {
           .newsletter-heading {
             font-size: 22px;
             font-weight: 800;
-            color: rgba(255,255,255,0.92);
+            color: #ffffff;
             margin: 0;
             white-space: nowrap;
             letter-spacing: -0.3px;
@@ -116,29 +116,29 @@ export default function Footer() {
             flex-shrink: 0;
           }
           .newsletter-input {
-            background: rgba(255,255,255,0.06);
-            border: 1px solid rgba(255,255,255,0.12);
+            background: #ffffff;
+            border: 1px solid rgba(255,255,255,0.72);
             border-right: none;
             border-radius: 6px 0 0 6px;
             padding: 9px 16px;
             font-size: 13px;
-            color: #ffffff;
+            color: #111214;
             width: 240px;
             outline: none;
             transition: border-color 180ms ease, background 180ms ease;
           }
           .newsletter-input::placeholder {
-            color: rgba(255,255,255,0.35);
+            color: rgba(17,18,20,0.46);
           }
           .newsletter-input:focus {
-            border-color: rgba(255,52,52,0.5);
-            background: rgba(255,255,255,0.09);
+            border-color: #111214;
+            background: #ffffff;
           }
           .newsletter-btn {
             display: inline-flex;
             align-items: center;
             gap: 7px;
-            background: #ff3434;
+            background: #111214;
             color: #ffffff;
             font-size: 13px;
             font-weight: 650;
@@ -150,7 +150,7 @@ export default function Footer() {
             white-space: nowrap;
           }
           .newsletter-btn:hover {
-            background: #e02020;
+            background: #2a2b2f;
           }
           @media (max-width: 768px) {
             .newsletter-strip {

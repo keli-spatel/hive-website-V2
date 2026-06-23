@@ -6,6 +6,7 @@ import Link from "next/link"
 import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react"
 
 const AUTOPLAY_DELAY = 3600
+const LOOP_RESET_DELAY = 700
 
 type Project = {
   href: string
@@ -18,10 +19,12 @@ type Project = {
 
 export default function CaseStudyShowcase({ projects }: { projects: Project[] }) {
   const trackRef = useRef<HTMLDivElement>(null)
+  const resetTimerRef = useRef<number | null>(null)
   const [activeCard, setActiveCard] = useState(0)
   const [isPaused, setIsPaused] = useState(false)
+  const loopedProjects = projects.length > 1 ? [...projects, ...projects] : projects
 
-  const scrollToCard = useCallback((index: number) => {
+  const scrollToCard = useCallback((index: number, behavior: ScrollBehavior = "smooth") => {
     const track = trackRef.current
     if (!track) return
 
@@ -36,14 +39,34 @@ export default function CaseStudyShowcase({ projects }: { projects: Project[] })
       left: isLastCard
         ? Math.max(track.scrollWidth - track.clientWidth, 0)
         : card.offsetLeft - track.offsetLeft,
-      behavior: "smooth",
+      behavior,
     })
 
-    setActiveCard(targetIndex)
-  }, [])
+    setActiveCard(targetIndex % projects.length)
+  }, [projects.length])
+
+  const scrollToLoopCard = useCallback((index: number) => {
+    if (!projects.length) return
+
+    const nextIndex = index < 0
+      ? projects.length * 2 - 1
+      : index
+
+    scrollToCard(nextIndex)
+
+    if (resetTimerRef.current) {
+      window.clearTimeout(resetTimerRef.current)
+    }
+
+    if (nextIndex >= projects.length) {
+      resetTimerRef.current = window.setTimeout(() => {
+        scrollToCard(nextIndex % projects.length, "auto")
+      }, LOOP_RESET_DELAY)
+    }
+  }, [projects.length, scrollToCard])
 
   const scrollCards = (direction: "prev" | "next") => {
-    scrollToCard(direction === "next" ? activeCard + 1 : activeCard - 1)
+    scrollToLoopCard(direction === "next" ? activeCard + 1 : activeCard - 1)
   }
 
   const handleScroll = useCallback(() => {
@@ -54,7 +77,7 @@ export default function CaseStudyShowcase({ projects }: { projects: Project[] })
     if (!cards.length) return
 
     if (track.scrollLeft + track.clientWidth >= track.scrollWidth - 2) {
-      setActiveCard(cards.length - 1)
+      setActiveCard((cards.length - 1) % projects.length)
       return
     }
 
@@ -69,26 +92,38 @@ export default function CaseStudyShowcase({ projects }: { projects: Project[] })
       }
     })
 
-    setActiveCard(closestIndex)
-  }, [])
+    setActiveCard(closestIndex % projects.length)
+  }, [projects.length])
 
   useEffect(() => {
     if (isPaused || projects.length < 2) return
 
     const timer = window.setInterval(() => {
-      scrollToCard(activeCard >= projects.length - 1 ? 0 : activeCard + 1)
+      scrollToLoopCard(activeCard + 1)
     }, AUTOPLAY_DELAY)
 
     return () => window.clearInterval(timer)
-  }, [activeCard, isPaused, projects.length, scrollToCard])
+  }, [activeCard, isPaused, projects.length, scrollToLoopCard])
+
+  useEffect(() => {
+    return () => {
+      if (resetTimerRef.current) {
+        window.clearTimeout(resetTimerRef.current)
+      }
+    }
+  }, [])
 
   return (
     <section className="case-showcase-section" id="case-studies-showcase">
       <div className="container case-showcase-container">
         <div className="case-showcase-header">
           <div>
-            <p className="section-label case-showcase-label">Compare Section</p>
-            <h2>Industrial Automation Case Studies: Solving Complex Challenges</h2>
+            <p className="section-label case-showcase-label">Deep Dive into Our Work</p>
+            <h2>Real-World Industrial Automation Success Stories</h2>
+            <p className="case-showcase-intro">
+              Explore detailed case studies from our portfolio each project reflects precision engineering,
+              compliance-first design, and measurable outcomes.
+            </p>
             <span aria-hidden="true" className="case-showcase-accent" />
           </div>
 
@@ -103,11 +138,11 @@ export default function CaseStudyShowcase({ projects }: { projects: Project[] })
         </div>
 
         <div ref={trackRef} className="case-showcase-track" onScroll={handleScroll}>
-          {projects.map((project) => (
+          {loopedProjects.map((project, index) => (
             <Link
               href={project.href}
               className="case-showcase-card"
-              key={project.href}
+              key={`${project.href}-${index}`}
               onMouseEnter={() => setIsPaused(true)}
               onMouseLeave={() => setIsPaused(false)}
               onFocus={() => setIsPaused(true)}

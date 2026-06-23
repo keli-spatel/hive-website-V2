@@ -27,6 +27,7 @@ const serviceIcons = {
 } satisfies Record<string, LucideIcon>
 
 const AUTOPLAY_DELAY = 3200
+const LOOP_RESET_DELAY = 700
 
 type Service = {
   slug: string
@@ -38,8 +39,10 @@ type Service = {
 export default function ServiceSlider({ services }: { services: Service[] }) {
   const viewportRef = useRef<HTMLDivElement>(null)
   const trackRef = useRef<HTMLDivElement>(null)
+  const resetTimerRef = useRef<number | null>(null)
   const [activeCard, setActiveCard] = useState(0)
   const [isPaused, setIsPaused] = useState(false)
+  const loopedServices = services.length > 1 ? [...services, ...services] : services
 
   const handleScroll = useCallback(() => {
     const container = viewportRef.current
@@ -47,7 +50,7 @@ export default function ServiceSlider({ services }: { services: Service[] }) {
     const cards = container.firstElementChild?.children
     if (!cards) return
     if (container.scrollLeft + container.clientWidth >= container.scrollWidth - 2) {
-      setActiveCard(cards.length - 1)
+      setActiveCard((cards.length - 1) % services.length)
       return
     }
     let closestIndex = 0
@@ -62,10 +65,10 @@ export default function ServiceSlider({ services }: { services: Service[] }) {
         closestIndex = i
       }
     }
-    setActiveCard(closestIndex)
-  }, [])
+    setActiveCard(closestIndex % services.length)
+  }, [services.length])
 
-  const scrollToCard = useCallback((index: number) => {
+  const scrollToCard = useCallback((index: number, behavior: ScrollBehavior = "smooth") => {
     const container = viewportRef.current
     const cards = container?.firstElementChild?.children
     if (container && cards?.length) {
@@ -76,25 +79,53 @@ export default function ServiceSlider({ services }: { services: Service[] }) {
         left: isLastCard
           ? Math.max(container.scrollWidth - container.clientWidth, 0)
           : Math.max(card.offsetLeft - 16, 0),
-        behavior: "smooth",
+        behavior,
       })
-      setActiveCard(targetIndex)
+      setActiveCard(targetIndex % services.length)
     }
-  }, [])
+  }, [services.length])
+
+  const scrollToLoopCard = useCallback((index: number) => {
+    if (!services.length) return
+
+    const nextIndex = index < 0
+      ? services.length * 2 - 1
+      : index
+
+    scrollToCard(nextIndex)
+
+    if (resetTimerRef.current) {
+      window.clearTimeout(resetTimerRef.current)
+    }
+
+    if (nextIndex >= services.length) {
+      resetTimerRef.current = window.setTimeout(() => {
+        scrollToCard(nextIndex % services.length, "auto")
+      }, LOOP_RESET_DELAY)
+    }
+  }, [scrollToCard, services.length])
 
   useEffect(() => {
     if (isPaused || services.length < 2) return
 
     const timer = window.setInterval(() => {
-      scrollToCard(activeCard >= services.length - 1 ? 0 : activeCard + 1)
+      scrollToLoopCard(activeCard + 1)
     }, AUTOPLAY_DELAY)
 
     return () => window.clearInterval(timer)
-  }, [activeCard, isPaused, scrollToCard, services.length])
+  }, [activeCard, isPaused, scrollToLoopCard, services.length])
+
+  useEffect(() => {
+    return () => {
+      if (resetTimerRef.current) {
+        window.clearTimeout(resetTimerRef.current)
+      }
+    }
+  }, [])
 
   return (
     <section
-      className="relative bg-[#f4f6f9] services-section"
+      className="relative mx-3 bg-[#f4f6f9] services-section sm:mx-4"
       id="services-preview"
     >
       <div className="w-full">
@@ -109,25 +140,6 @@ export default function ServiceSlider({ services }: { services: Service[] }) {
               </p>
             </div>
             
-            {/* Desktop Navigation buttons */}
-            <div className="hidden md:flex items-center justify-end gap-3 shrink-0 self-center">
-              <button
-                onClick={() => scrollToCard(activeCard - 1)}
-                disabled={activeCard === 0}
-                className="w-12 h-12 rounded-full border border-gray-300 hover:border-[#ff3b3b] hover:bg-[#ff3b3b]/5 flex items-center justify-center text-gray-700 hover:text-[#ff3b3b] transition-all disabled:opacity-30 disabled:pointer-events-none"
-                aria-label="Previous service"
-              >
-                <ChevronLeft size={24} strokeWidth={1.5} />
-              </button>
-              <button
-                onClick={() => scrollToCard(activeCard + 1)}
-                disabled={activeCard === services.length - 1}
-                className="w-12 h-12 rounded-full border border-gray-300 hover:border-[#ff3b3b] hover:bg-[#ff3b3b]/5 flex items-center justify-center text-gray-700 hover:text-[#ff3b3b] transition-all disabled:opacity-30 disabled:pointer-events-none"
-                aria-label="Next service"
-              >
-                <ChevronRight size={24} strokeWidth={1.5} />
-              </button>
-            </div>
           </div>
 
           <div
@@ -139,12 +151,12 @@ export default function ServiceSlider({ services }: { services: Service[] }) {
               ref={trackRef}
               className="flex w-max gap-5 pr-[max(1rem,calc(50vw-600px+2rem))] md:gap-6 services-track"
             >
-              {services.map((service) => {
+              {loopedServices.map((service, index) => {
                 const Icon = serviceIcons[service.icon as keyof typeof serviceIcons] ?? Cpu
 
                 return (
                   <Link
-                    key={service.slug}
+                    key={`${service.slug}-${index}`}
                     href={`/services/${service.slug}`}
                     aria-label={`Read more about ${service.title}`}
                     onMouseEnter={() => setIsPaused(true)}
@@ -174,44 +186,41 @@ export default function ServiceSlider({ services }: { services: Service[] }) {
             </div>
           </div>
 
-          {/* Mobile-only pagination indicator & arrows */}
-          <div className="flex items-center justify-center gap-4 mt-6 md:hidden">
-            <button
-              onClick={() => scrollToCard(activeCard - 1)}
-              disabled={activeCard === 0}
-              className="w-10 h-10 rounded-full border border-gray-300 hover:border-[#ff3b3b] hover:bg-[#ff3b3b]/5 flex items-center justify-center text-gray-700 hover:text-[#ff3b3b] transition-all disabled:opacity-30 disabled:pointer-events-none"
-              aria-label="Previous service"
-            >
-              <ChevronLeft size={20} strokeWidth={1.5} />
-            </button>
-            
-            <div className="flex gap-2">
-              {services.map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => scrollToCard(index)}
-                  className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
-                    activeCard === index ? "bg-[#ff3434] w-6" : "bg-gray-300"
-                  }`}
-                  aria-label={`Go to service ${index + 1}`}
-                />
-              ))}
-            </div>
-
-            <button
-              onClick={() => scrollToCard(activeCard + 1)}
-              disabled={activeCard === services.length - 1}
-              className="w-10 h-10 rounded-full border border-gray-300 hover:border-[#ff3b3b] hover:bg-[#ff3b3b]/5 flex items-center justify-center text-gray-700 hover:text-[#ff3b3b] transition-all disabled:opacity-30 disabled:pointer-events-none"
-              aria-label="Next service"
-            >
-              <ChevronRight size={20} strokeWidth={1.5} />
-            </button>
-          </div>
-
-          <div className="mt-8 md:mt-12 text-center shrink-0">
+          <div className="mt-8 flex flex-col items-center justify-center gap-5 shrink-0 md:mt-12 md:flex-row md:gap-6">
             <AnimatedButton href="/services" variant="primary">
               View All Services
             </AnimatedButton>
+
+            <div className="flex items-center justify-center gap-4 shrink-0">
+              <button
+                onClick={() => scrollToLoopCard(activeCard - 1)}
+                className="w-10 h-10 rounded-full border border-gray-300 hover:border-[#ff3b3b] hover:bg-[#ff3b3b]/5 flex items-center justify-center text-gray-700 hover:text-[#ff3b3b] transition-all md:w-12 md:h-12"
+                aria-label="Previous service"
+              >
+                <ChevronLeft className="w-5 h-5 md:w-6 md:h-6" strokeWidth={1.5} />
+              </button>
+              
+              <div className="flex gap-2">
+                {services.map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => scrollToLoopCard(index)}
+                    className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
+                      activeCard === index ? "bg-[#ff3434] w-6" : "bg-gray-300"
+                    }`}
+                    aria-label={`Go to service ${index + 1}`}
+                  />
+                ))}
+              </div>
+
+              <button
+                onClick={() => scrollToLoopCard(activeCard + 1)}
+                className="w-10 h-10 rounded-full border border-gray-300 hover:border-[#ff3b3b] hover:bg-[#ff3b3b]/5 flex items-center justify-center text-gray-700 hover:text-[#ff3b3b] transition-all md:w-12 md:h-12"
+                aria-label="Next service"
+              >
+                <ChevronRight className="w-5 h-5 md:w-6 md:h-6" strokeWidth={1.5} />
+              </button>
+            </div>
           </div>
         </div>
       </div>

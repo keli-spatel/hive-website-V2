@@ -38,7 +38,7 @@ export function AnimatedButton({
     variantClasses = "bg-[#ff3b3b] hover:bg-[#df2d2d] shadow-md hover:shadow-lg border border-[#ff3b3b]/10 focus:ring-[#ff3b3b]/30"
     textColor = "#ffffff"
   } else if (variant === "secondary") {
-    variantClasses = "bg-white hover:bg-[#ff3b3b] shadow-sm hover:shadow-md border border-[#ff3b3b] focus:ring-[#ff3b3b]/20"
+    variantClasses = "bg-white hover:bg-black shadow-sm hover:shadow-md border border-[#ff3b3b] hover:border-black focus:ring-[#ff3b3b]/20"
     textColor = isHovered ? "#ffffff" : "#ff3b3b"
   } else if (variant === "dark") {
     variantClasses = "bg-black hover:bg-gray-900 shadow-md hover:shadow-lg border border-black/20 focus:ring-black/30"

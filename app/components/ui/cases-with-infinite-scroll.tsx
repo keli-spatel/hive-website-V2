@@ -61,7 +61,7 @@ export function ClientCarousel() {
   }, [api, current]);
 
   return (
-    <div className="w-full py-10">
+    <div className="relative left-1/2 w-screen -translate-x-1/2 px-4 py-10 sm:px-6">
       <div className="flex flex-col gap-6">
         <Carousel
           setApi={setApi}
@@ -72,15 +72,15 @@ export function ClientCarousel() {
             {clientLogos.map((logo, index) => (
               <CarouselItem
                 key={index}
-                className="pl-3 basis-1/3 sm:basis-1/4 md:basis-1/5 lg:basis-1/6 xl:basis-1/7"
+                className="pl-3 basis-1/2 sm:basis-1/3 md:basis-1/4 lg:basis-1/5 xl:basis-1/6"
               >
-                <div className="flex items-center justify-center rounded-xl border border-gray-100 bg-white aspect-[3/2] p-4 shadow-sm hover:shadow-md transition-shadow duration-200">
+                <div className="flex h-28 w-full items-center justify-center rounded-xl border border-gray-100 bg-white p-5 shadow-sm hover:shadow-md transition-shadow duration-200 sm:h-[120px] lg:h-32">
                   <Image
                     src={logo}
                     alt={`Client logo ${index + 1}`}
-                    width={120}
-                    height={60}
-                    className="object-contain max-h-12 w-auto grayscale hover:grayscale-0 transition-all duration-300"
+                    width={180}
+                    height={90}
+                    className="h-auto max-h-20 w-auto max-w-full object-contain transition-transform duration-300 hover:scale-105 lg:max-h-24"
                   />
                 </div>
               </CarouselItem>

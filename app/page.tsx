@@ -3,10 +3,8 @@ import { FlaskConical, Fuel, Anvil, Coffee, UserCog, Settings, ShieldCheck, Head
 import { AnimatedButton } from "./components/ui/AnimatedButton";
 import { AnimatedExpertiseItem } from "./components/ui/AnimatedExpertiseItem";
 import AnimatedStats from "./components/AnimatedStats";
-import AnimatedLogoCloud from "./components/AnimatedLogoCloud";
 import ServiceSlider from "./components/ServiceSlider";
 import { ContactCard } from "./components/ContactCard";
-import CaseStudyStack from "./components/CaseStudyStack";
 import CaseStudyShowcase from "./components/CaseStudyShowcase";
 import { ClientCarousel } from "./components/ui/cases-with-infinite-scroll";
 const scheduleUrl = "https://appt.link/meet-with-bhavik-bhimani-iz1nBIl5/hive-automation";
@@ -16,6 +14,13 @@ const industries = [
   { name: "Oil & Gas", icon: Fuel },
   { name: "Forging", icon: Anvil },
   { name: "Food & Beverages", icon: Coffee },
+];
+
+const trustTags = [
+  { name: "Siemens Experts", icon: UserCog },
+  { name: "Precision Industrial Automation", icon: Settings },
+  { name: "GAMP 5 Quality", icon: ShieldCheck },
+  { name: "24/7 Support", icon: Headset },
 ];
 
 const services = [
@@ -168,37 +173,6 @@ const whyHive = [
   },
 ];
 
-const clientLogos = [
-  "/clients/client-1.png",
-  "/clients/client-2.png",
-  "/clients/client-3.png",
-  "/clients/client-4.png",
-  "/clients/client-5.png",
-  "/clients/client-6.png",
-  "/clients/client-7.png",
-  "/clients/client-8.png",
-  "/clients/client-9.png",
-  "/clients/client-10.png",
-  "/clients/client-12.png",
-  "/clients/client-13.png",
-  "/clients/client-14.png",
-  "/clients/client-15.png",
-  "/clients/client-16.png",
-  "/clients/client-17.png",
-  "/clients/client-18.png",
-  "/clients/client-19.png",
-  "/clients/client-20.png",
-  "/clients/client-22.png",
-  "/clients/client-23.png",
-  "/clients/client-24.png",
-  "/clients/companys-1.png",
-  "/clients/companys-2.png",
-  "/clients/companys-3.png",
-  "/clients/companys-4.png",
-  "/clients/companys-5.png",
-  "/clients/companys-6.png",
-];
-
 export default function HomePage() {
   return (
     <main className="home">
@@ -247,22 +221,13 @@ export default function HomePage() {
       <section className="industry-strip" aria-label="Our Expertise">
         <div className="strip-inner justify-center">
           <div className="expertise-row">
-            <AnimatedExpertiseItem
-              icon={<UserCog size={24} />}
-              text={<>Siemens<br />Experts</>}
-            />
-            <AnimatedExpertiseItem
-              icon={<Settings size={24} />}
-              text={<>Precision Industrial<br />Automation</>}
-            />
-            <AnimatedExpertiseItem
-              icon={<ShieldCheck size={24} />}
-              text={<>GAMP 5<br />Quality</>}
-            />
-            <AnimatedExpertiseItem
-              icon={<Headset size={24} />}
-              text={<>24/7<br />Support</>}
-            />
+            {industries.map((industry) => (
+              <AnimatedExpertiseItem
+                key={industry.name}
+                icon={<industry.icon size={24} />}
+                text={industry.name}
+              />
+            ))}
           </div>
         </div>
       </section>
@@ -299,13 +264,13 @@ export default function HomePage() {
             </p>
             <div className="mt-9">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-5 gap-x-4">
-                {industries.map((industry) => (
-                  <div key={industry.name} className="flex items-center gap-4">
+                {trustTags.map((tag) => (
+                  <div key={tag.name} className="flex items-center gap-4">
                     <div className="w-14 h-14 rounded-full border border-dashed border-[#ff3b3b] bg-[#ff3b3b]/[0.04] flex items-center justify-center text-[#ff3b3b] shrink-0">
-                      <industry.icon size={26} strokeWidth={1.5} />
+                      <tag.icon size={26} strokeWidth={1.5} />
                     </div>
                     <span className="text-[15px] font-bold text-black">
-                      {industry.name}
+                      {tag.name}
                     </span>
                   </div>
                 ))}
@@ -324,19 +289,6 @@ export default function HomePage() {
       </section>
 
       <ServiceSlider services={services} />
-
-      <section className="section-steel case-studies-section relative z-10" id="case-studies-stack">
-        <div className="container">
-          <div>
-            <CaseStudyStack projects={projects} />
-          </div>
-          <div className="center-action">
-            <AnimatedButton href="/projects">
-              View All Projects
-            </AnimatedButton>
-          </div>
-        </div>
-      </section>
 
       <CaseStudyShowcase projects={projects} />
 
@@ -383,8 +335,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      <AnimatedStats />
-
       {/* Infinite Scroll Client Carousel */}
       <section className="section clients-carousel-section" id="clients-carousel">
         <div className="container">
@@ -396,19 +346,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="section clients-section" id="clients">
-        <div className="container">
-          <div className="section-heading">
-            <p className="section-label">Our Client</p>
-            <h2>Trusted by Leading Companies &amp; Brands</h2>
-          </div>
-
-          <AnimatedLogoCloud
-            logos={clientLogos}
-            className="mt-12 rounded-xl overflow-hidden shadow-sm"
-          />
-        </div>
-      </section>
+      <AnimatedStats />
 
       <section className="section quote-section" id="quote">
         <div className="container">

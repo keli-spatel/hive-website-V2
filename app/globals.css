@@ -577,11 +577,11 @@ p {
 
 .hero-section {
   position: relative;
-  min-height: 100dvh;
+  min-height: clamp(600px, 82dvh, 880px);
   display: grid;
   align-items: center;
   overflow: hidden;
-  padding: 130px 0 78px;
+  padding: 124px 0 112px;
   background: var(--white);
 }
 
@@ -593,7 +593,9 @@ p {
 .hero-shade {
   position: absolute;
   inset: 0;
-  background: linear-gradient(90deg, rgba(255, 255, 255, 0.42) 0%, rgba(255, 255, 255, 0.3) 35%, rgba(255, 255, 255, 0.12) 58%, rgba(255, 255, 255, 0) 82%);
+  background:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.72) 0%, rgba(255, 255, 255, 0.5) 35%, rgba(255, 255, 255, 0.18) 62%, rgba(255, 255, 255, 0) 86%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0.18) 100%);
 }
 
 
@@ -607,11 +609,11 @@ p {
 .hero-content::before {
   content: "";
   position: absolute;
-  top: -80px;
-  bottom: -80px;
-  left: -40px;
-  width: 800px;
-  background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.48) 0%, rgba(255, 255, 255, 0.22) 46%, rgba(255, 255, 255, 0) 72%);
+  top: -56px;
+  bottom: -56px;
+  left: -44px;
+  width: min(760px, calc(100vw - 24px));
+  background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.74) 0%, rgba(255, 255, 255, 0.44) 48%, rgba(255, 255, 255, 0) 76%);
   z-index: -1;
   pointer-events: none;
 }
@@ -629,11 +631,11 @@ p {
 .home .hero-section .hero-content p {
   max-width: 580px;
   margin-top: 20px;
+  padding: 10px 14px;
   color: #000;
   font-size: var(--text-lg);
-  font-weight: var(--weight-regular);
+  font-weight: 500;
   line-height: 1.6;
-  text-shadow: 0 1px 14px rgba(255, 255, 255, 0.72);
 }
 
 .action-row {
@@ -678,24 +680,27 @@ p {
 }
 
 .industry-strip {
-  background: var(--white);
+  background: linear-gradient(to bottom, transparent 0 72px, var(--white) 72px 100%);
   position: relative;
   z-index: 10;
+  margin-top: -72px;
+  padding-bottom: 16px;
 }
 
 .strip-inner {
   width: min(1080px, calc(100% - 48px));
-  min-height: 120px;
+  min-height: 136px;
   display: flex;
   align-items: center;
   justify-content: center;
   background: var(--white);
   border: 1px solid rgba(0, 0, 0, 0.06);
-  border-radius: 24px;
-  box-shadow: 0 24px 54px rgba(17, 18, 20, 0.08);
-  margin: -60px auto 0 auto;
-  padding: 16px 32px;
+  border-radius: 0;
+  box-shadow: 0 28px 70px rgba(17, 18, 20, 0.16);
+  margin: 0 auto;
+  padding: 0;
   position: relative;
+  overflow: hidden;
 }
 
 .strip-label {
@@ -790,33 +795,46 @@ p {
 .expertise-row {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 40px;
+  gap: 0;
   justify-content: center;
-  align-items: start;
+  align-items: stretch;
   width: 100%;
-  padding: 16px 0;
+  min-height: 136px;
+  padding: 0;
 }
 
 .expertise-item {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
-  text-align: center;
-  gap: 12px;
-  transition: transform 0.3s ease;
+  justify-content: center;
+  text-align: left;
+  gap: 16px;
+  min-height: 136px;
+  width: 100%;
+  border-right: 1px solid rgba(17, 18, 20, 0.06);
+  border-radius: 0;
+  padding: 18px 24px;
+  transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
   cursor: default;
 }
 
+.expertise-item:last-child {
+  border-right: 0;
+}
+
 .expertise-item:hover {
-  transform: translateY(-4px);
+  background: var(--red);
+  transform: none;
+  box-shadow: 0 18px 34px rgba(255, 52, 52, 0.24);
 }
 
 .expertise-icon {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 68px;
-  height: 68px;
+  width: 62px;
+  height: 62px;
   border-radius: 50%;
   border: 1px dashed rgba(255, 52, 52, 0.4);
   padding: 5px;
@@ -824,8 +842,8 @@ p {
 }
 
 .expertise-item:hover .expertise-icon {
-  border-color: rgba(255, 52, 52, 0.8);
-  box-shadow: 0 0 0 4px rgba(255, 52, 52, 0.1);
+  border-color: rgba(255, 255, 255, 0.65);
+  box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.16);
 }
 
 .expertise-icon svg {
@@ -839,21 +857,21 @@ p {
 }
 
 .expertise-item:hover .expertise-icon svg {
-  background: rgba(255, 52, 52, 0.15);
+  background: rgba(255, 255, 255, 0.16);
   transform: scale(1.15) rotate(5deg);
-  color: var(--red-dark);
+  color: #ffffff;
 }
 
 .expertise-text {
-  font-size: var(--text-md);
+  font-size: var(--text-lg);
   font-weight: var(--weight-bold);
-  line-height: 1.4;
+  line-height: 1.25;
   color: #111;
   transition: color 0.3s ease;
 }
 
 .expertise-item:hover .expertise-text {
-  color: var(--red);
+  color: #ffffff;
 }
 
 .service-grid {
@@ -1152,6 +1170,15 @@ p {
   line-height: 1.12;
 }
 
+.case-showcase-intro {
+  max-width: 680px;
+  margin-top: 14px;
+  color: rgba(255, 255, 255, 0.98);
+  font-size: var(--text-base);
+  font-weight: var(--weight-regular);
+  line-height: 1.55;
+}
+
 .case-showcase-accent {
   display: block;
   width: 56px;
@@ -1192,11 +1219,14 @@ p {
 
 .case-showcase-track {
   display: grid;
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
   grid-auto-flow: column;
   grid-auto-columns: minmax(420px, calc((100% - 56px) / 3));
   gap: 28px;
   overflow-x: auto;
-  padding: 4px 0 12px;
+  padding: 4px 24px 12px;
+  scroll-padding-left: 24px;
   scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
   scrollbar-width: none;
@@ -1683,9 +1713,9 @@ p {
   position: relative;
   z-index: 2;
   color: var(--black);
-  font-size: var(--text-xs);
+  font-size: var(--text-sm);
   font-weight: var(--weight-bold);
-  letter-spacing: 0.1em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   transition: color 400ms ease;
 }
@@ -1878,6 +1908,7 @@ p {
 }
 
 .clients-carousel-section {
+  background: var(--steel);
   padding-top: 80px;
   padding-bottom: 48px;
 }
@@ -2084,8 +2115,33 @@ p {
   }
 
   .hero-section {
-    min-height: 88vh;
-    padding-top: 118px;
+    min-height: 660px;
+    padding: 110px 0 112px;
+    align-items: center;
+  }
+
+  .hero-content::before {
+    top: -40px;
+    bottom: -40px;
+    left: -18px;
+    width: calc(100vw - 16px);
+  }
+
+  .home .hero-section .hero-content p {
+    max-width: 100%;
+    margin-top: 16px;
+    line-height: 1.5;
+  }
+
+  .industry-strip {
+    background: linear-gradient(to bottom, transparent 0 62px, var(--white) 62px 100%);
+    margin-top: -62px;
+    padding-bottom: 10px;
+  }
+
+  .strip-inner {
+    min-height: 108px;
+    padding: 0;
   }
 
   .action-row,
@@ -2205,7 +2261,16 @@ p {
 
   .expertise-row {
     grid-template-columns: repeat(4, 1fr) !important;
-    gap: 8px !important;
+    gap: 0 !important;
+    min-height: 108px;
+  }
+
+  .expertise-item {
+    flex-direction: column;
+    text-align: center;
+    gap: 8px;
+    min-height: 108px;
+    padding: 10px 6px;
   }
 
   .expertise-icon {
