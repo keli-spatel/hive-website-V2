@@ -1,26 +1,137 @@
 import Link from "next/link";
 import Image from "next/image";
+import type { Metadata } from "next";
+import type { CSSProperties } from "react";
 import { notFound } from "next/navigation";
 import { AnimatedButton } from "../../components/ui/AnimatedButton";
-import { Phone } from "lucide-react";
+import { Factory, FlaskConical, Fuel, Gauge, Package, Phone, Pill } from "lucide-react";
 
 // Define static services data
 const servicesData = {
   "plc-programming-integration": {
-    title: "PLC Programming & Integration",
-    tagline: "Precision logic for precise control.",
+    title: "PLC Programming & Integration Services",
+    tagline: "Precision logic for precise control — custom PLC programs engineered for Siemens, Allen-Bradley and Schneider platforms.",
     desc: "We develop custom PLC programs tailored to your process and production goals. Whether you’re upgrading an existing system or building from scratch, our logic design ensures safety, flexibility, and performance.",
     icon: "⚙️",
     features: [
-      "Siemens S7-200 Smart / S7-300 / S7-400 / S7-1200 / S7-1500 platforms",
-      "TIA Portal & Step 7 programming",
-      "Redundancy and fault-tolerant systems",
-      "Safety PLC integration (Fail-safe)",
-      "Complex interlocks and sequencing logic",
-      "I/O mapping and diagnostics",
-      "Remote monitoring and control"
+      "Siemens S7-200 Smart / S7-300 / S7-400 / S7-1200 / S7-1500 platform programming",
+      "TIA Portal and classic Step 7 programming and migration",
+      "Allen-Bradley ControlLogix, CompactLogix and Studio 5000 programming",
+      "Schneider Electric Modicon and EcoStruxure-based PLC programming",
+      "Redundant and fault-tolerant PLC architecture for 24/7 critical processes",
+      "Safety PLC integration, fail-safe logic, SIL-rated systems, and emergency interlocks",
+      "Complex interlocking and sequencing logic for batch and continuous processes",
+      "I/O mapping, signal diagnostics, and field instrument integration",
+      "Remote monitoring, remote access, and over-the-network PLC diagnostics"
     ],
-    idealFor: "Process lines, Packaging & Pharma machinery, compressors, utilities, and critical plant systems."
+    idealFor: "Process lines, Packaging & Pharma machinery, compressors, utilities, and critical plant systems.",
+    seo: {
+      title: "PLC Programming & Integration Services | Hive Automation",
+      description: "Custom PLC programming for Siemens, Allen-Bradley & Schneider. Fail-safe, redundant systems for pharma, oil & gas plants across India. Get a free consultation.",
+      keywords: [
+        "PLC programming services",
+        "PLC programming company",
+        "PLC integration services",
+        "industrial automation PLC programming",
+        "PLC system integrator",
+        "PLC panel programming",
+        "custom PLC programming",
+        "Siemens S7-1500 PLC programming company",
+        "TIA Portal PLC programming services",
+        "fail-safe PLC integration for pharma machinery",
+        "PLC programming company in Ahmedabad",
+        "PLC programming services in Gujarat",
+        "PLC SCADA automation company India"
+      ],
+      ogImage: "https://hiveautomation.in/src/img/og-plc-programming.jpg",
+      ogImageAlt: "PLC Programming and Integration Services - Hive Automation, Ahmedabad"
+    },
+    contentSections: [
+      {
+        heading: "What Is PLC Programming & Why It Matters",
+        paragraphs: [
+          "A Programmable Logic Controller (PLC) is the brain of any automated production line — it reads inputs from sensors, executes control logic, and drives outputs to motors, valves, and actuators in real time. The quality of PLC programming directly determines your plant's uptime, safety compliance, and ability to scale. Poorly structured PLC code leads to nuisance faults, unsafe interlocks, and expensive downtime; well-engineered PLC programming reduces changeover time, simplifies troubleshooting, and extends equipment life.",
+          "As a dedicated PLC programming company, Hive Automation builds control logic that plant engineers can actually maintain — clearly structured, well-commented, and documented to IEC 61131-3 standards across Ladder Logic, Function Block Diagram (FBD), and Structured Text (ST)."
+        ]
+      },
+      {
+        heading: "Our PLC Programming & Integration Capabilities",
+        paragraphs: [
+          "We provide full-cycle PLC programming and integration services — from control philosophy and logic design through commissioning and long-term support."
+        ],
+        bullets: [
+          "Siemens S7-200 Smart / S7-300 / S7-400 / S7-1200 / S7-1500 platform programming",
+          "TIA Portal and classic Step 7 programming and migration",
+          "Allen-Bradley (Rockwell) ControlLogix, CompactLogix and Studio 5000 programming",
+          "Schneider Electric Modicon and EcoStruxure-based PLC programming",
+          "Redundant and fault-tolerant PLC architecture for 24/7 critical processes",
+          "Safety PLC integration — fail-safe logic, SIL-rated systems, and emergency interlocks",
+          "Complex interlocking and sequencing logic for batch and continuous processes",
+          "I/O mapping, signal diagnostics, and field instrument integration",
+          "Remote monitoring, remote access, and over-the-network PLC diagnostics"
+        ]
+      },
+      {
+        heading: "Industries We Serve",
+        paragraphs: [
+          "Our PLC programming and integration work spans process-critical industries where downtime is not an option:"
+        ],
+        bullets: [
+          "Pharmaceutical manufacturing & packaging lines (GMP/21 CFR Part 11-aligned logic)",
+          "Oil & gas terminals, pipelines, and utility skids",
+          "Chemical and process manufacturing plants",
+          "Compressor stations and rotating equipment control",
+          "Packaging, filling, and material-handling machinery",
+          "Plant utilities including boilers, HVAC, water treatment, and effluent treatment systems"
+        ]
+      },
+      {
+        heading: "Our PLC Programming Process",
+        paragraphs: [
+          "We follow a structured, documentation-driven process so every PLC project is traceable, testable, and repeatable:"
+        ],
+        bullets: [
+          "1. Requirement study & control philosophy — understanding your process, safety requirements, and existing architecture",
+          "2. Functional Design Specification (FDS) sign-off before coding begins",
+          "3. PLC logic development in TIA Portal / Studio 5000 / Unity Pro, following IEC 61131-3 coding standards",
+          "4. Internal simulation and Factory Acceptance Testing (FAT)",
+          "5. On-site installation, I/O loop checking, and commissioning",
+          "6. Site Acceptance Testing (SAT) and as-built documentation handover",
+          "7. Post-commissioning support and remote diagnostics"
+        ]
+      },
+      {
+        heading: "Why Choose Hive Automation for PLC Programming in India",
+        paragraphs: [
+          "Hive Automation has been delivering PLC programming and integration services since 2017 from our Ahmedabad, Gujarat facility, serving clients across India in pharmaceutical, oil & gas, and chemical manufacturing. We work directly with plant engineering teams — not through layers of subcontracting — so every PLC program we deliver is documented, supportable, and built around your operators' real-world workflow, not a generic template.",
+          "From single-machine PLC retrofits to multi-PLC plant-wide control architecture, our engineers are equally comfortable on Siemens, Allen-Bradley, and Schneider platforms — meaning you are not locked into a single vendor ecosystem."
+        ]
+      }
+    ],
+    relatedLinks: [
+      { href: "/services/distributed-control-systems", label: "For plant-wide control beyond single PLCs, see our DCS integration services." },
+      { href: "/services/system-upgrade-retrofits", label: "Running a legacy Siemens S5 or S7-300? See our PLC retrofit & migration services." },
+      { href: "/services/scada-hmi-development", label: "Pair your PLC program with a SCADA/HMI interface for full operator visibility." },
+      { href: "/services/turnkey-project-execution", label: "Need panel fabrication and commissioning too? See our turnkey project execution." }
+    ],
+    faqs: [
+      {
+        q: "Which PLC brands does Hive Automation program?",
+        a: "We program Siemens S7-200 Smart through S7-1500 using TIA Portal and Step 7, Allen-Bradley/Rockwell ControlLogix and CompactLogix using Studio 5000, and Schneider Electric Modicon and EcoStruxure PLC platforms."
+      },
+      {
+        q: "Can you upgrade an old PLC program to a new platform?",
+        a: "Yes. We migrate legacy Siemens S5 and S7-300 logic to S7-1500 and TIA Portal, including code translation, I/O remapping, and phased cutover planning to minimize production downtime."
+      },
+      {
+        q: "Do you provide safety PLC fail-safe programming?",
+        a: "Yes. We design and program fail-safe PLC systems and SIL-rated safety interlocks for pharmaceutical, chemical, and oil & gas applications where functional safety compliance is mandatory."
+      },
+      {
+        q: "How long does a typical PLC programming project take?",
+        a: "A single-machine PLC program can be delivered in 1 to 3 weeks, while plant-wide multi-PLC integration projects typically run 6 to 16 weeks including FAT/SAT and commissioning."
+      }
+    ]
   },
   "distributed-control-systems": {
     title: "Distributed Control Systems (DCS)",
@@ -124,6 +235,43 @@ type Props = {
   params: Promise<{ slug: string }>;
 };
 
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { slug } = await params;
+  const service = servicesData[slug as keyof typeof servicesData];
+
+  if (!service) {
+    return {};
+  }
+
+  const seo = "seo" in service ? service.seo : undefined;
+  const title = seo?.title ?? `${service.title} | Hive Automation`;
+  const description = seo?.description ?? service.desc;
+  const url = `https://hiveautomation.in/services/${slug}`;
+
+  return {
+    title,
+    description,
+    keywords: seo?.keywords,
+    alternates: {
+      canonical: `/services/${slug}`,
+    },
+    openGraph: {
+      title,
+      description,
+      url,
+      type: "website",
+      images: seo?.ogImage
+        ? [
+            {
+              url: seo.ogImage,
+              alt: seo.ogImageAlt ?? service.title,
+            },
+          ]
+        : undefined,
+    },
+  };
+}
+
 export default async function ServiceDetailPage({ params }: Props) {
   const { slug } = await params;
   const service = servicesData[slug as keyof typeof servicesData];
@@ -132,71 +280,143 @@ export default async function ServiceDetailPage({ params }: Props) {
     notFound();
   }
 
+  const contentSections = "contentSections" in service ? service.contentSections : undefined;
+  const relatedLinks = "relatedLinks" in service ? service.relatedLinks : undefined;
+  const faqs = "faqs" in service ? service.faqs : undefined;
+  const heroContent =
+    slug === "plc-programming-integration"
+      ? {
+          title: "PLC Programming & Integration Services",
+          subheadline:
+            "Precision logic for precise control — custom PLC programs engineered for Siemens, Allen-Bradley and Schneider platforms.",
+          body:
+            "Hive Automation designs, programs, and integrates Programmable Logic Controllers (PLCs) for manufacturing, process, and packaging lines across India. Whether you are building a new control system from scratch or upgrading a legacy installation, our PLC programming services are engineered for safety, flexibility, and long-term performance — backed by hands-on experience since 2017 across pharmaceutical, oil & gas, and chemical plants.",
+          cta: "Request a Free PLC Programming Consultation",
+          tags: ["Siemens", "Allen-Bradley", "Schneider", "Since 2017"],
+        }
+      : {
+          title: service.title,
+          subheadline: service.tagline,
+          body: service.desc,
+          cta: "Request a Free Consultation",
+          tags: [],
+        };
+  const schema =
+    slug === "plc-programming-integration"
+      ? {
+          "@context": "https://schema.org",
+          "@graph": [
+            {
+              "@type": "Service",
+              serviceType: "PLC Programming and Integration",
+              name: "PLC Programming & Integration Services",
+              description:
+                "Custom PLC programming and integration services for Siemens, Allen-Bradley and Schneider platforms, including safety PLC, redundant architecture, and I/O integration for pharmaceutical, oil & gas, and chemical plants.",
+              provider: {
+                "@type": "Organization",
+                name: "Hive Automation",
+                url: "https://hiveautomation.in/",
+                logo: "https://hiveautomation.in/src/img/header-logo.png",
+                telephone: "+91-99786-03840",
+                email: "info@hiveautomation.in",
+                address: {
+                  "@type": "PostalAddress",
+                  streetAddress: "33, B N Industrial Estate, Near Kathwada GIDC Gate No 5, S P Ring Road, Near Nikol, Odhav",
+                  addressLocality: "Ahmedabad",
+                  addressRegion: "Gujarat",
+                  postalCode: "382415",
+                  addressCountry: "IN",
+                },
+              },
+              areaServed: [
+                { "@type": "Country", name: "India" },
+                { "@type": "AdministrativeArea", name: "Gujarat" },
+              ],
+              url: "https://hiveautomation.in/services/plc-programming-integration",
+              audience: {
+                "@type": "Audience",
+                audienceType: "Pharmaceutical, Oil & Gas, Chemical and Manufacturing Plant Engineers",
+              },
+            },
+            {
+              "@type": "BreadcrumbList",
+              itemListElement: [
+                { "@type": "ListItem", position: 1, name: "Home", item: "https://hiveautomation.in/" },
+                { "@type": "ListItem", position: 2, name: "Services", item: "https://hiveautomation.in/services" },
+                {
+                  "@type": "ListItem",
+                  position: 3,
+                  name: "PLC Programming & Integration",
+                  item: "https://hiveautomation.in/services/plc-programming-integration",
+                },
+              ],
+            },
+            ...(faqs
+              ? [
+                  {
+                    "@type": "FAQPage",
+                    mainEntity: faqs.map((item) => ({
+                      "@type": "Question",
+                      name: item.q,
+                      acceptedAnswer: {
+                        "@type": "Answer",
+                        text: item.a,
+                      },
+                    })),
+                  },
+                ]
+              : []),
+          ],
+        }
+      : undefined;
+
   return (
-    <div style={{ marginTop: 82 }}>
-      {/* Hero Header */}
-      <section style={{ background: "linear-gradient(135deg,#1B1B1B,#2a2a2a)", padding: "80px 32px", overflow: "hidden" }}>
-        <div
-          className="container"
-          style={{
-            maxWidth: 1200,
-            margin: "0 auto",
-            display: "grid",
-            gridTemplateColumns: "1.2fr 1fr",
-            gap: 48,
-            alignItems: "center",
-          }}
-        >
-          {/* Text Column */}
-          <div>
-            {/* Breadcrumb */}
-            <div style={{ display: "flex", flexWrap: "wrap", gap: 8, marginBottom: 20, fontSize: 12, fontWeight: 600, color: "#C5C1B9", letterSpacing: 1 }}>
-              <Link href="/" style={{ color: "#C5C1B9", textDecoration: "none", fontWeight: 400 }}>Home</Link>
+    <div className="service-detail-page" style={{ marginTop: 82 }}>
+      {schema ? (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+        />
+      ) : null}
+
+      <section className="service-detail-hero">
+        <div className="container service-detail-hero-inner">
+          <div className="service-detail-hero-copy">
+            <div className="service-detail-breadcrumb">
+              <Link href="/">Home</Link>
               <span>/</span>
-              <Link href="/services" style={{ color: "#C5C1B9", textDecoration: "none", fontWeight: 400 }}>Services</Link>
+              <Link href="/services">Services</Link>
               <span>/</span>
-              <span style={{ color: "#FF3434" }}>{service.title}</span>
+              <span>{service.title}</span>
             </div>
             
-            <div style={{ display: "inline-flex", alignItems: "center", gap: 12, marginBottom: 16 }}>
-              <div style={{ width: 44, height: 44, borderRadius: 12, background: "rgba(255, 52, 52,0.15)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 24 }}>
-                {service.icon}
-              </div>
-              <span style={{ fontSize: 12, fontWeight: 600, color: "#FF3434", letterSpacing: 1.5, textTransform: "uppercase" }}>
-                Industrial Service
-              </span>
+            <h1>{heroContent.title}</h1>
+            <p className="service-detail-hero-subtitle">{heroContent.subheadline}</p>
+            <p className="service-detail-hero-body">{heroContent.body}</p>
+            <div className="service-detail-hero-action">
+              <AnimatedButton href="/contact">
+                {heroContent.cta}
+              </AnimatedButton>
             </div>
-            
-            <h1 style={{ marginBottom: 16 }}>
-              {service.title}
-            </h1>
-            <p style={{ color: "#C5C1B9", fontSize: 16, lineHeight: "26px", margin: 0, fontWeight: 500 }}>
-              {service.tagline}
-            </p>
           </div>
 
-          {/* Image Column */}
-          <div style={{ position: "relative", width: "100%", height: 300, borderRadius: 12, overflow: "hidden" }}>
+          <div className="service-detail-hero-media">
             <Image
               src={`/services/${slug}.png`}
-              alt={service.title}
+              alt={slug === "plc-programming-integration" ? "PLC programming and integration services for Siemens Allen-Bradley and Schneider platforms" : service.title}
               fill
-              style={{ objectFit: "cover" }}
               priority
             />
+            <div className="service-detail-hero-panel">
+              <strong>2017+</strong>
+              <span>PLC, SCADA and plant automation delivery</span>
+            </div>
           </div>
         </div>
-        <style>{`
-          @media(max-width: 799px) {
-            .container[style*="grid-template-columns: 1.2fr 1fr"] {
-              grid-template-columns: 1fr !important;
-              gap: 32px !important;
-            }
-          }
-        `}</style>
       </section>
 
-      {/* Main Content */}
+      {false ? (
+      /* Main Content */
       <section className="section">
         <div className="container" style={{ maxWidth: 1200, margin: "0 auto", display: "grid", gridTemplateColumns: "1.7fr 1fr", gap: 48, alignItems: "start" }}>
           {/* Details Column */}
@@ -210,7 +430,7 @@ export default async function ServiceDetailPage({ params }: Props) {
             <div style={{ display: "grid", gridTemplateColumns: "1fr", gap: 16, marginBottom: 32 }}>
               {service.features.map((feat, idx) => (
                 <div key={idx} style={{ display: "flex", gap: 14, alignItems: "start", background: "#F9F8F6", padding: "16px 20px", borderRadius: 8, border: "1px solid #DCDAD5" }}>
-                  <span style={{ color: "#575ECF", fontWeight: "bold", fontSize: 18 }}>✓</span>
+                  <span className="service-doc-bullet-mark" />
                   <span style={{ fontSize: 14, fontWeight: 500, color: "#1B1B1B", lineHeight: "22px" }}>{feat}</span>
                 </div>
               ))}
@@ -270,17 +490,191 @@ export default async function ServiceDetailPage({ params }: Props) {
           </div>
         </div>
       </section>
+      ) : null}
 
-      {/* Other Services link */}
-      <section className="section-alt" style={{ padding: "48px 32px", textAlign: "center" }}>
+      {contentSections?.length ? (
+        <section className="section service-doc-section-wrap">
+          <div className="container">
+            <div className="service-doc-sections">
+              {contentSections.map((section, index) => {
+                const isCapabilities = section.heading.includes("Capabilities");
+                const isIndustries = section.heading.includes("Industries");
+                const isProcess = section.heading.includes("Process");
+                const isWhy = section.heading.includes("Why Choose");
+                const sectionClass = isCapabilities
+                  ? "service-doc-section-capabilities"
+                  : isIndustries
+                    ? "service-doc-section-industries"
+                    : isProcess
+                      ? "service-doc-section-process"
+                      : isWhy
+                        ? "service-doc-section-why"
+                        : "service-doc-section-concept";
+                const eyebrow = isCapabilities
+                  ? "Capability Matrix"
+                  : isIndustries
+                    ? "Industry Fit"
+                    : isProcess
+                      ? "Project Method"
+                      : isWhy
+                        ? "Selection Reason"
+                        : "Control Logic";
+                const industryIcons = [Pill, Fuel, FlaskConical, Gauge, Package, Factory];
+                const industryTitles = [
+                  "Pharmaceutical",
+                  "Oil & Gas",
+                  "Chemical Plants",
+                  "Compressor Stations",
+                  "Packaging Lines",
+                  "Plant Utilities",
+                ];
+
+                return (
+                <article
+                  key={section.heading}
+                  className={`service-doc-section ${sectionClass}`}
+                  style={{ "--service-section-index": index + 1 } as CSSProperties}
+                >
+                  <div className="service-doc-head">
+                    <p className="section-label">{eyebrow}</p>
+                    <h2>{section.heading}</h2>
+                  </div>
+                  <div className="service-doc-copy">
+                  {section.paragraphs.map((paragraph) => (
+                    <p
+                      key={paragraph}
+                    >
+                      {paragraph}
+                    </p>
+                  ))}
+                  </div>
+                  {section.bullets?.length ? (
+                    <div
+                      className={`service-doc-bullets ${
+                        isCapabilities
+                          ? "service-doc-bullets-capabilities"
+                          : isIndustries
+                            ? "service-doc-bullets-industries"
+                            : isProcess
+                              ? "service-doc-bullets-process"
+                              : ""
+                      }`}
+                    >
+                      {section.bullets.map((item, bulletIndex) => {
+                        const IndustryIcon = industryIcons[bulletIndex % industryIcons.length];
+                        const industryParts = item.match(/^([^(]+?)(?:\s*\((.+)\))?$/);
+                        const industryTitle = industryTitles[bulletIndex] ?? industryParts?.[1]?.trim() ?? item;
+                        const industryDetail = industryParts?.[2]?.trim();
+
+                        return (
+                          <div
+                            key={item}
+                            className={`service-doc-bullet-card ${isIndustries ? "service-doc-industry-card" : ""}`}
+                          >
+                            {isIndustries ? (
+                              <span className="service-doc-industry-icon">
+                                <IndustryIcon size={30} strokeWidth={1.8} />
+                              </span>
+                            ) : (
+                              <span className="service-doc-bullet-mark">
+                                {isProcess ? String(bulletIndex + 1).padStart(2, "0") : ""}
+                              </span>
+                            )}
+                            <span>
+                              {isProcess
+                                ? item.replace(/^\d+\.\s*/, "")
+                                : isIndustries
+                                  ? industryTitle
+                                  : item}
+                              {isIndustries && industryDetail ? (
+                                <small>{industryDetail}</small>
+                              ) : null}
+                            </span>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  ) : null}
+                </article>
+                );
+              })}
+            </div>
+          </div>
+        </section>
+      ) : null}
+
+      {false && relatedLinks?.length ? (
+        <section className="section">
+          <div className="container" style={{ maxWidth: 1200, margin: "0 auto" }}>
+            <div className="section-heading">
+              <p className="section-label">Related Automation Services</p>
+              <h2>Plan the Complete Control System Around Your PLC</h2>
+            </div>
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(2, minmax(0, 1fr))", gap: 16 }}>
+              {relatedLinks?.map((item) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className="card"
+                  style={{
+                    padding: 24,
+                    color: "#1B1B1B",
+                    textDecoration: "none",
+                    border: "1px solid var(--line)",
+                    background: "#FFFFFF",
+                    fontSize: 15,
+                    fontWeight: 700,
+                    lineHeight: "24px",
+                    transition: "border-color 180ms ease, transform 180ms ease",
+                  }}
+                >
+                  {item.label}
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+      ) : null}
+
+      {faqs?.length ? (
+        <section className="section">
+          <div className="container">
+            <div className="section-heading">
+              <p className="section-label">Frequently Asked Questions</p>
+              <h2>PLC Programming Questions, Answered</h2>
+            </div>
+            <div className="about-faq-grid">
+              {faqs.map((item) => (
+                <details className="about-faq-card" key={item.q}>
+                  <summary>{item.q}</summary>
+                  <p>{item.a}</p>
+                </details>
+              ))}
+            </div>
+          </div>
+        </section>
+      ) : null}
+
+      <section className="section about-cta-section" id="service-cta">
         <div className="container">
-          <p style={{ margin: 0, color: "#1B1B1B", fontWeight: 500 }}>
-            Looking for something else? Explore{" "}
-            <Link href="/services" style={{ color: "#575ECF", textDecoration: "underline" }}>
-              all our industrial services
-            </Link>
-            .
+          <p className="section-label">Ready to Transform Your Industrial Operations?</p>
+          <h2>Partner with Hive Automation for Reliable Automation Support</h2>
+          <p>
+            Get Siemens PLC expertise, complete industrial automation support, and solutions tailored
+            to your business needs.
           </p>
+          <div className="action-row about-cta-actions">
+            <AnimatedButton href="/contact">Contact Our Automation Experts</AnimatedButton>
+            <AnimatedButton
+              href="https://appt.link/meet-with-bhavik-bhimani-iz1nBIl5/hive-automation"
+              target="_blank"
+              rel="noopener noreferrer"
+              variant="secondary"
+              icon={<Phone />}
+            >
+              Discuss Your Project
+            </AnimatedButton>
+          </div>
         </div>
       </section>
       

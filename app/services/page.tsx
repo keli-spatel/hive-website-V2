@@ -87,54 +87,64 @@ function ServiceBlock({ svc, i }: { svc: typeof services[0]; i: number }) {
 export default function ServicesPage() {
   const heroRef = useInView();
   return (
-    <div style={{ marginTop:82 }}>
-      <section ref={heroRef.ref} style={{ background:"linear-gradient(135deg,#1B1B1B,#2a2a2a)", padding:"80px 32px", overflow:"hidden" }}>
+    <div className="services-page" style={{ marginTop:82 }}>
+      <section ref={heroRef.ref} className="services-hero">
         <div
-          className="container"
+          className="container services-hero-inner"
           style={{
-            maxWidth: 1200,
-            margin: "0 auto",
-            display: "grid",
-            gridTemplateColumns: "1.2fr 1fr",
-            gap: 48,
-            alignItems: "center",
             opacity: heroRef.inView ? 1 : 0,
             transform: heroRef.inView ? "translateY(0)" : "translateY(24px)",
             transition: "all 0.7s ease-out",
           }}
         >
-          {/* Text Content */}
-          <div>
-            <div style={{ display:"inline-flex", gap:8, marginBottom:16, fontSize:12, fontWeight:600, color:"#C5C1B9", letterSpacing:1 }}>
-              <Link href="/" style={{ color:"#C5C1B9", textDecoration:"none", fontWeight:400 }}>Home</Link><span>/</span><span style={{ color:"#FF3434" }}>Services</span>
+          <div className="services-hero-copy">
+            <div className="services-breadcrumb">
+              <Link href="/">Home</Link><span>/</span><span>Services</span>
             </div>
-            <h1 style={{ marginBottom:16 }}>
+            <p className="section-label">Industrial Automation Services</p>
+            <h1>
               Our Industrial Automation Services
             </h1>
-            <p style={{ color:"#C5C1B9", fontSize:16, lineHeight:"26px", maxWidth:560, margin:0 }}>
+            <p className="services-hero-lead">
               Comprehensive custom-engineered automation solutions — from legacy Siemens migration and custom PLC logic to plant-wide DCS deployment and 24/7 technical support.
             </p>
+            <div className="services-hero-actions">
+              <AnimatedButton href="/contact">Request a Quote</AnimatedButton>
+              <AnimatedButton
+                href="https://appt.link/meet-with-bhavik-bhimani-iz1nBIl5/hive-automation"
+                target="_blank"
+                rel="noopener noreferrer"
+                variant="dark"
+                icon={<Phone />}
+              >
+                Schedule a Call
+              </AnimatedButton>
+            </div>
+            <div className="services-hero-proof" aria-label="Service highlights">
+              <span>PLC</span>
+              <span>SCADA</span>
+              <span>DCS</span>
+              <span>Turnkey</span>
+            </div>
           </div>
 
-          {/* Hero Image */}
-          <div style={{ position: "relative", width: "100%", height: 280, borderRadius: 12, overflow: "hidden" }}>
+          <div className="services-hero-visual">
             <Image
               src="/services-hero.png"
               alt="Industrial automation services illustration"
               fill
-              style={{ objectFit: "cover" }}
               priority
             />
+            <div className="services-hero-metric services-hero-metric-top">
+              <strong>7</strong>
+              <span>Core automation services</span>
+            </div>
+            <div className="services-hero-metric services-hero-metric-bottom">
+              <strong>24/7</strong>
+              <span>Technical support focus</span>
+            </div>
           </div>
         </div>
-        <style>{`
-          @media(max-width: 799px) {
-            .container[style*="grid-template-columns: 1.2fr 1fr"] {
-              grid-template-columns: 1fr !important;
-              gap: 32px !important;
-            }
-          }
-        `}</style>
       </section>
       {services.map((svc, i) => <ServiceBlock key={svc.id} svc={svc} i={i} />)}
       <section style={{ background:"linear-gradient(135deg,#1B1B1B,#2a2a2a)", padding:"64px 32px", textAlign:"center" }}>
