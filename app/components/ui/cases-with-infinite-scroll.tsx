@@ -1,13 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import Image from "next/image";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  type CarouselApi,
-} from "@/app/components/ui/carousel";
 
 const clientLogos = [
   "/clients/client-1.png",
@@ -41,52 +34,23 @@ const clientLogos = [
 ];
 
 export function ClientCarousel() {
-  const [api, setApi] = useState<CarouselApi>();
-  const [current, setCurrent] = useState(0);
-
-  useEffect(() => {
-    if (!api) return;
-
-    const timer = setTimeout(() => {
-      if (api.selectedScrollSnap() + 1 === api.scrollSnapList().length) {
-        setCurrent(0);
-        api.scrollTo(0);
-      } else {
-        api.scrollNext();
-        setCurrent((c) => c + 1);
-      }
-    }, 2000);
-
-    return () => clearTimeout(timer);
-  }, [api, current]);
-
   return (
-    <div className="relative left-1/2 w-screen -translate-x-1/2 px-4 py-10 sm:px-6">
-      <div className="flex flex-col gap-6">
-        <Carousel
-          setApi={setApi}
-          opts={{ loop: false, align: "start" }}
-          className="w-full"
-        >
-          <CarouselContent className="-ml-3">
-            {clientLogos.map((logo, index) => (
-              <CarouselItem
-                key={index}
-                className="pl-3 basis-1/2 sm:basis-1/3 md:basis-1/4 lg:basis-1/5 xl:basis-1/6"
-              >
-                <div className="flex h-28 w-full items-center justify-center rounded-xl border border-gray-100 bg-white p-5 shadow-sm hover:shadow-md transition-shadow duration-200 sm:h-[120px] lg:h-32">
-                  <Image
-                    src={logo}
-                    alt={`Client logo ${index + 1}`}
-                    width={180}
-                    height={90}
-                    className="h-auto max-h-20 w-auto max-w-full object-contain transition-transform duration-300 hover:scale-105 lg:max-h-24"
-                  />
-                </div>
-              </CarouselItem>
-            ))}
-          </CarouselContent>
-        </Carousel>
+    <div className="mx-auto w-full max-w-[1240px] px-1 py-6 sm:px-0">
+      <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
+        {clientLogos.map((logo, index) => (
+          <div
+            key={index}
+            className="group flex h-24 w-full items-center justify-center rounded-xl bg-white px-4 py-3 shadow-[0_6px_18px_rgba(17,18,20,0.04)] transition-shadow duration-200 hover:shadow-[0_10px_24px_rgba(17,18,20,0.08)] sm:h-[92px]"
+          >
+            <Image
+              src={logo}
+              alt={`Client logo ${index + 1}`}
+              width={170}
+              height={80}
+              className="h-auto max-h-14 w-auto max-w-full object-contain grayscale transition duration-300 group-hover:grayscale-0"
+            />
+          </div>
+        ))}
       </div>
     </div>
   );

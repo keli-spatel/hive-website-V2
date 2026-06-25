@@ -486,11 +486,10 @@ export default function AboutPage() {
             <p className="section-label">Our Clients</p>
             <h2>Trusted by Leading Companies &amp; Brands</h2>
           </div>
+          <AnimatedStats compact />
           <ClientCarousel />
         </div>
       </section>
-
-      <AnimatedStats />
 
       <section className="section" id="about-faq">
         <div className="container">

@@ -140,11 +140,11 @@ export default function Footer() {
             gap: 7px;
             background: #111214;
             color: #ffffff;
-            font-size: 13px;
+            font-size: 12px;
             font-weight: 650;
             border: none;
-            border-radius: 0 6px 6px 0;
-            padding: 9px 18px;
+            border-radius: 0 var(--button-radius) var(--button-radius) 0;
+            padding: 8px 14px;
             cursor: pointer;
             transition: background 180ms ease;
             white-space: nowrap;

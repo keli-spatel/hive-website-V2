@@ -171,7 +171,7 @@ export default function Navbar() {
           width: min(1200px, calc(100% - 48px));
           height: 80px;
           display: grid;
-          grid-template-columns: 190px minmax(0, 1fr) 176px;
+          grid-template-columns: 190px minmax(0, 1fr) auto;
           align-items: center;
           gap: 30px;
           margin: 0 auto;
@@ -353,15 +353,16 @@ export default function Navbar() {
 
         .navbar-cta {
           display: inline-flex;
-          width: 176px;
-          height: 48px;
+          width: auto;
+          padding: 0 14px;
+          height: 42px;
           align-items: center;
           justify-content: center;
-          border-radius: 999px;
+          border-radius: var(--button-radius);
           border: 1px solid var(--red);
           background: var(--red);
           color: var(--white);
-          font-size: 14.5px;
+          font-size: var(--button-font-size);
           font-weight: 760;
           line-height: 1;
           text-decoration: none;
@@ -389,7 +390,7 @@ export default function Navbar() {
           width: 44px;
           height: 44px;
           border: 1px solid rgba(21, 23, 28, 0.14);
-          border-radius: 999px;
+          border-radius: var(--button-radius);
           background: linear-gradient(180deg, #ffffff 0%, #f7f8fb 100%);
           color: #15171c;
           padding: 0;

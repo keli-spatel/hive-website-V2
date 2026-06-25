@@ -33,6 +33,12 @@ export function AnimatedButton({
 
   let variantClasses = ""
   let textColor = "#ffffff"
+  const buttonStyle = {
+    color: textColor,
+    minHeight: "var(--button-min-height)",
+    padding: "var(--button-padding-y) var(--button-padding-x)",
+    fontSize: "var(--button-font-size)",
+  } as const
   
   if (variant === "primary") {
     variantClasses = "bg-[#ff3b3b] hover:bg-[#df2d2d] shadow-md hover:shadow-lg border border-[#ff3b3b]/10 focus:ring-[#ff3b3b]/30"
@@ -76,7 +82,7 @@ export function AnimatedButton({
       </div>
 
       {/* Subtle shine effect on hover */}
-      <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-full overflow-hidden pointer-events-none">
+      <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-[var(--button-radius)] overflow-hidden pointer-events-none">
         <div
           className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent 
                         transform -skew-x-12 -translate-x-full group-hover:translate-x-full 
@@ -88,8 +94,8 @@ export function AnimatedButton({
 
   const commonClasses = cn(
     "group relative overflow-hidden inline-flex items-center justify-center",
-    "px-8 py-3 rounded-full",
-    "font-semibold text-[15px]",
+    "rounded-[var(--button-radius)]",
+    "font-semibold",
     "transition-all duration-300 ease-out",
     "transform active:scale-95",
     "focus:outline-none focus:ring-4",
@@ -107,7 +113,7 @@ export function AnimatedButton({
         onMouseLeave={() => setIsHovered(false)}
         target={target}
         rel={rel}
-        style={{ color: textColor }}
+        style={{ ...buttonStyle, color: textColor }}
       >
         {innerContent}
       </Link>
@@ -121,7 +127,7 @@ export function AnimatedButton({
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       className={commonClasses}
-      style={{ color: textColor }}
+      style={{ ...buttonStyle, color: textColor }}
     >
       {innerContent}
     </button>

@@ -139,7 +139,6 @@ export default function ServiceSlider({ services }: { services: Service[] }) {
                 from initial system design to full-scale implementation and lifecycle support.
               </p>
             </div>
-            
           </div>
 
           <div
@@ -186,41 +185,41 @@ export default function ServiceSlider({ services }: { services: Service[] }) {
             </div>
           </div>
 
-          <div className="mt-8 flex flex-col items-center justify-center gap-5 shrink-0 md:mt-12 md:flex-row md:gap-6">
+          <div className="mt-8 flex items-center justify-center gap-4 shrink-0 md:mt-10">
+            <button
+              onClick={() => scrollToLoopCard(activeCard - 1)}
+              className="w-9 h-9 rounded-[var(--button-radius)] border border-gray-300 hover:border-[#ff3b3b] hover:bg-[#ff3b3b]/5 flex items-center justify-center text-gray-700 hover:text-[#ff3b3b] transition-all md:w-10 md:h-10"
+              aria-label="Previous service"
+            >
+              <ChevronLeft className="w-4 h-4 md:w-5 md:h-5" strokeWidth={1.5} />
+            </button>
+
+            <div className="flex gap-2">
+              {services.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => scrollToLoopCard(index)}
+                  className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
+                    activeCard === index ? "bg-[#ff3434] w-6" : "bg-gray-300"
+                  }`}
+                  aria-label={`Go to service ${index + 1}`}
+                />
+              ))}
+            </div>
+
+            <button
+              onClick={() => scrollToLoopCard(activeCard + 1)}
+              className="w-9 h-9 rounded-[var(--button-radius)] border border-gray-300 hover:border-[#ff3b3b] hover:bg-[#ff3b3b]/5 flex items-center justify-center text-gray-700 hover:text-[#ff3b3b] transition-all md:w-10 md:h-10"
+              aria-label="Next service"
+            >
+              <ChevronRight className="w-4 h-4 md:w-5 md:h-5" strokeWidth={1.5} />
+            </button>
+          </div>
+
+          <div className="mt-5 flex items-center justify-center shrink-0 md:mt-6">
             <AnimatedButton href="/services" variant="primary">
               View All Services
             </AnimatedButton>
-
-            <div className="flex items-center justify-center gap-4 shrink-0">
-              <button
-                onClick={() => scrollToLoopCard(activeCard - 1)}
-                className="w-10 h-10 rounded-full border border-gray-300 hover:border-[#ff3b3b] hover:bg-[#ff3b3b]/5 flex items-center justify-center text-gray-700 hover:text-[#ff3b3b] transition-all md:w-12 md:h-12"
-                aria-label="Previous service"
-              >
-                <ChevronLeft className="w-5 h-5 md:w-6 md:h-6" strokeWidth={1.5} />
-              </button>
-              
-              <div className="flex gap-2">
-                {services.map((_, index) => (
-                  <button
-                    key={index}
-                    onClick={() => scrollToLoopCard(index)}
-                    className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
-                      activeCard === index ? "bg-[#ff3434] w-6" : "bg-gray-300"
-                    }`}
-                    aria-label={`Go to service ${index + 1}`}
-                  />
-                ))}
-              </div>
-
-              <button
-                onClick={() => scrollToLoopCard(activeCard + 1)}
-                className="w-10 h-10 rounded-full border border-gray-300 hover:border-[#ff3b3b] hover:bg-[#ff3b3b]/5 flex items-center justify-center text-gray-700 hover:text-[#ff3b3b] transition-all md:w-12 md:h-12"
-                aria-label="Next service"
-              >
-                <ChevronRight className="w-5 h-5 md:w-6 md:h-6" strokeWidth={1.5} />
-              </button>
-            </div>
           </div>
         </div>
       </div>

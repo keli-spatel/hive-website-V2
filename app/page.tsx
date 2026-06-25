@@ -18,7 +18,7 @@ const industries = [
 
 const trustTags = [
   { name: "Siemens Experts", icon: UserCog },
-  { name: "Precision Industrial Automation", icon: Settings },
+  { name: "Industrial Automation", icon: Settings },
   { name: "GAMP 5 Quality", icon: ShieldCheck },
   { name: "24/7 Support", icon: Headset },
 ];
@@ -177,43 +177,47 @@ export default function HomePage() {
   return (
     <main className="home">
       <section className="hero-section" id="hero">
-        <Image
-          src="/hero-banner-bg-1.webp"
-          alt="Automated production line with digital industrial control overlay"
-          fill
-          priority
-          className="hero-bg max-md:hidden"
-          sizes="100vw"
-        />
-        <Image
-          src="/hero-banner-bg-1.webp"
-          alt="Automated production line with digital industrial control overlay"
-          fill
-          priority
-          className="hero-bg md:hidden"
-          sizes="100vw"
-        />
         <div className="hero-shade" />
         <div className="hero-content">
-          <h1>Siemens PLC & Industrial Automation Solutions Expert</h1>
-          <p>
-            India&apos;s trusted Siemens PLC, SCADA & DCS automation experts delivering
-            turnkey industrial solutions for Pharma, Oil & Gas, and more.
-          </p>
-          <div className="action-row hero-actions">
-            <AnimatedButton href="/projects">
-              View Our Projects
-            </AnimatedButton>
-            <AnimatedButton
-              href={scheduleUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              variant="dark"
-              icon={<Phone />}
-              className="hero-consultation-button"
-            >
-              Schedule a Consultation
-            </AnimatedButton>
+          <div className="hero-layout">
+            <div className="hero-copy">
+              <h1>
+                Siemens PLC & Industrial <br></br>
+                <span className="hero-highlight">Automation</span>
+                Solutions Expert
+              </h1>
+              <p>
+                India&apos;s trusted Siemens PLC, SCADA & DCS automation experts delivering
+                turnkey industrial solutions for Pharma, Oil & Gas, and more.
+              </p>
+              <div className="action-row hero-actions">
+                <AnimatedButton href="/projects">
+                  View Our Projects
+                </AnimatedButton>
+                <AnimatedButton
+                  href={scheduleUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  variant="dark"
+                  icon={<Phone />}
+                  className="hero-consultation-button"
+                >
+                  Schedule a Consultation
+                </AnimatedButton>
+              </div>
+            </div>
+            <div className="hero-visual">
+              <div className="hero-visual-frame">
+                <Image
+                  src="/hero-advanced-factory-automation.jpg"
+                  alt="Advanced factory automation robotic arm operating on a modern industrial production line"
+                  fill
+                  priority
+                  className="hero-visual-image"
+                  sizes="(max-width: 1023px) 100vw, 50vw"
+                />
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -232,7 +236,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="section about-section" id="about-preview">
+      <section className="section about-section" id="about-preview" style={{ marginTop: 20 }}>
         <div className="container split-grid">
           <div className="media-frame">
             <Image
@@ -263,13 +267,16 @@ export default function HomePage() {
               results in a rapidly evolving industrial automation landscape.
             </p>
             <div className="mt-9">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-5 gap-x-4">
+              <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 xl:grid-cols-4">
                 {trustTags.map((tag) => (
-                  <div key={tag.name} className="flex items-center gap-4">
-                    <div className="w-14 h-14 rounded-full border border-dashed border-[#ff3b3b] bg-[#ff3b3b]/[0.04] flex items-center justify-center text-[#ff3b3b] shrink-0">
-                      <tag.icon size={26} strokeWidth={1.5} />
+                  <div
+                    key={tag.name}
+                    className="flex min-h-[68px] items-center gap-3 rounded-[14px] border border-[#dfe3ea] bg-[#f8fafc] px-3 py-1 text-left shadow-[0_8px_20px_rgba(17,18,20,0.04)]"
+                  >
+                    <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-[#ff3b3b]/30 bg-white text-[#ff3b3b]">
+                      <tag.icon size={15} strokeWidth={1.9} />
                     </div>
-                    <span className="text-[15px] font-bold text-black">
+                    <span className="text-[13px] font-semibold leading-[1.35] text-[#111214]">
                       {tag.name}
                     </span>
                   </div>
@@ -292,9 +299,9 @@ export default function HomePage() {
 
       <CaseStudyShowcase projects={projects} />
 
-      <section className="section why-section" id="why-hive">
+      <section className="section why-section why-section-dark" id="why-hive">
         <div className="container why-layout">
-          <div className="why-copy">
+          <div className="why-intro">
             <p className="section-label">Why Partner with Hive Automation?</p>
             <h2>Expert Siemens Automation Engineering with Real-World Results</h2>
             <p>
@@ -302,6 +309,17 @@ export default function HomePage() {
               committed to your plant&apos;s performance, reliability, and growth. Here&apos;s why top
               players in Oil & Gas, Pharma, and Food Processing trust us with critical automation systems.
             </p>
+            <div className="why-visual">
+              <Image
+                src="/contact-agent.jpg"
+                alt="Hive Automation engineer consultation specialist"
+                width={560}
+                height={640}
+                className="why-illustration"
+              />
+            </div>
+          </div>
+          <div className="why-copy">
             <div className="reason-list">
               {whyHive.map((item) => (
                 <article className="reason-item" key={item.title} tabIndex={0}>
@@ -314,23 +332,14 @@ export default function HomePage() {
                 </article>
               ))}
             </div>
-            <div className="action-row mt-7">
-              <AnimatedButton href="/about" variant="dark">
+            <div className="action-row why-actions">
+              <AnimatedButton href="/about" variant="dark" className="why-read-more-btn">
                 Read More
               </AnimatedButton>
               <AnimatedButton href={scheduleUrl} target="_blank" rel="noopener noreferrer" icon={<Phone />}>
                 Let&apos;s Talk
               </AnimatedButton>
             </div>
-          </div>
-          <div className="why-visual">
-            <Image
-              src="/contact-agent.jpg"
-              alt="Hive Automation engineer consultation specialist"
-              width={560}
-              height={640}
-              className="why-illustration"
-            />
           </div>
         </div>
       </section>
@@ -342,11 +351,10 @@ export default function HomePage() {
             <p className="section-label">Our Clients</p>
             <h2>Trusted by Leading Companies &amp; Brands</h2>
           </div>
+          <AnimatedStats compact />
           <ClientCarousel />
         </div>
       </section>
-
-      <AnimatedStats />
 
       <section className="section quote-section" id="quote">
         <div className="container">

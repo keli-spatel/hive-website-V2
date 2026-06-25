@@ -51,20 +51,20 @@ function Counter({ end, suffix = "", duration = 2000 }: { end: number; suffix?: 
   );
 }
 
-export default function AnimatedStats() {
+export default function AnimatedStats({ compact = false }: { compact?: boolean }) {
   return (
-    <section className="stats-swiss-section" aria-label="Company counters">
+    <section className={`stats-swiss-section${compact ? " compact" : ""}`} aria-label="Company counters">
       <div className="container">
-        <div className="stats-swiss-grid">
-          <div className="stat-swiss-card">
+        <div className={`stats-swiss-grid${compact ? " compact" : ""}`}>
+          <div className={`stat-swiss-card${compact ? " compact" : ""}`}>
             <Counter end={500} suffix="+" />
             <span>Projects Completed</span>
           </div>
-          <div className="stat-swiss-card">
+          <div className={`stat-swiss-card${compact ? " compact" : ""}`}>
             <Counter end={50} suffix="+" />
             <span>Satisfied Clients</span>
           </div>
-          <div className="stat-swiss-card">
+          <div className={`stat-swiss-card${compact ? " compact" : ""}`}>
             <Counter end={15} suffix="+" />
             <span>Expert Engineers</span>
           </div>
