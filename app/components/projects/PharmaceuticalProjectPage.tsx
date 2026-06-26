@@ -149,23 +149,6 @@ export default function PharmaceuticalProjectPage({
 
             <section className="pharma-project-block">
               <div className="pharma-section-head">
-                <p className="section-label" style={{ marginTop: '30px' }}>Process Coverage</p>
-                <h2>Processes Automated</h2>
-              </div>
-              <ul className="pharma-process-list pharma-process-grid">
-                {project.processes.map((item, index) => (
-                  <li className="pharma-process-card" key={item}>
-                    <span className="pharma-process-index" aria-hidden="true">
-                      {String(index + 1).padStart(2, "0")}
-                    </span>
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </section>
-
-            <section className="pharma-project-block">
-              <div className="pharma-section-head">
                 <p className="section-label" style={{ marginTop: '30px' }}>Project Impact</p>
                 <h2>Challenge & Outcome</h2>
               </div>
@@ -184,6 +167,23 @@ export default function PharmaceuticalProjectPage({
                   <p>{project.outcome}</p>
                 </article>
               </div>
+            </section>
+
+            <section className="pharma-project-block">
+              <div className="pharma-section-head">
+                <p className="section-label" style={{ marginTop: '30px' }}>Process Coverage</p>
+                <h2>Processes Automated</h2>
+              </div>
+              <ul className="pharma-process-list pharma-process-grid">
+                {project.processes.map((item, index) => (
+                  <li className="pharma-process-card" key={item}>
+                    <span className="pharma-process-index" aria-hidden="true">
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
             </section>
 
             <section className="pharma-project-block">

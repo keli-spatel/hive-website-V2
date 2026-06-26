@@ -116,11 +116,13 @@ export default function Footer() {
             flex-shrink: 0;
           }
           .newsletter-input {
+            box-sizing: border-box;
+            min-height: 42px;
             background: #ffffff;
             border: 1px solid rgba(255,255,255,0.72);
             border-right: none;
             border-radius: 6px 0 0 6px;
-            padding: 9px 16px;
+            padding: 0 16px;
             font-size: 13px;
             color: #111214;
             width: 240px;
@@ -137,14 +139,17 @@ export default function Footer() {
           .newsletter-btn {
             display: inline-flex;
             align-items: center;
+            justify-content: center;
             gap: 7px;
+            min-height: 42px;
+            box-sizing: border-box;
             background: #111214;
             color: #ffffff;
             font-size: 12px;
             font-weight: 650;
             border: none;
             border-radius: 0 var(--button-radius) var(--button-radius) 0;
-            padding: 8px 14px;
+            padding: 0 14px;
             cursor: pointer;
             transition: background 180ms ease;
             white-space: nowrap;
