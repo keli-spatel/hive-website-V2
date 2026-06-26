@@ -217,7 +217,7 @@ export default function ServiceSlider({ services }: { services: Service[] }) {
           </div>
 
           <div className="mt-5 flex items-center justify-center shrink-0 md:mt-6">
-            <AnimatedButton href="/services" variant="primary">
+            <AnimatedButton href="/our-services" variant="primary">
               View All Services
             </AnimatedButton>
           </div>

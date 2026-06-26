@@ -4098,7 +4098,7 @@ p {
   }
 
   .case-showcase-section {
-    padding: 64px 0 72px;
+    padding: 44px 0;
   }
 
   .case-showcase-header {
@@ -4407,6 +4407,11 @@ p {
     padding: 72px 0 84px;
   }
 
+  .services-page .section {
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+
   .services-sticky-container {
     padding-top: 32px !important;
     padding-bottom: 32px !important;
@@ -4470,14 +4475,16 @@ p {
   font-family: var(--font-sans);
 }
 
+.services-page .section {
+  padding-top: 46px;
+  padding-bottom: 46px;
+}
+
 .services-hero {
   position: relative;
   overflow: hidden;
-  background:
-    linear-gradient(90deg, rgba(255, 255, 255, 0.055) 1px, transparent 1px),
-    linear-gradient(135deg, #151617 0%, #242629 100%);
-  background-size: 76px 76px, auto;
-  padding: clamp(88px, 10vw, 132px) 0 clamp(86px, 9vw, 126px);
+  background: linear-gradient(135deg, #151617 0%, #242629 100%);
+  padding: clamp(52px, 5vw, 72px) 0;
 }
 
 .services-hero::after {

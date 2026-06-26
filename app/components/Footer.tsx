@@ -8,8 +8,8 @@ import { useEffect, useState } from "react";
 const companyLinks = [
   { label: "Home", href: "/" },
   { label: "About Us", href: "/about" },
-  { label: "Services", href: "/services" },
-  { label: "Projects", href: "/projects" },
+  { label: "Services", href: "/our-services" },
+  { label: "Projects", href: "/our-project" },
   { label: "Career", href: "/career" },
   { label: "Contact", href: "/contact" },
 ];
@@ -28,7 +28,7 @@ const industryLinks = [
   { label: "Pharmaceutical", href: "/projects/pharmaceutical" },
   { label: "Oil & Gas", href: "/projects/oil-gas" },
   { label: "Chemicals", href: "/projects/chemical" },
-  { label: "Other", href: "/projects" },
+  { label: "Other", href: "/our-project" },
 ];
 
 const phones = ["+91 99786 03840", "+91 99786 03841", "+91 99786 03842", "+91 99786 03843"];

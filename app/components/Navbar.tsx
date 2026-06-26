@@ -19,7 +19,7 @@ const navLinks: NavLink[] = [
   { label: "About Us", href: "/about" },
   {
     label: "Services",
-    href: "/services",
+    href: "/our-services",
     subLinks: [
       { label: "PLC Programming & Integration", href: "/services/plc-programming-integration" },
       { label: "Distributed Control Systems (DCS)", href: "/services/distributed-control-systems" },
@@ -32,7 +32,7 @@ const navLinks: NavLink[] = [
   },
   {
     label: "Projects",
-    href: "/projects",
+    href: "/our-project",
     subLinks: [
       { label: "Pharmaceutical Automation", href: "/projects/pharmaceutical" },
       { label: "Chemical Plant Control", href: "/projects/chemical" },
@@ -54,7 +54,17 @@ export default function Navbar() {
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
 
   const closeMobile = () => setMobileOpen(false);
-  const isActive = (link: NavLink) => pathname === link.href || pathname.startsWith(`${link.href}/`);
+  const isActive = (link: NavLink) => {
+    if (link.href === "/our-services") {
+      return pathname === "/our-services" || pathname.startsWith("/services/");
+    }
+
+    if (link.href === "/our-project") {
+      return pathname === "/our-project" || pathname.startsWith("/projects/");
+    }
+
+    return pathname === link.href || pathname.startsWith(`${link.href}/`);
+  };
 
   return (
     <header className="navbar">

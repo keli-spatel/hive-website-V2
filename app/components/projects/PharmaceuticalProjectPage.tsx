@@ -50,7 +50,7 @@ export default function PharmaceuticalProjectPage({
           <nav className="pharma-project-breadcrumb" aria-label="Breadcrumb">
             <Link href="/">Home</Link>
             <ChevronRight size={14} aria-hidden="true" />
-            <Link href="/projects">Projects</Link>
+            <Link href="/our-project">Our Projects</Link>
             <ChevronRight size={14} aria-hidden="true" />
             <span>Pharmaceutical</span>
           </nav>
@@ -247,7 +247,7 @@ export default function PharmaceuticalProjectPage({
           <p>{project.cta.body}</p>
           <div className="action-row about-cta-actions">
             <AnimatedButton href="/contact">Get a Free Quote</AnimatedButton>
-            <AnimatedButton href="/projects" variant="secondary">
+            <AnimatedButton href="/our-project" variant="secondary">
               View All Projects
             </AnimatedButton>
           </div>

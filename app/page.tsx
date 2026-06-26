@@ -191,7 +191,7 @@ export default function HomePage() {
                 turnkey industrial solutions for Pharma, Oil & Gas, and more.
               </p>
               <div className="action-row hero-actions">
-                <AnimatedButton href="/projects">
+                <AnimatedButton href="/our-project">
                   View Our Projects
                 </AnimatedButton>
                 <AnimatedButton

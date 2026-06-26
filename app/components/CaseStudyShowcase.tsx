@@ -57,7 +57,7 @@ export default function CaseStudyShowcase({ projects }: { projects: Project[] })
         </div>
 
         <div className="mt-10 flex justify-center">
-          <AnimatedButton href="/projects">
+          <AnimatedButton href="/our-project">
             View All Projects
           </AnimatedButton>
         </div>

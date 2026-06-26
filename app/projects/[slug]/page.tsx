@@ -126,7 +126,7 @@ function getPharmaceuticalSchema() {
         "@type": "BreadcrumbList",
         itemListElement: [
           { "@type": "ListItem", position: 1, name: "Home", item: "https://hiveautomation.in/" },
-          { "@type": "ListItem", position: 2, name: "Our Projects", item: "https://hiveautomation.in/our-projects" },
+          { "@type": "ListItem", position: 2, name: "Our Projects", item: "https://hiveautomation.in/our-project" },
           { "@type": "ListItem", position: 3, name: "Pharmaceutical", item: "https://hiveautomation.in/projects/pharmaceutical" },
         ],
       },

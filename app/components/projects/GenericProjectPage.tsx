@@ -25,8 +25,8 @@ export default function GenericProjectPage({ project }: { project: Project }) {
               Home
             </Link>
             <span>/</span>
-            <Link href="/projects" style={{ color: "#C5C1B9", textDecoration: "none", fontWeight: 400 }}>
-              Projects
+            <Link href="/our-project" style={{ color: "#C5C1B9", textDecoration: "none", fontWeight: 400 }}>
+              Our Projects
             </Link>
             <span>/</span>
             <span style={{ color: "#FF3434" }}>{project.tag}</span>
@@ -159,7 +159,7 @@ export default function GenericProjectPage({ project }: { project: Project }) {
         <div className="container">
           <p style={{ margin: 0, color: "#1B1B1B", fontWeight: 500 }}>
             Interested in other case studies? Explore{" "}
-            <Link href="/projects" style={{ color: "#575ECF", textDecoration: "underline" }}>
+            <Link href="/our-project" style={{ color: "#575ECF", textDecoration: "underline" }}>
               all our projects
             </Link>
             .

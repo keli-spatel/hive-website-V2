@@ -15,7 +15,7 @@ interface AnimatedButtonProps {
   type?: "button" | "submit" | "reset"
   target?: string
   rel?: string
-  variant?: "primary" | "secondary" | "dark"
+  variant?: "primary" | "secondary" | "dark" | "outline-dark"
 }
 
 export function AnimatedButton({ 
@@ -49,6 +49,9 @@ export function AnimatedButton({
   } else if (variant === "dark") {
     variantClasses = "bg-black hover:bg-gray-900 shadow-md hover:shadow-lg border border-black/20 focus:ring-black/30"
     textColor = "#ffffff"
+  } else if (variant === "outline-dark") {
+    variantClasses = "bg-white hover:bg-black shadow-sm hover:shadow-md border border-black hover:border-black focus:ring-black/20"
+    textColor = isHovered ? "#ffffff" : "#111214"
   }
 
   const innerContent = (
