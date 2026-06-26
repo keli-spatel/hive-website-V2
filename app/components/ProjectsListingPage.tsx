@@ -42,24 +42,19 @@ export default function ProjectsListingPage() {
   const filtered = activeFilter === "All" ? projects : projects.filter((p) => p.tag === activeFilter);
 
   return (
-    <div style={{ marginTop: 82 }}>
-      <section ref={heroRef.ref} style={{ background: "linear-gradient(135deg,#1B1B1B,#2a2a2a)", padding: "80px 32px 64px", textAlign: "center" }}>
+    <div style={{ marginTop: 60 }}>
+      <section ref={heroRef.ref} style={{ background: "linear-gradient(135deg,#1B1B1B,#2a2a2a)", padding: "64px 32px 52px", textAlign: "center" }}>
         <div style={{ maxWidth: 800, margin: "0 auto", opacity: heroRef.inView ? 1 : 0, transform: heroRef.inView ? "translateY(0)" : "translateY(24px)", transition: "all 0.7s ease-out" }}>
           <div style={{ display: "inline-flex", gap: 8, marginBottom: 16, fontSize: 12, fontWeight: 600, color: "#C5C1B9", letterSpacing: 1 }}>
             <Link href="/" style={{ color: "#C5C1B9", textDecoration: "none", fontWeight: 400 }}>Home</Link>
             <span>/</span>
-            <span style={{ color: "#FF3434" }}>Projects</span>
+            <span style={{ color: "#FF3434" }}>Our Projects</span>
           </div>
           <h1 style={{ marginBottom: 16 }}>Our Projects</h1>
           <p style={{ color: "#C5C1B9", fontSize: 16, lineHeight: "26px", maxWidth: 560, margin: "0 auto" }}>
             Proven track record delivering industrial automation excellence across industries.
           </p>
-        </div>
-      </section>
-
-      <section ref={gridRef.ref} className="section">
-        <div className="container" style={{ maxWidth: 1200, margin: "0 auto" }}>
-          <div style={{ display: "flex", gap: 8, flexWrap: "wrap", justifyContent: "center", marginBottom: 40 }}>
+          <div style={{ display: "flex", gap: 8, flexWrap: "wrap", justifyContent: "center", marginTop: 28 }}>
             {filters.map((f) => (
               <button
                 key={f}
@@ -73,15 +68,19 @@ export default function ProjectsListingPage() {
                   cursor: "pointer",
                   transition: "all 200ms ease",
                   background: activeFilter === f ? "#FF3434" : "transparent",
-                  color: activeFilter === f ? "#FFFFFF" : "#1B1B1B",
-                  borderColor: activeFilter === f ? "#FF3434" : "#DCDAD5",
+                  color: "#FFFFFF",
+                  borderColor: activeFilter === f ? "#FF3434" : "rgba(255,255,255,0.24)",
                 }}
               >
                 {f}
               </button>
             ))}
           </div>
+        </div>
+      </section>
 
+      <section ref={gridRef.ref} className="section">
+        <div className="container" style={{ maxWidth: 1200, margin: "0 auto" }}>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))", gap: 24 }}>
             {filtered.map((proj, i) => (
               <Link
@@ -112,7 +111,7 @@ export default function ProjectsListingPage() {
                       <span key={hi} style={{ fontSize: 11, fontWeight: 500, padding: "4px 10px", borderRadius: 9999, background: "#F9F8F6", color: "#1B1B1B", border: "1px solid #DCDAD5" }}>{h}</span>
                     ))}
                   </div>
-                  <div className="border border-[#ff3b3b] text-[#ff3b3b] bg-white px-6 py-2.5 rounded-full font-semibold text-[13px] inline-flex items-center gap-2 hover:bg-[#ff3b3b]/5 transition-colors self-start mt-2">
+                  <div className="border border-[#ff3b3b] text-[#ff3b3b] bg-white px-6 py-2.5 rounded-full font-semibold text-[13px] inline-flex items-center gap-2 transition-colors self-start mt-2 hover:bg-[#ff3b3b] hover:text-white">
                     View Case Study <span className="text-base leading-none">→</span>
                   </div>
                 </div>
