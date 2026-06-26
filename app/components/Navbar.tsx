@@ -498,6 +498,29 @@ export default function Navbar() {
             height: 38px;
           }
         }
+
+        @media (min-width: 861px) and (max-height: 820px) {
+          .navbar {
+            height: 72px;
+          }
+
+          .navbar-inner {
+            height: 72px;
+          }
+
+          .navbar-logo img {
+            height: 40px;
+          }
+
+          .navbar-link {
+            height: 40px;
+          }
+
+          .navbar-cta {
+            height: 40px;
+            padding: 0 13px;
+          }
+        }
       `}</style>
     </header>
   );
