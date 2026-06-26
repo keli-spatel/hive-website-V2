@@ -2425,6 +2425,7 @@ p {
 }
 
 .about-cta-section {
+  margin-top: 40px;
   background: var(--white);
   text-align: center;
 }
