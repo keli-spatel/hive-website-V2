@@ -6,11 +6,15 @@ import {
   CalendarDays,
   CheckCircle2,
   ChevronRight,
+  CircleAlert,
   Factory,
   MapPin,
+  Sparkles,
   Workflow,
 } from "lucide-react";
+import AnimatedStats from "../AnimatedStats";
 import { AnimatedButton } from "../ui/AnimatedButton";
+import { ClientCarousel } from "../ui/cases-with-infinite-scroll";
 import { FaqAccordion } from "../FaqAccordion";
 import ProjectIoStats from "../ProjectIoStats";
 import type {
@@ -42,7 +46,7 @@ export default function PharmaceuticalProjectPage({
   }));
 
   return (
-    <div className="service-detail-page pharma-project-page" style={{ marginTop: 82 }}>
+    <div className="service-detail-page pharma-project-page" style={{ marginTop: 60 }}>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
 
       <section className="pharma-project-hero">
@@ -60,10 +64,20 @@ export default function PharmaceuticalProjectPage({
           <p className="pharma-project-hero-copy" style={{ color: "#d6cece" }}>
             {project.hero.subtitle}
           </p>
+          <div className="action-row pharma-project-hero-actions">
+            
+            <AnimatedButton href="/contact">
+              Get a Quote
+            </AnimatedButton>
+
+            <AnimatedButton href="#project-overview" variant="outline-dark">
+              View Project
+            </AnimatedButton>
+          </div>
         </div>
       </section>
 
-      <section className="section pharma-project-overview-section">
+      <section className="section pharma-project-overview-section" id="project-overview">
         <div className="container pharma-project-layout">
           <div className="pharma-project-main">
             <section className="pharma-project-block pharma-project-block-overview">
@@ -83,9 +97,7 @@ export default function PharmaceuticalProjectPage({
 
                   <div className="pharma-snapshot-section">
                     <div className="pharma-snapshot-head">
-                      <p className="section-label" style={{ marginTop: '20px' }}>
-                        Project Details
-                      </p>
+                      <p className="section-label">Project Details</p>
                       <h2>Project Delivery Snapshot</h2>
                     </div>
                     <div className="pharma-snapshot-grid">
@@ -103,7 +115,7 @@ export default function PharmaceuticalProjectPage({
 
                   <div className="pharma-architecture-section">
                     <div className="pharma-architecture-head">
-                      <p className="section-label" style={{ marginTop: '20px' }}>System Architecture</p>
+                      <p className="section-label">System Architecture</p>
                       <h2>Technical Architecture</h2>
                     </div>
                     <div className="pharma-architecture-box">
@@ -152,12 +164,17 @@ export default function PharmaceuticalProjectPage({
 
             <section className="pharma-project-block">
               <div className="pharma-section-head">
-                <p className="section-label" style={{ marginTop: '30px' }}>Project Impact</p>
+                <p className="section-label">Project Impact</p>
                 <h2>Challenge & Outcome</h2>
               </div>
               <div className="pharma-outcome-grid">
                 <article className="pharma-outcome-card pharma-outcome-card-challenge">
-                  <h3>Challenge</h3>
+                  <div className="pharma-outcome-title-row">
+                    <div className="pharma-outcome-icon" aria-hidden="true">
+                      <CircleAlert size={22} strokeWidth={1.9} />
+                    </div>
+                    <h3>Challenge</h3>
+                  </div>
                   <p>{project.challenge}</p>
                 </article>
                 <div className="pharma-outcome-flow" aria-hidden="true">
@@ -166,7 +183,12 @@ export default function PharmaceuticalProjectPage({
                   <span className="pharma-outcome-flow-core" />
                 </div>
                 <article className="pharma-outcome-card pharma-outcome-card-result">
-                  <h3>Outcome / Result</h3>
+                  <div className="pharma-outcome-title-row">
+                    <div className="pharma-outcome-icon" aria-hidden="true">
+                      <Sparkles size={22} strokeWidth={1.9} />
+                    </div>
+                    <h3>Outcome / Result</h3>
+                  </div>
                   <p>{project.outcome}</p>
                 </article>
               </div>
@@ -174,7 +196,7 @@ export default function PharmaceuticalProjectPage({
 
             <section className="pharma-project-block">
               <div className="pharma-section-head">
-                <p className="section-label" style={{ marginTop: '30px' }}>Process Coverage</p>
+                <p className="section-label">Process Coverage</p>
                 <h2>Processes Automated</h2>
               </div>
               <ul className="pharma-process-list pharma-process-grid">
@@ -191,7 +213,7 @@ export default function PharmaceuticalProjectPage({
 
             <section className="pharma-project-block">
               <div className="pharma-section-head">
-                <p className="section-label" style={{ marginTop: '30px' }}>I/O Summary</p>
+                <p className="section-label">I/O Summary</p>
                 <h2>I/O Capacity & Configuration</h2>
               </div>
               <ProjectIoStats
@@ -229,6 +251,22 @@ export default function PharmaceuticalProjectPage({
               </Link>
             ))}
           </div>
+          <div className="pharma-related-actions">
+            <AnimatedButton href="/our-project">
+              View All Projects
+            </AnimatedButton>
+          </div>
+        </div>
+      </section>
+
+      <section className="section clients-carousel-section" id="project-clients">
+        <div className="container">
+          <div className="section-heading">
+            <p className="section-label">Our Clients</p>
+            <h2>Trusted by Leading Companies &amp; Brands</h2>
+          </div>
+          <AnimatedStats compact />
+          <ClientCarousel />
         </div>
       </section>
 
@@ -309,8 +347,13 @@ export default function PharmaceuticalProjectPage({
           line-height: var(--home-copy-line);
         }
 
+        .pharma-project-hero-actions {
+          justify-content: center;
+          margin-top: 32px;
+        }
+
         .pharma-project-page .section {
-          padding: 72px 0;
+          padding: 48px 0;
         }
 
         .pharma-project-overview-section {
@@ -323,6 +366,10 @@ export default function PharmaceuticalProjectPage({
           border-bottom: 1px solid #eef2f6;
         }
 
+        .pharma-project-detail-sections .pharma-project-main {
+          gap: 70px;
+        }
+
         .pharma-project-layout {
           display: block;
         }
@@ -330,14 +377,14 @@ export default function PharmaceuticalProjectPage({
         .pharma-project-main {
           min-width: 0;
           display: grid;
-          gap: 40px;
+          gap: 32px;
           max-width: 1240px;
           margin: 0 auto;
         }
 
         .pharma-project-block {
           display: grid;
-          gap: 24px;
+          gap: 20px;
           margin-bottom: 0;
         }
 
@@ -805,9 +852,16 @@ export default function PharmaceuticalProjectPage({
           box-shadow: 0 24px 52px rgba(17, 18, 20, 0.16);
         }
 
+        .pharma-outcome-title-row {
+          display: flex;
+          align-items: center;
+          gap: 14px;
+          margin-bottom: 14px;
+        }
+
         .pharma-outcome-card h3,
         .pharma-related-card h3 {
-          margin: 0 0 10px;
+          margin: 0;
           color: var(--black);
           font-size: var(--title-xs);
           font-weight: var(--weight-bold);
@@ -821,6 +875,25 @@ export default function PharmaceuticalProjectPage({
 
         .pharma-outcome-card-result p {
           opacity: 0.82;
+        }
+
+        .pharma-outcome-icon {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          width: 50px;
+          height: 50px;
+          border-radius: 16px;
+          border: 1px solid rgba(255, 52, 52, 0.16);
+          background: rgba(255, 52, 52, 0.08);
+          color: var(--red);
+          flex: 0 0 auto;
+        }
+
+        .pharma-outcome-card-result .pharma-outcome-icon {
+          border-color: rgba(255, 255, 255, 0.16);
+          background: rgba(255, 255, 255, 0.08);
+          color: #ffffff;
         }
 
         .pharma-io-grid {
@@ -850,6 +923,7 @@ export default function PharmaceuticalProjectPage({
         .pharma-gallery-panel {
           position: sticky;
           top: 112px;
+          margin-top: 85px;
           padding: 22px;
           display: grid;
           gap: 18px;
@@ -857,7 +931,7 @@ export default function PharmaceuticalProjectPage({
 
         .pharma-gallery-card {
           position: relative;
-          min-height: 280px;
+          min-height: 340px;
           overflow: hidden;
           border: 1px solid #e4e9f0;
           border-radius: 18px;
@@ -876,11 +950,22 @@ export default function PharmaceuticalProjectPage({
           text-align: center;
         }
 
+        .pharma-related-section .section-heading,
+        .pharma-faq-section .section-heading {
+          margin-bottom: 28px;
+        }
+
         .pharma-related-scroll {
           display: flex;
           flex-wrap: wrap;
           justify-content: center;
           gap: 18px;
+        }
+
+        .pharma-related-actions {
+          display: flex;
+          justify-content: center;
+          margin-top: 28px;
         }
 
         .pharma-related-card {
@@ -946,6 +1031,15 @@ export default function PharmaceuticalProjectPage({
           font-weight: 700;
         }
 
+        .pharma-faq-section {
+          padding-bottom: 20px !important;
+        }
+
+        .pharma-project-page .about-cta-section {
+          margin-top: 0;
+          padding-top: 70px;
+        }
+
         @media (max-width: 1023px) {
           .pharma-overview-layout,
           .pharma-deliverables-grid,
@@ -982,7 +1076,7 @@ export default function PharmaceuticalProjectPage({
           }
 
           .pharma-project-page .section {
-            padding: 56px 0;
+            padding: 38px 0;
           }
 
           .pharma-outcome-grid,
