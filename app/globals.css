@@ -142,7 +142,7 @@ p {
 }
 
 .section {
-  padding: 92px 0;
+  padding: 72px 0;
 }
 
 .section-steel {
@@ -681,17 +681,19 @@ p {
 }
 
 .hero-consultation-button {
-  border-color: rgba(255, 255, 255, 0.18);
-  background: rgba(255, 255, 255, 0.08);
-  box-shadow: none;
-  backdrop-filter: blur(10px);
+  border-color: var(--white);
+  background: var(--white);
+  color: var(--black) !important;
+  box-shadow: 0 12px 28px rgba(17, 18, 20, 0.12);
+  backdrop-filter: none;
 }
 
 .hero-consultation-button:hover,
 .hero-consultation-button:focus-visible {
-  border-color: var(--red);
-  background: var(--red);
-  box-shadow: 0 16px 32px rgba(255, 52, 52, 0.26);
+  border-color: var(--black);
+  background: var(--black);
+  color: var(--white) !important;
+  box-shadow: 0 16px 32px rgba(17, 18, 20, 0.26);
 }
 
 .hero-visual {
@@ -747,11 +749,6 @@ p {
   overflow: hidden;
 }
 
-.about-section {
-  padding-top: 64px;
-  padding-bottom: 96px;
-}
-
 .strip-label {
   color: var(--black);
   font-size: 12px;
@@ -790,8 +787,13 @@ p {
 }
 
 .about-section {
-  padding-top: 64px;
-  padding-bottom: 96px;
+  padding-top: 28px;
+  padding-bottom: 72px;
+}
+
+.home #about-preview {
+  padding-top: 28px;
+  padding-bottom: 64px;
 }
 
 .about-page p {
@@ -2780,7 +2782,12 @@ p {
 
 .case-showcase-section {
   background: #ffffff;
-  padding: 72px 0 82px;
+  padding: 60px 0 68px;
+}
+
+.home .case-showcase-section {
+  padding-top: 56px;
+  padding-bottom: 40px;
 }
 
 .case-showcase-container {
@@ -3094,8 +3101,13 @@ p {
 
 .why-section {
   background: var(--white);
-  padding: 88px 0;
+  padding: 68px 0;
   scroll-margin-top: 118px;
+}
+
+.home .why-section {
+  padding-top: 64px;
+  padding-bottom: 64px;
 }
 
 .why-section-dark {
@@ -3212,9 +3224,9 @@ p {
 }
 
 .why-section-dark .why-copy .why-read-more-btn:hover {
-  border-color: #f4f6f9;
-  background: #f4f6f9;
-  color: #111214 !important;
+  border-color: #111214;
+  background: #111214;
+  color: #ffffff !important;
 }
 
 .sticky-copy {
@@ -3698,19 +3710,29 @@ p {
 
 .clients-section {
   background: var(--steel);
-  padding-top: 80px;
-  padding-bottom: 88px;
+  padding-top: 64px;
+  padding-bottom: 68px;
 }
 
 .clients-carousel-section {
   background: var(--steel);
-  padding-top: 80px;
-  padding-bottom: 48px;
+  padding-top: 64px;
+  padding-bottom: 32px;
 }
 
 .quote-section {
-  padding-top: 88px;
-  padding-bottom: 96px;
+  padding-top: 68px;
+  padding-bottom: 72px;
+}
+
+.home .clients-carousel-section {
+  padding-top: 60px;
+  padding-bottom: 28px;
+}
+
+.home .quote-section {
+  padding-top: 64px;
+  padding-bottom: 64px;
 }
 
 .quote-eyebrow {
@@ -4268,7 +4290,7 @@ p {
 /* ── Services Section Styles ── */
 .services-section {
   height: auto !important;
-  padding: 88px 0 104px;
+  padding: 55px 0 55px;
 }
 .services-sticky-container {
   position: relative !important;

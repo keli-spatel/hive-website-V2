@@ -35,19 +35,23 @@ const clientLogos = [
 
 export function ClientCarousel() {
   return (
-    <div className="mx-auto w-full max-w-[1240px] px-1 py-6 sm:px-0">
-      <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
+    <div className="mx-auto w-full max-w-[1380px] px-1 py-6 sm:px-0">
+      <div className="grid grid-cols-[repeat(auto-fit,minmax(168px,1fr))] gap-3 sm:grid-cols-[repeat(auto-fit,minmax(180px,1fr))] lg:gap-4">
         {clientLogos.map((logo, index) => (
           <div
             key={index}
-            className="group flex h-24 w-full items-center justify-center rounded-xl bg-white px-4 py-3 shadow-[0_6px_18px_rgba(17,18,20,0.04)] transition-shadow duration-200 hover:shadow-[0_10px_24px_rgba(17,18,20,0.08)] sm:h-[92px]"
+            className="group flex min-h-[108px] w-full items-center justify-center rounded-xl bg-white px-4 py-4 shadow-[0_6px_18px_rgba(17,18,20,0.04)] transition-shadow duration-200 hover:shadow-[0_10px_24px_rgba(17,18,20,0.08)] sm:min-h-[114px] lg:min-h-[118px]"
           >
             <Image
               src={logo}
               alt={`Client logo ${index + 1}`}
-              width={170}
-              height={80}
-              className="h-auto max-h-14 w-auto max-w-full object-contain grayscale transition duration-300 group-hover:grayscale-0"
+              width={190}
+              height={88}
+              className="h-auto w-auto object-contain grayscale transition duration-300 group-hover:grayscale-0"
+              style={{
+                width: "min(76%, 220px)",
+                maxHeight: "clamp(64px, 5.2vw, 84px)",
+              }}
             />
           </div>
         ))}

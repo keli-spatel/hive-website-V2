@@ -3,6 +3,7 @@
 import Image from "next/image"
 import Link from "next/link"
 import { ArrowRight } from "lucide-react"
+import { AnimatedButton } from "./ui/AnimatedButton"
 
 type Project = {
   href: string
@@ -53,6 +54,12 @@ export default function CaseStudyShowcase({ projects }: { projects: Project[] })
               </div>
             </Link>
           ))}
+        </div>
+
+        <div className="mt-10 flex justify-center">
+          <AnimatedButton href="/projects">
+            View All Projects
+          </AnimatedButton>
         </div>
       </div>
     </section>

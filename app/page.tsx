@@ -198,11 +198,11 @@ export default function HomePage() {
                   href={scheduleUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  variant="dark"
+                  variant="secondary"
                   icon={<Phone />}
                   className="hero-consultation-button"
                 >
-                  Schedule a Consultation
+                  Schedule a Call
                 </AnimatedButton>
               </div>
             </div>
@@ -236,7 +236,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="section about-section" id="about-preview" style={{ marginTop: 20 }}>
+      <section className="section about-section" id="about-preview" style={{ marginTop: "30px" }}>
         <div className="container split-grid">
           <div className="media-frame">
             <Image
@@ -333,11 +333,11 @@ export default function HomePage() {
               ))}
             </div>
             <div className="action-row why-actions">
-              <AnimatedButton href="/about" variant="dark" className="why-read-more-btn">
-                Read More
-              </AnimatedButton>
               <AnimatedButton href={scheduleUrl} target="_blank" rel="noopener noreferrer" icon={<Phone />}>
                 Let&apos;s Talk
+              </AnimatedButton>
+              <AnimatedButton href="/about" variant="secondary" className="why-read-more-btn">
+                Read More
               </AnimatedButton>
             </div>
           </div>
