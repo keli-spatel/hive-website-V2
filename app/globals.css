@@ -3915,6 +3915,67 @@ p {
   }
 }
 
+@media (min-width: 861px) and (max-height: 900px) {
+  .hero-section {
+    min-height: clamp(520px, 74dvh, 720px);
+    padding: 102px 0 68px;
+  }
+
+  .hero-layout {
+    gap: clamp(28px, 3vw, 48px);
+  }
+
+  .home .hero-section .hero-content p {
+    margin-top: 16px;
+  }
+
+  .hero-actions {
+    margin-top: 24px;
+  }
+
+  .hero-visual-frame {
+    min-height: clamp(400px, 34vw, 560px);
+  }
+
+  .industry-strip {
+    background: linear-gradient(to bottom, transparent 0 40px, var(--white) 40px 100%);
+    margin-top: -40px;
+  }
+
+  .strip-inner {
+    min-height: 88px;
+  }
+
+  .expertise-row,
+  .expertise-item {
+    min-height: 78px;
+  }
+}
+
+@media (min-width: 861px) and (max-height: 760px) {
+  .hero-section {
+    min-height: clamp(480px, 70dvh, 640px);
+    padding: 96px 0 58px;
+  }
+
+  .hero-content h1 {
+    line-height: 1.05;
+  }
+
+  .hero-visual-frame {
+    min-height: clamp(360px, 30vw, 500px);
+  }
+
+  .strip-inner {
+    min-height: 82px;
+  }
+
+  .expertise-row,
+  .expertise-item {
+    min-height: 74px;
+  }
+}
+
 @media (max-width: 640px) {
   :root {
     --title-xl: 36px;
