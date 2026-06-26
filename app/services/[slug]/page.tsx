@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import type { CSSProperties } from "react";
 import { notFound } from "next/navigation";
 import { AnimatedButton } from "../../components/ui/AnimatedButton";
+import { FaqAccordion } from "../../components/FaqAccordion";
 import { Factory, FlaskConical, Fuel, Gauge, Package, Phone, Pill } from "lucide-react";
 
 // Define static services data
@@ -643,14 +644,7 @@ export default async function ServiceDetailPage({ params }: Props) {
               <p className="section-label">Frequently Asked Questions</p>
               <h2>PLC Programming Questions, Answered</h2>
             </div>
-            <div className="about-faq-grid">
-              {faqs.map((item) => (
-                <details className="about-faq-card" key={item.q}>
-                  <summary>{item.q}</summary>
-                  <p>{item.a}</p>
-                </details>
-              ))}
-            </div>
+            <FaqAccordion items={faqs} />
           </div>
         </section>
       ) : null}

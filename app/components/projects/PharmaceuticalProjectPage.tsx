@@ -11,6 +11,7 @@ import {
   Workflow,
 } from "lucide-react";
 import { AnimatedButton } from "../ui/AnimatedButton";
+import { FaqAccordion } from "../FaqAccordion";
 import ProjectIoStats from "../ProjectIoStats";
 import type {
   DetailedProjectConfig,
@@ -235,14 +236,7 @@ export default function PharmaceuticalProjectPage({
             <p className="section-label">Frequently Asked Questions</p>
             <h2>Pharmaceutical Automation Questions, Answered</h2>
           </div>
-          <div className="about-faq-grid">
-            {project.faqs.map((item) => (
-              <details className="about-faq-card" key={item.q}>
-                <summary>{item.q}</summary>
-                <p>{item.a}</p>
-              </details>
-            ))}
-          </div>
+          <FaqAccordion items={project.faqs} />
         </div>
       </section>
 

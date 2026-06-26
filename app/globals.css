@@ -796,6 +796,16 @@ p {
   padding-bottom: 64px;
 }
 
+.about-page .section {
+  padding-top: 48px;
+  padding-bottom: 48px;
+}
+
+.about-page #about-preview {
+  padding-top: 20px;
+  padding-bottom: 42px;
+}
+
 .about-page p {
   color: var(--home-copy-color);
   font-size: var(--home-copy-size);
@@ -823,7 +833,7 @@ p {
   position: relative;
   overflow: hidden;
   background: linear-gradient(135deg, #1b1b1b 0%, #272727 100%);
-  padding: 78px 0 72px;
+  padding: 58px 0 44px;
   text-align: center;
 }
 
@@ -838,7 +848,12 @@ p {
 .about-hero-inner {
   position: relative;
   z-index: 1;
+  max-width: 1120px;
+}
+
+.about-hero-copy {
   max-width: 800px;
+  margin: 0 auto;
 }
 
 .about-breadcrumb {
@@ -888,13 +903,9 @@ p {
   justify-content: center;
 }
 
-.about-highlights-section {
-  padding: 72px 0;
-}
-
 .about-mission-section {
   background: var(--white);
-  padding: 108px 0 96px;
+  padding: 48px 0;
 }
 
 .about-mission-layout {
@@ -964,6 +975,11 @@ p {
   grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
+.about-hero-stats {
+  margin-top: 24px;
+  gap: 12px;
+}
+
 .about-highlight-card,
 .about-feature-card,
 .about-tech-card,
@@ -984,6 +1000,15 @@ p {
   padding: 28px 20px;
   text-align: center;
   transition: border-color 220ms ease, box-shadow 220ms ease, transform 220ms ease;
+}
+
+.about-hero-stats .about-highlight-card {
+  min-height: 110px;
+  padding: 12px 14px;
+}
+
+.about-hero-stats .about-highlight-card span {
+  margin-top: 6px;
 }
 
 .about-highlight-card::before {
@@ -1510,7 +1535,7 @@ p {
 }
 
 .about-feature-card h3,
-.about-faq-card summary {
+.about-faq-trigger span:first-child {
   color: var(--black);
   font-size: var(--title-xs);
   font-weight: var(--weight-bold);
@@ -2319,24 +2344,34 @@ p {
   overflow: hidden;
 }
 
-.about-faq-card summary {
+.about-faq-trigger {
   position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 18px;
+  width: 100%;
   min-height: 74px;
+  border: 0;
+  background: transparent;
   padding: 22px 28px;
   cursor: pointer;
-  list-style: none;
+  color: var(--black);
+  font: inherit;
+  text-align: left;
 }
 
-.about-faq-card summary::-webkit-details-marker {
-  display: none;
+.about-faq-trigger span:first-child {
+  flex: 1 1 auto;
+  color: var(--black);
+  font-family: inherit;
+  font-size: var(--title-xs);
+  font-weight: var(--weight-bold);
+  line-height: 1.28;
+  letter-spacing: 0;
 }
 
-.about-faq-card summary::after {
-  content: "";
+.about-faq-trigger-icon {
   display: inline-flex;
   width: 34px;
   height: 34px;
@@ -2352,7 +2387,7 @@ p {
   transition: background 180ms ease, border-color 180ms ease, transform 180ms ease;
 }
 
-.about-faq-card[open] summary::after {
+.about-faq-card.is-open .about-faq-trigger-icon {
   background:
     linear-gradient(var(--white), var(--white)) center / 12px 2px no-repeat,
     var(--red);
@@ -2366,7 +2401,7 @@ p {
   padding: 18px 28px 24px;
 }
 
-.about-faq-card[open] {
+.about-faq-card.is-open {
   border-color: rgba(255, 52, 52, 0.22);
   box-shadow: 0 18px 44px rgba(17, 18, 20, 0.08);
 }
@@ -2992,17 +3027,13 @@ p {
   }
 
   .about-hero {
-    padding: 76px 0 68px;
+    padding: 54px 0 40px;
   }
 
   .about-mission-layout {
     grid-template-columns: 1fr;
     gap: 34px;
     max-width: 720px;
-  }
-
-  .about-mission-section {
-    padding: 82px 0 76px;
   }
 
   .about-highlight-grid,
@@ -4141,8 +4172,32 @@ p {
     font-size: var(--text-base);
   }
 
+  .about-page .section {
+    padding-top: 42px;
+    padding-bottom: 42px;
+  }
+
+  .about-page #about-preview {
+    padding-top: 18px;
+    padding-bottom: 36px;
+  }
+
+  .about-hero {
+    padding: 48px 0 34px;
+  }
+
+  .about-hero-stats {
+    margin-top: 20px;
+    gap: 10px;
+  }
+
+  .about-hero-stats .about-highlight-card {
+    min-height: 94px;
+    padding: 12px 14px;
+  }
+
   .about-mission-section {
-    padding: 64px 0 66px;
+    padding: 42px 0;
   }
 
   .about-mission-tags {
@@ -4278,7 +4333,7 @@ p {
     padding: 0;
   }
 
-  .about-faq-card summary {
+  .about-faq-trigger {
     padding: 20px;
   }
 

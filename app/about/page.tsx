@@ -9,6 +9,7 @@ import {
   Factory,
   FlaskConical,
   Fuel,
+  Headset,
   LifeBuoy,
   MonitorSmartphone,
   Network,
@@ -19,12 +20,14 @@ import {
   ShieldCheck,
   Target,
   TrendingUp,
+  UserCog,
   Users,
   Workflow,
 } from "lucide-react";
 import AnimatedStats from "../components/AnimatedStats";
 import { ClientCarousel } from "../components/ui/cases-with-infinite-scroll";
 import { AnimatedButton } from "../components/ui/AnimatedButton";
+import { FaqAccordion } from "../components/FaqAccordion";
 
 const scheduleUrl = "https://appt.link/meet-with-bhavik-bhimani-iz1nBIl5/hive-automation";
 
@@ -85,6 +88,13 @@ const highlights = [
   { value: 500, label: "Automation Projects Delivered" },
   { value: 50, label: "Industrial Clients" },
   { value: 10, label: "Major Industries Served" },
+];
+
+const trustTags = [
+  { name: "Siemens Experts", icon: UserCog },
+  { name: "Industrial Automation", icon: Settings },
+  { name: "GAMP 5 Quality", icon: ShieldCheck },
+  { name: "24/7 Support", icon: Headset },
 ];
 
 const expertise = [
@@ -229,33 +239,99 @@ const faqs = [
 
 export default function AboutPage() {
   return (
-    <main className="about-page" style={{ marginTop: 82 }}>
+    <main className="about-page" style={{ marginTop: 50 }}>
       <section className="about-hero">
         <div className="container about-hero-inner">
-          <div className="about-breadcrumb">
-            <Link href="/">Home</Link>
-            <span>/</span>
-            <span>About Us</span>
+          <div className="about-hero-copy">
+            <div className="about-breadcrumb">
+              <Link href="/">Home</Link>
+              <span>/</span>
+              <span>About Us</span>
+            </div>
+            <h1>About Hive Automation</h1>
+            <p>
+              India&apos;s trusted industrial automation partner, delivering precision engineering
+              solutions since 2017.
+            </p>
           </div>
-          <h1>About Hive Automation</h1>
-          <p>
-            India&apos;s trusted industrial automation partner, delivering precision engineering
-            solutions since 2017.
-          </p>
+          <div className="about-highlight-grid about-hero-stats" aria-label="Hive Automation highlights">
+            {highlights.map((item) => (
+              <article className="about-highlight-card" key={item.label}>
+                <AboutCounter end={item.value} />
+                <span>{item.label}</span>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section about-section" id="about-preview" style={{ marginTop: "30px" }}>
+        <div className="container split-grid">
+          <div className="media-frame">
+            <Image
+              src="/about-new.jpg"
+              alt="Engineer programming Siemens PLC"
+              width={720}
+              height={520}
+              className="section-image"
+            />
+            <div className="experience-chip">
+              <strong>2017</strong>
+              <span>Established after deep automation experience</span>
+            </div>
+          </div>
+          <div>
+            <p className="section-label">About Us</p>
+            <h2>India&apos;s Trusted Siemens Industrial Automation Experts</h2>
+            <p>
+              Hive Automation is a trusted industrial automation company specializing in Siemens
+              PLC programming, SCADA system integration, and process control solutions. Our mission
+              is to empower manufacturing with smart automation systems that optimize operations,
+              enhance efficiency, and minimize industrial downtime across India.
+            </p>
+            <p>
+              We provide expert services for Siemens PLCs, SCADA, and DCS platforms, having
+              successfully delivered turnkey automation projects for diverse industries. Our
+              commitment to industrial compliance, innovation, and safety ensures high-performance
+              results in a rapidly evolving industrial automation landscape.
+            </p>
+            <div className="mt-9">
+              <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 xl:grid-cols-4">
+                {trustTags.map((tag) => (
+                  <div
+                    key={tag.name}
+                    className="flex min-h-[68px] items-center gap-3 rounded-[14px] border border-[#dfe3ea] bg-[#f8fafc] px-3 py-1 text-left shadow-[0_8px_20px_rgba(17,18,20,0.04)]"
+                  >
+                    <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-[#ff3b3b]/30 bg-white text-[#ff3b3b]">
+                      <tag.icon size={15} strokeWidth={1.9} />
+                    </div>
+                    <span className="text-[13px] font-semibold leading-[1.35] text-[#111214]">
+                      {tag.name}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className="action-row mt-9">
+              <AnimatedButton href="#mission">
+                Read More
+              </AnimatedButton>
+              <AnimatedButton
+                href={scheduleUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                variant="secondary"
+                icon={<Phone />}
+              >
+                Schedule a Call
+              </AnimatedButton>
+            </div>
+          </div>
         </div>
       </section>
 
       <section className="section about-mission-section" id="mission">
         <div className="container about-mission-layout">
-          <div className="about-mission-media">
-            <Image
-              src="/about-bg.png"
-              alt="Industrial automation engineer working with Siemens control systems"
-              width={720}
-              height={720}
-              className="about-mission-image"
-            />
-          </div>
           <div className="about-mission-copy">
             <p className="section-label">Our Mission</p>
             <h2>Empowering Manufacturing with Smart Automation</h2>
@@ -272,17 +348,15 @@ export default function AboutPage() {
               results in a rapidly evolving industrial automation landscape.
             </p>
           </div>
-        </div>
-      </section>
-
-      <section className="section section-steel about-highlights-section">
-        <div className="container about-highlight-grid">
-          {highlights.map((item) => (
-            <article className="about-highlight-card" key={item.label}>
-              <AboutCounter end={item.value} />
-              <span>{item.label}</span>
-            </article>
-          ))}
+          <div className="about-mission-media">
+            <Image
+              src="/about-bg.png"
+              alt="Industrial automation engineer working with Siemens control systems"
+              width={720}
+              height={720}
+              className="about-mission-image"
+            />
+          </div>
         </div>
       </section>
 
@@ -497,14 +571,7 @@ export default function AboutPage() {
             <p className="section-label">Frequently Asked Questions</p>
             <h2>Industrial Automation Questions, Answered</h2>
           </div>
-          <div className="about-faq-grid">
-            {faqs.map((item) => (
-              <details className="about-faq-card" key={item.q}>
-                <summary>{item.q}</summary>
-                <p>{item.a}</p>
-              </details>
-            ))}
-          </div>
+          <FaqAccordion items={faqs} />
         </div>
       </section>
 
