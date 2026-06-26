@@ -142,7 +142,7 @@ p {
 }
 
 .section {
-  padding: 72px 0;
+  padding: 40px 0;
 }
 
 .section-steel {
@@ -1754,6 +1754,24 @@ p {
   font-weight: var(--weight-heavy);
   line-height: 1.12;
   text-transform: uppercase;
+}
+
+.about-who-title-row {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.about-who-title-icon {
+  display: inline-grid;
+  width: 44px;
+  height: 44px;
+  place-items: center;
+  border: 1px solid rgba(255, 52, 52, 0.18);
+  border-radius: 12px;
+  background: #ffffff;
+  color: var(--red);
+  box-shadow: 0 10px 24px rgba(17, 18, 20, 0.05);
 }
 
 .about-who-body {
@@ -3901,7 +3919,7 @@ p {
 
 @media (max-width: 860px) {
   .section {
-    padding: 76px 0;
+    padding: 40px 0;
   }
 
   .hero-layout,
@@ -4429,7 +4447,7 @@ p {
 /* ── Global Section Padding & Grid Adjustments on Mobile ── */
 @media (max-width: 767px) {
   .section {
-    padding: 64px 0 !important;
+    padding: 32px 0 !important;
   }
 
   .expertise-row {
@@ -4641,6 +4659,11 @@ p {
   font-family: var(--font-sans);
 }
 
+.service-detail-page .section {
+  padding-top: 34px;
+  padding-bottom: 34px;
+}
+
 .service-detail-page p {
   color: var(--home-copy-color);
   font-size: var(--home-copy-size);
@@ -4847,12 +4870,13 @@ p {
 /* Service document sections */
 .service-doc-section-wrap {
   background: #ffffff;
-  padding-top: 88px;
+  padding-top: 28px;
+  padding-bottom: 34px;
 }
 
 .service-doc-sections {
   display: grid;
-  gap: 56px;
+  gap: 28px;
 }
 
 .service-doc-section {
@@ -4949,7 +4973,7 @@ p {
     linear-gradient(90deg, rgba(17, 18, 20, 0.04) 1px, transparent 1px),
     linear-gradient(180deg, #f7f8fb 0%, #eef2f7 100%);
   background-size: 72px 72px, auto;
-  padding: 84px max(24px, calc((100vw - var(--container)) / 2));
+  padding: 48px max(24px, calc((100vw - var(--container)) / 2));
   box-shadow: none;
 }
 

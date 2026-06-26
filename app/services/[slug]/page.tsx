@@ -274,11 +274,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       type: "website",
       images: seo?.ogImage
         ? [
-            {
-              url: seo.ogImage,
-              alt: seo.ogImageAlt ?? service.title,
-            },
-          ]
+          {
+            url: seo.ogImage,
+            alt: seo.ogImageAlt ?? service.title,
+          },
+        ]
         : undefined,
     },
   };
@@ -308,88 +308,88 @@ export default async function ServiceDetailPage({ params }: Props) {
   const heroContent =
     slug === "plc-programming-integration"
       ? {
-          title: "PLC Programming & Integration Services",
-          subheadline:
-            "Precision logic for precise control — custom PLC programs engineered for Siemens, Allen-Bradley and Schneider platforms.",
-          body:
-            "Hive Automation designs, programs, and integrates Programmable Logic Controllers (PLCs) for manufacturing, process, and packaging lines across India. Whether you are building a new control system from scratch or upgrading a legacy installation, our PLC programming services are engineered for safety, flexibility, and long-term performance — backed by hands-on experience since 2017 across pharmaceutical, oil & gas, and chemical plants.",
-          cta: "Request a Free PLC Programming Consultation",
-          tags: ["Siemens", "Allen-Bradley", "Schneider", "Since 2017"],
-        }
+        title: "PLC Programming & Integration Services",
+        subheadline:
+          "Precision logic for precise control — custom PLC programs engineered for Siemens, Allen-Bradley and Schneider platforms.",
+        body:
+          "Hive Automation designs, programs, and integrates Programmable Logic Controllers (PLCs) for manufacturing, process, and packaging lines across India. Whether you are building a new control system from scratch or upgrading a legacy installation, our PLC programming services are engineered for safety, flexibility, and long-term performance — backed by hands-on experience since 2017 across pharmaceutical, oil & gas, and chemical plants.",
+        cta: "Request a Free PLC Programming Consultation",
+        tags: ["Siemens", "Allen-Bradley", "Schneider", "Since 2017"],
+      }
       : {
-          title: service.title,
-          subheadline: service.tagline,
-          body: service.desc,
-          cta: "Request a Free Consultation",
-          tags: [],
-        };
+        title: service.title,
+        subheadline: service.tagline,
+        body: service.desc,
+        cta: "Request a Free Consultation",
+        tags: [],
+      };
   const schema =
     slug === "plc-programming-integration"
       ? {
-          "@context": "https://schema.org",
-          "@graph": [
-            {
-              "@type": "Service",
-              serviceType: "PLC Programming and Integration",
-              name: "PLC Programming & Integration Services",
-              description:
-                "Custom PLC programming and integration services for Siemens, Allen-Bradley and Schneider platforms, including safety PLC, redundant architecture, and I/O integration for pharmaceutical, oil & gas, and chemical plants.",
-              provider: {
-                "@type": "Organization",
-                name: "Hive Automation",
-                url: "https://hiveautomation.in/",
-                logo: "https://hiveautomation.in/src/img/header-logo.png",
-                telephone: "+91-99786-03840",
-                email: "info@hiveautomation.in",
-                address: {
-                  "@type": "PostalAddress",
-                  streetAddress: "33, B N Industrial Estate, Near Kathwada GIDC Gate No 5, S P Ring Road, Near Nikol, Odhav",
-                  addressLocality: "Ahmedabad",
-                  addressRegion: "Gujarat",
-                  postalCode: "382415",
-                  addressCountry: "IN",
-                },
-              },
-              areaServed: [
-                { "@type": "Country", name: "India" },
-                { "@type": "AdministrativeArea", name: "Gujarat" },
-              ],
-              url: "https://hiveautomation.in/services/plc-programming-integration",
-              audience: {
-                "@type": "Audience",
-                audienceType: "Pharmaceutical, Oil & Gas, Chemical and Manufacturing Plant Engineers",
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "Service",
+            serviceType: "PLC Programming and Integration",
+            name: "PLC Programming & Integration Services",
+            description:
+              "Custom PLC programming and integration services for Siemens, Allen-Bradley and Schneider platforms, including safety PLC, redundant architecture, and I/O integration for pharmaceutical, oil & gas, and chemical plants.",
+            provider: {
+              "@type": "Organization",
+              name: "Hive Automation",
+              url: "https://hiveautomation.in/",
+              logo: "https://hiveautomation.in/src/img/header-logo.png",
+              telephone: "+91-99786-03840",
+              email: "info@hiveautomation.in",
+              address: {
+                "@type": "PostalAddress",
+                streetAddress: "33, B N Industrial Estate, Near Kathwada GIDC Gate No 5, S P Ring Road, Near Nikol, Odhav",
+                addressLocality: "Ahmedabad",
+                addressRegion: "Gujarat",
+                postalCode: "382415",
+                addressCountry: "IN",
               },
             },
-            {
-              "@type": "BreadcrumbList",
-              itemListElement: [
-                { "@type": "ListItem", position: 1, name: "Home", item: "https://hiveautomation.in/" },
-                { "@type": "ListItem", position: 2, name: "Our Services", item: "https://hiveautomation.in/our-services" },
-                {
-                  "@type": "ListItem",
-                  position: 3,
-                  name: "PLC Programming & Integration",
-                  item: "https://hiveautomation.in/services/plc-programming-integration",
-                },
-              ],
+            areaServed: [
+              { "@type": "Country", name: "India" },
+              { "@type": "AdministrativeArea", name: "Gujarat" },
+            ],
+            url: "https://hiveautomation.in/services/plc-programming-integration",
+            audience: {
+              "@type": "Audience",
+              audienceType: "Pharmaceutical, Oil & Gas, Chemical and Manufacturing Plant Engineers",
             },
-            ...(faqs
-              ? [
-                  {
-                    "@type": "FAQPage",
-                    mainEntity: faqs.map((item) => ({
-                      "@type": "Question",
-                      name: item.q,
-                      acceptedAnswer: {
-                        "@type": "Answer",
-                        text: item.a,
-                      },
-                    })),
+          },
+          {
+            "@type": "BreadcrumbList",
+            itemListElement: [
+              { "@type": "ListItem", position: 1, name: "Home", item: "https://hiveautomation.in/" },
+              { "@type": "ListItem", position: 2, name: "Our Services", item: "https://hiveautomation.in/our-services" },
+              {
+                "@type": "ListItem",
+                position: 3,
+                name: "PLC Programming & Integration",
+                item: "https://hiveautomation.in/services/plc-programming-integration",
+              },
+            ],
+          },
+          ...(faqs
+            ? [
+              {
+                "@type": "FAQPage",
+                mainEntity: faqs.map((item) => ({
+                  "@type": "Question",
+                  name: item.q,
+                  acceptedAnswer: {
+                    "@type": "Answer",
+                    text: item.a,
                   },
-                ]
-              : []),
-          ],
-        }
+                })),
+              },
+            ]
+            : []),
+        ],
+      }
       : undefined;
 
   return (
@@ -411,7 +411,7 @@ export default async function ServiceDetailPage({ params }: Props) {
               <span>/</span>
               <span>{service.title}</span>
             </div>
-            
+
             <h1>{heroContent.title}</h1>
             <p className="service-detail-hero-subtitle" style={{ color: "#d6cece" }}>{heroContent.subheadline}</p>
             <p className="service-detail-hero-body" style={{ color: "#d6cece" }}>{heroContent.body}</p>
@@ -438,80 +438,80 @@ export default async function ServiceDetailPage({ params }: Props) {
       </section>
 
       {false ? (
-      /* Main Content */
-      <section className="section">
-        <div className="container" style={{ maxWidth: 1200, margin: "0 auto", display: "grid", gridTemplateColumns: "1.7fr 1fr", gap: 48, alignItems: "start" }}>
-          {/* Details Column */}
-          <div>
-            <h2 style={{ marginBottom: 20 }}>Overview</h2>
-            <p style={{ fontSize: 16, lineHeight: "28px", color: "#333333", marginBottom: 32 }}>
-              {service.desc}
-            </p>
-
-            <h2 style={{ marginBottom: 20 }}>Key Capabilities</h2>
-            <div style={{ display: "grid", gridTemplateColumns: "1fr", gap: 16, marginBottom: 32 }}>
-              {service.features.map((feat, idx) => (
-                <div key={idx} style={{ display: "flex", gap: 14, alignItems: "start", background: "#F9F8F6", padding: "16px 20px", borderRadius: 8, border: "1px solid #DCDAD5" }}>
-                  <span className="service-doc-bullet-mark" />
-                  <span style={{ fontSize: 14, fontWeight: 500, color: "#1B1B1B", lineHeight: "22px" }}>{feat}</span>
-                </div>
-              ))}
-            </div>
-
-            <div style={{ background: "rgba(87,94,207,0.04)", borderLeft: "4px solid #575ECF", padding: "20px 24px", borderRadius: "0 8px 8px 0" }}>
-              <h3 style={{ textTransform: "uppercase", letterSpacing: "1px", color: "#575ECF", marginBottom: 8 }}>
-                Ideal Deployment
-              </h3>
-              <p style={{ fontSize: 14, color: "#1B1B1B", lineHeight: "22px", margin: 0, fontWeight: 500 }}>
-                {service.idealFor}
+        /* Main Content */
+        <section className="section">
+          <div className="container" style={{ maxWidth: 1200, margin: "0 auto", display: "grid", gridTemplateColumns: "1.7fr 1fr", gap: 48, alignItems: "start" }}>
+            {/* Details Column */}
+            <div>
+              <h2 style={{ marginBottom: 20 }}>Overview</h2>
+              <p style={{ fontSize: 16, lineHeight: "28px", color: "#333333", marginBottom: 32 }}>
+                {service.desc}
               </p>
-            </div>
-          </div>
 
-          {/* Sidebar CTA Column */}
-          <div>
-            <div className="card" style={{ padding: 32, background: "#1B1B1B", color: "#FFFFFF", borderColor: "#2A2A2A" }}>
-              <h2 style={{ color: "#FFFFFF", marginBottom: 16 }}>Request Consultation</h2>
-              <p style={{ color: "#C5C1B9", fontSize: 14, lineHeight: "22px", marginBottom: 24 }}>
-                Discuss your engineering needs directly with our project leaders. Let us build a robust solution for your plant.
-              </p>
-              <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
-                <AnimatedButton href="/contact" className="w-full">
-                  Request a Quote
-                </AnimatedButton>
-                <AnimatedButton
-                  href="https://appt.link/meet-with-bhavik-bhimani-iz1nBIl5/hive-automation"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  variant="dark"
-                  icon={<Phone />}
-                  className="w-full border-white/30"
-                >
-                  Schedule Technical Call
-                </AnimatedButton>
+              <h2 style={{ marginBottom: 20 }}>Key Capabilities</h2>
+              <div style={{ display: "grid", gridTemplateColumns: "1fr", gap: 16, marginBottom: 32 }}>
+                {service.features.map((feat, idx) => (
+                  <div key={idx} style={{ display: "flex", gap: 14, alignItems: "start", background: "#F9F8F6", padding: "16px 20px", borderRadius: 8, border: "1px solid #DCDAD5" }}>
+                    <span className="service-doc-bullet-mark" />
+                    <span style={{ fontSize: 14, fontWeight: 500, color: "#1B1B1B", lineHeight: "22px" }}>{feat}</span>
+                  </div>
+                ))}
+              </div>
+
+              <div style={{ background: "rgba(87,94,207,0.04)", borderLeft: "4px solid #575ECF", padding: "20px 24px", borderRadius: "0 8px 8px 0" }}>
+                <h3 style={{ textTransform: "uppercase", letterSpacing: "1px", color: "#575ECF", marginBottom: 8 }}>
+                  Ideal Deployment
+                </h3>
+                <p style={{ fontSize: 14, color: "#1B1B1B", lineHeight: "22px", margin: 0, fontWeight: 500 }}>
+                  {service.idealFor}
+                </p>
               </div>
             </div>
 
-            <div className="card" style={{ padding: 24, marginTop: 24 }}>
-              <h2 style={{ marginBottom: 16 }}>Why Choose Hive?</h2>
-              <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: 12 }}>
-                <li style={{ fontSize: 13, display: "flex", gap: 8, color: "#1B1B1B" }}>
-                  <span style={{ color: "#FF3434" }}>★</span>
-                  <span>Certified Siemens Integrators</span>
-                </li>
-                <li style={{ fontSize: 13, display: "flex", gap: 8, color: "#1B1B1B" }}>
-                  <span style={{ color: "#FF3434" }}>★</span>
-                  <span>21 CFR Part 11 Pharma Compliant</span>
-                </li>
-                <li style={{ fontSize: 13, display: "flex", gap: 8, color: "#1B1B1B" }}>
-                  <span style={{ color: "#FF3434" }}>★</span>
-                  <span>Turnkey Panel-to-SCADA execution</span>
-                </li>
-              </ul>
+            {/* Sidebar CTA Column */}
+            <div>
+              <div className="card" style={{ padding: 32, background: "#1B1B1B", color: "#FFFFFF", borderColor: "#2A2A2A" }}>
+                <h2 style={{ color: "#FFFFFF", marginBottom: 16 }}>Request Consultation</h2>
+                <p style={{ color: "#C5C1B9", fontSize: 14, lineHeight: "22px", marginBottom: 24 }}>
+                  Discuss your engineering needs directly with our project leaders. Let us build a robust solution for your plant.
+                </p>
+                <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+                  <AnimatedButton href="/contact" className="w-full">
+                    Request a Quote
+                  </AnimatedButton>
+                  <AnimatedButton
+                    href="https://appt.link/meet-with-bhavik-bhimani-iz1nBIl5/hive-automation"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    variant="dark"
+                    icon={<Phone />}
+                    className="w-full border-white/30"
+                  >
+                    Schedule Technical Call
+                  </AnimatedButton>
+                </div>
+              </div>
+
+              <div className="card" style={{ padding: 24, marginTop: 24 }}>
+                <h2 style={{ marginBottom: 16 }}>Why Choose Hive?</h2>
+                <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: 12 }}>
+                  <li style={{ fontSize: 13, display: "flex", gap: 8, color: "#1B1B1B" }}>
+                    <span style={{ color: "#FF3434" }}>★</span>
+                    <span>Certified Siemens Integrators</span>
+                  </li>
+                  <li style={{ fontSize: 13, display: "flex", gap: 8, color: "#1B1B1B" }}>
+                    <span style={{ color: "#FF3434" }}>★</span>
+                    <span>21 CFR Part 11 Pharma Compliant</span>
+                  </li>
+                  <li style={{ fontSize: 13, display: "flex", gap: 8, color: "#1B1B1B" }}>
+                    <span style={{ color: "#FF3434" }}>★</span>
+                    <span>Turnkey Panel-to-SCADA execution</span>
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
       ) : null}
 
       {contentSections?.length ? (
@@ -552,72 +552,71 @@ export default async function ServiceDetailPage({ params }: Props) {
                 ];
 
                 return (
-                <article
-                  key={section.heading}
-                  className={`service-doc-section ${sectionClass}`}
-                  style={{ "--service-section-index": index + 1 } as CSSProperties}
-                >
-                  <div className="service-doc-head">
-                    <p className="section-label">{eyebrow}</p>
-                    <h2>{section.heading}</h2>
-                  </div>
-                  <div className="service-doc-copy">
-                  {section.paragraphs.map((paragraph) => (
-                    <p
-                      key={paragraph}
-                    >
-                      {paragraph}
-                    </p>
-                  ))}
-                  </div>
-                  {section.bullets?.length ? (
-                    <div
-                      className={`service-doc-bullets ${
-                        isCapabilities
-                          ? "service-doc-bullets-capabilities"
-                          : isIndustries
-                            ? "service-doc-bullets-industries"
-                            : isProcess
-                              ? "service-doc-bullets-process"
-                              : ""
-                      }`}
-                    >
-                      {section.bullets.map((item, bulletIndex) => {
-                        const IndustryIcon = industryIcons[bulletIndex % industryIcons.length];
-                        const industryParts = item.match(/^([^(]+?)(?:\s*\((.+)\))?$/);
-                        const industryTitle = industryTitles[bulletIndex] ?? industryParts?.[1]?.trim() ?? item;
-                        const industryDetail = industryParts?.[2]?.trim();
-
-                        return (
-                          <div
-                            key={item}
-                            className={`service-doc-bullet-card ${isIndustries ? "service-doc-industry-card" : ""}`}
-                          >
-                            {isIndustries ? (
-                              <span className="service-doc-industry-icon">
-                                <IndustryIcon size={30} strokeWidth={1.8} />
-                              </span>
-                            ) : (
-                              <span className="service-doc-bullet-mark">
-                                {isProcess ? String(bulletIndex + 1).padStart(2, "0") : ""}
-                              </span>
-                            )}
-                            <span>
-                              {isProcess
-                                ? item.replace(/^\d+\.\s*/, "")
-                                : isIndustries
-                                  ? industryTitle
-                                  : item}
-                              {isIndustries && industryDetail ? (
-                                <small>{industryDetail}</small>
-                              ) : null}
-                            </span>
-                          </div>
-                        );
-                      })}
+                  <article
+                    key={section.heading}
+                    className={`service-doc-section ${sectionClass}`}
+                    style={{ "--service-section-index": index + 1 } as CSSProperties}
+                  >
+                    <div className="service-doc-head">
+                      <p className="section-label">{eyebrow}</p>
+                      <h2>{section.heading}</h2>
                     </div>
-                  ) : null}
-                </article>
+                    <div className="service-doc-copy">
+                      {section.paragraphs.map((paragraph) => (
+                        <p
+                          key={paragraph}
+                        >
+                          {paragraph}
+                        </p>
+                      ))}
+                    </div>
+                    {section.bullets?.length ? (
+                      <div
+                        className={`service-doc-bullets ${isCapabilities
+                            ? "service-doc-bullets-capabilities"
+                            : isIndustries
+                              ? "service-doc-bullets-industries"
+                              : isProcess
+                                ? "service-doc-bullets-process"
+                                : ""
+                          }`}
+                      >
+                        {section.bullets.map((item, bulletIndex) => {
+                          const IndustryIcon = industryIcons[bulletIndex % industryIcons.length];
+                          const industryParts = item.match(/^([^(]+?)(?:\s*\((.+)\))?$/);
+                          const industryTitle = industryTitles[bulletIndex] ?? industryParts?.[1]?.trim() ?? item;
+                          const industryDetail = industryParts?.[2]?.trim();
+
+                          return (
+                            <div
+                              key={item}
+                              className={`service-doc-bullet-card ${isIndustries ? "service-doc-industry-card" : ""}`}
+                            >
+                              {isIndustries ? (
+                                <span className="service-doc-industry-icon">
+                                  <IndustryIcon size={30} strokeWidth={1.8} />
+                                </span>
+                              ) : (
+                                <span className="service-doc-bullet-mark">
+                                  {isProcess ? String(bulletIndex + 1).padStart(2, "0") : ""}
+                                </span>
+                              )}
+                              <span>
+                                {isProcess
+                                  ? item.replace(/^\d+\.\s*/, "")
+                                  : isIndustries
+                                    ? industryTitle
+                                    : item}
+                                {isIndustries && industryDetail ? (
+                                  <small>{industryDetail}</small>
+                                ) : null}
+                              </span>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    ) : null}
+                  </article>
                 );
               })}
             </div>
@@ -664,7 +663,7 @@ export default async function ServiceDetailPage({ params }: Props) {
             <p className="section-label">Related Services</p>
             <h2>Explore More Industrial Automation Services</h2>
           </div>
-          <div className="pharma-related-scroll"  style={{ marginTop: "50px" }}>
+          <div className="pharma-related-scroll" style={{ marginTop: "50px" }}>
             {relatedServices.map((item) => (
               <Link className="pharma-related-card" href={`/services/${item.slug}`} key={item.slug}>
                 <div className="pharma-related-thumb">
@@ -699,7 +698,7 @@ export default async function ServiceDetailPage({ params }: Props) {
       </section>
 
       {faqs?.length ? (
-        <section className="section">
+        <section className="section" style={{ paddingBottom: 0 }}>
           <div className="container">
             <div className="section-heading">
               <p className="section-label">Frequently Asked Questions</p>
@@ -732,7 +731,7 @@ export default async function ServiceDetailPage({ params }: Props) {
           </div>
         </div>
       </section>
-      
+
       <style>{`
         .pharma-related-section .section-heading {
           margin-bottom: 28px;
