@@ -44,6 +44,7 @@ const CardSticky = React.forwardRef<HTMLDivElement, CardStickyProps>(
   ) => {
     const y = offsetY + index * incrementY
     const scale = 1 - index * 0.04
+    void incrementZ
 
     return (
       <motion.div

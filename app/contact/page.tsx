@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { AnimatedButton } from "../components/ui/AnimatedButton";
-import { Phone, ArrowRight } from "lucide-react";
+import { Phone } from "lucide-react";
 
 function useInView() {
   const ref = useRef<HTMLDivElement>(null);

@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import Script from "next/script";
 import "./globals.css";
-import Navbar from "./components/Navbar";
-import Footer from "./components/Footer";
+import AppChrome from "./components/AppChrome";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://hiveautomation.in"),
@@ -111,10 +110,8 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdSchema) }}
         />
       </head>
-      <body suppressHydrationWarning>
-        <Navbar />
-        <main style={{ flex: 1 }}>{children}</main>
-        <Footer />
+      <body suppressHydrationWarning style={{ minHeight: "100vh", display: "flex", flexDirection: "column" }}>
+        <AppChrome>{children}</AppChrome>
       </body>
     </html>
   );

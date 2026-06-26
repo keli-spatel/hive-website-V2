@@ -5391,3 +5391,46 @@ p {
     font-size: var(--title-xl);
   }
 }
+
+.admin-shell {
+  color: #000000;
+}
+
+.admin-shell h1,
+.admin-shell h2,
+.admin-shell h3,
+.admin-shell h4,
+.admin-shell h5,
+.admin-shell h6 {
+  color: #000000;
+  letter-spacing: 0;
+}
+
+.admin-shell h1 {
+  font-size: 34px;
+  font-weight: 500;
+  line-height: 39px;
+}
+
+.admin-shell h2 {
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+.admin-shell a,
+.admin-shell button {
+  text-decoration: none;
+}
+
+.admin-shell input,
+.admin-shell textarea,
+.admin-shell select {
+  color: #000000;
+  background: #ffffff;
+}
+
+.admin-shell ::placeholder {
+  color: #686562;
+  opacity: 1;
+}

@@ -51,14 +51,9 @@ const Carousel = React.forwardRef<
       { ...opts, axis: orientation === "horizontal" ? "x" : "y" },
       plugins,
     )
-    const [canScrollPrev, setCanScrollPrev] = React.useState(false)
-    const [canScrollNext, setCanScrollNext] = React.useState(false)
-
-    const onSelect = React.useCallback((api: CarouselApi) => {
-      if (!api) return
-      setCanScrollPrev(api.canScrollPrev())
-      setCanScrollNext(api.canScrollNext())
-    }, [])
+    const [, forceRender] = React.useReducer((count: number) => count + 1, 0)
+    const canScrollPrev = api?.canScrollPrev() ?? false
+    const canScrollNext = api?.canScrollNext() ?? false
 
     const scrollPrev = React.useCallback(() => { api?.scrollPrev() }, [api])
     const scrollNext = React.useCallback(() => { api?.scrollNext() }, [api])
@@ -78,11 +73,16 @@ const Carousel = React.forwardRef<
 
     React.useEffect(() => {
       if (!api) return
-      onSelect(api)
-      api.on("reInit", onSelect)
-      api.on("select", onSelect)
-      return () => { api?.off("select", onSelect) }
-    }, [api, onSelect])
+      const handleSelect = () => {
+        forceRender()
+      }
+      api.on("reInit", handleSelect)
+      api.on("select", handleSelect)
+      return () => {
+        api.off("reInit", handleSelect)
+        api.off("select", handleSelect)
+      }
+    }, [api])
 
     return (
       <CarouselContext.Provider
