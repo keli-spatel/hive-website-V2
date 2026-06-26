@@ -57,7 +57,9 @@ export default function PharmaceuticalProjectPage({
 
           <p className="section-label">{project.hero.label}</p>
           <h1>{project.hero.title}</h1>
-          <p className="pharma-project-hero-copy">{project.hero.subtitle}</p>
+          <p className="pharma-project-hero-copy" style={{ color: "#d6cece" }}>
+            {project.hero.subtitle}
+          </p>
         </div>
       </section>
 

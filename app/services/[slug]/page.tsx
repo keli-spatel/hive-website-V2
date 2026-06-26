@@ -5,7 +5,9 @@ import type { CSSProperties } from "react";
 import { notFound } from "next/navigation";
 import { AnimatedButton } from "../../components/ui/AnimatedButton";
 import { FaqAccordion } from "../../components/FaqAccordion";
-import { Factory, FlaskConical, Fuel, Gauge, Package, Phone, Pill } from "lucide-react";
+import AnimatedStats from "../../components/AnimatedStats";
+import { ClientCarousel } from "../../components/ui/cases-with-infinite-scroll";
+import { ArrowRight, Factory, FlaskConical, Fuel, Gauge, Package, Phone, Pill } from "lucide-react";
 
 // Define static services data
 const servicesData = {
@@ -232,6 +234,15 @@ export async function generateStaticParams() {
   return Object.keys(servicesData).map((slug) => ({ slug }));
 }
 
+function getShortServiceDescription(text: string) {
+  const normalized = text.replace(/\s+/g, " ").trim();
+  if (normalized.length <= 132) return normalized;
+
+  const shortened = normalized.slice(0, 129);
+  const lastSpace = shortened.lastIndexOf(" ");
+  return `${shortened.slice(0, lastSpace > 72 ? lastSpace : shortened.length).trim()}...`;
+}
+
 type Props = {
   params: Promise<{ slug: string }>;
 };
@@ -284,6 +295,16 @@ export default async function ServiceDetailPage({ params }: Props) {
   const contentSections = "contentSections" in service ? service.contentSections : undefined;
   const relatedLinks = "relatedLinks" in service ? service.relatedLinks : undefined;
   const faqs = "faqs" in service ? service.faqs : undefined;
+  const relatedServices = Object.entries(servicesData)
+    .filter(([serviceSlug]) => serviceSlug !== slug)
+    .slice(0, 4)
+    .map(([serviceSlug, relatedService]) => ({
+      slug: serviceSlug,
+      title: relatedService.title,
+      tag: relatedService.tagline,
+      desc: getShortServiceDescription(relatedService.desc),
+      image: `/services/${serviceSlug}.png`,
+    }));
   const heroContent =
     slug === "plc-programming-integration"
       ? {
@@ -392,8 +413,8 @@ export default async function ServiceDetailPage({ params }: Props) {
             </div>
             
             <h1>{heroContent.title}</h1>
-            <p className="service-detail-hero-subtitle">{heroContent.subheadline}</p>
-            <p className="service-detail-hero-body">{heroContent.body}</p>
+            <p className="service-detail-hero-subtitle" style={{ color: "#d6cece" }}>{heroContent.subheadline}</p>
+            <p className="service-detail-hero-body" style={{ color: "#d6cece" }}>{heroContent.body}</p>
             <div className="service-detail-hero-action">
               <AnimatedButton href="/contact">
                 {heroContent.cta}
@@ -637,6 +658,46 @@ export default async function ServiceDetailPage({ params }: Props) {
         </section>
       ) : null}
 
+      <section className="section pharma-related-section">
+        <div className="container" style={{ width: "min(1400px, calc(100% - 24px))", maxWidth: "none" }}>
+          <div className="section-heading">
+            <p className="section-label">Related Services</p>
+            <h2>Explore More Industrial Automation Services</h2>
+          </div>
+          <div className="pharma-related-scroll"  style={{ marginTop: "50px" }}>
+            {relatedServices.map((item) => (
+              <Link className="pharma-related-card" href={`/services/${item.slug}`} key={item.slug}>
+                <div className="pharma-related-thumb">
+                  <Image src={item.image} alt={item.title} fill className="pharma-related-image" sizes="320px" />
+                </div>
+                <div className="pharma-related-body">
+                  <h3>{item.title}</h3>
+                  <p>{item.desc}</p>
+                  <div className="pharma-related-link">
+                    <span>View Service</span>
+                    <ArrowRight size={16} aria-hidden="true" />
+                  </div>
+                </div>
+              </Link>
+            ))}
+          </div>
+          <div className="center-action">
+            <AnimatedButton href="/our-services">View All Services</AnimatedButton>
+          </div>
+        </div>
+      </section>
+
+      <section className="section clients-carousel-section" id="service-clients">
+        <div className="container">
+          <div className="section-heading">
+            <p className="section-label">Our Clients</p>
+            <h2>Trusted by Leading Companies &amp; Brands</h2>
+          </div>
+          <AnimatedStats compact />
+          <ClientCarousel />
+        </div>
+      </section>
+
       {faqs?.length ? (
         <section className="section">
           <div className="container">
@@ -673,10 +734,99 @@ export default async function ServiceDetailPage({ params }: Props) {
       </section>
       
       <style>{`
+        .pharma-related-section .section-heading {
+          margin-bottom: 28px;
+        }
+
+        .pharma-related-scroll {
+          display: grid;
+          grid-template-columns: repeat(4, minmax(0, 1fr));
+          gap: 18px;
+        }
+
+        .pharma-related-card {
+          display: flex;
+          flex-direction: column;
+          min-height: 100%;
+          overflow: hidden;
+          border: 1px solid #e4e9f0;
+          border-radius: 18px;
+          background: #ffffff;
+          text-decoration: none;
+          color: inherit;
+          box-shadow: 0 14px 34px rgba(17, 18, 20, 0.06);
+          transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+        }
+
+        .pharma-related-card:hover,
+        .pharma-related-card:focus-visible {
+          border-color: rgba(255, 52, 52, 0.28);
+          box-shadow: 0 18px 38px rgba(17, 18, 20, 0.1);
+          transform: translateY(-2px);
+          outline: none;
+        }
+
+        .pharma-related-thumb {
+          position: relative;
+          min-height: 180px;
+        }
+
+        .pharma-related-image {
+          object-fit: cover;
+          transition: transform 220ms ease;
+        }
+
+        .pharma-related-card:hover .pharma-related-image,
+        .pharma-related-card:focus-visible .pharma-related-image {
+          transform: scale(1.04);
+        }
+
+        .pharma-related-body {
+          display: grid;
+          gap: 10px;
+          padding: 18px 18px 20px;
+        }
+
+        .pharma-related-card h3 {
+          margin: 0;
+          color: #111214;
+          font-size: 18px;
+          font-weight: 700;
+          line-height: 1.28;
+        }
+
+        .pharma-related-body p {
+          margin: 0;
+          color: var(--home-copy-color);
+          font-size: 14px;
+          line-height: 1.65;
+        }
+
+        .pharma-related-link {
+          display: inline-flex;
+          align-items: center;
+          gap: 8px;
+          margin-top: auto;
+          color: #ff3434;
+          font-size: 13px;
+          font-weight: 700;
+          transition: color 180ms ease, transform 180ms ease;
+        }
+
+        .pharma-related-card:hover .pharma-related-link,
+        .pharma-related-card:focus-visible .pharma-related-link {
+          color: #df2d2d;
+          transform: translateY(-1px);
+        }
+
         @media(max-width: 799px) {
           div[style*="grid-template-columns"] {
             grid-template-columns: 1fr !important;
             gap: 32px !important;
+          }
+
+          .pharma-related-scroll {
+            grid-template-columns: 1fr;
           }
         }
       `}</style>
