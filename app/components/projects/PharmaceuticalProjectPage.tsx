@@ -169,12 +169,10 @@ export default function PharmaceuticalProjectPage({
               </div>
               <div className="pharma-outcome-grid">
                 <article className="pharma-outcome-card pharma-outcome-card-challenge">
-                  <div className="pharma-outcome-title-row">
-                    <div className="pharma-outcome-icon" aria-hidden="true">
-                      <CircleAlert size={22} strokeWidth={1.9} />
-                    </div>
-                    <h3>Challenge</h3>
+                  <div className="pharma-outcome-icon" aria-hidden="true">
+                    <CircleAlert size={52} strokeWidth={1.4} />
                   </div>
+                  <h3>Challenge</h3>
                   <p>{project.challenge}</p>
                 </article>
                 <div className="pharma-outcome-flow" aria-hidden="true">
@@ -183,12 +181,10 @@ export default function PharmaceuticalProjectPage({
                   <span className="pharma-outcome-flow-core" />
                 </div>
                 <article className="pharma-outcome-card pharma-outcome-card-result">
-                  <div className="pharma-outcome-title-row">
-                    <div className="pharma-outcome-icon" aria-hidden="true">
-                      <Sparkles size={22} strokeWidth={1.9} />
-                    </div>
-                    <h3>Outcome / Result</h3>
+                  <div className="pharma-outcome-icon" aria-hidden="true">
+                    <Sparkles size={52} strokeWidth={1.4} />
                   </div>
+                  <h3>Outcome / Result</h3>
                   <p>{project.outcome}</p>
                 </article>
               </div>
@@ -852,20 +848,27 @@ export default function PharmaceuticalProjectPage({
           box-shadow: 0 24px 52px rgba(17, 18, 20, 0.16);
         }
 
-        .pharma-outcome-title-row {
+        .pharma-outcome-card {
+          padding: 28px 24px;
           display: flex;
+          flex-direction: column;
           align-items: center;
-          gap: 14px;
-          margin-bottom: 14px;
+          text-align: center;
         }
 
-        .pharma-outcome-card h3,
-        .pharma-related-card h3 {
-          margin: 0;
+        .pharma-outcome-card h3 {
+          margin: 14px 0 12px;
           color: var(--black);
           font-size: var(--title-xs);
           font-weight: var(--weight-bold);
           line-height: 1.28;
+        }
+
+        .pharma-outcome-card p {
+          margin: 0;
+          color: var(--home-copy-color);
+          font-size: var(--home-copy-size);
+          line-height: var(--home-copy-line);
         }
 
         .pharma-outcome-card-result h3,
@@ -881,18 +884,18 @@ export default function PharmaceuticalProjectPage({
           display: inline-flex;
           align-items: center;
           justify-content: center;
-          width: 50px;
-          height: 50px;
-          border-radius: 16px;
-          border: 1px solid rgba(255, 52, 52, 0.16);
+          width: 88px;
+          height: 88px;
+          border-radius: 50%;
+          border: 1.5px solid rgba(255, 52, 52, 0.2);
           background: rgba(255, 52, 52, 0.08);
           color: var(--red);
           flex: 0 0 auto;
         }
 
         .pharma-outcome-card-result .pharma-outcome-icon {
-          border-color: rgba(255, 255, 255, 0.16);
-          background: rgba(255, 255, 255, 0.08);
+          border-color: rgba(255, 255, 255, 0.2);
+          background: rgba(255, 255, 255, 0.1);
           color: #ffffff;
         }
 
