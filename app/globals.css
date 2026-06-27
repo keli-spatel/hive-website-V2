@@ -1737,16 +1737,27 @@ p {
 
 .about-who-statement {
   position: relative;
-  display: grid;
-  grid-template-columns: minmax(240px, 0.34fr) minmax(0, 0.66fr);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
   gap: 56px;
-  align-items: start;
 }
 
 .about-who-heading {
-  position: sticky;
-  top: 112px;
+  flex: 0 0 auto;
+  width: clamp(240px, 34%, 360px);
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
 }
+
+.about-who-body {
+  flex: 1;
+}
+
 
 .about-who-heading h2 {
   color: var(--black);
@@ -1772,6 +1783,19 @@ p {
   background: #ffffff;
   color: var(--red);
   box-shadow: 0 10px 24px rgba(17, 18, 20, 0.05);
+}
+
+.about-who-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100px;
+  height: 100px;
+  margin-bottom: 20px;
+  border-radius: 50%;
+  background: rgba(255, 52, 52, 0.07);
+  border: 1.5px solid rgba(255, 52, 52, 0.18);
+  color: var(--red);
 }
 
 .about-who-body {

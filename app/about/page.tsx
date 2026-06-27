@@ -10,6 +10,7 @@ import {
   FlaskConical,
   Fuel,
   Headset,
+  HelpCircle,
   LifeBuoy,
   MonitorSmartphone,
   Network,
@@ -363,13 +364,11 @@ export default function AboutPage() {
       <section className="section about-who-section" id="who-we-are">
         <div className="container about-who-statement">
           <div className="about-who-heading">
-            <p className="section-label">Our Story</p>
-            <div className="about-who-title-row">
-              <h2>Who We Are</h2>
-              <span className="about-who-title-icon" aria-hidden="true">
-                <Target size={20} strokeWidth={1.9} />
-              </span>
+            <div className="about-who-icon" aria-hidden="true">
+              <HelpCircle size={72} strokeWidth={1.2} />
             </div>
+            <p className="section-label">Our Story</p>
+            <h2>Who We Are</h2>
           </div>
           <div className="about-who-body">
             <p>
