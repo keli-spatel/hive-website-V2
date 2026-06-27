@@ -313,8 +313,8 @@ export default function HomePage() {
               <Image
                 src="/contact-agent.jpg"
                 alt="Hive Automation engineer consultation specialist"
-                width={560}
-                height={640}
+                width={400}
+                height={457}
                 className="why-illustration"
               />
             </div>
