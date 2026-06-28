@@ -35,6 +35,7 @@ const navLinks: NavLink[] = [
     href: "/our-project",
     subLinks: [
       { label: "Pharmaceutical Automation", href: "/projects/pharmaceutical" },
+      { label: "Pharma Process Equipment", href: "/projects/pharma-process" },
       { label: "Chemical Plant Control", href: "/projects/chemical" },
       { label: "Oil & Gas DCS", href: "/projects/oil-gas" },
       { label: "Refinery Compressor Control", href: "/projects/refinery" },

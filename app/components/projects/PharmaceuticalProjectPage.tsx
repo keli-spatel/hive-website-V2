@@ -40,6 +40,7 @@ export default function PharmaceuticalProjectPage({
   schema: object;
 }) {
   const project = projectConfig.data;
+  const caseStudyName = project.hero.label.replace(/^Case Study:\s*/, "");
   const snapshotHighlights = project.snapshot.map((item, index) => ({
     ...item,
     icon: iconMap[projectConfig.snapshotIcons[index] ?? "workflow"],
@@ -56,7 +57,7 @@ export default function PharmaceuticalProjectPage({
             <ChevronRight size={14} aria-hidden="true" />
             <Link href="/our-project">Our Projects</Link>
             <ChevronRight size={14} aria-hidden="true" />
-            <span>Pharmaceutical</span>
+            <span>{caseStudyName}</span>
           </nav>
 
           <p className="section-label">{project.hero.label}</p>
@@ -270,7 +271,7 @@ export default function PharmaceuticalProjectPage({
         <div className="container">
           <div className="section-heading">
             <p className="section-label">Frequently Asked Questions</p>
-            <h2>Pharmaceutical Automation Questions, Answered</h2>
+            <h2>{caseStudyName} Automation Questions, Answered</h2>
           </div>
           <FaqAccordion items={project.faqs} />
         </div>

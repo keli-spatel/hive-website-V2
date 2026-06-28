@@ -1,144 +1,16 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { AnimatedButton } from "./ui/AnimatedButton";
 import { Phone } from "lucide-react";
+import { servicesListing } from "../data/services-listing";
+import { SCHEDULE_CALL_URL } from "../data/site";
+import { useInView } from "../hooks/useInView";
 
-function useInView() {
-  const ref = useRef<HTMLDivElement>(null);
-  const [inView, setInView] = useState(false);
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) setInView(true);
-      },
-      { threshold: 0.1 }
-    );
-    if (ref.current) observer.observe(ref.current);
-    return () => observer.disconnect();
-  }, []);
-  return { ref, inView };
-}
 
-const services = [
-  {
-    id: "plc",
-    slug: "plc-programming-integration",
-    icon: "⚙️",
-    title: "PLC Programming & Integration",
-    sub: "Custom Siemens PLC Solutions",
-    desc: "We develop custom PLC programs tailored to your specific process and production goals. Our PLC logic design ensures industrial safety, flexibility, and high-performance system integration.",
-    feats: [
-      "Siemens S7-300/400/1500 programming",
-      "TIA Portal & STEP 7 development",
-      "Safety PLC (F-PLC) programming",
-      "Custom function block libraries",
-      "Process simulation & testing",
-      "Hardware configuration & I/O mapping",
-    ],
-  },
-  {
-    id: "dcs",
-    slug: "distributed-control-systems",
-    icon: "🖥️",
-    title: "Distributed Control Systems (DCS)",
-    sub: "Siemens PCS 7 Platforms",
-    desc: "Robust Siemens PCS 7 and other DCS solutions providing scalable, integrated control of complex industrial processes with accuracy, safety, and maximum uptime.",
-    feats: [
-      "Siemens PCS 7 configuration",
-      "Batch processing automation",
-      "Continuous process control",
-      "Redundancy & failover systems",
-      "Multi-plant integration",
-      "Historian & trending",
-    ],
-  },
-  {
-    id: "scada",
-    slug: "scada-hmi-development",
-    icon: "📊",
-    title: "SCADA & HMI Development",
-    sub: "Real-Time Monitoring",
-    desc: "Intuitive SCADA and HMI interfaces for real-time monitoring and control, designed for usability, data clarity, and enhanced operational safety.",
-    feats: [
-      "WinCC & WinCC OA development",
-      "Custom HMI screen design",
-      "Alarm management systems",
-      "Real-time data visualization",
-      "Remote access & monitoring",
-      "ISA-101 compliant graphics",
-    ],
-  },
-  {
-    id: "turnkey",
-    slug: "turnkey-project-execution",
-    icon: "🏗️",
-    title: "Turnkey Project Execution",
-    sub: "End-to-End Delivery",
-    desc: "Complete automation solutions from early system design to final handover, ensuring consistency, reliability, and full accountability.",
-    feats: [
-      "Functional specification & design",
-      "Hardware procurement & panel building",
-      "Software development & simulation",
-      "FAT & SAT testing",
-      "On-site commissioning",
-      "Training & documentation",
-    ],
-  },
-  {
-    id: "upgrades",
-    slug: "system-upgrade-retrofits",
-    icon: "🔄",
-    title: "System Upgrades & Retrofits",
-    sub: "Legacy Modernization",
-    desc: "Upgrade aging control systems and legacy hardware to modern platforms like Siemens S7-1500 and TIA Portal with minimal downtime.",
-    feats: [
-      "S5 to S7 migration",
-      "S7-300/400 to S7-1500 upgrades",
-      "TIA Portal migration",
-      "I/O module retrofitting",
-      "Network protocol upgrades",
-      "Firmware & software updates",
-    ],
-  },
-  {
-    id: "networking",
-    slug: "industrial-networking-cybersecurity",
-    icon: "🔒",
-    title: "Industrial Networking & Cybersecurity",
-    sub: "Secure Networks",
-    desc: "Resilient, segmented, and secure industrial networks built for performance and uptime from control to enterprise level.",
-    feats: [
-      "PROFINET & PROFIBUS networking",
-      "Industrial Ethernet design",
-      "Network segmentation & firewalls",
-      "VPN & remote access security",
-      "OT cybersecurity assessments",
-      "IEC 62443 compliance",
-    ],
-  },
-  {
-    id: "analytics",
-    slug: "analytics-reporting",
-    icon: "📈",
-    title: "Analytics & Reporting",
-    sub: "Data-Driven Decisions",
-    desc: "Industrial reporting tools and dashboards for real-time KPIs, historical trends, and compliance logs.",
-    feats: [
-      "Real-time KPI dashboards",
-      "Historical data trending",
-      "Compliance & audit reports",
-      "OEE & production analytics",
-      "Energy monitoring systems",
-      "Custom report generation",
-    ],
-  },
-];
-
-function ServiceBlock({ svc, i }: { svc: (typeof services)[0]; i: number }) {
-  const svcRef = useInView();
+function ServiceBlock({ svc, i }: { svc: (typeof servicesListing)[0]; i: number }) {
+  const svcRef = useInView<HTMLDivElement>(0.1);
   const isAlt = i % 2 === 1;
   return (
     <section ref={svcRef.ref} id={svc.id} className={`section ${isAlt ? "section-alt" : ""}`}>
@@ -215,7 +87,7 @@ function ServiceBlock({ svc, i }: { svc: (typeof services)[0]; i: number }) {
 }
 
 export default function ServicesListingPage() {
-  const heroRef = useInView();
+  const heroRef = useInView<HTMLDivElement>(0.1);
   return (
     <div className="services-page" style={{ marginTop: 82 }}>
       <section ref={heroRef.ref} className="services-hero">
@@ -241,7 +113,7 @@ export default function ServicesListingPage() {
             <div className="services-hero-actions">
               <AnimatedButton href="/contact">Request a Quote</AnimatedButton>
               <AnimatedButton
-                href="https://appt.link/meet-with-bhavik-bhimani-iz1nBIl5/hive-automation"
+                href={SCHEDULE_CALL_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 variant="outline-dark"
@@ -271,7 +143,7 @@ export default function ServicesListingPage() {
           </div>
         </div>
       </section>
-      {services.map((svc, i) => (
+      {servicesListing.map((svc, i) => (
         <ServiceBlock key={svc.id} svc={svc} i={i} />
       ))}
       <section style={{ background: "linear-gradient(135deg,#1B1B1B,#2a2a2a)", padding: "64px 32px", textAlign: "center" }}>
@@ -283,7 +155,7 @@ export default function ServicesListingPage() {
           <div style={{ display: "flex", gap: 16, justifyContent: "center", flexWrap: "wrap" }}>
             <AnimatedButton href="/contact">Request a Quote</AnimatedButton>
             <AnimatedButton
-              href="https://appt.link/meet-with-bhavik-bhimani-iz1nBIl5/hive-automation"
+              href={SCHEDULE_CALL_URL}
               target="_blank"
               rel="noopener noreferrer"
               variant="outline-dark"

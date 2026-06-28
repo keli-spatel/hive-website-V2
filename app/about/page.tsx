@@ -1,242 +1,25 @@
-"use client";
-
-import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import {
-  Coffee,
-  Cpu,
-  Factory,
-  FlaskConical,
-  Fuel,
-  Headset,
   HelpCircle,
-  LifeBuoy,
-  MonitorSmartphone,
-  Network,
-  PanelTop,
   Phone,
-  Server,
-  Settings,
-  ShieldCheck,
-  Target,
   TrendingUp,
-  UserCog,
-  Users,
-  Workflow,
 } from "lucide-react";
-import AnimatedStats from "../components/AnimatedStats";
-import { ClientCarousel } from "../components/ui/cases-with-infinite-scroll";
-import { AnimatedButton } from "../components/ui/AnimatedButton";
+import {
+  aboutExpertise,
+  aboutFaqs,
+  aboutHighlights,
+  aboutIndustries,
+  aboutReasons,
+  aboutResults,
+  technologyGroups,
+} from "../data/about";
+import { SCHEDULE_CALL_URL } from "../data/site";
+import { CountUp } from "../components/ui/CountUp";
 import { FaqAccordion } from "../components/FaqAccordion";
-
-const scheduleUrl = "https://appt.link/meet-with-bhavik-bhimani-iz1nBIl5/hive-automation";
-
-function useInView() {
-  const ref = useRef<HTMLElement>(null);
-  const [inView, setInView] = useState(false);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) setInView(true);
-      },
-      { threshold: 0.08 }
-    );
-
-    if (ref.current) observer.observe(ref.current);
-    return () => observer.disconnect();
-  }, []);
-
-  return { ref, inView };
-}
-
-function AboutCounter({ end, suffix = "+", duration = 2000 }: { end: number; suffix?: string; duration?: number }) {
-  const [count, setCount] = useState(0);
-  const { ref, inView } = useInView();
-
-  useEffect(() => {
-    if (!inView) return;
-
-    let start = 0;
-    const incrementTime = 30;
-    const totalSteps = duration / incrementTime;
-    const increment = end / totalSteps;
-
-    const timer = window.setInterval(() => {
-      start += increment;
-      if (start >= end) {
-        setCount(end);
-        window.clearInterval(timer);
-      } else {
-        setCount(Math.ceil(start));
-      }
-    }, incrementTime);
-
-    return () => window.clearInterval(timer);
-  }, [duration, end, inView]);
-
-  return (
-    <strong ref={ref}>
-      {count}
-      {suffix}
-    </strong>
-  );
-}
-
-const highlights = [
-  { value: 8, label: "Years Industry Experience" },
-  { value: 500, label: "Automation Projects Delivered" },
-  { value: 50, label: "Industrial Clients" },
-  { value: 10, label: "Major Industries Served" },
-];
-
-const trustTags = [
-  { name: "Siemens Experts", icon: UserCog },
-  { name: "Industrial Automation", icon: Settings },
-  { name: "GAMP 5 Quality", icon: ShieldCheck },
-  { name: "24/7 Support", icon: Headset },
-];
-
-const expertise = [
-  {
-    icon: Cpu,
-    title: "PLC Programming & Integration",
-    desc: "Custom Siemens PLC programming and integration services for machine automation and process control applications.",
-  },
-  {
-    icon: MonitorSmartphone,
-    title: "SCADA & HMI Development",
-    desc: "Advanced monitoring and visualization systems that provide real-time operational insights and control.",
-  },
-  {
-    icon: Server,
-    title: "DCS Engineering",
-    desc: "Distributed Control System solutions designed for complex process industries requiring high reliability and scalability.",
-  },
-  {
-    icon: Network,
-    title: "Industrial Networking",
-    desc: "Industrial communication infrastructure that ensures seamless connectivity across automation systems.",
-  },
-  {
-    icon: PanelTop,
-    title: "Control Panel Engineering & Manufacturing",
-    desc: "Design, development, testing, and commissioning of industrial control panels.",
-  },
-  {
-    icon: Workflow,
-    title: "Turnkey Automation Projects",
-    desc: "Complete project execution from concept design to commissioning and ongoing support.",
-  },
-];
-
-const industries = [
-  {
-    icon: FlaskConical,
-    title: "Pharmaceutical Industry Automation",
-    desc: "GMP-compliant automation solutions that ensure product quality, process consistency, and regulatory compliance.",
-  },
-  {
-    icon: Fuel,
-    title: "Oil & Gas Automation Solutions",
-    desc: "Automation systems that enhance safety, monitoring, production efficiency, and operational reliability.",
-  },
-  {
-    icon: ShieldCheck,
-    title: "Chemical Plant Automation",
-    desc: "Advanced process control solutions that optimize production while maintaining operational safety standards.",
-  },
-  {
-    icon: Factory,
-    title: "Manufacturing Industry Automation",
-    desc: "Smart automation technologies that increase productivity, reduce manual intervention, and improve equipment effectiveness.",
-  },
-  {
-    icon: Coffee,
-    title: "Food & Beverage Automation",
-    desc: "Reliable automation systems that enhance product quality and improve production efficiency.",
-  },
-];
-
-const reasons = [
-  {
-    icon: Settings,
-    title: "Siemens Technology Expertise",
-    desc: "Extensive experience with Siemens PLCs, SCADA systems, HMI development, and industrial communication networks.",
-  },
-  {
-    icon: Users,
-    title: "Experienced Automation Engineers",
-    desc: "A highly skilled engineering team with deep expertise in industrial automation project execution.",
-  },
-  {
-    icon: Target,
-    title: "Customized Automation Solutions",
-    desc: "Every project is designed around the client's specific operational goals and business requirements.",
-  },
-  {
-    icon: Workflow,
-    title: "End-to-End Project Delivery",
-    desc: "Comprehensive support from system design and development to commissioning and post-project maintenance.",
-  },
-  {
-    icon: LifeBuoy,
-    title: "Long-Term Technical Support",
-    desc: "Ongoing troubleshooting, upgrades, maintenance, and optimization services after project completion.",
-  },
-];
-
-const technologyGroups = [
-  {
-    icon: Cpu,
-    title: "Siemens PLC Systems",
-    items: ["Siemens S7-200 Smart", "Siemens S7-1200 G1/G2", "Siemens S7-1500 R/H/FH", "Siemens ET200SP Series", "Siemens S7-400", "Siemens S7-300"],
-  },
-  {
-    icon: MonitorSmartphone,
-    title: "HMI / SCADA Platforms",
-    items: ["Siemens WinCC Explorer", "WinCC Advance", "WinCC Unified", "KTP / TP / MTP HMI"],
-  },
-  {
-    icon: Server,
-    title: "DCS Solutions",
-    items: ["Siemens PCS 7", "Siemens PCS 7 neo", "ET200SP HA / PA"],
-  },
-  {
-    icon: Settings,
-    title: "Engineering Software",
-    items: ["TIA Portal", "SIMATIC Manager", "WinCC Professional", "TIA WinCC Advance"],
-  },
-];
-
-const results = [
-  "Reduce operational downtime",
-  "Improve process consistency",
-  "Increase production efficiency",
-  "Enhance plant safety",
-  "Optimize resource utilization",
-  "Accelerate digital transformation initiatives",
-];
-
-const faqs = [
-  {
-    q: "What industrial automation services does Hive Automation provide?",
-    a: "We provide PLC programming, SCADA development, DCS integration, industrial networking, control panel engineering, and turnkey automation projects.",
-  },
-  {
-    q: "Do you specialize in Siemens automation systems?",
-    a: "Yes. We specialize in Siemens PLC programming, TIA Portal development, WinCC SCADA systems, and Siemens process automation technologies.",
-  },
-  {
-    q: "Which industries do you serve?",
-    a: "We serve pharmaceutical, chemical, manufacturing, oil & gas, food processing, and other process industries.",
-  },
-  {
-    q: "Do you provide support after project completion?",
-    a: "Yes. We offer ongoing maintenance, troubleshooting, upgrades, and technical support services.",
-  },
-];
+import { AnimatedButton } from "../components/ui/AnimatedButton";
+import { AboutPreviewSection } from "../components/sections/AboutPreviewSection";
+import { ClientsSection } from "../components/sections/ClientsSection";
 
 export default function AboutPage() {
   return (
@@ -256,9 +39,9 @@ export default function AboutPage() {
             </p>
           </div>
           <div className="about-highlight-grid about-hero-stats" aria-label="Hive Automation highlights">
-            {highlights.map((item) => (
+            {aboutHighlights.map((item) => (
               <article className="about-highlight-card" key={item.label}>
-                <AboutCounter end={item.value} />
+                <CountUp end={item.value} suffix="+" />
                 <span>{item.label}</span>
               </article>
             ))}
@@ -266,70 +49,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="section about-section" id="about-preview" style={{ marginTop: "30px" }}>
-        <div className="container split-grid">
-          <div className="media-frame">
-            <Image
-              src="/about-new.jpg"
-              alt="Engineer programming Siemens PLC"
-              width={720}
-              height={520}
-              className="section-image"
-            />
-            <div className="experience-chip">
-              <strong>2017</strong>
-              <span>Established after deep automation experience</span>
-            </div>
-          </div>
-          <div>
-            <p className="section-label">About Us</p>
-            <h2>India&apos;s Trusted Siemens Industrial Automation Experts</h2>
-            <p>
-              Hive Automation is a trusted industrial automation company specializing in Siemens
-              PLC programming, SCADA system integration, and process control solutions. Our mission
-              is to empower manufacturing with smart automation systems that optimize operations,
-              enhance efficiency, and minimize industrial downtime across India.
-            </p>
-            <p>
-              We provide expert services for Siemens PLCs, SCADA, and DCS platforms, having
-              successfully delivered turnkey automation projects for diverse industries. Our
-              commitment to industrial compliance, innovation, and safety ensures high-performance
-              results in a rapidly evolving industrial automation landscape.
-            </p>
-            <div className="mt-9">
-              <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 xl:grid-cols-4">
-                {trustTags.map((tag) => (
-                  <div
-                    key={tag.name}
-                    className="flex min-h-[68px] items-center gap-3 rounded-[14px] border border-[#dfe3ea] bg-[#f8fafc] px-3 py-1 text-left shadow-[0_8px_20px_rgba(17,18,20,0.04)]"
-                  >
-                    <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-[#ff3b3b]/30 bg-white text-[#ff3b3b]">
-                      <tag.icon size={15} strokeWidth={1.9} />
-                    </div>
-                    <span className="text-[13px] font-semibold leading-[1.35] text-[#111214]">
-                      {tag.name}
-                    </span>
-                  </div>
-                ))}
-              </div>
-            </div>
-            <div className="action-row mt-9">
-              <AnimatedButton href="#mission">
-                Read More
-              </AnimatedButton>
-              <AnimatedButton
-                href={scheduleUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                variant="secondary"
-                icon={<Phone />}
-              >
-                Schedule a Call
-              </AnimatedButton>
-            </div>
-          </div>
-        </div>
-      </section>
+      <AboutPreviewSection readMoreHref="#mission" />
 
       <section className="section about-mission-section" id="mission">
         <div className="container about-mission-layout">
@@ -445,7 +165,7 @@ export default function AboutPage() {
             </p>
           </div>
           <div className="about-card-grid">
-            {expertise.map((item) => (
+            {aboutExpertise.map((item) => (
               <article className="about-feature-card" key={item.title}>
                 <div className="about-card-icon">
                   <item.icon size={26} strokeWidth={1.7} />
@@ -470,7 +190,7 @@ export default function AboutPage() {
               </p>
             </div>
             <div className="about-industry-map">
-              {industries.map((item, index) => (
+              {aboutIndustries.map((item, index) => (
                 <article className="about-industry-card" key={item.title} style={{ animationDelay: `${index * 70}ms` }}>
                   <span className="about-industry-index">0{index + 1}</span>
                   <div className="about-industry-icon">
@@ -493,7 +213,7 @@ export default function AboutPage() {
             <p className="section-label">Why Choose Hive Automation</p>
             <h2>Engineering Expertise Built Around Your Plant Goals</h2>
             <div className="reason-list">
-              {reasons.map((item) => (
+              {aboutReasons.map((item) => (
                 <article className="reason-item" key={item.title}>
                   <div className="reason-title-row">
                     <item.icon size={22} strokeWidth={1.8} />
@@ -548,7 +268,7 @@ export default function AboutPage() {
             </p>
           </div>
           <div className="about-results-list">
-            {results.map((item) => (
+            {aboutResults.map((item) => (
               <div key={item}>
                 <TrendingUp size={20} strokeWidth={1.8} />
                 <span>{item}</span>
@@ -558,16 +278,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="section clients-carousel-section" id="about-clients">
-        <div className="container">
-          <div className="section-heading">
-            <p className="section-label">Our Clients</p>
-            <h2>Trusted by Leading Companies &amp; Brands</h2>
-          </div>
-          <AnimatedStats compact />
-          <ClientCarousel />
-        </div>
-      </section>
+      <ClientsSection id="about-clients" />
 
       <section className="section" id="about-faq">
         <div className="container">
@@ -575,7 +286,7 @@ export default function AboutPage() {
             <p className="section-label">Frequently Asked Questions</p>
             <h2>Industrial Automation Questions, Answered</h2>
           </div>
-          <FaqAccordion items={faqs} />
+          <FaqAccordion items={aboutFaqs} />
         </div>
       </section>
 
@@ -589,7 +300,7 @@ export default function AboutPage() {
           </p>
           <div className="action-row about-cta-actions">
             <AnimatedButton href="/contact">Contact Our Automation Experts</AnimatedButton>
-            <AnimatedButton href={scheduleUrl} target="_blank" rel="noopener noreferrer" variant="secondary" icon={<Phone />}>
+            <AnimatedButton href={SCHEDULE_CALL_URL} target="_blank" rel="noopener noreferrer" variant="secondary" icon={<Phone />}>
               Discuss Your Project
             </AnimatedButton>
           </div>
