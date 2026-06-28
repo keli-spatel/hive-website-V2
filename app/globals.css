@@ -5017,6 +5017,26 @@ p {
   background: #ff3434;
 }
 
+.service-doc-section-concept-intro {
+  align-items: center;
+}
+
+.service-doc-section-concept-intro .service-doc-head {
+  position: static;
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 100%;
+  margin-bottom: 0;
+}
+
+.service-doc-section-concept-intro .service-doc-copy {
+  align-self: center;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
 .service-doc-section-capabilities {
   background:
     linear-gradient(135deg, rgba(255, 52, 52, 0.045), transparent 36%),
