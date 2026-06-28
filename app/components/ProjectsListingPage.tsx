@@ -44,7 +44,15 @@ export default function ProjectsListingPage() {
 
   return (
     <div style={{ marginTop: 60 }}>
-      <section ref={heroRef.ref} style={{ background: "linear-gradient(135deg,#1B1B1B,#2a2a2a)", padding: "64px 32px 52px", textAlign: "center" }}>
+      <section
+        ref={heroRef.ref}
+        style={{
+          background:
+            "linear-gradient(135deg, rgba(255, 52, 52, 0.2), transparent 34%), linear-gradient(180deg, #171819 0%, #242629 100%)",
+          padding: "64px 32px 52px",
+          textAlign: "center",
+        }}
+      >
         <div style={{ maxWidth: 800, margin: "0 auto", opacity: heroRef.inView ? 1 : 0, transform: heroRef.inView ? "translateY(0)" : "translateY(24px)", transition: "all 0.7s ease-out" }}>
           <div style={{ display: "inline-flex", gap: 8, marginBottom: 16, fontSize: 12, fontWeight: 600, color: "#C5C1B9", letterSpacing: 1 }}>
             <Link href="/" style={{ color: "#C5C1B9", textDecoration: "none", fontWeight: 400 }}>Home</Link>

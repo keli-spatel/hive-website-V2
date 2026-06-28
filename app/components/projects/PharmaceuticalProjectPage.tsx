@@ -297,7 +297,9 @@ export default function PharmaceuticalProjectPage({
         }
 
         .pharma-project-hero {
-          background: #343433;
+          background:
+            linear-gradient(135deg, rgba(255, 52, 52, 0.2), transparent 34%),
+            linear-gradient(180deg, #171819 0%, #242629 100%);
           padding: 76px 0 64px;
         }
 
