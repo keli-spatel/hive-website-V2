@@ -5,7 +5,7 @@ import { listPublishedCategories, listPublishedPosts } from "@/lib/repo";
 export const revalidate = 300;
 
 export default async function BlogsPage() {
-  const [posts, categories] = await Promise.all([
+  const [posts] = await Promise.all([
     listPublishedPosts(),
     listPublishedCategories(),
   ]);
@@ -16,27 +16,20 @@ export default async function BlogsPage() {
     <main className="blogs-page">
       <section className="blogs-hero">
         <div className="container blogs-hero-inner">
-          <div className="blogs-breadcrumb">
-            <Link href="/">Home</Link>
-            <span>/</span>
-            <span>Blogs</span>
-          </div>
-          <p className="section-label">Industrial Automation Blog</p>
-          <h1>Field-tested automation insights for engineering teams</h1>
-          <p className="blogs-hero-copy">
-            Articles from Hive Automation on PLC logic, SCADA and DCS implementation,
-            retrofit planning, diagnostics, commissioning, and real industrial automation
-            decisions.
-          </p>
-          {categories.length ? (
-            <div className="blogs-category-row" aria-label="Blog categories">
-              {categories.map((category) => (
-                <span key={category} className="blogs-category-pill">
-                  {category}
-                </span>
-              ))}
+          <div className="blogs-hero-copy-wrap">
+            <div className="blogs-breadcrumb">
+              <Link href="/">Home</Link>
+              <span>/</span>
+              <span>Blogs</span>
             </div>
-          ) : null}
+            <h1>Blogs</h1>
+            <p className="blogs-hero-copy">
+              Articles from Hive Automation on PLC logic, SCADA and DCS implementation,
+              retrofit planning, diagnostics, commissioning, and real industrial automation
+              decisions.
+            </p>
+          </div>
+
         </div>
       </section>
 
@@ -47,7 +40,6 @@ export default async function BlogsPage() {
               <div className="blogs-section-head">
                 <div>
                   <p className="section-label">Latest Article</p>
-                  <h2>Start with the newest published insight</h2>
                 </div>
               </div>
               <BlogCard post={featuredPost} featured />
@@ -55,13 +47,6 @@ export default async function BlogsPage() {
           ) : null}
 
           <div className="blogs-feed-wrap">
-            <div className="blogs-section-head">
-              <div>
-                <p className="section-label">All Articles</p>
-                <h2>Browse the current blog library</h2>
-              </div>
-            </div>
-
             {posts.length ? (
               <div className="blogs-grid">
                 {remainingPosts.length

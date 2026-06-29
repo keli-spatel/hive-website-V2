@@ -2,7 +2,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { ArrowUpRight } from "lucide-react";
 import { BlogCard } from "@/app/components/blog/BlogCard";
+import { FaqAccordion } from "@/app/components/FaqAccordion";
 import { absoluteBlogUrl, formatBlogDate } from "@/lib/blog";
 import { getPublishedPostBySlug, listPublishedPosts } from "@/lib/repo";
 
@@ -126,46 +128,39 @@ export default async function BlogDetailPage({ params }: Props) {
               <span>{post.title}</span>
             </div>
 
-            <div className="blog-detail-meta">
-              <span className="blog-card-tag">{post.category}</span>
-              {publishedLabel ? <span>{publishedLabel}</span> : null}
-              {post.reading_time ? <span>{post.reading_time}</span> : null}
-            </div>
-
             <h1>{post.title}</h1>
             <p className="blog-detail-description">{post.description}</p>
-
-            {post.authors.length ? (
-              <div className="blog-author-row">
-                {post.authors.map((author) => (
-                  <div key={`${post.id}-${author.name}`} className="blog-author-pill">
-                    <strong>{author.name}</strong>
-                    {author.role ? <span>{author.role}</span> : null}
-                  </div>
-                ))}
-              </div>
-            ) : null}
           </div>
-
-          {post.featured_image ? (
-            <div className="blog-detail-visual">
-              <img
-                src={post.featured_image}
-                alt={post.featured_image_alt || post.title}
-                className="blog-detail-image"
-              />
-            </div>
-          ) : null}
         </div>
       </section>
 
       <section className="section blog-detail-content-section">
+        <div className="container">
+          {post.featured_image ? (
+            <div className="blog-detail-banner">
+              <img
+                src={post.featured_image}
+                alt={post.featured_image_alt || post.title}
+                className="blog-detail-banner-image"
+              />
+            </div>
+          ) : null}
+        </div>
+
         <div className="container blog-detail-layout">
           <aside className="blog-detail-sidebar">
-            {post.tldr ? (
+            {post.authors.length ? (
               <div className="blog-side-card">
-                <p className="section-label">TL;DR</p>
-                <p>{post.tldr}</p>
+                <p className="section-label">Written By</p>
+                <div className="blog-side-authors">
+                  {post.authors.map((author) => (
+                    <div className="blog-side-author" key={`${post.slug}-${author.name}`}>
+                      <strong>{author.name}</strong>
+                      {author.role ? <span>{author.role}</span> : null}
+                      {author.bio ? <p>{author.bio}</p> : null}
+                    </div>
+                  ))}
+                </div>
               </div>
             ) : null}
 
@@ -190,6 +185,11 @@ export default async function BlogDetailPage({ params }: Props) {
                 ) : null}
               </ul>
             </div>
+
+            <Link className="blog-side-cta" href="/contact">
+              <span>Need help with a similar automation challenge?</span>
+              <ArrowUpRight size={16} />
+            </Link>
           </aside>
 
           <article className="blog-detail-article">
@@ -199,17 +199,16 @@ export default async function BlogDetailPage({ params }: Props) {
             />
 
             {post.faq_content.length ? (
-              <div className="blog-faq-block">
+              <div className="blog-faq-block blog-faq-section">
                 <p className="section-label">FAQ</p>
                 <h2>Common questions</h2>
-                <div className="blog-faq-list">
-                  {post.faq_content.map((faq, index) => (
-                    <article key={`${faq.question}-${index}`} className="blog-faq-item">
-                      <h3>{faq.question}</h3>
-                      <p>{faq.answer}</p>
-                    </article>
-                  ))}
-                </div>
+                <FaqAccordion
+                  items={post.faq_content.map((faq) => ({
+                    q: faq.question,
+                    a: faq.answer,
+                  }))}
+                  className="about-faq-grid blog-faq-accordion"
+                />
               </div>
             ) : null}
           </article>
@@ -222,7 +221,6 @@ export default async function BlogDetailPage({ params }: Props) {
             <div className="blogs-section-head">
               <div>
                 <p className="section-label">More From The Blog</p>
-                <h2>Keep reading related automation insights</h2>
               </div>
             </div>
             <div className="blogs-grid">

@@ -43,6 +43,12 @@ export function BlogCard({ post, featured = false }: BlogCardProps) {
           <p>{post.description}</p>
         </div>
 
+        {post.authors.length ? (
+          <div className="blog-card-authors">
+            <span>By {post.authors.map((author) => author.name).join(", ")}</span>
+          </div>
+        ) : null}
+
         <Link className="blog-card-link" href={`/blogs/${post.slug}`}>
           <span>Read article</span>
           <ArrowRight size={16} />
