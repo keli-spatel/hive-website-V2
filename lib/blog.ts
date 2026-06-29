@@ -107,3 +107,20 @@ export function validateSlugOrThrow(slug: string) {
   return normalized;
 }
 
+export function formatBlogDate(value: string | null) {
+  if (!value) return null;
+  const date = new Date(value);
+
+  if (Number.isNaN(date.getTime())) return null;
+
+  return new Intl.DateTimeFormat("en-IN", {
+    day: "numeric",
+    month: "short",
+    year: "numeric",
+  }).format(date);
+}
+
+export function absoluteBlogUrl(pathOrUrl: string) {
+  if (/^https?:\/\//i.test(pathOrUrl)) return pathOrUrl;
+  return `https://hiveautomation.in${pathOrUrl.startsWith("/") ? pathOrUrl : `/${pathOrUrl}`}`;
+}

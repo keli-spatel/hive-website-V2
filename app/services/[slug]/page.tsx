@@ -1208,7 +1208,18 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     return {};
   }
 
-  const seo = "seo" in service ? service.seo : undefined;
+  const seo = ("seo" in service ? service.seo : undefined) as
+    | {
+      title?: string;
+      description?: string;
+      keywords: string[];
+      ogImage?: string;
+      ogImageAlt?: string;
+      canonical?: string;
+      articleSection?: string;
+      ogType?: "article" | "website";
+    }
+    | undefined;
   const title = seo?.title ?? `${service.title} | Hive Automation`;
   const description = seo?.description ?? service.desc;
   const url = seo?.canonical ?? `https://hiveautomation.in/services/${slug}`;

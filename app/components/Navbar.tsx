@@ -45,6 +45,7 @@ const navLinks: NavLink[] = [
       { label: "Retrofit & Upgrades", href: "/projects/retrofit-upgrade" },
     ],
   },
+  { label: "Blogs", href: "/blogs" },
   { label: "Career", href: "/career" },
   { label: "Contact", href: "/contact" },
 ];

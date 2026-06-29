@@ -8,10 +8,16 @@ import ServiceSlider from "./components/ServiceSlider";
 import { ContactCard } from "./components/ContactCard";
 import CaseStudyShowcase from "./components/CaseStudyShowcase";
 import { AboutPreviewSection } from "./components/sections/AboutPreviewSection";
+import { HomeBlogSection } from "./components/sections/HomeBlogSection";
 import { ClientsSection } from "./components/sections/ClientsSection";
 import { QuoteForm } from "./components/forms/QuoteForm";
+import { listPublishedPosts } from "@/lib/repo";
 
-export default function HomePage() {
+export const revalidate = 300;
+
+export default async function HomePage() {
+  const latestPosts = await listPublishedPosts({ limit: 3 });
+
   return (
     <main className="home">
       <section className="hero-section" id="hero">
@@ -79,6 +85,8 @@ export default function HomePage() {
       <ServiceSlider services={homeServices} />
 
       <CaseStudyShowcase projects={featuredProjects} />
+
+      <HomeBlogSection posts={latestPosts} />
 
       <section className="section why-section why-section-dark" id="why-hive">
         <div className="container why-layout">

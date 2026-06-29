@@ -1,8 +1,11 @@
 import readline from "node:readline/promises";
 import { stdin as input, stdout as output } from "node:process";
+import { loadEnvConfig } from "@next/env";
 import { nowIso, query } from "../lib/db";
 import { createId } from "../lib/ids";
 import { hashPassword } from "../lib/auth";
+
+loadEnvConfig(process.cwd());
 
 async function main() {
   const emailArg = process.argv.find((arg) => arg.startsWith("--email="));

@@ -89,6 +89,74 @@ export async function getPostBySlug(slug: string) {
   return rows[0] ? mapPostRow(rows[0]) : null;
 }
 
+export async function listPublishedPosts(options: {
+  limit?: number;
+  category?: string;
+  excludeSlug?: string;
+} = {}) {
+  const clauses = [
+    "is_published = TRUE",
+    "deleted_at IS NULL",
+    "published_at IS NOT NULL",
+  ];
+  const params: unknown[] = [];
+
+  if (options.category) {
+    params.push(options.category);
+    clauses.push(`category = $${params.length}`);
+  }
+
+  if (options.excludeSlug) {
+    params.push(options.excludeSlug);
+    clauses.push(`slug <> $${params.length}`);
+  }
+
+  let sql = `
+    SELECT *
+    FROM blog_posts
+    WHERE ${clauses.join(" AND ")}
+    ORDER BY published_at DESC, updated_at DESC
+  `;
+
+  if (options.limit) {
+    params.push(options.limit);
+    sql += ` LIMIT $${params.length}`;
+  }
+
+  const { rows } = await query<RowRecord>(sql, params);
+  return rows.map(mapPostRow);
+}
+
+export async function getPublishedPostBySlug(slug: string) {
+  const { rows } = await query<RowRecord>(
+    `
+      SELECT *
+      FROM blog_posts
+      WHERE slug = $1
+        AND is_published = TRUE
+        AND deleted_at IS NULL
+        AND published_at IS NOT NULL
+      LIMIT 1
+    `,
+    [slug],
+  );
+  return rows[0] ? mapPostRow(rows[0]) : null;
+}
+
+export async function listPublishedCategories() {
+  const { rows } = await query<{ category: string }>(
+    `
+      SELECT DISTINCT category
+      FROM blog_posts
+      WHERE is_published = TRUE
+        AND deleted_at IS NULL
+        AND published_at IS NOT NULL
+      ORDER BY category ASC
+    `,
+  );
+  return rows.map((row) => row.category);
+}
+
 export async function createPost(data: Record<string, unknown>) {
   const now = nowIso();
   const id = createId();
