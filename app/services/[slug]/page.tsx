@@ -13,7 +13,7 @@ import { ArrowRight, Factory, FlaskConical, Fuel, Gauge, Package, Phone, Pill } 
 const servicesData = {
   "plc-programming-integration": {
     title: "PLC Programming & Integration Services",
-    tagline: "Precision logic for precise control â€” custom PLC programs engineered for Siemens, Allen-Bradley and Schneider platforms.",
+    tagline: "Precision logic for precise control custom PLC programs engineered for Siemens, Allen-Bradley and Schneider platforms.",
     desc: "We develop custom PLC programs tailored to your process and production goals. Whether youâ€™re upgrading an existing system or building from scratch, our logic design ensures safety, flexibility, and performance.",
     icon: "âš™ï¸",
     features: [
@@ -53,14 +53,14 @@ const servicesData = {
       {
         heading: "What Is PLC Programming & Why It Matters",
         paragraphs: [
-          "A Programmable Logic Controller (PLC) is the brain of any automated production line â€” it reads inputs from sensors, executes control logic, and drives outputs to motors, valves, and actuators in real time. The quality of PLC programming directly determines your plant's uptime, safety compliance, and ability to scale. Poorly structured PLC code leads to nuisance faults, unsafe interlocks, and expensive downtime; well-engineered PLC programming reduces changeover time, simplifies troubleshooting, and extends equipment life.",
-          "As a dedicated PLC programming company, Hive Automation builds control logic that plant engineers can actually maintain â€” clearly structured, well-commented, and documented to IEC 61131-3 standards across Ladder Logic, Function Block Diagram (FBD), and Structured Text (ST)."
+          "A Programmable Logic Controller (PLC) is the brain of any automated production line it reads inputs from sensors, executes control logic, and drives outputs to motors, valves, and actuators in real time. The quality of PLC programming directly determines your plant's uptime, safety compliance, and ability to scale. Poorly structured PLC code leads to nuisance faults, unsafe interlocks, and expensive downtime; well-engineered PLC programming reduces changeover time, simplifies troubleshooting, and extends equipment life.",
+          "As a dedicated PLC programming company, Hive Automation builds control logic that plant engineers can actually maintain clearly structured, well-commented, and documented to IEC 61131-3 standards across Ladder Logic, Function Block Diagram (FBD), and Structured Text (ST)."
         ]
       },
       {
         heading: "Our PLC Programming & Integration Capabilities",
         paragraphs: [
-          "We provide full-cycle PLC programming and integration services â€” from control philosophy and logic design through commissioning and long-term support."
+          "We provide full-cycle PLC programming and integration services from control philosophy and logic design through commissioning and long-term support."
         ],
         bullets: [
           "Siemens S7-200 Smart / S7-300 / S7-400 / S7-1200 / S7-1500 platform programming",
@@ -68,7 +68,7 @@ const servicesData = {
           "Allen-Bradley (Rockwell) ControlLogix, CompactLogix and Studio 5000 programming",
           "Schneider Electric Modicon and EcoStruxure-based PLC programming",
           "Redundant and fault-tolerant PLC architecture for 24/7 critical processes",
-          "Safety PLC integration â€” fail-safe logic, SIL-rated systems, and emergency interlocks",
+          "Safety PLC integration fail-safe logic, SIL-rated systems, and emergency interlocks",
           "Complex interlocking and sequencing logic for batch and continuous processes",
           "I/O mapping, signal diagnostics, and field instrument integration",
           "Remote monitoring, remote access, and over-the-network PLC diagnostics"
@@ -94,7 +94,7 @@ const servicesData = {
           "We follow a structured, documentation-driven process so every PLC project is traceable, testable, and repeatable:"
         ],
         bullets: [
-          "1. Requirement study & control philosophy â€” understanding your process, safety requirements, and existing architecture",
+          "1. Requirement study & control philosophy understanding your process, safety requirements, and existing architecture",
           "2. Functional Design Specification (FDS) sign-off before coding begins",
           "3. PLC logic development in TIA Portal / Studio 5000 / Unity Pro, following IEC 61131-3 coding standards",
           "4. Internal simulation and Factory Acceptance Testing (FAT)",
@@ -106,8 +106,8 @@ const servicesData = {
       {
         heading: "Why Choose Hive Automation for PLC Programming in India",
         paragraphs: [
-          "Hive Automation has been delivering PLC programming and integration services since 2017 from our Ahmedabad, Gujarat facility, serving clients across India in pharmaceutical, oil & gas, and chemical manufacturing. We work directly with plant engineering teams â€” not through layers of subcontracting â€” so every PLC program we deliver is documented, supportable, and built around your operators' real-world workflow, not a generic template.",
-          "From single-machine PLC retrofits to multi-PLC plant-wide control architecture, our engineers are equally comfortable on Siemens, Allen-Bradley, and Schneider platforms â€” meaning you are not locked into a single vendor ecosystem."
+          "Hive Automation has been delivering PLC programming and integration services since 2017 from our Ahmedabad, Gujarat facility, serving clients across India in pharmaceutical, oil & gas, and chemical manufacturing. We work directly with plant engineering teams not through layers of subcontracting so every PLC program we deliver is documented, supportable, and built around your operators' real-world workflow, not a generic template.",
+          "From single-machine PLC retrofits to multi-PLC plant-wide control architecture, our engineers are equally comfortable on Siemens, Allen-Bradley, and Schneider platforms meaning you are not locked into a single vendor ecosystem."
         ]
       }
     ],
@@ -318,16 +318,16 @@ const servicesData = {
   },
   "scada-hmi-development": {
     title: "SCADA & HMI Development",
-    tagline: "Smart visuals for smarter decisions â€” SCADA and HMI interfaces built for real-time monitoring, clarity, and safety.",
-    desc: "Hive Automation designs and develops SCADA and HMI systems that give plant operators and engineers a clear, real-time view of every process variable that matters. From legacy panel replacement to brand-new enterprise dashboards, our SCADA/HMI development is built around usability first â€” because an interface operators don't trust is an interface they won't use correctly under pressure.",
+    tagline: "Smart visuals for smarter decisions SCADA and HMI interfaces built for real-time monitoring, clarity, and safety.",
+    desc: "Hive Automation designs and develops SCADA and HMI systems that give plant operators and engineers a clear, real-time view of every process variable that matters. From legacy panel replacement to brand-new enterprise dashboards, our SCADA/HMI development is built around usability first because an interface operators don't trust is an interface they won't use correctly under pressure.",
     icon: "ðŸ“Š",
     features: [
-      "Old system study at site â€” auditing existing SCADA/HMI and PLC architecture before any redesign",
+      "Old system study at site auditing existing SCADA/HMI and PLC architecture before any redesign",
       "Old PLC program study to ensure new graphics map correctly to existing control logic",
       "Footprint and panel-fit verification for hardware replacement projects",
       "New panel and PLC programming concept readiness review",
       "Collaborative concept design sessions with your operations and engineering teams",
-      "New graphics development â€” alarms, trends, mimic screens, and navigation built for operator clarity",
+      "New graphics development alarms, trends, mimic screens, and navigation built for operator clarity",
       "Factory Acceptance Testing (FAT), Integrated FAT (IFAT), and Site Acceptance Testing (SAT)",
       "Full site commissioning and operator training and handover"
     ],
@@ -364,7 +364,7 @@ const servicesData = {
       {
         heading: "What Is SCADA & HMI Development and Why It Matters",
         paragraphs: [
-          "SCADA (Supervisory Control and Data Acquisition) and HMI (Human-Machine Interface) systems are how your operators see and interact with the process â€” alarms, trends, setpoints, and control commands all flow through this layer. A well-designed SCADA/HMI system reduces operator error, speeds up fault diagnosis, and turns raw PLC/DCS data into decisions your team can act on in seconds, not minutes.",
+          "SCADA (Supervisory Control and Data Acquisition) and HMI (Human-Machine Interface) systems are how your operators see and interact with the process alarms, trends, setpoints, and control commands all flow through this layer. A well-designed SCADA/HMI system reduces operator error, speeds up fault diagnosis, and turns raw PLC/DCS data into decisions your team can act on in seconds, not minutes.",
           "Hive Automation builds SCADA and HMI systems on industry-standard platforms including Wonderware InTouch, Siemens WinCC, and other major SCADA software, tailored to each plant's process and operator workflow rather than a generic template."
         ]
       },
@@ -372,12 +372,12 @@ const servicesData = {
         heading: "Our SCADA & HMI Development Capabilities",
         paragraphs: ["We follow a structured discovery-to-commissioning approach for every SCADA/HMI project, whether it's a full replacement or an upgrade of an existing system."],
         bullets: [
-          "Old system study at site â€” auditing existing SCADA/HMI and PLC architecture before any redesign",
+          "Old system study at site auditing existing SCADA/HMI and PLC architecture before any redesign",
           "Old PLC program study to ensure new graphics map correctly to existing control logic",
           "Footprint and panel-fit verification for hardware replacement projects",
           "New panel and PLC programming concept readiness review",
           "Collaborative concept design sessions with your operations and engineering teams",
-          "New graphics development â€” alarms, trends, mimic screens, and navigation built for operator clarity",
+          "New graphics development alarms, trends, mimic screens, and navigation built for operator clarity",
           "Factory Acceptance Testing (FAT), Integrated FAT (IFAT), and Site Acceptance Testing (SAT)",
           "Full site commissioning and operator training and handover"
         ]
@@ -410,13 +410,13 @@ const servicesData = {
       {
         heading: "Why Choose Hive Automation for SCADA & HMI Projects",
         paragraphs: [
-          "Since 2017, Hive Automation has developed SCADA and HMI systems for pharmaceutical and process plants across India, with deep familiarity in both Wonderware InTouch and Siemens WinCC environments. We don't just write graphics â€” we study your existing PLC program and operator workflow first, so the final interface actually reflects how your team works the floor, not a generic out-of-the-box template.",
+          "Since 2017, Hive Automation has developed SCADA and HMI systems for pharmaceutical and process plants across India, with deep familiarity in both Wonderware InTouch and Siemens WinCC environments. We don't just write graphics we study your existing PLC program and operator workflow first, so the final interface actually reflects how your team works the floor, not a generic out-of-the-box template.",
           "Our structured FAT/IFAT/SAT process means fewer surprises during commissioning and a faster, safer go-live on running production lines."
         ]
       }
     ],
     relatedLinks: [
-      { href: "/services/plc-programming-integration", label: "SCADA visualizes the data from your PLC â€” see our PLC programming services." },
+      { href: "/services/plc-programming-integration", label: "SCADA visualizes the data from your PLC see our PLC programming services." },
       { href: "/services/distributed-control-systems", label: "For plant-wide DCS operator graphics, see our DCS integration services." },
       { href: "/services/analytics-reporting", label: "Turn your SCADA historian data into KPI dashboards and compliance reports." },
       { href: "/services/system-upgrade-retrofits", label: "Replacing an aging SCADA/HMI panel? See our system upgrade & retrofit services." },
@@ -495,8 +495,8 @@ const servicesData = {
   },
   "turnkey-project-execution": {
     title: "Turnkey Project Execution",
-    tagline: "End-to-end project delivery â€” from design to commissioning, under one roof.",
-    desc: "Hive Automation delivers complete automation solutions as a single accountable partner â€” from the first control philosophy discussion to final site commissioning and handover. Our engineers stay engaged through every project phase, so you are never left managing multiple vendors, conflicting documentation, or finger-pointing when something doesn't fit.",
+    tagline: "End-to-end project delivery from design to commissioning, under one roof.",
+    desc: "Hive Automation delivers complete automation solutions as a single accountable partner from the first control philosophy discussion to final site commissioning and handover. Our engineers stay engaged through every project phase, so you are never left managing multiple vendors, conflicting documentation, or finger-pointing when something doesn't fit.",
     icon: "ðŸ—ï¸",
     features: [
       "Control philosophy development and Functional Design Specification (FDS) documentation",
@@ -539,7 +539,7 @@ const servicesData = {
       {
         heading: "What Is Turnkey Project Execution in Industrial Automation?",
         paragraphs: [
-          "A turnkey automation project means one partner owns the full scope â€” engineering design, panel fabrication, software, installation, and commissioning â€” and hands you a system that is ready to run. This eliminates the coordination overhead and accountability gaps that come from splitting a project across a design consultant, a panel fabricator, a programmer, and a commissioning contractor.",
+          "A turnkey automation project means one partner owns the full scope engineering design, panel fabrication, software, installation, and commissioning and hands you a system that is ready to run. This eliminates the coordination overhead and accountability gaps that come from splitting a project across a design consultant, a panel fabricator, a programmer, and a commissioning contractor.",
           "Hive Automation operates as a single-window turnkey automation EPC partner for plants across India, managing the entire project lifecycle so your internal team can focus on production, not vendor management."
         ]
       },
@@ -583,20 +583,20 @@ const servicesData = {
       {
         heading: "Why Choose Hive Automation for Turnkey Automation Projects",
         paragraphs: [
-          "Since 2017, Hive Automation has executed turnkey automation projects across pharmaceutical, oil & gas, and chemical industries from our Ahmedabad facility. Because we control engineering, fabrication, and commissioning in-house, project decisions move faster and documentation stays consistent â€” there is no gap between what was designed on paper and what actually gets commissioned on site.",
+          "Since 2017, Hive Automation has executed turnkey automation projects across pharmaceutical, oil & gas, and chemical industries from our Ahmedabad facility. Because we control engineering, fabrication, and commissioning in-house, project decisions move faster and documentation stays consistent there is no gap between what was designed on paper and what actually gets commissioned on site.",
           "Whether you are building a greenfield facility or expanding an existing line, our turnkey model gives you a single point of contact and a single point of accountability for the entire automation scope."
         ]
       }
     ],
     relatedLinks: [
-      { href: "/services/plc-programming-integration", label: "Turnkey projects include full PLC programming â€” see our PLC services in detail." },
-      { href: "/services/scada-hmi-development", label: "Turnkey delivery includes SCADA/HMI graphics â€” see our SCADA & HMI development." },
+      { href: "/services/plc-programming-integration", label: "Turnkey projects include full PLC programming see our PLC services in detail." },
+      { href: "/services/scada-hmi-development", label: "Turnkey delivery includes SCADA/HMI graphics see our SCADA & HMI development." },
       { href: "/services/industrial-networking-cybersecurity", label: "We also design the secure network backbone for your turnkey project." },
       { href: "/our-projects", label: "See completed turnkey automation projects across pharma, oil & gas, and chemicals." },
       { href: "/about", label: "Learn about our turnkey, single-window project delivery model." }
     ],
     faqs: [
-      { q: "What does turnkey mean in an automation project?", a: "Turnkey means one partner â€” Hive Automation â€” handles the entire project scope, from control philosophy and panel fabrication through FAT, installation, and final commissioning, so the system is ready to run when handed over." },
+      { q: "What does turnkey mean in an automation project?", a: "Turnkey means one partner Hive Automation handles the entire project scope, from control philosophy and panel fabrication through FAT, installation, and final commissioning, so the system is ready to run when handed over." },
       { q: "Do you handle both control panel fabrication and PLC programming in-house?", a: "Yes. We design and fabricate control panels and program the PLC/SCADA/DCS logic in-house, which keeps engineering and fabrication tightly coordinated and reduces integration risk." },
       { q: "Can Hive Automation execute projects outside Gujarat?", a: "Yes, we execute turnkey automation projects for clients across India, with on-site installation and commissioning support wherever the facility is located." },
       { q: "What documentation do we receive at project handover?", a: "You receive Functional Design Specification documents, FAT/SAT reports, loop check sheets, as-built drawings, and program backups as part of standard project handover." }
@@ -667,8 +667,8 @@ const servicesData = {
   },
   "system-upgrade-retrofits": {
     title: "System Upgrades & Retrofits",
-    tagline: "Modernize without disrupting production â€” legacy control system upgrades engineered for minimal downtime.",
-    desc: "Hive Automation upgrades aging PLC and DCS systems â€” including legacy Siemens S5 and S7-300 hardware â€” to modern, fully supported platforms like S7-1500 and TIA Portal. Our retrofit strategies are built around your production schedule, not the other way around, so you get future-ready performance without a costly, disruptive shutdown.",
+    tagline: "Modernize without disrupting production legacy control system upgrades engineered for minimal downtime.",
+    desc: "Hive Automation upgrades aging PLC and DCS systems including legacy Siemens S5 and S7-300 hardware to modern, fully supported platforms like S7-1500 and TIA Portal. Our retrofit strategies are built around your production schedule, not the other way around, so you get future-ready performance without a costly, disruptive shutdown.",
     icon: "ðŸ”„",
     features: [
       "Legacy Siemens S5 / S7-300 to S7-1500 and TIA Portal migration",
@@ -710,7 +710,7 @@ const servicesData = {
       {
         heading: "Why Legacy PLC & Control Systems Become a Business Risk",
         paragraphs: [
-          "Siemens officially discontinued support and spare parts for the S5 series years ago, and S7-300 hardware has followed the same path. Running production on unsupported PLC hardware means every failure is a gamble â€” sourcing parts on the grey market, no manufacturer support, and growing difficulty finding engineers who can still program in the old environment. The risk compounds every year the upgrade is delayed.",
+          "Siemens officially discontinued support and spare parts for the S5 series years ago, and S7-300 hardware has followed the same path. Running production on unsupported PLC hardware means every failure is a gamble sourcing parts on the grey market, no manufacturer support, and growing difficulty finding engineers who can still program in the old environment. The risk compounds every year the upgrade is delayed.",
           "A planned retrofit, executed by a team that understands both the legacy platform and the modern replacement, converts that risk into a controlled, budgeted project instead of an unplanned outage."
         ]
       },
@@ -755,21 +755,21 @@ const servicesData = {
       {
         heading: "Why Choose Hive Automation for Your Control System Retrofit",
         paragraphs: [
-          "Migrating legacy logic isn't just a hardware swap â€” it requires engineers who can actually read and translate old Siemens S5/S7-300 code accurately, not just replace the panel. Hive Automation has handled this exact migration path repeatedly for pharmaceutical, oil & gas, and chemical plants across India since 2017, which means fewer surprises in your legacy code and a tighter, more predictable cutover window.",
+          "Migrating legacy logic isn't just a hardware swap it requires engineers who can actually read and translate old Siemens S5/S7-300 code accurately, not just replace the panel. Hive Automation has handled this exact migration path repeatedly for pharmaceutical, oil & gas, and chemical plants across India since 2017, which means fewer surprises in your legacy code and a tighter, more predictable cutover window.",
           "We plan every retrofit around minimizing production downtime, with phased migration options so you are never forced into an all-or-nothing shutdown."
         ]
       }
     ],
     relatedLinks: [
-      { href: "/services/plc-programming-integration", label: "All retrofit projects include fresh PLC programming â€” see our PLC services." },
+      { href: "/services/plc-programming-integration", label: "All retrofit projects include fresh PLC programming see our PLC services." },
       { href: "/services/scada-hmi-development", label: "Pair your hardware retrofit with a modern SCADA/HMI upgrade." },
       { href: "/services/turnkey-project-execution", label: "For a full panel rebuild alongside your retrofit, see turnkey project execution." },
-      { href: "/services/industrial-networking-cybersecurity", label: "Modern PLCs need a secure network â€” see our networking & cybersecurity services." },
+      { href: "/services/industrial-networking-cybersecurity", label: "Modern PLCs need a secure network see our networking & cybersecurity services." },
       { href: "/our-projects", label: "Case studies mentioning legacy upgrades should link here." }
     ],
     faqs: [
       { q: "Is Siemens S5 still supported?", a: "No. Siemens has discontinued manufacturer support and spare parts for the S5 series. Plants still running S5 hardware face increasing risk of unplanned downtime with no official support path, which is why migration to S7-1500/TIA Portal is strongly recommended." },
-      { q: "How much downtime does a PLC retrofit require?", a: "It depends on system complexity, but our phased migration approach is specifically designed to minimize downtime â€” often allowing cutover during existing planned maintenance windows rather than requiring a dedicated shutdown." },
+      { q: "How much downtime does a PLC retrofit require?", a: "It depends on system complexity, but our phased migration approach is specifically designed to minimize downtime often allowing cutover during existing planned maintenance windows rather than requiring a dedicated shutdown." },
       { q: "Can you reuse our existing field wiring and instruments?", a: "In most cases, yes. We assess existing I/O wiring and field instruments during the audit phase and design the retrofit to reuse compatible infrastructure wherever possible, reducing both cost and downtime." },
       { q: "Do you provide a risk assessment before recommending a retrofit?", a: "Yes, every retrofit engagement starts with an on-site obsolescence risk assessment so you can make a budgeted, informed decision rather than reacting to an emergency failure." }
     ],
@@ -839,11 +839,11 @@ const servicesData = {
   },
   "industrial-networking-cybersecurity": {
     title: "Industrial Networking & Cybersecurity",
-    tagline: "Secure, scalable communication infrastructure â€” from control level to enterprise level, built for performance and uptime.",
-    desc: "Hive Automation designs industrial networks that are resilient, properly segmented, and secure by design â€” not bolted on after the fact. As plants connect more PLCs, SCADA systems, and remote access points to the network, the line between IT and OT keeps blurring. Our networking and cybersecurity services are built to keep that convergence productive without exposing your control systems to risk.",
+    tagline: "Secure, scalable communication infrastructure from control level to enterprise level, built for performance and uptime.",
+    desc: "Hive Automation designs industrial networks that are resilient, properly segmented, and secure by design not bolted on after the fact. As plants connect more PLCs, SCADA systems, and remote access points to the network, the line between IT and OT keeps blurring. Our networking and cybersecurity services are built to keep that convergence productive without exposing your control systems to risk.",
     icon: "ðŸ”’",
     features: [
-      "Industrial Ethernet design and implementation â€” Profinet, Modbus TCP, and Ethernet/IP",
+      "Industrial Ethernet design and implementation Profinet, Modbus TCP, and Ethernet/IP",
       "Managed switch configuration, VLAN segmentation, and firewall rule design",
       "Secure remote access solutions using VPN and encrypted tunnelling for vendor and engineering access",
       "Network segmentation aligned to ISA-95 and the Purdue Model (Level 0 field devices through Level 5 enterprise)",
@@ -883,7 +883,7 @@ const servicesData = {
       {
         heading: "Why Industrial Networks Need Purpose-Built Security",
         paragraphs: [
-          "Operational Technology (OT) networks were historically designed assuming they were physically isolated â€” but remote monitoring, vendor support access, and IT/OT data integration have closed that air gap at most modern plants. A flat, unsegmented network means a single compromised laptop or remote connection can reach your PLCs and DCS directly. The IEC 62443 standard â€” the primary international framework for industrial cybersecurity â€” exists specifically to address this, using zones and conduits to contain risk rather than relying on a single perimeter firewall.",
+          "Operational Technology (OT) networks were historically designed assuming they were physically isolated but remote monitoring, vendor support access, and IT/OT data integration have closed that air gap at most modern plants. A flat, unsegmented network means a single compromised laptop or remote connection can reach your PLCs and DCS directly. The IEC 62443 standard the primary international framework for industrial cybersecurity exists specifically to address this, using zones and conduits to contain risk rather than relying on a single perimeter firewall.",
           "Hive Automation designs and hardens industrial networks with this zones-and-conduits approach from day one, so security is structural rather than an afterthought bolted onto an existing flat network."
         ]
       },
@@ -891,7 +891,7 @@ const servicesData = {
         heading: "Our Industrial Networking & Cybersecurity Capabilities",
         paragraphs: ["We deliver both the physical/network layer and the cybersecurity hardening layer as one integrated service."],
         bullets: [
-          "Industrial Ethernet design and implementation â€” Profinet, Modbus TCP, and Ethernet/IP",
+          "Industrial Ethernet design and implementation Profinet, Modbus TCP, and Ethernet/IP",
           "Managed switch configuration, VLAN segmentation, and firewall rule design",
           "Secure remote access solutions using VPN and encrypted tunnelling for vendor and engineering access",
           "Network segmentation aligned to ISA-95 and the Purdue Model (Level 0 field devices through Level 5 enterprise)",
@@ -915,11 +915,11 @@ const servicesData = {
       },
       {
         heading: "Our Network & Cybersecurity Implementation Process",
-        paragraphs: ["We assess before we change anything â€” OT environments don't tolerate trial-and-error network changes during production:"],
+        paragraphs: ["We assess before we change anything OT environments don't tolerate trial-and-error network changes during production:"],
         bullets: [
-          "1. Network and asset discovery â€” mapping existing PLC, SCADA, DCS, and IT connections",
+          "1. Network and asset discovery mapping existing PLC, SCADA, DCS, and IT connections",
           "2. Risk assessment against IEC 62443 zones-and-conduits methodology",
-          "3. Target architecture design â€” segmentation, VLANs, firewall rules, and remote access strategy",
+          "3. Target architecture design segmentation, VLANs, firewall rules, and remote access strategy",
           "4. Phased implementation scheduled around planned maintenance windows",
           "5. Validation testing to confirm process communication is unaffected",
           "6. Documentation handover and ongoing hardening recommendations"
@@ -929,14 +929,14 @@ const servicesData = {
         heading: "Why Choose Hive Automation for OT Networking & Security",
         paragraphs: [
           "Because we also build the PLC, SCADA, and DCS systems that sit on these networks, Hive Automation understands which security controls are safe to implement on a live process network and which ones risk breaking real-time communication. That control-systems-first perspective is the difference between a network that is secure on paper and one that is secure without disrupting production.",
-          "We design every industrial network and cybersecurity engagement around your specific plant architecture â€” not a generic IT security checklist."
+          "We design every industrial network and cybersecurity engagement around your specific plant architecture not a generic IT security checklist."
         ]
       }
     ],
     relatedLinks: [
-      { href: "/services/distributed-control-systems", label: "Securing your DCS network is part of every DCS engagement â€” see our DCS services." },
-      { href: "/services/scada-hmi-development", label: "SCADA systems depend on a secure network layer â€” see SCADA & HMI development." },
-      { href: "/services/analytics-reporting", label: "Secure IT/OT integration enables safe ERP and database reporting â€” see Analytics & Reporting." },
+      { href: "/services/distributed-control-systems", label: "Securing your DCS network is part of every DCS engagement see our DCS services." },
+      { href: "/services/scada-hmi-development", label: "SCADA systems depend on a secure network layer see SCADA & HMI development." },
+      { href: "/services/analytics-reporting", label: "Secure IT/OT integration enables safe ERP and database reporting see Analytics & Reporting." },
       { href: "/services/system-upgrade-retrofits", label: "Modernizing your PLC is the right time to modernize your network too." },
       { href: "/about", label: "Learn more about our IEC 62443-aligned OT networking approach." }
     ],
@@ -1309,9 +1309,9 @@ export default async function ServiceDetailPage({ params }: Props) {
       ? {
         title: "PLC Programming & Integration Services",
         subheadline:
-          "Precision logic for precise control â€” custom PLC programs engineered for Siemens, Allen-Bradley and Schneider platforms.",
+          "Precision logic for precise control custom PLC programs engineered for Siemens, Allen-Bradley and Schneider platforms.",
         body:
-          "Hive Automation designs, programs, and integrates Programmable Logic Controllers (PLCs) for manufacturing, process, and packaging lines across India. Whether you are building a new control system from scratch or upgrading a legacy installation, our PLC programming services are engineered for safety, flexibility, and long-term performance â€” backed by hands-on experience since 2017 across pharmaceutical, oil & gas, and chemical plants.",
+          "Hive Automation designs, programs, and integrates Programmable Logic Controllers (PLCs) for manufacturing, process, and packaging lines across India. Whether you are building a new control system from scratch or upgrading a legacy installation, our PLC programming services are engineered for safety, flexibility, and long-term performance backed by hands-on experience since 2017 across pharmaceutical, oil & gas, and chemical plants.",
         cta: "Request a Free PLC Programming Consultation",
         tags: ["Siemens", "Allen-Bradley", "Schneider", "Since 2017"],
       }
