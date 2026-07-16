@@ -6,7 +6,7 @@ export function HomeBlogSection({ posts }: { posts: BlogPost[] }) {
   return (
     <section className="section home-blog-section" id="blog">
       <div className="container">
-        <div className="home-blog-header">
+        <div className="home-blog-header mb-3">
           <div>
             <p className="section-label">Insights & Articles</p>
             <h2>Automation knowledge built from real project experience</h2>
@@ -22,8 +22,8 @@ export function HomeBlogSection({ posts }: { posts: BlogPost[] }) {
 
         {posts.length ? (
           <div className="home-blog-grid">
-            {posts.map((post, index) => (
-              <BlogCard key={post.id} post={post} featured={index === 0} />
+            {posts.map((post) => (
+              <BlogCard key={post.id} post={post} />
             ))}
           </div>
         ) : (

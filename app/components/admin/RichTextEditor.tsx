@@ -1,6 +1,7 @@
 "use client";
 
 import { EditorContent, useEditor } from "@tiptap/react";
+import { useRef, useState } from "react";
 import StarterKit from "@tiptap/starter-kit";
 import Underline from "@tiptap/extension-underline";
 import Highlight from "@tiptap/extension-highlight";
@@ -33,6 +34,7 @@ import {
   Strikethrough,
   Underline as UnderlineIcon,
   Unlink,
+  Upload,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -45,11 +47,13 @@ function ToolbarButton({
   onClick,
   title,
   children,
+  disabled = false,
 }: {
   active?: boolean;
   onClick: () => void;
   title: string;
   children: React.ReactNode;
+  disabled?: boolean;
 }) {
   return (
     <button
@@ -58,6 +62,7 @@ function ToolbarButton({
         "inline-flex h-9 w-9 items-center justify-center rounded-none border border-[#E2E9F3] outline-none transition-colors focus-visible:border-[#00B0FF] focus-visible:ring-2 focus-visible:ring-[#00B0FF]/25",
         active ? "border-black bg-black text-white" : "bg-white text-black hover:bg-[#F8FAFC]",
       )}
+      disabled={disabled}
       onClick={onClick}
       title={title}
       type="button"
@@ -103,6 +108,8 @@ export default function RichTextEditor({
       },
     },
   });
+  const imageInputRef = useRef<HTMLInputElement>(null);
+  const [uploadingImage, setUploadingImage] = useState(false);
 
   if (!editor) return null;
   const editorInstance = editor;
@@ -127,6 +134,31 @@ export default function RichTextEditor({
     const alt = window.prompt("Add image alt text", "") ?? "";
     editorInstance.chain().focus().setImage({ src: url, alt }).run();
     window.alert("Image URL inserted into the post.");
+  }
+
+  async function uploadImage(file: File) {
+    setUploadingImage(true);
+    const formData = new FormData();
+    formData.append("file", file);
+
+    try {
+      const response = await fetch("/api/admin/blog-images", {
+        method: "POST",
+        body: formData,
+      });
+      const data = await response.json();
+      if (!response.ok) {
+        window.alert(data.message || "Could not upload image.");
+        return;
+      }
+      const alt = window.prompt("Add image alt text", file.name.replace(/\.[^.]+$/, "")) ?? "";
+      editorInstance.chain().focus().setImage({ src: data.data.url, alt }).run();
+    } catch {
+      window.alert("The CMS could not upload the image. Please try again.");
+    } finally {
+      setUploadingImage(false);
+      if (imageInputRef.current) imageInputRef.current.value = "";
+    }
   }
 
   return (
@@ -190,6 +222,19 @@ export default function RichTextEditor({
         <ToolbarButton active={false} onClick={insertImage} title="Insert image URL">
           <ImagePlus size={15} />
         </ToolbarButton>
+        <ToolbarButton active={false} disabled={uploadingImage} onClick={() => imageInputRef.current?.click()} title="Upload image">
+          <Upload size={15} />
+        </ToolbarButton>
+        <input
+          ref={imageInputRef}
+          accept="image/jpeg,image/png,image/webp,image/gif"
+          className="sr-only"
+          onChange={(event) => {
+            const file = event.target.files?.[0];
+            if (file) void uploadImage(file);
+          }}
+          type="file"
+        />
         <ToolbarButton active={editorInstance.isActive("highlight")} onClick={() => editorInstance.chain().focus().toggleHighlight().run()} title="Highlight">
           <Highlighter size={15} />
         </ToolbarButton>

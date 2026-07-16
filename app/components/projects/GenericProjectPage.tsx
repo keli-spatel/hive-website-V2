@@ -1,6 +1,6 @@
-import Image from "next/image";
 import Link from "next/link";
 import { AnimatedButton } from "../ui/AnimatedButton";
+import ProjectGalleryLightbox from "./ProjectGalleryLightbox";
 import type { Project } from "../../projects/project-data";
 
 export default function GenericProjectPage({ project }: { project: Project }) {
@@ -87,23 +87,13 @@ export default function GenericProjectPage({ project }: { project: Project }) {
             {project.gallery && project.gallery.length > 0 ? (
               <div style={{ marginTop: 40 }}>
                 <h2 style={{ marginBottom: 20 }}>Project Gallery</h2>
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
-                  {project.gallery.map((imgUrl, imgIdx) => (
-                    <div
-                      key={imgIdx}
-                      style={{
-                        position: "relative",
-                        width: "100%",
-                        height: 240,
-                        borderRadius: 8,
-                        overflow: "hidden",
-                        border: "1px solid #DCDAD5",
-                      }}
-                    >
-                      <Image src={imgUrl} alt={`${project.title} - Image ${imgIdx + 1}`} fill style={{ objectFit: "cover" }} />
-                    </div>
-                  ))}
-                </div>
+                <ProjectGalleryLightbox
+                  images={project.gallery.map((src, index) => ({
+                    src,
+                    alt: `${project.title} - Image ${index + 1}`,
+                  }))}
+                  variant="generic"
+                />
               </div>
             ) : null}
           </div>

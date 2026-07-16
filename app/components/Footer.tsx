@@ -32,7 +32,7 @@ const industryLinks = [
   { label: "Other", href: "/our-project" },
 ];
 
-const phones = ["+91 99786 03840", "+91 99786 03841", "+91 99786 03842", "+91 99786 03843"];
+const phones = ["+91 99786 03840"];
 
 export default function Footer() {
   const [isMobile, setIsMobile] = useState(false);

@@ -3,8 +3,6 @@ import { normalizeSlug, isValidSlug } from "./slug";
 
 export const BLOG_CATEGORIES = [
   "Automation",
-  "Agentic AI",
-  "Browser Automation",
   "Operations",
   "Engineering",
   "Company",

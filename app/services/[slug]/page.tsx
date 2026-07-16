@@ -20,7 +20,6 @@ const servicesData = {
       "Siemens S7-200 Smart / S7-300 / S7-400 / S7-1200 / S7-1500 platform programming",
       "TIA Portal and classic Step 7 programming and migration",
       "Allen-Bradley ControlLogix, CompactLogix and Studio 5000 programming",
-      "Schneider Electric Modicon and EcoStruxure-based PLC programming",
       "Redundant and fault-tolerant PLC architecture for 24/7 critical processes",
       "Safety PLC integration, fail-safe logic, SIL-rated systems, and emergency interlocks",
       "Complex interlocking and sequencing logic for batch and continuous processes",
@@ -66,7 +65,6 @@ const servicesData = {
           "Siemens S7-200 Smart / S7-300 / S7-400 / S7-1200 / S7-1500 platform programming",
           "TIA Portal and classic Step 7 programming and migration",
           "Allen-Bradley (Rockwell) ControlLogix, CompactLogix and Studio 5000 programming",
-          "Schneider Electric Modicon and EcoStruxure-based PLC programming",
           "Redundant and fault-tolerant PLC architecture for 24/7 critical processes",
           "Safety PLC integration fail-safe logic, SIL-rated systems, and emergency interlocks",
           "Complex interlocking and sequencing logic for batch and continuous processes",
@@ -322,14 +320,14 @@ const servicesData = {
     desc: "Hive Automation designs and develops SCADA and HMI systems that give plant operators and engineers a clear, real-time view of every process variable that matters. From legacy panel replacement to brand-new enterprise dashboards, our SCADA/HMI development is built around usability first because an interface operators don't trust is an interface they won't use correctly under pressure.",
     icon: "ðŸ“Š",
     features: [
+      "New panel and PLC programming concept readiness review",
+      "New graphics development alarms, trends, mimic screens, and navigation built for operator clarity",
+      "Collaborative concept design sessions with your operations and engineering teams",
+      "Factory Acceptance Testing (FAT), Integrated FAT (IFAT), and Site Acceptance Testing (SAT)",
+      "Full site commissioning and operator training and handover",
       "Old system study at site auditing existing SCADA/HMI and PLC architecture before any redesign",
       "Old PLC program study to ensure new graphics map correctly to existing control logic",
-      "Footprint and panel-fit verification for hardware replacement projects",
-      "New panel and PLC programming concept readiness review",
-      "Collaborative concept design sessions with your operations and engineering teams",
-      "New graphics development alarms, trends, mimic screens, and navigation built for operator clarity",
-      "Factory Acceptance Testing (FAT), Integrated FAT (IFAT), and Site Acceptance Testing (SAT)",
-      "Full site commissioning and operator training and handover"
+      "Footprint and panel-fit verification for hardware replacement projects"
     ],
     idealFor: "Pharmaceutical, Operator panels, control rooms, mobile monitoring, and enterprise-level dashboards.",
     seo: {
@@ -1326,72 +1324,72 @@ export default async function ServiceDetailPage({ params }: Props) {
     "schema" in service
       ? service.schema
       : slug === "plc-programming-integration"
-      ? {
-        "@context": "https://schema.org",
-        "@graph": [
-          {
-            "@type": "Service",
-            serviceType: "PLC Programming and Integration",
-            name: "PLC Programming & Integration Services",
-            description:
-              "Custom PLC programming and integration services for Siemens, Allen-Bradley and Schneider platforms, including safety PLC, redundant architecture, and I/O integration for pharmaceutical, oil & gas, and chemical plants.",
-            provider: {
-              "@type": "Organization",
-              name: "Hive Automation",
-              url: "https://hiveautomation.in/",
-              logo: "https://hiveautomation.in/src/img/header-logo.png",
-              telephone: "+91-99786-03840",
-              email: "info@hiveautomation.in",
-              address: {
-                "@type": "PostalAddress",
-                streetAddress: "33, B N Industrial Estate, Near Kathwada GIDC Gate No 5, S P Ring Road, Near Nikol, Odhav",
-                addressLocality: "Ahmedabad",
-                addressRegion: "Gujarat",
-                postalCode: "382415",
-                addressCountry: "IN",
+        ? {
+          "@context": "https://schema.org",
+          "@graph": [
+            {
+              "@type": "Service",
+              serviceType: "PLC Programming and Integration",
+              name: "PLC Programming & Integration Services",
+              description:
+                "Custom PLC programming and integration services for Siemens, Allen-Bradley and Schneider platforms, including safety PLC, redundant architecture, and I/O integration for pharmaceutical, oil & gas, and chemical plants.",
+              provider: {
+                "@type": "Organization",
+                name: "Hive Automation",
+                url: "https://hiveautomation.in/",
+                logo: "https://hiveautomation.in/src/img/header-logo.png",
+                telephone: "+91-99786-03840",
+                email: "info@hiveautomation.in",
+                address: {
+                  "@type": "PostalAddress",
+                  streetAddress: "33, B N Industrial Estate, Near Kathwada GIDC Gate No 5, S P Ring Road, Near Nikol, Odhav",
+                  addressLocality: "Ahmedabad",
+                  addressRegion: "Gujarat",
+                  postalCode: "382415",
+                  addressCountry: "IN",
+                },
+              },
+              areaServed: [
+                { "@type": "Country", name: "India" },
+                { "@type": "AdministrativeArea", name: "Gujarat" },
+              ],
+              url: "https://hiveautomation.in/services/plc-programming-integration",
+              audience: {
+                "@type": "Audience",
+                audienceType: "Pharmaceutical, Oil & Gas, Chemical and Manufacturing Plant Engineers",
               },
             },
-            areaServed: [
-              { "@type": "Country", name: "India" },
-              { "@type": "AdministrativeArea", name: "Gujarat" },
-            ],
-            url: "https://hiveautomation.in/services/plc-programming-integration",
-            audience: {
-              "@type": "Audience",
-              audienceType: "Pharmaceutical, Oil & Gas, Chemical and Manufacturing Plant Engineers",
+            {
+              "@type": "BreadcrumbList",
+              itemListElement: [
+                { "@type": "ListItem", position: 1, name: "Home", item: "https://hiveautomation.in/" },
+                { "@type": "ListItem", position: 2, name: "Our Services", item: "https://hiveautomation.in/our-services" },
+                {
+                  "@type": "ListItem",
+                  position: 3,
+                  name: "PLC Programming & Integration",
+                  item: "https://hiveautomation.in/services/plc-programming-integration",
+                },
+              ],
             },
-          },
-          {
-            "@type": "BreadcrumbList",
-            itemListElement: [
-              { "@type": "ListItem", position: 1, name: "Home", item: "https://hiveautomation.in/" },
-              { "@type": "ListItem", position: 2, name: "Our Services", item: "https://hiveautomation.in/our-services" },
-              {
-                "@type": "ListItem",
-                position: 3,
-                name: "PLC Programming & Integration",
-                item: "https://hiveautomation.in/services/plc-programming-integration",
-              },
-            ],
-          },
-          ...(faqs
-            ? [
-              {
-                "@type": "FAQPage",
-                mainEntity: faqs.map((item) => ({
-                  "@type": "Question",
-                  name: item.q,
-                  acceptedAnswer: {
-                    "@type": "Answer",
-                    text: item.a,
-                  },
-                })),
-              },
-            ]
-            : []),
-        ],
-      }
-      : undefined;
+            ...(faqs
+              ? [
+                {
+                  "@type": "FAQPage",
+                  mainEntity: faqs.map((item) => ({
+                    "@type": "Question",
+                    name: item.q,
+                    acceptedAnswer: {
+                      "@type": "Answer",
+                      text: item.a,
+                    },
+                  })),
+                },
+              ]
+              : []),
+          ],
+        }
+        : undefined;
 
   return (
     <div className="service-detail-page" style={{ marginTop: 82 }}>
@@ -1430,10 +1428,6 @@ export default async function ServiceDetailPage({ params }: Props) {
               fill
               priority
             />
-            <div className="service-detail-hero-panel">
-              <strong>2017+</strong>
-              <span>PLC, SCADA and plant automation delivery</span>
-            </div>
           </div>
         </div>
       </section>
@@ -1575,12 +1569,12 @@ export default async function ServiceDetailPage({ params }: Props) {
                     {section.bullets?.length ? (
                       <div
                         className={`service-doc-bullets ${isCapabilities
-                            ? "service-doc-bullets-capabilities"
-                            : isIndustries
-                              ? "service-doc-bullets-industries"
-                              : isProcess
-                                ? "service-doc-bullets-process"
-                                : ""
+                          ? "service-doc-bullets-capabilities"
+                          : isIndustries
+                            ? "service-doc-bullets-industries"
+                            : isProcess
+                              ? "service-doc-bullets-process"
+                              : ""
                           }`}
                       >
                         {section.bullets.map((item, bulletIndex) => {

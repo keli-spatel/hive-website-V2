@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -52,10 +52,49 @@ const navLinks: NavLink[] = [
 
 export default function Navbar() {
   const pathname = usePathname();
+  const navbarRef = useRef<HTMLElement>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
 
   const closeMobile = () => setMobileOpen(false);
+  const closeDropdown = () => setOpenDropdown(null);
+
+  useEffect(() => {
+    queueMicrotask(closeDropdown);
+  }, [pathname]);
+
+  useEffect(() => {
+    function handleKeyDown(event: KeyboardEvent) {
+      if (event.key === "Escape") closeDropdown();
+    }
+
+    function handleWindowBlur() {
+      closeDropdown();
+    }
+
+    function handleVisibilityChange() {
+      if (document.hidden) closeDropdown();
+    }
+
+    function handlePointerDown(event: PointerEvent) {
+      if (!navbarRef.current?.contains(event.target as Node)) {
+        closeDropdown();
+      }
+    }
+
+    window.addEventListener("keydown", handleKeyDown);
+    window.addEventListener("blur", handleWindowBlur);
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+    document.addEventListener("pointerdown", handlePointerDown);
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+      window.removeEventListener("blur", handleWindowBlur);
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
+      document.removeEventListener("pointerdown", handlePointerDown);
+    };
+  }, []);
+
   const isActive = (link: NavLink) => {
     if (link.href === "/our-services") {
       return pathname === "/our-services" || pathname.startsWith("/services/");
@@ -69,7 +108,7 @@ export default function Navbar() {
   };
 
   return (
-    <header className="navbar">
+    <header ref={navbarRef} className="navbar">
       <nav className="navbar-inner" aria-label="Main navigation">
         <Link className="navbar-logo" href="/" aria-label="Hive Automation home" onClick={closeMobile}>
           <Image src="/logo.png" alt="Hive Automation Logo" width={150} height={58} preload />
@@ -86,14 +125,20 @@ export default function Navbar() {
                 className="navbar-item"
                 key={link.href}
                 onMouseEnter={() => hasDropdown && setOpenDropdown(link.label)}
-                onMouseLeave={() => hasDropdown && setOpenDropdown(null)}
-                onFocus={() => hasDropdown && setOpenDropdown(link.label)}
+                onMouseLeave={() => hasDropdown && closeDropdown()}
+                onBlur={(event) => {
+                  if (hasDropdown && !event.currentTarget.contains(event.relatedTarget)) {
+                    closeDropdown();
+                  }
+                }}
               >
                 <Link
                   className={`navbar-link ${active ? "active" : ""}`}
                   href={link.href}
                   aria-haspopup={hasDropdown ? "menu" : undefined}
                   aria-expanded={hasDropdown ? dropdownOpen : undefined}
+                  onClick={closeDropdown}
+                  onFocus={() => hasDropdown && setOpenDropdown(link.label)}
                 >
                   <span>{link.label}</span>
                   {hasDropdown ? <span className="navbar-caret" aria-hidden="true" /> : null}
@@ -103,7 +148,7 @@ export default function Navbar() {
                   <div className={`navbar-dropdown ${dropdownOpen ? "open" : ""}`} role="menu">
                     <div className="dropdown-card">
                       <span className="dropdown-arrow" aria-hidden="true" />
-                      <Link className="dropdown-all" href={link.href} role="menuitem">
+                      <Link className="dropdown-all" href={link.href} onClick={closeDropdown} role="menuitem">
                         <span>View All {link.label}</span>
                         <span aria-hidden="true">-&gt;</span>
                       </Link>
@@ -113,6 +158,7 @@ export default function Navbar() {
                             className={`dropdown-link ${pathname === subLink.href ? "active" : ""}`}
                             href={subLink.href}
                             key={subLink.href}
+                            onClick={closeDropdown}
                             role="menuitem"
                           >
                             {subLink.label}

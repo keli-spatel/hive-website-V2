@@ -18,7 +18,7 @@ export type IconLabel = {
 export const homeIndustries: IconLabel[] = [
   { name: "Pharmaceutical", icon: FlaskConical },
   { name: "Oil & Gas", icon: Fuel },
-  { name: "Forging", icon: Anvil },
+  { name: "Chemical", icon: Anvil },
   { name: "Food & Beverages", icon: Coffee },
 ];
 

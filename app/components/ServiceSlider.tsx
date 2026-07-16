@@ -133,7 +133,7 @@ export default function ServiceSlider({ services }: { services: Service[] }) {
           <div className="w-full max-w-[1200px] mx-auto px-4 md:px-8 mb-8 md:mb-12 shrink-0 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
             <div className="section-heading max-w-[800px] md:text-left" style={{ marginBottom: 0 }}>
               <p className="section-label text-[11px]" style={{ marginBottom: "8px" }}>Our Industrial Automation Services</p>
-              <h2 className="text-[28px] leading-[1.2] font-bold text-[#111214]" style={{ marginBottom: "8px" }}>Scalable Custom Engineering Solutions for Siemens PLC, SCADA & DCS</h2>
+              <h2 className="text-[28px] leading-[1.2] font-bold text-[#111214]" style={{ marginBottom: "8px" }}>Scalable Custom Engineering Solutions for Siemens PLC, HMI, SCADA, DCS & DRIVES</h2>
               <p className="text-[14px] m-0 leading-[1.4] text-[#5f6876]">
                 At Hive Automation, we specialize in comprehensive industrial automation services
                 from initial system design to full-scale implementation and lifecycle support.

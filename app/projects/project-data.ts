@@ -171,7 +171,7 @@ export const pharmaceuticalProject: DetailedProjectData = {
     { label: "End User", value: "Emynent, Russia" },
     { label: "Completion Date", value: "March 2024" },
     { label: "Delivery Scope", value: "PLC Programming | WinCC SCADA | HMI | Wireless Tablet | FAT | Site Commissioning" },
-    { label: "Execution Footprint", value: "Russia (developed and tested in Ahmedabad, India)" },
+    { label: "Execution Footprint", value: "Russia (developed and tested in OEM Place)" },
   ],
   gallery: [
     {
@@ -421,7 +421,7 @@ export const chemicalProject: DetailedProjectData = {
     "The plant network featured two Operator Stations, one Engineering Station, and two local HMIs at the turbine floor, enabling both centralised SCADA oversight and local operator control.",
   ],
   architecture: [
-    "Siemens S7-400H redundant PLC (CPU-414-5H) with 18 ET200SP Remote I/O stations controlling three turbine systems from one unified architecture.",
+    "Siemens S7-400H redundant PLC (CPU-414-5H) with 4 ET200SP Remote I/O station controlling three turbine systems from one unified architecture.",
     "WinCC SCADA deployment with 2 Operator Stations (OS) and 1 Engineering Station (ES) for trends, alarms, event history, and central supervisory control.",
     "Two local Siemens KTP-series HMI panels at the turbine floor, plus wireless tablet operation for roving operator access across the plant.",
   ],
@@ -645,7 +645,7 @@ export const refineryProject: DetailedProjectData = {
     { label: "Project Name", value: "Control System SIL-2 Programming for Reciprocating Compressor Application" },
     { label: "Completion Date", value: "October 2022" },
     { label: "Scope of Work", value: "PLC | HMI | SCADA Programming | Testing | Site Commissioning" },
-    { label: "Location", value: "USA (engineered and tested in Ahmedabad, India)" },
+    { label: "Location", value: "USA (engineered and tested in OEM Place)" },
   ],
   gallery: [
     {
@@ -821,7 +821,7 @@ export const hydrogenationPlantProject: DetailedProjectData = {
     { label: "Project Name", value: "Automation & Control System for 100 TPD Hydrogenation Plant" },
     { label: "Completion Date", value: "October 2022" },
     { label: "Scope of Work", value: "Control System Engineering | Panel Manufacturing | PLC, HMI & SCADA Programming | Testing | Site Commissioning" },
-    { label: "Location", value: "Philippines (engineered and manufactured in Ahmedabad, India)" },
+    { label: "Location", value: "Philippines (engineered and manufactured in OEM Place)" },
   ],
   gallery: [
     {
@@ -1010,7 +1010,7 @@ export const ethylAcetateProject: DetailedProjectData = {
     { label: "Project Name", value: "Automation & Control System for 10 TPD Ethyl Acetate Plant" },
     { label: "Completion Date", value: "October 2022" },
     { label: "Scope of Work", value: "Control System Engineering | Panel Manufacturing | PLC, HMI & SCADA Programming | Testing | Site Commissioning" },
-    { label: "Location", value: "Egypt (engineered and manufactured in Ahmedabad, India)" },
+    { label: "Location", value: "Egypt (engineered and manufactured in OEM Place)" },
   ],
   gallery: [
     {

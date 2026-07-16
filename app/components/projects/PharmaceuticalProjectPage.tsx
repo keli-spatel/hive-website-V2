@@ -17,6 +17,7 @@ import { AnimatedButton } from "../ui/AnimatedButton";
 import { ClientCarousel } from "../ui/cases-with-infinite-scroll";
 import { FaqAccordion } from "../FaqAccordion";
 import ProjectIoStats from "../ProjectIoStats";
+import ProjectGalleryLightbox from "./ProjectGalleryLightbox";
 import type {
   DetailedProjectConfig,
   RelatedProject,
@@ -130,13 +131,7 @@ export default function PharmaceuticalProjectPage({
                 <aside className="pharma-overview-gallery" aria-labelledby="pharma-gallery-title">
                   <div className="pharma-gallery-panel">
                     
-                    <div className="pharma-gallery-grid">
-                      {project.gallery.map((image) => (
-                        <div className="pharma-gallery-card" key={image.src}>
-                          <Image src={image.src} alt={image.alt} fill className="pharma-gallery-image" sizes="(max-width: 1023px) 100vw, 32vw" />
-                        </div>
-                      ))}
-                    </div>
+                    <ProjectGalleryLightbox images={project.gallery} variant="pharma" />
                   </div>
                 </aside>
               </div>

@@ -1,13 +1,13 @@
 "use client";
 
 import Link from "next/link";
-import { CheckCircle2, Plus, Trash2, XCircle } from "lucide-react";
-import { useMemo, useState } from "react";
+import { CheckCircle2, Plus, Trash2, Upload, XCircle } from "lucide-react";
+import { useMemo, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import RichTextEditor from "./RichTextEditor";
 import { adminButtonClassName } from "./adminButton";
 import { BlogFaqItem, BlogPost } from "@/lib/cms-types";
-import { estimateReadingTime, normalizeCanonicalUrl, parseAuthorLines } from "@/lib/blog";
+import { BLOG_CATEGORIES, estimateReadingTime, normalizeCanonicalUrl, parseAuthorLines } from "@/lib/blog";
 import { normalizeSlug } from "@/lib/slug";
 
 type Props = {
@@ -17,6 +17,78 @@ type Props = {
 function buildAuthorsText(post: BlogPost | null) {
   if (!post?.authors?.length) return "Hive Automation | Team";
   return post.authors.map((author) => [author.name, author.role, author.avatar].filter(Boolean).join(" | ")).join("\n");
+}
+
+function ImageUrlUploadField({
+  label,
+  placeholder,
+  value,
+  onChange,
+}: {
+  label: string;
+  placeholder?: string;
+  value: string;
+  onChange: (value: string) => void;
+}) {
+  const inputRef = useRef<HTMLInputElement>(null);
+  const [uploading, setUploading] = useState(false);
+
+  async function uploadImage(file: File) {
+    setUploading(true);
+    const formData = new FormData();
+    formData.append("file", file);
+
+    try {
+      const response = await fetch("/api/admin/blog-images", {
+        method: "POST",
+        body: formData,
+      });
+      const data = await response.json();
+      if (!response.ok) {
+        window.alert(data.message || "Could not upload image.");
+        return;
+      }
+      onChange(data.data.url);
+    } catch {
+      window.alert("The CMS could not upload the image. Please try again.");
+    } finally {
+      setUploading(false);
+      if (inputRef.current) inputRef.current.value = "";
+    }
+  }
+
+  return (
+    <div className="grid gap-2 text-sm">
+      <span>{label}</span>
+      <div className="flex gap-2">
+        <input
+          className="h-11 min-w-0 flex-1 border border-[#E2E9F3] px-3"
+          placeholder={placeholder}
+          value={value}
+          onChange={(event) => onChange(event.target.value)}
+        />
+        <button
+          className={adminButtonClassName({ variant: "secondary" }, "h-11 px-3")}
+          disabled={uploading}
+          onClick={() => inputRef.current?.click()}
+          type="button"
+        >
+          <Upload size={16} />
+          <span>{uploading ? "Uploading" : "Upload"}</span>
+        </button>
+        <input
+          ref={inputRef}
+          accept="image/jpeg,image/png,image/webp,image/gif"
+          className="sr-only"
+          onChange={(event) => {
+            const file = event.target.files?.[0];
+            if (file) void uploadImage(file);
+          }}
+          type="file"
+        />
+      </div>
+    </div>
+  );
 }
 
 export default function BlogEditorForm({ post }: Props) {
@@ -257,11 +329,11 @@ export default function BlogEditorForm({ post }: Props) {
             <h2 className="mt-2 text-2xl font-medium text-black">Open Graph and Twitter cards</h2>
             <div className="mt-5 grid gap-4">
               <input className="h-11 border border-[#E2E9F3] px-3" placeholder="Open Graph title" value={ogTitle} onChange={(e) => setOgTitle(e.target.value)} />
-              <input className="h-11 border border-[#E2E9F3] px-3" placeholder="Open Graph image URL" value={ogImage} onChange={(e) => setOgImage(e.target.value)} />
+              <ImageUrlUploadField label="Open Graph image URL" placeholder="Open Graph image URL" value={ogImage} onChange={setOgImage} />
               <textarea className="min-h-20 border border-[#E2E9F3] px-3 py-2" rows={2} placeholder="Open Graph description" value={ogDescription} onChange={(e) => setOgDescription(e.target.value)} />
               <input className="h-11 border border-[#E2E9F3] px-3" placeholder="Open Graph image alt" value={ogImageAlt} onChange={(e) => setOgImageAlt(e.target.value)} />
               <input className="h-11 border border-[#E2E9F3] px-3" placeholder="Twitter title" value={twitterTitle} onChange={(e) => setTwitterTitle(e.target.value)} />
-              <input className="h-11 border border-[#E2E9F3] px-3" placeholder="Twitter image URL" value={twitterImage} onChange={(e) => setTwitterImage(e.target.value)} />
+              <ImageUrlUploadField label="Twitter image URL" placeholder="Twitter image URL" value={twitterImage} onChange={setTwitterImage} />
               <textarea className="min-h-20 border border-[#E2E9F3] px-3 py-2" rows={2} placeholder="Twitter description" value={twitterDescription} onChange={(e) => setTwitterDescription(e.target.value)} />
               <input className="h-11 border border-[#E2E9F3] px-3" placeholder="Twitter image alt" value={twitterImageAlt} onChange={(e) => setTwitterImageAlt(e.target.value)} />
             </div>
@@ -278,7 +350,7 @@ export default function BlogEditorForm({ post }: Props) {
               <label className="flex items-start gap-3"><input checked={robotsIndex} onChange={(e) => setRobotsIndex(e.target.checked)} type="checkbox" /><span>Allow search indexing</span></label>
               <label className="flex items-start gap-3"><input checked={robotsFollow} onChange={(e) => setRobotsFollow(e.target.checked)} type="checkbox" /><span>Allow link following</span></label>
               <label className="grid gap-2"><span>Schema type</span><select className="h-11 border border-[#E2E9F3] bg-white px-3" value={schemaType} onChange={(e) => setSchemaType(e.target.value as BlogPost["schema_type"])}><option>BlogPosting</option><option>Article</option><option>TechArticle</option></select></label>
-              <label className="grid gap-2"><span>Category</span><select className="h-11 border border-[#E2E9F3] bg-white px-3" value={category} onChange={(e) => setCategory(e.target.value)}><option>Automation</option><option>Agentic AI</option><option>Browser Automation</option><option>Operations</option><option>Engineering</option><option>Company</option></select></label>
+              <label className="grid gap-2"><span>Category</span><select className="h-11 border border-[#E2E9F3] bg-white px-3" value={category} onChange={(e) => setCategory(e.target.value)}>{BLOG_CATEGORIES.map((item) => <option key={item}>{item}</option>)}</select></label>
               <label className="grid gap-2"><span>Publish date</span><input className="h-11 border border-[#E2E9F3] bg-white px-3" type="datetime-local" value={publishDate} onChange={(e) => setPublishDate(e.target.value)} /></label>
               <label className="grid gap-2"><span>Reading time</span><input className="h-11 border border-[#E2E9F3] bg-white px-3" value={readingTime} onChange={(e) => { setReadingTimeTouched(true); setReadingTime(e.target.value); }} /></label>
               <button className={adminButtonClassName({ variant: "primary", width: "full" }, "mt-2")} disabled={pending} onClick={savePost} type="button">{pending ? "Saving..." : "Save post"}</button>
@@ -296,10 +368,9 @@ export default function BlogEditorForm({ post }: Props) {
 
           <section className="border border-[#E2E9F3] bg-white p-5">
             <h2 className="text-2xl font-medium text-black">Featured image panel</h2>
-            <label className="mt-4 grid gap-2 text-sm">
-              <span>Featured image URL</span>
-              <input className="h-11 border border-[#E2E9F3] px-3" value={featuredImage} onChange={(e) => setFeaturedImage(e.target.value)} />
-            </label>
+            <div className="mt-4">
+              <ImageUrlUploadField label="Featured image URL" value={featuredImage} onChange={setFeaturedImage} />
+            </div>
             {imagePreview ? (
               <div className="relative mt-4 aspect-video overflow-hidden border border-[#E2E9F3]">
                 {/* eslint-disable-next-line @next/next/no-img-element */}

@@ -26,7 +26,7 @@ export default async function HomePage() {
           <div className="hero-layout">
             <div className="hero-copy">
               <h1>
-                Siemens PLC & Industrial <br></br>
+                Siemens Industrial <br></br>
                 <span className="hero-highlight">Automation</span>
                 Solutions Expert
               </h1>
