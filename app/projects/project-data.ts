@@ -1084,6 +1084,12 @@ export const ethylAcetateProject: DetailedProjectData = {
       width: 547,
       height: 947,
     },
+    {
+      src: "/projects/ethyl-acetate-hmi-control-screen.webp",
+      alt: "Ethyl acetate plant HMI control and alarm setpoint screens",
+      width: 1280,
+      height: 1280,
+    },
   ],
   galleryCarouselPageSizes: [2, 1, 1, 1],
   cta: {
@@ -1247,42 +1253,6 @@ export const asphaltBatchingProject: DetailedProjectData = {
       alt: "260 TPH asphalt batching plant SCADA control screen showing real-time process data and batch management",
       width: 1600,
       height: 899,
-    },
-    {
-      src: "/projects/asphalt-batching-flow-control-hmi.webp",
-      alt: "Asphalt batching plant flow control HMI screen",
-      width: 352,
-      height: 434,
-    },
-    {
-      src: "/projects/asphalt-batching-process-scada.webp",
-      alt: "Asphalt batching plant process overview in the SCADA interface",
-      width: 1600,
-      height: 900,
-    },
-    {
-      src: "/projects/asphalt-batching-control-panel-front.webp",
-      alt: "Asphalt batching plant control panel front",
-      width: 1200,
-      height: 1600,
-    },
-    {
-      src: "/projects/asphalt-batching-control-panel-cabinet.webp",
-      alt: "Asphalt batching plant control cabinet front",
-      width: 947,
-      height: 1600,
-    },
-    {
-      src: "/projects/asphalt-batching-marshalling-cabinet.webp",
-      alt: "Open asphalt batching plant marshalling cabinet with terminal wiring",
-      width: 1200,
-      height: 1600,
-    },
-    {
-      src: "/projects/asphalt-batching-plc-control-cabinet.webp",
-      alt: "Open asphalt batching plant PLC control cabinet with field wiring",
-      width: 1200,
-      height: 1600,
     },
   ],
   cta: {
