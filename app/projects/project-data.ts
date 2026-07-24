@@ -34,6 +34,8 @@ export interface DetailedProjectSnapshotItem {
 export interface DetailedProjectGalleryItem {
   src: string;
   alt: string;
+  width?: number;
+  height?: number;
 }
 
 export interface RelatedProject {
@@ -66,8 +68,11 @@ export interface DetailedProjectData {
   challenge: string;
   outcome: string;
   ioStats: DetailedProjectStat[];
+  showIoStats?: boolean;
   snapshot: DetailedProjectSnapshotItem[];
   gallery: DetailedProjectGalleryItem[];
+  galleryCarouselPageSize?: number;
+  galleryCarouselPageSizes?: number[];
   cta: {
     title: string;
     body: string;
@@ -175,12 +180,16 @@ export const pharmaceuticalProject: DetailedProjectData = {
   ],
   gallery: [
     {
-      src: "/projects/pharmaceutical-1.jpeg",
-      alt: "GAMP 5 compliant pharmaceutical automation panel with Siemens S7-1500 CPU for powder transfer system",
+      src: "/projects/pharmaceutical-hmi.webp",
+      alt: "Siemens SIMATIC HMI displaying the pharmaceutical automation system interface",
+      width: 867,
+      height: 1156,
     },
     {
-      src: "/projects/pharmaceutical-2.jpeg",
-      alt: "WinCC SCADA operator screen for pharmaceutical material handling with 21 CFR Part 11 audit trail",
+      src: "/projects/pharmaceutical-s7-1500-panel.webp",
+      alt: "Siemens S7-1500 PLC installed in the pharmaceutical automation control panel",
+      width: 800,
+      height: 600,
     },
   ],
   cta: {
@@ -299,24 +308,34 @@ export const oilGasProject: DetailedProjectData = {
   ],
   gallery: [
     {
-      src: "/projects/oil-1.png",
-      alt: "Siemens PCS 7 DCS compressor control system cabinet for ONGC high pressure air injection plant",
+      src: "/projects/oil-gas-scada-compressor-overview.webp",
+      alt: "Siemens PCS 7 SCADA compressor process overview",
+      width: 648,
+      height: 364,
     },
     {
-      src: "/projects/oil-2.png",
-      alt: "SIL-3 fire and gas detection system panel for ONGC oil and gas plant Ahmedabad",
+      src: "/projects/oil-gas-pcs7-redundant-controller.webp",
+      alt: "Siemens PCS 7 redundant controller cabinet for the oil and gas project",
+      width: 1560,
+      height: 1520,
     },
     {
-      src: "/projects/oil-3.png",
-      alt: "ONGC oil and gas DCS process control SCADA operator workstation",
+      src: "/projects/oil-gas-marshalling-cabinets.webp",
+      alt: "Oil and gas marshalling cabinets with distributed I/O terminal wiring",
+      width: 1600,
+      height: 1378,
     },
     {
-      src: "/projects/oil-4.png",
-      alt: "HART asset management system display for field instrument diagnostics - ONGC project",
+      src: "/projects/oil-gas-control-and-marshalling-cabinets.webp",
+      alt: "Oil and gas control and marshalling cabinets with Siemens automation hardware",
+      width: 1600,
+      height: 1425,
     },
     {
-      src: "/projects/oil-5.png",
-      alt: "Siemens PCS 7 DCS engineering station and plant network topology for ONGC",
+      src: "/projects/oil-gas-pcs7-controller-cabinet.webp",
+      alt: "Siemens PCS 7 controller cabinet with redundant CPU and distributed I/O",
+      width: 1591,
+      height: 1583,
     },
   ],
   cta: {
@@ -474,26 +493,31 @@ export const chemicalProject: DetailedProjectData = {
   ],
   gallery: [
     {
-      src: "/projects/chemical-1.png",
-      alt: "Siemens S7-400H redundant PLC cabinet for steam turbine control system at KLJ Petroplast",
+      src: "/projects/chemical-turbine-drain-system.webp",
+      alt: "Steam turbine drain system overview in the chemical plant SCADA interface",
+      width: 1748,
+      height: 1051,
     },
     {
-      src: "/projects/chemical-6.png",
-      alt: "WinCC SCADA operator station with turbine process graphics for chemical energy plant",
+      src: "/projects/chemical-turbine-lube-oil-protection.webp",
+      alt: "Steam turbine lube oil protection system overview in the chemical plant SCADA interface",
+      width: 1791,
+      height: 1080,
     },
     {
-      src: "/projects/chemical-3.png",
-      alt: "ET200SP remote I/O field cabinet for steam turbine distributed control",
+      src: "/projects/chemical-turbine-condensate-system.webp",
+      alt: "Steam turbine condensate extraction system overview in the chemical plant SCADA interface",
+      width: 1648,
+      height: 1065,
     },
     {
-      src: "/projects/chemical-4.png",
-      alt: "Siemens HMI panel at turbine floor for local steam turbine operation",
-    },
-    {
-      src: "/projects/chemical-5.png",
-      alt: "Wireless tablet operator interface for roving access to turbine control system",
+      src: "/projects/chemical-turbine-steam-path.webp",
+      alt: "Steam turbine steam path overview in the chemical plant SCADA interface",
+      width: 1692,
+      height: 1080,
     },
   ],
+  galleryCarouselPageSize: 3,
   cta: {
     title: "Have a similar chemical automation project?",
     body:
@@ -649,26 +673,31 @@ export const refineryProject: DetailedProjectData = {
   ],
   gallery: [
     {
-      src: "/projects/refinery-1.png",
-      alt: "Rockwell ControlLogix SIL-2 compressor control system panel - Hive Automation",
+      src: "/projects/refinery-compressor-system-architecture.webp",
+      alt: "Refinery compressor control system architecture screen",
+      width: 1094,
+      height: 580,
     },
     {
-      src: "/projects/refinery-2.png",
-      alt: "Reciprocating compressor control SCADA operator workstation with process graphics",
+      src: "/projects/refinery-compressor-frame.webp",
+      alt: "Refinery reciprocating compressor frame control screen",
+      width: 1097,
+      height: 587,
     },
     {
-      src: "/projects/refinery-3.png",
-      alt: "Field instrumentation and junction box wiring for compressor control system",
+      src: "/projects/refinery-compressor-fourth-stage.webp",
+      alt: "Refinery compressor fourth-stage process gas control screen",
+      width: 1102,
+      height: 586,
     },
     {
-      src: "/projects/refinery-4.png",
-      alt: "SIL-2 safety instrumented system logic solver panel for compressor ESD",
-    },
-    {
-      src: "/projects/refinery-5.png",
-      alt: "Compressor control SCADA trends and alarm management - FactoryTalk View",
+      src: "/projects/refinery-compressor-second-stage.webp",
+      alt: "Refinery compressor second-stage process gas control screen",
+      width: 1101,
+      height: 585,
     },
   ],
+  galleryCarouselPageSize: 3,
   cta: {
     title: "Have a similar rotary equipment control automation project?",
     body:
@@ -825,38 +854,50 @@ export const hydrogenationPlantProject: DetailedProjectData = {
   ],
   gallery: [
     {
-      src: "/projects/hydrogen-1.png",
-      alt: "PLC control system panel for 100 TPD hydrogenation plant - Hive Automation Ahmedabad",
+      src: "/projects/hydrogenation-mcc-and-marshalling-panel.webp",
+      alt: "Hydrogenation plant MCC and marshalling control panel interior",
+      width: 1280,
+      height: 591,
     },
     {
-      src: "/projects/hydrogen-2.png",
-      alt: "SCADA process monitoring screen for hydrogenation reactor temperature and pressure",
+      src: "/projects/hydrogenation-autoclave-2-scada.webp",
+      alt: "Hydrogenation plant Autoclave 2 process overview in the SCADA system",
+      width: 1254,
+      height: 702,
     },
     {
-      src: "/projects/hydrogen-3.png",
-      alt: "In-house manufactured MCC cum control panel for hydrogenation plant automation",
+      src: "/projects/hydrogenation-mcc-marshalling-cabinets.webp",
+      alt: "Hydrogenation plant MCC and marshalling cabinets with open doors",
+      width: 767,
+      height: 591,
     },
     {
-      src: "/projects/hydrogen-4.png",
-      alt: "PLC cabinet interior showing Siemens hardware for hydrogenation plant control",
+      src: "/projects/hydrogenation-autoclave-1-scada.webp",
+      alt: "Hydrogenation plant Autoclave 1 process overview in the SCADA system",
+      width: 1256,
+      height: 706,
     },
     {
-      src: "/projects/hydrogen-5.png",
-      alt: "HMI operator interface and recipe control screen for hydrogenation plant",
+      src: "/projects/hydrogenation-control-cabinet-open.webp",
+      alt: "Open hydrogenation plant control cabinet with motor drives and terminal wiring",
+      width: 591,
+      height: 934,
     },
     {
-      src: "/projects/hydrogen-6.png",
-      alt: "On-site commissioning of hydrogenation plant automation at Ricor Mills Philippines",
+      src: "/projects/hydrogenation-oil-mixture-tank-scada.webp",
+      alt: "Hydrogenation plant oil mixture tank process overview in the SCADA system",
+      width: 1259,
+      height: 704,
     },
     {
-      src: "/projects/hydrogen-7.png",
-      alt: "Field instrumentation and wiring for hydrogenation plant process control",
-    },
-    {
-      src: "/projects/hydrogen-8.png",
-      alt: "Process safety interlock and ESD automation for hydrogenation reactor system",
+      src: "/projects/hydrogenation-mcc-control-panel-front.webp",
+      alt: "Hydrogenation plant MCC control panel front",
+      width: 666,
+      height: 591,
     },
   ],
+  galleryCarouselPageSize: 2,
+  galleryCarouselPageSizes: [3],
   cta: {
     title: "Have a similar chemical / process automation project?",
     body:
@@ -1014,38 +1055,37 @@ export const ethylAcetateProject: DetailedProjectData = {
   ],
   gallery: [
     {
-      src: "/projects/Acetate-5.png",
-      alt: "In-house manufactured control panel for 10 TPD ethyl acetate plant - Hive Automation",
+      src: "/projects/ethyl-acetate-scada-extraction-column.webp",
+      alt: "Ethyl acetate extraction column process overview in the SCADA system",
+      width: 709,
+      height: 399,
     },
     {
-      src: "/projects/Acetate-6.png",
-      alt: "Siemens S7-1500 redundant CPU (1513R) for ethyl acetate process control",
+      src: "/projects/ethyl-acetate-control-panel-1.webp",
+      alt: "Ethyl acetate plant control panel front with operator controls",
+      width: 540,
+      height: 930,
     },
     {
-      src: "/projects/Acetate-1.png",
-      alt: "SCADA process visualization for ethyl acetate plant real-time monitoring",
+      src: "/projects/ethyl-acetate-control-panel-2.webp",
+      alt: "Ethyl acetate plant control panel front enclosure",
+      width: 549,
+      height: 927,
     },
     {
-      src: "/projects/Acetate-2.png",
-      alt: "ET200SP remote I/O stations for ethyl acetate plant distributed control",
+      src: "/projects/ethyl-acetate-marshalling-panel.webp",
+      alt: "Marshalling terminal panel for the ethyl acetate plant automation system",
+      width: 534,
+      height: 943,
     },
     {
-      src: "/projects/Acetate-3.png",
-      alt: "PLC control cabinet and field wiring for ethyl acetate plant",
-    },
-    {
-      src: "/projects/Acetate-4.png",
-      alt: "On-site commissioning of ethyl acetate plant automation at Egyptian Sugar Industries",
-    },
-    {
-      src: "/projects/Acetate-7.png",
-      alt: "HMI operator workstation for ethyl acetate plant process operation",
-    },
-    {
-      src: "/projects/Acetate-8.png",
-      alt: "In-house FAT testing of ethyl acetate plant automation system before export",
+      src: "/projects/ethyl-acetate-plc-panel-interior.webp",
+      alt: "PLC and field wiring inside the ethyl acetate plant control panel",
+      width: 547,
+      height: 947,
     },
   ],
+  galleryCarouselPageSizes: [2, 1, 1, 1],
   cta: {
     title: "Have a similar chemical / process automation project?",
     body:
@@ -1190,10 +1230,10 @@ export const asphaltBatchingProject: DetailedProjectData = {
   outcome:
     "The 260 TPH Asphalt Batching Plant SCADA system was commissioned and made operational with centralised plant control, automated batch reporting, truck loading, and real-time production data accessible from a single SCADA operator station.",
   ioStats: [
-    { value: "260", label: "TPH Capacity" },
-    { value: "1", label: "SCADA Station" },
-    { value: "24/7", label: "Plant Visibility" },
-    { value: "Live", label: "Batch Reporting" },
+    { value: "28", label: "Analog Inputs" },
+    { value: "8", label: "Analog Outputs" },
+    { value: "128", label: "Digital Inputs" },
+    { value: "96", label: "Digital Outputs" },
   ],
   snapshot: [
     { label: "Project Name", value: "Asphalt Batching Plant Automation System - 260 TPH" },
@@ -1203,8 +1243,46 @@ export const asphaltBatchingProject: DetailedProjectData = {
   ],
   gallery: [
     {
-      src: "/projects/aphalt-batching.png",
+      src: "/projects/asphalt-batching-scada-overview.webp",
       alt: "260 TPH asphalt batching plant SCADA control screen showing real-time process data and batch management",
+      width: 1600,
+      height: 899,
+    },
+    {
+      src: "/projects/asphalt-batching-flow-control-hmi.webp",
+      alt: "Asphalt batching plant flow control HMI screen",
+      width: 352,
+      height: 434,
+    },
+    {
+      src: "/projects/asphalt-batching-process-scada.webp",
+      alt: "Asphalt batching plant process overview in the SCADA interface",
+      width: 1600,
+      height: 900,
+    },
+    {
+      src: "/projects/asphalt-batching-control-panel-front.webp",
+      alt: "Asphalt batching plant control panel front",
+      width: 1200,
+      height: 1600,
+    },
+    {
+      src: "/projects/asphalt-batching-control-panel-cabinet.webp",
+      alt: "Asphalt batching plant control cabinet front",
+      width: 947,
+      height: 1600,
+    },
+    {
+      src: "/projects/asphalt-batching-marshalling-cabinet.webp",
+      alt: "Open asphalt batching plant marshalling cabinet with terminal wiring",
+      width: 1200,
+      height: 1600,
+    },
+    {
+      src: "/projects/asphalt-batching-plc-control-cabinet.webp",
+      alt: "Open asphalt batching plant PLC control cabinet with field wiring",
+      width: 1200,
+      height: 1600,
     },
   ],
   cta: {
@@ -1356,6 +1434,7 @@ export const pharmaProcessProject: DetailedProjectData = {
     { value: "GMP", label: "Compliance Ready" },
     { value: "TIA", label: "Siemens Platform" },
   ],
+  showIoStats: false,
   snapshot: [
     { label: "Project Name", value: "Pharmaceutical & Process Equipment Automation Programme" },
     { label: "Completion Date", value: "Ongoing - 2017 to present" },
@@ -1364,22 +1443,50 @@ export const pharmaProcessProject: DetailedProjectData = {
   ],
   gallery: [
     {
-      src: "/projects/pharmaceutical-1.jpeg",
-      alt: "GAMP 5 compliant pharma process equipment PLC automation panel - Hive Automation",
+      src: "/projects/pharma-process-plc-panel.webp",
+      alt: "PLC and motor control components inside a pharmaceutical process equipment panel",
+      width: 1600,
+      height: 1200,
     },
     {
-      src: "/projects/pharmaceutical-2.jpeg",
-      alt: "Pharmaceutical reactor PLC control with recipe management and batch report",
+      src: "/projects/pharma-process-plc-retrofit-panel.webp",
+      alt: "Siemens PLC and field wiring panel used for pharmaceutical process equipment automation",
+      width: 1200,
+      height: 1600,
     },
     {
-      src: "/projects/pharmaceutical-2.jpeg",
-      alt: "21 CFR Part 11 compliant SCADA audit trail interface for pharmaceutical equipment",
+      src: "/projects/pharma-process-control-cabinet.webp",
+      alt: "Pharmaceutical process equipment control cabinet front",
+      width: 960,
+      height: 1280,
     },
     {
-      src: "/projects/pharmaceutical-1.jpeg",
-      alt: "Pharma process plant automation with validated batch reports and GMP compliance",
+      src: "/projects/pharma-process-hmi-control-panel.webp",
+      alt: "Stainless steel HMI control panel for pharmaceutical process equipment",
+      width: 867,
+      height: 1156,
+    },
+    {
+      src: "/projects/pharma-process-control-cabinet-interior.webp",
+      alt: "Open pharmaceutical process equipment control cabinet with PLC and drive components",
+      width: 1200,
+      height: 1600,
+    },
+    {
+      src: "/projects/pharma-process-hmi-cabinet-front.webp",
+      alt: "Stainless steel HMI cabinet for pharmaceutical process equipment",
+      width: 1200,
+      height: 1600,
+    },
+    {
+      src: "/projects/pharma-process-hmi-cabinet-interior.webp",
+      alt: "Open stainless steel HMI cabinet with PLC and terminal wiring for pharmaceutical process equipment",
+      width: 1200,
+      height: 1600,
     },
   ],
+  galleryCarouselPageSize: 1,
+  galleryCarouselPageSizes: [2, 1, 1, 1, 1, 1],
   cta: {
     title: "Have a similar pharmaceutical / oem automation project?",
     body:
@@ -1524,6 +1631,7 @@ export const retrofitUpgradeProject: DetailedProjectData = {
     { value: "Phased", label: "Cutover Model" },
     { value: "21 CFR", label: "Compliance Support" },
   ],
+  showIoStats: false,
   snapshot: [
     { label: "Project Name", value: "Retrofit & Upgrade Solutions - Multiple Plants" },
     { label: "Completion Date", value: "Ongoing - 2017 to present" },
@@ -1532,22 +1640,25 @@ export const retrofitUpgradeProject: DetailedProjectData = {
   ],
   gallery: [
     {
-      src: "/projects/pharmaceutical-1.jpeg",
-      alt: "Legacy PLC control system retrofit project - old S7-300 hardware being replaced by Hive Automation",
+      src: "/projects/retrofit-plc-control-panel.webp",
+      alt: "Retrofitted Siemens PLC control panel with power distribution and field wiring",
+      width: 1200,
+      height: 1600,
     },
     {
-      src: "/projects/chemical-1.png",
-      alt: "Siemens S5 to S7-1500 PLC migration project - new hardware installed alongside legacy system",
+      src: "/projects/retrofit-sterilizer-hmi.webp",
+      alt: "Modern Siemens HMI installed for sterilizer control after an automation retrofit",
+      width: 1200,
+      height: 1600,
     },
     {
-      src: "/projects/chemical-3.png",
-      alt: "TIA Portal code translation for legacy PLC retrofit - Hive Automation engineers",
-    },
-    {
-      src: "/projects/pharmaceutical-2.jpeg",
-      alt: "Industrial plant retrofit with modern Siemens HMI and WinCC SCADA replacing obsolete system",
+      src: "/projects/retrofit-pneumatic-valve-panel.webp",
+      alt: "Pneumatic valve manifold wiring installed during the automation retrofit",
+      width: 1200,
+      height: 1600,
     },
   ],
+  galleryCarouselPageSize: 1,
   cta: {
     title: "Have a similar retrofit & upgrades automation project?",
     body:

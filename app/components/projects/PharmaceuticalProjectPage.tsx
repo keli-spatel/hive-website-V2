@@ -131,7 +131,12 @@ export default function PharmaceuticalProjectPage({
                 <aside className="pharma-overview-gallery" aria-labelledby="pharma-gallery-title">
                   <div className="pharma-gallery-panel">
                     
-                    <ProjectGalleryLightbox images={project.gallery} variant="pharma" />
+                    <ProjectGalleryLightbox
+                      images={project.gallery}
+                      variant="pharma"
+                      carouselPageSize={project.galleryCarouselPageSize ?? (project.gallery.length > 2 ? 2 : undefined)}
+                      carouselPageSizes={project.galleryCarouselPageSizes}
+                    />
                   </div>
                 </aside>
               </div>
@@ -203,18 +208,20 @@ export default function PharmaceuticalProjectPage({
               </ul>
             </section>
 
-            <section className="pharma-project-block">
-              <div className="pharma-section-head">
-                <p className="section-label">I/O Summary</p>
-                <h2>I/O Capacity & Configuration</h2>
-              </div>
-              <ProjectIoStats
-                items={project.ioStats.map((stat) => ({
-                  value: Number(stat.value),
-                  label: stat.label,
-                }))}
-              />
-            </section>
+            {project.showIoStats !== false && (
+              <section className="pharma-project-block">
+                <div className="pharma-section-head">
+                  <p className="section-label">I/O Summary</p>
+                  <h2>I/O Capacity & Configuration</h2>
+                </div>
+                <ProjectIoStats
+                  items={project.ioStats.map((stat) => ({
+                    value: Number(stat.value),
+                    label: stat.label,
+                  }))}
+                />
+              </section>
+            )}
           </div>
         </div>
       </section>
@@ -939,9 +946,20 @@ export default function PharmaceuticalProjectPage({
           background: #f8fafc;
         }
 
+        .pharma-gallery-card-natural {
+          min-height: 0;
+        }
+
         .pharma-gallery-image,
         .pharma-related-image {
           object-fit: cover;
+        }
+
+        .pharma-gallery-image-natural {
+          display: block;
+          width: 100%;
+          height: auto;
+          object-fit: contain;
         }
 
         .pharma-related-section .section-heading {
@@ -1106,7 +1124,7 @@ export default function PharmaceuticalProjectPage({
             animation: pharmaOutcomeTraverseMobile 3s ease-in-out infinite;
           }
 
-          .pharma-gallery-card {
+          .pharma-gallery-card:not(.pharma-gallery-card-natural) {
             min-height: 240px;
           }
 

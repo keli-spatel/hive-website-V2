@@ -1,5 +1,3 @@
-"use client";
-
 import Image from "next/image";
 
 const clientLogos = [
@@ -34,29 +32,32 @@ const clientLogos = [
 ];
 
 export function ClientCarousel() {
+  const repeatedLogos = [...clientLogos, ...clientLogos];
+
   return (
-    <div className="mx-auto w-full max-w-[1380px] px-1 py-6 sm:px-0">
-      <div className="grid grid-cols-[repeat(auto-fit,minmax(168px,1fr))] gap-2 sm:grid-cols-[repeat(auto-fit,minmax(180px,1fr))] lg:gap-3">
-        {clientLogos.map((logo, index) => (
-          <div
-            key={index}
-            className="group flex min-h-[108px] w-full items-center justify-center rounded-xl bg-white px-2 py-2 transition-shadow duration-200 hover:shadow-[0_10px_24px_rgba(17,18,20,0.08)] sm:min-h-[114px] lg:min-h-[118px]"
-          >
-            <Image
-              src={logo}
-              alt={`Client logo ${index + 1}`}
-              width={320}
-              height={140}
-              quality={100}
-              sizes="(max-width: 639px) 140px, (max-width: 1023px) 160px, 180px"
-              className="h-auto w-auto object-contain grayscale transition duration-300 group-hover:grayscale-0"
-              style={{
-                width: "min(76%, 220px)",
-                maxHeight: "clamp(64px, 5.2vw, 84px)",
-              }}
-            />
-          </div>
-        ))}
+    <div className="client-marquee" aria-label="Our clients">
+      <div className="client-marquee-row marquee-left">
+        {repeatedLogos.map((logo, index) => {
+          const logoIndex = index % clientLogos.length;
+          const isDuplicate = index >= clientLogos.length;
+
+          return (
+            <div
+              key={index}
+              className="client-logo"
+              aria-hidden={isDuplicate || undefined}
+            >
+              <Image
+                src={logo}
+                alt={isDuplicate ? "" : `Client logo ${logoIndex + 1}`}
+                width={320}
+                height={140}
+                quality={100}
+                sizes="(max-width: 639px) 176px, 220px"
+              />
+            </div>
+          );
+        })}
       </div>
     </div>
   );

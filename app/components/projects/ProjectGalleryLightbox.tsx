@@ -7,19 +7,50 @@ import { useCallback, useEffect, useState } from "react";
 type ProjectGalleryImage = {
   src: string;
   alt: string;
+  width?: number;
+  height?: number;
 };
 
 type ProjectGalleryLightboxProps = {
   images: ProjectGalleryImage[];
   variant: "pharma" | "generic";
+  carouselPageSize?: number;
+  carouselPageSizes?: number[];
 };
 
 export default function ProjectGalleryLightbox({
   images,
   variant,
+  carouselPageSize,
+  carouselPageSizes,
 }: ProjectGalleryLightboxProps) {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
+  const [galleryPage, setGalleryPage] = useState(0);
   const activeImage = activeIndex !== null ? images[activeIndex] : null;
+  const imagesPerPage = carouselPageSize && carouselPageSize > 0 ? carouselPageSize : images.length;
+  const galleryPages = (() => {
+    const pages: Array<{ startIndex: number; images: ProjectGalleryImage[] }> = [];
+    let startIndex = 0;
+
+    if (carouselPageSizes?.length) {
+      for (const pageSize of carouselPageSizes) {
+        if (startIndex >= images.length) break;
+        const size = Math.max(1, Math.floor(pageSize));
+        pages.push({ startIndex, images: images.slice(startIndex, startIndex + size) });
+        startIndex += size;
+      }
+    }
+
+    while (startIndex < images.length) {
+      pages.push({ startIndex, images: images.slice(startIndex, startIndex + imagesPerPage) });
+      startIndex += imagesPerPage;
+    }
+
+    return pages;
+  })();
+  const galleryPageCount = galleryPages.length;
+  const currentGalleryPage = galleryPages[galleryPage] ?? galleryPages[0] ?? { startIndex: 0, images: [] };
+  const { startIndex: galleryStartIndex, images: visibleImages } = currentGalleryPage;
 
   const closeLightbox = useCallback(function closeLightbox() {
     setActiveIndex(null);
@@ -64,24 +95,61 @@ export default function ProjectGalleryLightbox({
   return (
     <>
       <div className={variant === "pharma" ? "pharma-gallery-grid" : "project-gallery-grid"}>
-        {images.map((image, index) => (
+        {visibleImages.map((image, index) => (
           <button
             aria-label={`Open ${image.alt}`}
-            className={variant === "pharma" ? "pharma-gallery-card project-gallery-trigger" : "project-gallery-card project-gallery-trigger"}
+            className={
+              variant === "pharma"
+                ? `pharma-gallery-card project-gallery-trigger${image.width && image.height ? " pharma-gallery-card-natural" : ""}`
+                : "project-gallery-card project-gallery-trigger"
+            }
             key={`${image.src}-${index}`}
-            onClick={() => setActiveIndex(index)}
+            onClick={() => setActiveIndex(galleryStartIndex + index)}
             type="button"
           >
-            <Image
-              src={image.src}
-              alt={image.alt}
-              fill
-              className={variant === "pharma" ? "pharma-gallery-image" : "project-gallery-image"}
-              sizes={variant === "pharma" ? "(max-width: 1023px) 100vw, 32vw" : "(max-width: 799px) 100vw, 50vw"}
-            />
+            {image.width && image.height ? (
+              <Image
+                src={image.src}
+                alt={image.alt}
+                width={image.width}
+                height={image.height}
+                className="pharma-gallery-image pharma-gallery-image-natural"
+                sizes="(max-width: 1023px) 100vw, 32vw"
+              />
+            ) : (
+              <Image
+                src={image.src}
+                alt={image.alt}
+                fill
+                className={variant === "pharma" ? "pharma-gallery-image" : "project-gallery-image"}
+                sizes={variant === "pharma" ? "(max-width: 1023px) 100vw, 32vw" : "(max-width: 799px) 100vw, 50vw"}
+              />
+            )}
           </button>
         ))}
       </div>
+
+      {galleryPageCount > 1 ? (
+        <div className="project-gallery-pagination" aria-label="Gallery navigation">
+          <button
+            aria-label="Show previous gallery images"
+            onClick={() => setGalleryPage((page) => (page === 0 ? galleryPageCount - 1 : page - 1))}
+            type="button"
+          >
+            <ChevronLeft size={18} aria-hidden="true" />
+          </button>
+          <span>
+            {galleryPage + 1} / {galleryPageCount}
+          </span>
+          <button
+            aria-label="Show next gallery images"
+            onClick={() => setGalleryPage((page) => (page === galleryPageCount - 1 ? 0 : page + 1))}
+            type="button"
+          >
+            <ChevronRight size={18} aria-hidden="true" />
+          </button>
+        </div>
+      ) : null}
 
       {activeImage ? (
         <div
@@ -178,6 +246,45 @@ export default function ProjectGalleryLightbox({
         .project-gallery-trigger:hover .project-gallery-image,
         .project-gallery-trigger:hover .pharma-gallery-image {
           transform: scale(1.04);
+        }
+
+        .project-gallery-pagination {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 10px;
+          margin-top: 16px;
+        }
+
+        .project-gallery-pagination button {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          width: 34px;
+          height: 34px;
+          border: 1px solid #dcdad5;
+          border-radius: 50%;
+          background: #ffffff;
+          color: #171819;
+          padding: 0;
+          cursor: pointer;
+          transition: border-color 160ms ease, color 160ms ease, transform 160ms ease;
+        }
+
+        .project-gallery-pagination button:hover,
+        .project-gallery-pagination button:focus-visible {
+          border-color: #ff3434;
+          color: #ff3434;
+          transform: translateY(-1px);
+          outline: none;
+        }
+
+        .project-gallery-pagination span {
+          min-width: 36px;
+          color: #667085;
+          font-size: 12px;
+          font-weight: 700;
+          text-align: center;
         }
 
         .project-lightbox {

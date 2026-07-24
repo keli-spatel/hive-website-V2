@@ -370,14 +370,14 @@ const servicesData = {
         heading: "Our SCADA & HMI Development Capabilities",
         paragraphs: ["We follow a structured discovery-to-commissioning approach for every SCADA/HMI project, whether it's a full replacement or an upgrade of an existing system."],
         bullets: [
+          "New panel and PLC programming concept readiness review",
+          "New graphics development alarms, trends, mimic screens, and navigation built for operator clarity",
+          "Collaborative concept design sessions with your operations and engineering teams",
+          "Factory Acceptance Testing (FAT), Integrated FAT (IFAT), and Site Acceptance Testing (SAT)",
+          "Full site commissioning and operator training and handover",
           "Old system study at site auditing existing SCADA/HMI and PLC architecture before any redesign",
           "Old PLC program study to ensure new graphics map correctly to existing control logic",
-          "Footprint and panel-fit verification for hardware replacement projects",
-          "New panel and PLC programming concept readiness review",
-          "Collaborative concept design sessions with your operations and engineering teams",
-          "New graphics development alarms, trends, mimic screens, and navigation built for operator clarity",
-          "Factory Acceptance Testing (FAT), Integrated FAT (IFAT), and Site Acceptance Testing (SAT)",
-          "Full site commissioning and operator training and handover"
+          "Footprint and panel-fit verification for hardware replacement projects"
         ]
       },
       {

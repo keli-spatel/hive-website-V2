@@ -17,7 +17,7 @@ function useInView() {
 }
 
 const contactInfo = [
-  { icon: "📞", label: "Phone", values: ["+91 99786 03840", "+91 99786 03841"], links: ["tel:+919978603840", "tel:+919978603841"] },
+  { icon: "📞", label: "Phone", values: ["+91 99786 03840"], links: ["tel:+919978603840", "tel:+919978603841"] },
   { icon: "✉️", label: "Email", values: ["info@hiveautomation.in"], links: ["mailto:info@hiveautomation.in"] },
   { icon: "📍", label: "Address", values: ["33, B N Industrial Estate, Near Kathwada GIDC Gate No 5, S P Ring Road, Near Nikol, Odhav, Ahmedabad - 382415"], links: ["https://www.google.com/maps/search/?api=1&query=Hive+Automation+33+B+N+Industrial+Estate+Kathwada+GIDC+Odhav+Ahmedabad+382415"] },
   { icon: "💬", label: "WhatsApp", values: ["+91 99786 03840"], links: ["https://wa.me/919978603840"] },

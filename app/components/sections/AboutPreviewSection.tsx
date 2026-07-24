@@ -31,6 +31,14 @@ export function AboutPreviewSection({ readMoreHref }: AboutPreviewSectionProps) 
         <div>
           <p className="section-label">About Us</p>
           <h2>India&apos;s Trusted Siemens Industrial Automation Experts</h2>
+          <div className="siemens-integrator-badge">
+            <Image
+              src="/siemens-authorized-system-integrator.webp"
+              alt="Siemens Authorized System Integrator"
+              width={320}
+              height={99}
+            />
+          </div>
           <p>
             Hive Automation is a trusted industrial automation company specializing in Siemens PLC
             programming, SCADA system integration, and process control solutions. Our mission is

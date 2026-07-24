@@ -187,6 +187,13 @@ export default function Footer() {
             height={50}
             className="footer-logo"
           />
+          <Image
+            src="/siemens-authorized-system-integrator.webp"
+            alt="Siemens Authorized System Integrator"
+            width={280}
+            height={87}
+            className="footer-siemens-badge"
+          />
           <p>
             Company was established in 2017, after having enough experience in different
             automation sectors to provide the cream service with support.
@@ -284,8 +291,16 @@ export default function Footer() {
         .site-footer .footer-logo {
           width: auto;
           height: 42px;
-          margin-bottom: 28px;
+          margin-bottom: 14px;
           filter: brightness(0) invert(1);
+        }
+        .site-footer .footer-siemens-badge {
+          display: block;
+          width: 280px;
+          height: auto;
+          max-width: 100%;
+          margin-bottom: 22px;
+          border-radius: 2px;
         }
         .site-footer p {
           max-width: 310px;
